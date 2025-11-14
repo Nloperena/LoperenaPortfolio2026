@@ -6,37 +6,30 @@ import TextType from './TextType';
 
 const LatestProjectSection = () => {
   return (
-    <section className="bg-[#f5f5f0] py-16 md:py-24 px-4 md:px-8">
-      <div className="max-w-[1400px] mx-auto">
+    <section className="bg-[#f5f5f0] py-16 md:py-20">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-8">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="space-y-2"
         >
-          <TextType
-            as="h2"
-            text="Latest Project"
-            className="text-6xl md:text-7xl lg:text-8xl font-black text-[#1a4d3a] mb-4 block"
-            typingSpeed={75}
-            pauseDuration={1500}
-            showCursor={false}
-            loop={false}
-            startOnVisible={true}
-          />
+          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#1a4d3a]/70">
+            Featured Project
+          </p>
         </motion.div>
 
-      
-        {/* Mobile View and Info Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
-          {/* iPhone View - Left Side */}
+        {/* Two Column Layout - Image and Content */}
+        <div className="grid gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-center">
+          {/* iPhone Mockup - Left Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex justify-center md:justify-end"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex-shrink-0"
           >
             <div className="relative" style={{ width: '380px', maxWidth: '100%' }}>
               {/* iPhone Frame */}
@@ -60,60 +53,73 @@ const LatestProjectSection = () => {
             </div>
           </motion.div>
 
-          {/* Title and Description - Right Side */}
+          {/* Content - Right Column */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-center md:text-left max-w-lg"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-4"
           >
-            <TextType
-              as="h3"
-              text="RuggedRed.com"
-              className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1a4d3a] mb-6 block"
-              typingSpeed={75}
-              pauseDuration={1500}
-              showCursor={false}
-              loop={false}
-              startOnVisible={true}
-            />
-            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
+            {/* Project Title */}
+            <div>
+              <TextType
+                as="h3"
+                text="RuggedRed.com: High-Performance Brand Site for a High-Performance Cleaner"
+                className="text-3xl md:text-4xl font-black text-[#1a4d3a] block text-left"
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={false}
+                loop={false}
+                startOnVisible={true}
+              />
+            </div>
+
+            {/* Description */}
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-left max-w-3xl">
               A modern, high-performance website built with Next.js and React. This project showcases 
               cutting-edge web development practices, responsive design, and seamless user experience. 
               Built for speed, scalability, and optimal performance across all devices.
             </p>
-            <a
-              href="https://ruggedRed.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-[#1a4d3a] text-white px-8 py-3 rounded-md font-semibold hover:bg-[#2a5d4a] transition-colors mb-8"
-            >
-              Visit RuggedRed.com →
-            </a>
-            
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start">
-                <span className="text-[#1a4d3a] mr-3 font-bold">•</span>
-                <span>We use professional-level AI to create video content that elevates your brand</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#1a4d3a] mr-3 font-bold">•</span>
-                <span>Advanced AI-driven video generation for marketing campaigns and social media</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#1a4d3a] mr-3 font-bold">•</span>
-                <span>Hybrid approach combining AI efficiency with professional video production expertise</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#1a4d3a] mr-3 font-bold">•</span>
-                <span>Custom video solutions tailored to your brand identity and marketing objectives</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#1a4d3a] mr-3 font-bold">•</span>
-                <span>Seamless integration of AI-generated visuals with existing content and footage</span>
-              </li>
-            </ul>
+
+            {/* Key Features */}
+            <div className="mt-3">
+              <h4 className="text-lg font-semibold text-[#1a4d3a] mb-3 text-left">Key Features</h4>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start text-left">
+                  <span className="text-[#1a4d3a] mr-3 font-bold mt-0.5">•</span>
+                  <span className="text-base md:text-lg">Next.js and React for optimal performance and SEO</span>
+                </li>
+                <li className="flex items-start text-left">
+                  <span className="text-[#1a4d3a] mr-3 font-bold mt-0.5">•</span>
+                  <span className="text-base md:text-lg">Fully responsive design across all devices</span>
+                </li>
+                <li className="flex items-start text-left">
+                  <span className="text-[#1a4d3a] mr-3 font-bold mt-0.5">•</span>
+                  <span className="text-base md:text-lg">Modern UI/UX with seamless user experience</span>
+                </li>
+                <li className="flex items-start text-left">
+                  <span className="text-[#1a4d3a] mr-3 font-bold mt-0.5">•</span>
+                  <span className="text-base md:text-lg">Optimized for speed and scalability</span>
+                </li>
+                <li className="flex items-start text-left">
+                  <span className="text-[#1a4d3a] mr-3 font-bold mt-0.5">•</span>
+                  <span className="text-base md:text-lg">Production-ready architecture and deployment</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* CTA Button */}
+            <div>
+              <a
+                href="https://ruggedRed.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#1a4d3a] text-white px-8 py-3 rounded-md font-semibold hover:bg-[#2a5d4a] transition-colors"
+              >
+                Visit RuggedRed.com →
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

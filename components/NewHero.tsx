@@ -4,7 +4,6 @@ import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import FaultyTerminal from '@/components/FaultyTerminal';
 import ServicesDrawer from '@/components/ServicesDrawer';
-import GradualBlur from '@/components/GradualBlur';
 import TextType from '@/components/TextType';
 
 const NewHero = React.memo(() => {
@@ -154,17 +153,17 @@ const NewHero = React.memo(() => {
       )}
 
       {/* Content Overlay - Left Aligned */}
-      <div className="relative z-10 px-8 md:px-12 lg:px-16 xl:px-20 max-w-7xl mx-auto h-full flex items-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 h-full flex items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-left"
+          className="text-left space-y-6"
         >
           <TextType
             as="h1"
             text="NICHOLAS LOPERENA"
-            className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-2 leading-tight block"
+            className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight block"
             typingSpeed={75}
             pauseDuration={1500}
             showCursor={false}
@@ -174,7 +173,7 @@ const NewHero = React.memo(() => {
           <TextType
             as="p"
             text="DIGITAL ARCHITECT"
-            className="text-lg md:text-xl lg:text-2xl text-[#F2611D] mb-2 font-semibold uppercase tracking-wide block"
+            className="text-lg md:text-xl lg:text-2xl text-[#F2611D] font-semibold uppercase tracking-wide block"
             typingSpeed={75}
             pauseDuration={1500}
             showCursor={false}
@@ -182,12 +181,12 @@ const NewHero = React.memo(() => {
             startOnVisible={true}
             initialDelay={1500}
           />
-          <p className="text-lg md:text-xl lg:text-2xl text-white/80 mb-10 font-light uppercase tracking-wide">
+          <p className="text-lg md:text-xl lg:text-2xl text-white/80 font-light uppercase tracking-wide">
             PORTFOLIO & CASE STUDIES
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-wrap gap-3">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -207,18 +206,6 @@ const NewHero = React.memo(() => {
           </div>
         </motion.div>
       </div>
-
-      {/* GradualBlur effect at bottom - fades content into next section */}
-      <GradualBlur
-        target="parent"
-        position="bottom"
-        height="8rem"
-        strength={2}
-        divCount={6}
-        curve="bezier"
-        exponential={false}
-        opacity={1}
-      />
 
       {/* Services Drawer */}
       <ServicesDrawer 

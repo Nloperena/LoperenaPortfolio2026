@@ -136,13 +136,13 @@ const CredibilityStrip = () => {
   return (
     <section 
       aria-label="Brands ticker"
-      className="bg-[#f5f5f0] py-6 border-b border-gray-200"
+      className="border-y border-slate-200 bg-white/80 backdrop-blur-sm"
     >
-      <div className="flex items-center gap-6 md:gap-8">
-        {/* Label - Fixed width to ensure visibility */}
-        <div className="flex-shrink-0 px-4 md:px-6">
-          <p className="text-sm md:text-base text-gray-600 font-medium whitespace-nowrap">
-            Brands I've worked with
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex flex-wrap items-center justify-between gap-3 text-sm">
+        {/* Label */}
+        <div className="flex-shrink-0">
+          <p className="text-sm text-gray-600 font-medium whitespace-nowrap">
+            Browse by case study
           </p>
         </div>
 

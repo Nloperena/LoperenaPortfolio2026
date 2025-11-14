@@ -16,7 +16,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const contactInfo = {
     phone: '+1 (407) 790-5891',
     email: 'nicholasloperena@gmail.com',
-    linkedin: 'https://linkedin.com/in/nicholasloperena'
+    linkedin: 'https://www.linkedin.com/in/nicholas-loperena-022813185/'
   };
 
   useEffect(() => {

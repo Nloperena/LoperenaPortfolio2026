@@ -9,40 +9,40 @@ const AboutMeSection = () => {
   return (
     <section 
       aria-label="About Me"
-      className="bg-[#f5f5f0] py-12 md:py-16 border-b border-gray-200"
+      className="bg-[#f5f5f0] py-20 md:py-24"
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
+          className="mb-6"
         >
-          <TextType
-            as="h2"
-            text="More Than a Developer: Your Digital Architect"
-            className="text-6xl md:text-7xl lg:text-8xl font-black text-[#1a4d3a] mb-4 block"
-            typingSpeed={75}
-            pauseDuration={1500}
-            showCursor={false}
-            loop={false}
-            startOnVisible={true}
-          />
+            <TextType
+              as="h2"
+              text="More Than a Developer: A Digital Architect for Your Growth"
+              className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1a4d3a] block text-left"
+              typingSpeed={75}
+              pauseDuration={1500}
+              showCursor={false}
+              loop={false}
+              startOnVisible={true}
+            />
         </motion.div>
 
         {/* Two Column Layout */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+        <div className="grid gap-10 md:grid-cols-2 items-start">
           {/* Left Column - Text Focus */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900">
               From IT Support to Digital Architect: Building Beyond Code
             </h3>
 
@@ -59,7 +59,7 @@ const AboutMeSection = () => {
             </p>
 
             {/* Key Qualifications */}
-            <div className="mt-6">
+            <div className="mt-3">
               <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-3">Key Qualifications</h4>
               <ul className="space-y-2">
                 <li className="flex items-start gap-3">
@@ -96,14 +96,14 @@ const AboutMeSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative h-[350px] md:h-[400px] flex items-center justify-center"
+            className="relative"
           >
             {/* Single, Dominant Headshot */}
-            <div className="relative w-full max-w-sm h-full rounded-lg overflow-hidden shadow-2xl">
+            <div className="w-full max-w-sm ml-auto rounded-lg overflow-hidden shadow-2xl">
               <img
                 src="https://media.licdn.com/dms/image/v2/D4E03AQGkyoWF6XLw_Q/profile-displayphoto-crop_800_800/B4EZk5boiUIkAI-/0/1757605170745?e=1764806400&v=beta&t=dAWY-djuCly_Y7PJV1JJ_yRFc165bpj8PQPZbJNphi4"
                 alt="Nicholas Loperena - Digital Architect"
-                className="w-full h-full object-contain"
+                className="w-full h-auto object-cover"
               />
             </div>
 

@@ -91,18 +91,18 @@ const TestimonialVideosGrid: React.FC<TestimonialVideosGridProps> = ({
   return (
     <div className="w-full bg-gray-900 py-16 md:py-20 overflow-hidden">
       {showHeader && (
-        <div className="mb-12 text-center px-6 max-w-7xl mx-auto">
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
+        <div className="mb-12 px-6 max-w-7xl mx-auto">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 text-left">
             {title}
           </h3>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-6">
+          <p className="text-lg text-gray-300 max-w-3xl mb-6 text-left">
             {description}
           </p>
-          <div className="mt-8 max-w-4xl mx-auto">
-            <p className="text-xl md:text-2xl font-semibold text-white mb-4">
+          <div className="mt-8 max-w-4xl">
+            <p className="text-xl md:text-2xl font-semibold text-white mb-4 text-left">
               Struggling to get Testimonials?
             </p>
-            <p className="text-base md:text-lg text-gray-300 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-300 leading-relaxed text-left">
               My results speak for themselves. If you're serious about looking like a credible and authentic business, building trust with potential clients, and showcasing real social proof that converts—let's talk about how I can help you generate authentic testimonials that drive results.
             </p>
           </div>

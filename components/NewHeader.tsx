@@ -6,6 +6,8 @@ import ContactModal from './ContactModal';
 
 const NewHeader = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleOpenContactModal = () => {
@@ -18,6 +20,32 @@ const NewHeader = () => {
     };
   }, []);
 
+  // Handle scroll direction for navbar visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Always show navbar at the top of the page
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else {
+        // Show navbar when scrolling up, hide when scrolling down
+        if (currentScrollY < lastScrollY) {
+          // Scrolling up
+          setIsVisible(true);
+        } else if (currentScrollY > lastScrollY) {
+          // Scrolling down
+          setIsVisible(false);
+        }
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
@@ -27,7 +55,11 @@ const NewHeader = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#1a4d3a] shadow-sm">
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 bg-[#1a4d3a] shadow-sm transition-transform duration-300 ${
+          isVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
         <nav className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -67,14 +99,6 @@ const NewHeader = () => {
             </button>
           </div>
         </nav>
-        
-        {/* Under Construction Bar */}
-        <div className="bg-[#F2611D] text-white text-center py-2 text-xs md:text-sm font-medium flex items-center justify-center gap-2">
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-          </svg>
-          <span>Under Construction</span>
-        </div>
       </header>
 
       <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
