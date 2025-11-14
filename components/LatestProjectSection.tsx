@@ -71,7 +71,7 @@ const LatestProjectSection = () => {
             <TextType
               as="h3"
               text="RuggedRed.com"
-              className="text-6xl md:text-7xl lg:text-8xl font-black text-[#1a4d3a] mb-6 block"
+              className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1a4d3a] mb-6 block"
               typingSpeed={75}
               pauseDuration={1500}
               showCursor={false}

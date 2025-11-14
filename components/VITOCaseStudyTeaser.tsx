@@ -113,7 +113,7 @@ const VITOCaseStudyTeaser = () => {
         <TextType
           as="h3"
           text="Client Success Stories"
-          className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-2 block"
+          className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-2 block"
           typingSpeed={75}
           pauseDuration={1500}
           showCursor={false}
