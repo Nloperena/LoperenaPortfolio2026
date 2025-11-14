@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom marquee animation */
+@keyframes marquee-pixel-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--marquee-distance, 0px)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [aria-label='Brands ticker'] div[class*='animate-'] {
+    animation: none !important;
+  }
+  [aria-label='Brands ticker'] > div > div {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  [aria-label='Brands ticker'] > div > div > div {
+    scroll-snap-align: center;
+  }
+}
+
