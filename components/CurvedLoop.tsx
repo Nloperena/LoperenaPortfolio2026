@@ -165,7 +165,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   return (
     <motion.div
       ref={containerRef}
-      className="min-h-[250px] md:min-h-[300px] flex items-center justify-center w-full -mt-8 md:-mt-12 pt-[54px] md:pt-[81px] pb-[54px] md:pb-[81px]"
+      className="min-h-[250px] md:min-h-[300px] flex items-center justify-center w-full -mt-8 md:-mt-12 pt-[54px] md:pt-[81px]"
       style={{ visibility: ready ? 'visible' : 'hidden', cursor: cursorStyle }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
