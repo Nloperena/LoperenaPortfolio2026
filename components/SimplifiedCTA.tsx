@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import ContactModal from './ContactModal';
+import TextType from './TextType';
 
 const SimplifiedCTA = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -18,9 +19,16 @@ const SimplifiedCTA = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 font-kallisto">
-              Let's Build Your Project
-            </h2>
+            <TextType
+              as="h2"
+              text="Let's Build Your Project"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 font-kallisto block"
+              typingSpeed={75}
+              pauseDuration={1500}
+              showCursor={false}
+              loop={false}
+              startOnVisible={true}
+            />
             <p className="text-lg md:text-xl text-white/90">
               Ready to upgrade your website? Tell me about your business and I'll show you what we can build.
             </p>

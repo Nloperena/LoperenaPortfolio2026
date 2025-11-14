@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import TextType from './TextType';
 
 const LatestProjectSection = () => {
   return (
@@ -14,9 +15,16 @@ const LatestProjectSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a4d3a] mb-4">
-            Latest Project
-          </h2>
+          <TextType
+            as="h2"
+            text="Latest Project"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a4d3a] mb-4 block"
+            typingSpeed={75}
+            pauseDuration={1500}
+            showCursor={false}
+            loop={false}
+            startOnVisible={true}
+          />
         </motion.div>
 
       
@@ -60,9 +68,16 @@ const LatestProjectSection = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center md:text-left max-w-lg"
           >
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a4d3a] mb-6">
-              RuggedRed.com
-            </h3>
+            <TextType
+              as="h3"
+              text="RuggedRed.com"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a4d3a] mb-6 block"
+              typingSpeed={75}
+              pauseDuration={1500}
+              showCursor={false}
+              loop={false}
+              startOnVisible={true}
+            />
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
               A modern, high-performance website built with Next.js and React. This project showcases 
               cutting-edge web development practices, responsive design, and seamless user experience. 

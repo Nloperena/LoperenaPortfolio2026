@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import FaultyTerminal from '@/components/FaultyTerminal';
 import ServicesDrawer from '@/components/ServicesDrawer';
 import GradualBlur from '@/components/GradualBlur';
+import TextType from '@/components/TextType';
 
 const NewHero = React.memo(() => {
   const [isInView, setIsInView] = useState(false);
@@ -160,12 +161,27 @@ const NewHero = React.memo(() => {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="text-left"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-2 leading-tight">
-            NICHOLAS LOPERENA
-          </h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-2 font-light uppercase tracking-wide">
-            DIGITAL ARCHITECT
-          </p>
+          <TextType
+            as="h1"
+            text="NICHOLAS LOPERENA"
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-2 leading-tight block"
+            typingSpeed={75}
+            pauseDuration={1500}
+            showCursor={false}
+            loop={false}
+            startOnVisible={true}
+          />
+          <TextType
+            as="p"
+            text="DIGITAL ARCHITECT"
+            className="text-lg md:text-xl lg:text-2xl text-white/90 mb-2 font-light uppercase tracking-wide block"
+            typingSpeed={75}
+            pauseDuration={1500}
+            showCursor={false}
+            loop={false}
+            startOnVisible={true}
+            initialDelay={1500}
+          />
           <p className="text-base md:text-lg lg:text-xl text-white/80 mb-10 font-light uppercase tracking-wide">
             PORTFOLIO & CASE STUDIES
           </p>

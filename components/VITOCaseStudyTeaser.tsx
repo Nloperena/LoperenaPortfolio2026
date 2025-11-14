@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import TextType from './TextType';
 
 interface Metric {
   value: string;
@@ -82,7 +83,15 @@ const VITOCaseStudyTeaser = () => {
             Featured Case Study
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            VITO Fryfilter: From <span className="text-[#F2611D]">$500 Crisis</span> to Market Leader
+            <TextType
+              text="VITO Fryfilter: From $500 Crisis to Market Leader"
+              className="inline"
+              typingSpeed={75}
+              pauseDuration={1500}
+              showCursor={false}
+              loop={false}
+              startOnVisible={true}
+            />
           </h2>
           <p className="text-base text-gray-300 max-w-2xl mx-auto mb-6">
             Complete digital transformation that eliminated customer confusion and drove 285% traffic growth.
@@ -101,9 +110,16 @@ const VITOCaseStudyTeaser = () => {
 
       {/* Client Success Stories - Scrolling Cards */}
       <div className="mb-8 text-center px-6 max-w-7xl mx-auto">
-        <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-          Client Success Stories
-        </h3>
+        <TextType
+          as="h3"
+          text="Client Success Stories"
+          className="text-xl md:text-2xl font-bold text-white mb-2 block"
+          typingSpeed={75}
+          pauseDuration={1500}
+          showCursor={false}
+          loop={false}
+          startOnVisible={true}
+        />
         <p className="text-sm text-gray-300 max-w-2xl mx-auto">
           Real results from real clients. See how our digital solutions drive measurable business outcomes.
         </p>

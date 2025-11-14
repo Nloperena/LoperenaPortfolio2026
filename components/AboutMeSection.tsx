@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import CurvedLoop from './CurvedLoop';
+import TextType from './TextType';
 
 const AboutMeSection = () => {
   return (
@@ -19,9 +20,16 @@ const AboutMeSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a4d3a] mb-4">
-            More Than a Developer: Your Digital Architect
-          </h2>
+          <TextType
+            as="h2"
+            text="More Than a Developer: Your Digital Architect"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a4d3a] mb-4 block"
+            typingSpeed={75}
+            pauseDuration={1500}
+            showCursor={false}
+            loop={false}
+            startOnVisible={true}
+          />
         </motion.div>
 
         {/* Two Column Layout */}
