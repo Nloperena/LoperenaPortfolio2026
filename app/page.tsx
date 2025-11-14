@@ -4,7 +4,6 @@ import NewHero from '@/components/NewHero';
 import CredibilityStrip from '@/components/CredibilityStrip';
 import TechStackStrip from '@/components/TechStackStrip';
 import AboutMeSection from '@/components/AboutMeSection';
-import SpecializationsSection from '@/components/SpecializationsSection';
 import LatestProjectSection from '@/components/LatestProjectSection';
 import VITOCaseStudyTeaser from '@/components/VITOCaseStudyTeaser';
 import SimplifiedCTA from '@/components/SimplifiedCTA';
@@ -38,9 +37,6 @@ export default function Home() {
 
       {/* About Me / Story Section */}
       <AboutMeSection />
-
-      {/* Specializations Section */}
-      <SpecializationsSection />
 
       {/* Latest Project Section */}
       <LatestProjectSection />
