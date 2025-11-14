@@ -14,7 +14,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
   const contactInfo = {
-    phone: '+1 (716) 775-2870',
+    phone: '+1 (407) 790-5891',
     email: 'nicholasloperena@gmail.com',
     linkedin: 'https://linkedin.com/in/nicholasloperena'
   };
