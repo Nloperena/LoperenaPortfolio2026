@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import ContactModal from './ContactModal';
 import TextType from './TextType';
 
@@ -49,16 +50,15 @@ const SimplifiedCTA = () => {
           >
             Schedule a Consultation
           </motion.button>
-          <motion.a
-            href="/projects/vito-fryfilter"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="rounded-md bg-transparent hover:bg-white/10 backdrop-blur-sm text-white px-6 py-3 text-base font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-white text-center"
-          >
-            View Case Studies
-          </motion.a>
+          <Link href="/projects/vito-fryfilter">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="rounded-md bg-transparent hover:bg-white/10 backdrop-blur-sm text-white px-6 py-3 text-base font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-white text-center cursor-pointer"
+            >
+              View Case Studies
+            </motion.div>
+          </Link>
         </motion.div>
       </div>
       <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
