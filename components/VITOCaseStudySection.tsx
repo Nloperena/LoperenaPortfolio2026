@@ -5,13 +5,14 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import TextType from './TextType';
-import { 
-  TrendingUp, 
-  Users, 
-  Target, 
-  Star, 
-  ArrowRight, 
-  ChevronLeft, 
+import TiltCard from '@/components/TiltCard';
+import {
+  TrendingUp,
+  Users,
+  Target,
+  Star,
+  ArrowRight,
+  ChevronLeft,
   ChevronRight,
   Play,
   User,
@@ -128,13 +129,16 @@ const VITOCaseStudySection = () => {
 
   return (
     <div>
-      <section className="relative overflow-x-hidden bg-[#f5f5f0] py-20 md:py-24">
+      <section id="vito-case-study" className="relative overflow-x-hidden bg-[#f5f5f0] py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-10">
           {/* Unified Teaser Section */}
           <div className="max-w-3xl space-y-4">
+            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#1a4d3a]/70">
+              Featured Case Study
+            </p>
             <TextType
               as="h2"
-              text="VITO Fryfilter: From US Obscurity to Market Leader"
+              text="From Invisible to Industry Leader"
               className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1a4d3a] block text-left"
               typingSpeed={75}
               pauseDuration={1500}
@@ -142,10 +146,33 @@ const VITOCaseStudySection = () => {
               loop={false}
               startOnVisible={true}
             />
-            <p className="text-base md:text-lg text-[#1a4d3a]/80">
-              How strategic technology and narrative design turned a hidden leader into a category authority.
-            </p>
+
+            {/* Quick Summary - 3 Bullets */}
+            <div className="space-y-3 mt-4">
+              <div>
+                <p className="text-sm font-semibold text-[#F2611D] uppercase tracking-wide mb-1">Problem</p>
+                <p className="text-base md:text-lg text-gray-700">
+                  German market leader VITO was invisible in the US—outdated site, zero credibility, 6 reviews (3 were internal).
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm font-semibold text-[#F2611D] uppercase tracking-wide mb-1">What I Built</p>
+                <p className="text-base md:text-lg text-gray-700">
+                  Complete digital transformation: high-performance platform + automated credibility engine that captures authentic video testimonials.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm font-semibold text-[#F2611D] uppercase tracking-wide mb-1">Result</p>
+                <p className="text-base md:text-lg text-gray-700">
+                  <strong>70+ video testimonials</strong>, record-breaking US traffic, and an organic growth engine that runs without paid ads.
+                </p>
+              </div>
+            </div>
           </div>
+
+
 
           {/* Problem Snapshot Grid */}
           <div className="grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center">
@@ -156,7 +183,7 @@ const VITOCaseStudySection = () => {
               </p>
 
               <h3 className="text-2xl md:text-3xl font-extrabold text-[#1a4d3a]">
-                Before: Great Product, Almost No Digital Leverage
+                The Void: World-Class Product, Zero Digital Footprint
               </h3>
 
               <p className="text-base md:text-lg text-[#1a4d3a]/80">
@@ -194,28 +221,25 @@ const VITOCaseStudySection = () => {
               </div>
             </div>
 
-           
-           
-           
-           
-           
             {/* "Before" visual */}
-            <div className="relative">
-              <div className="rounded-3xl border border-black/10 bg-white shadow-xl shadow-black/10 overflow-hidden">
-                <div className="relative">
-                  <div className="absolute top-3 right-3 text-[10px] font-bold bg-[#1a4d3a] text-white px-3 py-1 rounded-full shadow-lg z-10">
-                    Before
+            <div className="relative perspective-1000">
+              <TiltCard>
+                <div className="rounded-3xl border border-black/10 bg-white shadow-xl shadow-black/10 overflow-hidden">
+                  <div className="relative">
+                    <div className="absolute top-3 right-3 text-[10px] font-bold bg-[#1a4d3a] text-white px-3 py-1 rounded-full shadow-lg z-10">
+                      Before
+                    </div>
+                    <Image
+                      src="/vito-before-website.png"
+                      alt="VITO Fryfilter original website before redesign"
+                      width={800}
+                      height={600}
+                      className="w-full h-auto"
+                      priority
+                    />
                   </div>
-                  <Image 
-                    src="/vito-before-website.png" 
-                    alt="VITO Fryfilter original website before redesign"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto"
-                    priority
-                  />
                 </div>
-              </div>
+              </TiltCard>
             </div>
           </div>
         </div>
@@ -346,7 +370,7 @@ const VITOCaseStudySection = () => {
             </ul>
           </motion.div>
 
-          
+
 
           {/* Credibility Engine Carousel */}
           <motion.div
@@ -452,9 +476,8 @@ const VITOCaseStudySection = () => {
                     <button
                       key={index}
                       onClick={() => scrollToIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentIndex ? 'bg-[#F2611D]' : 'bg-gray-300'
-                      }`}
+                      className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex ? 'bg-[#F2611D]' : 'bg-gray-300'
+                        }`}
                       aria-label={`Go to testimonial ${index + 1}`}
                     />
                   ))}

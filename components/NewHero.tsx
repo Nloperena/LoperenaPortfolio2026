@@ -12,12 +12,23 @@ const NewHero = React.memo(() => {
   const [showSkeleton, setShowSkeleton] = useState(false);
   const [isBackgroundReady, setIsBackgroundReady] = useState(false);
   const [showFaultyTerminal, setShowFaultyTerminal] = useState(false);
+  const [shouldPauseAnimation, setShouldPauseAnimation] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const scrollToProjects = () => {
-    const projectsSection = document.getElementById('projects-section');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    const vitoSection = document.getElementById('vito-case-study');
+    if (vitoSection) {
+      vitoSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -123,7 +134,9 @@ const NewHero = React.memo(() => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="absolute inset-0 pointer-events-none will-change-contents"
+          className={`absolute inset-0 pointer-events-none ${
+            (isServicesDrawerOpen || shouldPauseAnimation) ? 'will-change-auto' : 'will-change-contents'
+          }`}
           style={{ zIndex: 2 }}
         >
           <div className="w-full h-full pointer-events-auto">
@@ -132,7 +145,7 @@ const NewHero = React.memo(() => {
               gridMul={[2, 1]}
               digitSize={1.2}
               timeScale={0.7}
-              pause={false}
+              pause={isServicesDrawerOpen || shouldPauseAnimation}
               scanlineIntensity={0.6}
               glitchAmount={0.8}
               flickerAmount={0.7}
@@ -141,7 +154,7 @@ const NewHero = React.memo(() => {
               dither={0}
               curvature={0}
               tint="#1a4d3a"
-              mouseReact={true}
+              mouseReact={!isServicesDrawerOpen && !shouldPauseAnimation}
               mouseStrength={1.2}
               dpr={optimizedDPR}
               pageLoadAnimation={false}
@@ -181,8 +194,8 @@ const NewHero = React.memo(() => {
             startOnVisible={true}
             initialDelay={1500}
           />
-          <p className="text-lg md:text-xl lg:text-2xl text-white/80 font-light uppercase tracking-wide">
-            PORTFOLIO & CASE STUDIES
+          <p className="text-base md:text-lg text-white/90 max-w-2xl">
+            I design and build conversion-focused sites for B2B and industrial brands.
           </p>
 
           {/* CTA Buttons */}
@@ -190,18 +203,34 @@ const NewHero = React.memo(() => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={scrollToProjects}
+              onClick={() => {
+                // Trigger pause first, then open modal
+                setShouldPauseAnimation(true);
+                
+                // Show modal after brief delay
+                setTimeout(() => {
+                  setIsServicesDrawerOpen(true);
+                }, 50);
+                
+                // Resume after 2 seconds
+                if (pauseTimeoutRef.current) {
+                  clearTimeout(pauseTimeoutRef.current);
+                }
+                pauseTimeoutRef.current = setTimeout(() => {
+                  setShouldPauseAnimation(false);
+                }, 2000);
+              }}
               className="bg-[#F2611D] text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-[#ff7a3d] transition-colors shadow-lg will-change-transform"
             >
-              View Case Studies
+              Schedule a Conversation
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsServicesDrawerOpen(true)}
+              onClick={scrollToProjects}
               className="bg-transparent text-white px-8 py-4 rounded-md font-semibold text-lg border-2 border-white hover:bg-white/10 transition-colors will-change-transform"
             >
-              Explore Services <span aria-hidden="true" className="inline-block ml-2">→</span>
+              View Case Studies
             </motion.button>
           </div>
         </motion.div>
@@ -210,7 +239,36 @@ const NewHero = React.memo(() => {
       {/* Services Drawer */}
       <ServicesDrawer 
         isOpen={isServicesDrawerOpen} 
-        onClose={() => setIsServicesDrawerOpen(false)} 
+        onClose={() => {
+          // Pause animation for 2 seconds when closing
+          setShouldPauseAnimation(true);
+          setIsServicesDrawerOpen(false);
+          
+          // Resume after 2 seconds
+          if (pauseTimeoutRef.current) {
+            clearTimeout(pauseTimeoutRef.current);
+          }
+          pauseTimeoutRef.current = setTimeout(() => {
+            setShouldPauseAnimation(false);
+          }, 2000);
+        }}
+        onOpen={() => {
+          // Pause animation for 2 seconds when opening
+          setShouldPauseAnimation(true);
+          
+          // Show modal after brief delay to let pause take effect
+          setTimeout(() => {
+            setIsServicesDrawerOpen(true);
+          }, 50);
+          
+          // Resume after 2 seconds
+          if (pauseTimeoutRef.current) {
+            clearTimeout(pauseTimeoutRef.current);
+          }
+          pauseTimeoutRef.current = setTimeout(() => {
+            setShouldPauseAnimation(false);
+          }, 2000);
+        }}
       />
     </section>
   );
