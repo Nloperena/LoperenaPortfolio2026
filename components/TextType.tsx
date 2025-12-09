@@ -163,7 +163,8 @@ const TextType = ({
     isVisible,
     reverseMode,
     variableSpeed,
-    onSentenceComplete
+    onSentenceComplete,
+    getRandomSpeed
   ]);
 
   const shouldHideCursor =
@@ -191,6 +192,3 @@ const TextType = ({
 };
 
 export default TextType;
-
-
-

@@ -19,44 +19,79 @@ export default {
     },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        border: '#E4E4E7', // Zinc-200
+        input: '#E4E4E7',
+        ring: '#49111C', // Oxblood Ring
+        background: '#F8F4F0', // Warm Parchment
+        foreground: '#1C1B1A', // Dark Charcoal
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+          DEFAULT: '#49111C', // Oxblood
+          foreground: '#F8F4F0'
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))'
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))'
+          DEFAULT: '#8C7A5E', // Antique Gold
+          foreground: '#F8F4F0'
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))'
+          DEFAULT: '#8C7A5E', // Antique Gold
+          foreground: '#F8F4F0'
+        },
+        // Heritage Palette (User Requested)
+        'heritage-green': '#006400',
+        'heritage-beige': '#F5F5DC',
+        'heritage-maroon': '#800000',
+        'heritage-terracotta': '#E2725B',
+        
+        // Atelier Palette
+        parchment: '#F5F5DC', // Updated to Heritage Beige
+        'paper-texture': '#F9F5F1',
+        charcoal: '#1C1B1A',
+        oxblood: '#800000', // Updated to Heritage Maroon
+        gold: '#E2725B', // Updated to Heritage Terracotta for accents (or keep gold separate)
+        
+        // Architectural Minimalist Palette
+        'arch-green': '#0A1F1C',
+        'arch-white': '#F5F5DC', // Updated to User's Cream
+        'arch-charcoal': '#1A1A1A',
+        'arch-accent': '#E2725B', 
+
+        // Legacy/System colors (mapped to new palette where appropriate or kept for utility)
+        forest: '#1C1B1A', // Mapping forest to charcoal for text/elements
+        rust: '#49111C', // Mapping rust to oxblood
+        zinc: {
+          600: '#52525b',
+          200: '#E4E4E7',
+        },
+        
+        destructive: {
+          DEFAULT: '#ef4444', // Standard red
+          foreground: '#FAFAFA'
+        },
+        muted: {
+          DEFAULT: '#f4f4f5', // Zinc-100
+          foreground: '#71717a' // Zinc-500
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))'
+          DEFAULT: '#F8F4F0',
+          foreground: '#1C1B1A'
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))'
-        }
+          DEFAULT: '#F8F4F0',
+          foreground: '#1C1B1A'
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
+      },
+      fontFamily: {
+        sans: ['Satoshi', 'var(--font-inter)', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'var(--font-eb-garamond)', 'serif'],
+        mono: ['var(--font-jetbrains-mono)', 'monospace'],
+      },
+      backgroundImage: {
+        'paper-grain': "url('/paper-grain.png')", // We will handle this with CSS or a simple pattern if no image
       },
       keyframes: {
         'accordion-down': {
@@ -68,29 +103,21 @@ export default {
           to: { height: '0' }
         },
         marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" }
-        }
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        'scan-down': {
+          '0%': { top: '-20%' },
+          '100%': { top: '120%' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        marquee: 'marquee var(--marquee-duration, 20s) linear infinite'
+        marquee: 'marquee 40s linear infinite', // Slower marquee
+        'scan-down': 'scan-down 3s linear infinite',
       },
-      fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        heading: ['var(--font-outfit)', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
-        serif: ['var(--font-eb-garamond)', 'serif'],
-      },
-      fontWeight: {
-        'extrabold': '800',
-        'heavy': '900',
-      }
     }
   },
   plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
 } satisfies Config;
-
-
-

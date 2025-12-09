@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 
 interface ParallaxImageSectionProps {
   imageUrl?: string;
@@ -41,12 +42,13 @@ const ParallaxImageSection: React.FC<ParallaxImageSectionProps> = ({
           }}
         >
           <div className="relative w-full h-full">
-            <img
+            <Image
               src={imageUrl}
               alt="Decorative parallax image"
-              className="w-full h-full object-cover"
+              fill
+              priority={false}
+              className="object-cover"
               style={{
-                height: '120%', // Extra height for parallax movement
                 objectPosition: 'center center'
               }}
             />
@@ -71,4 +73,3 @@ const ParallaxImageSection: React.FC<ParallaxImageSectionProps> = ({
 };
 
 export default ParallaxImageSection;
-

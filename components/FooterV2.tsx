@@ -28,17 +28,17 @@ const FooterV2 = () => {
             </div>
           </div>
           {/* Navigation Links */}
-          <div className="flex items-center gap-6 flex-wrap">
-            <a href="/" className="text-white hover:text-white/80 transition-colors font-poppins text-base py-2">Home</a>
-            <span className="text-white/50 hidden sm:inline">|</span>
-            <a href="/services" className="text-white hover:text-white/80 transition-colors font-poppins text-base py-2">My Skills</a>
-            <span className="text-white/50 hidden sm:inline">|</span>
-            <a href="/contact" className="text-white hover:text-white/80 transition-colors font-poppins text-base py-2">Contact</a>
+          <div className="flex items-center gap-4 flex-wrap">
+            <a href="/" className="text-white hover:text-white/80 transition-colors font-poppins text-sm">Home</a>
+            <span className="text-white/50">|</span>
+            <a href="/services" className="text-white hover:text-white/80 transition-colors font-poppins text-sm">My Skills</a>
+            <span className="text-white/50">|</span>
+            <a href="/contact" className="text-white hover:text-white/80 transition-colors font-poppins text-sm">Contact</a>
           </div>
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:grid grid-cols-5 gap-8 mb-8">
+        <div className="hidden lg:grid grid-cols-5 gap-5 mb-5">
           {/* Logo Column - Spans more space on desktop */}
           <div className="col-span-2">
             <span 

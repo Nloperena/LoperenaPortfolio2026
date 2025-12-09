@@ -55,6 +55,14 @@ const ServicesDrawer = ({ isOpen, onClose, onOpen }: ServicesDrawerProps) => {
     }
   }, [isOpen, selectedService]);
 
+  const handleClose = React.useCallback(() => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      onClose();
+      setIsAnimating(false);
+    }, 300);
+  }, [onClose]);
+
   // Close on Escape key press
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -74,7 +82,7 @@ const ServicesDrawer = ({ isOpen, onClose, onOpen }: ServicesDrawerProps) => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = '';
     };
-  }, [isOpen]);
+  }, [isOpen, handleClose]);
 
   // Reset view when drawer is closed externally
   useEffect(() => {
@@ -85,14 +93,6 @@ const ServicesDrawer = ({ isOpen, onClose, onOpen }: ServicesDrawerProps) => {
       }, 300);
     }
   }, [isOpen]);
-
-  const handleClose = () => {
-    setIsAnimating(true);
-    setTimeout(() => {
-      onClose();
-      setIsAnimating(false);
-    }, 300);
-  };
 
   const handleServiceSelect = (serviceName: string) => {
     setIsAnimating(true);
@@ -318,7 +318,7 @@ const ServicesDrawer = ({ isOpen, onClose, onOpen }: ServicesDrawerProps) => {
                 )}
                 {currentView === 'contact' && (
                   <p className="text-xs text-gray-500 mt-0.5">
-                    Tell me what you're working on
+                    Tell me what you&apos;re working on
                   </p>
                 )}
               </div>
@@ -400,7 +400,7 @@ const ServicesDrawer = ({ isOpen, onClose, onOpen }: ServicesDrawerProps) => {
                       <h3 className="text-base font-bold text-gray-900 mb-1.5 leading-tight">
                         Just want to chat?
                       </h3>
-                      <p className="text-sm text-gray-700 leading-snug">Skip the form and tell me what you're working on.</p>
+                      <p className="text-sm text-gray-700 leading-snug">Skip the form and tell me what you&apos;re working on.</p>
                     </div>
                     <ArrowRight className="w-4 h-4 flex-shrink-0 mt-1 text-gray-400" />
                   </div>
@@ -482,7 +482,7 @@ const ServicesDrawer = ({ isOpen, onClose, onOpen }: ServicesDrawerProps) => {
                 </div>
 
                 <p className="text-xs text-gray-500 text-center">
-                  You'll hear back from me in 1–2 business days.
+                  You&apos;ll hear back from me in 1–2 business days.
                 </p>
               </form>
             ) : (
@@ -613,7 +613,7 @@ const ServicesDrawer = ({ isOpen, onClose, onOpen }: ServicesDrawerProps) => {
                 </div>
 
                 <p className="text-xs text-gray-500 text-center">
-                  You'll hear back from me in 1–2 business days with next steps.
+                  You&apos;ll hear back from me in 1–2 business days with next steps.
                 </p>
               </form>
             )}

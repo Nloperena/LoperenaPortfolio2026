@@ -23,7 +23,7 @@ const FeaturedTestimonial = () => {
           {/* Quote Text */}
           <div className="relative z-10">
             <blockquote className="text-xl md:text-2xl lg:text-3xl font-bold text-[#1a4d3a] leading-relaxed mb-6">
-              "Nico built us a credibility engine, not just a website."
+              &quot;Nico built us a credibility engine, not just a website.&quot;
             </blockquote>
 
             {/* Attribution */}

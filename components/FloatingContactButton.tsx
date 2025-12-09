@@ -11,15 +11,15 @@ const FloatingContactButton = () => {
   return (
     <>
       <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => setIsModalOpen(true)}
-        className="fixed bottom-8 right-8 z-40 bg-[#F2611D] hover:bg-[#ea580c] text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:shadow-3xl"
-        aria-label="Open contact modal"
+        className="fixed bottom-6 left-6 right-6 md:hidden z-50 bg-[#49111C] text-[#F8F4F0] py-4 rounded-full shadow-2xl border border-[#8C7A5E]/30 font-serif italic text-lg flex items-center justify-center gap-2"
+        aria-label="Schedule Consultation"
       >
-        <MessageCircle className="w-6 h-6" />
+        <span>Schedule Consultation</span>
       </motion.button>
 
       <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />

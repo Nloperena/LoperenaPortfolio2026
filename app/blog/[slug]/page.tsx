@@ -1,54 +1,65 @@
 "use client";
 
-import React from "react";
+import React, { use } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import NewHeader from "@/components/NewHeader";
-import FooterV2 from "@/components/FooterV2";
-import SimplifiedCTA from "@/components/SimplifiedCTA";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import AtelierCTA from "@/components/AtelierCTA";
+import LetterGlitch from "@/components/LetterGlitch";
 import { blogPosts } from "@/data/blogPosts";
 
 interface BlogDetailPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }> | { slug: string };
 }
 
 export default function BlogDetailPage({ params }: BlogDetailPageProps) {
-  const post = blogPosts.find((entry) => entry.slug === params.slug);
+  // Handle both Promise and direct params for Next.js compatibility
+  const resolvedParams = params instanceof Promise ? use(params) : params;
+  const post = blogPosts.find((entry) => entry.slug === resolvedParams.slug);
 
   if (!post) {
     notFound();
   }
 
   return (
-    <div className="relative overflow-x-hidden bg-[#020805] min-h-screen flex flex-col">
-      <NewHeader />
+    <div className="relative overflow-x-hidden bg-[#F5F5DC] dark:bg-[#0A1F1C] min-h-screen flex flex-col transition-colors duration-300">
+      <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 md:pb-20 bg-[#05110e] text-white overflow-hidden border-b border-white/5">
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#0a1f1a] via-[#05110e] to-[#020805]" />
+      <section className="relative pt-32 pb-16 md:pb-24 bg-[#0A1F1C] text-[#F5F5DC] overflow-hidden border-b border-[#F5F5DC]/10">
+        <div className="absolute inset-0 opacity-35 pointer-events-none">
+          <LetterGlitch
+            glitchColors={['#0A1F1C', '#E2725B', '#F5F5DC', '#8C7A5E']}
+            glitchSpeed={50}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true}
+          />
         </div>
-        <div className="relative max-w-6xl mx-auto px-4 md:px-6 space-y-6">
-          <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-gray-400">
-            <Link href="/blog" className="hover:text-[#F2611D] transition-colors">
-              Blogs
+        <div className="relative max-w-6xl mx-auto px-6 md:px-12 space-y-8">
+          <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-[#F5F5DC]/70 font-mono">
+            <Link href="/blog" className="hover:text-[#E2725B] transition-colors">
+              The Ledger
             </Link>
             <span>/</span>
-            <span className="text-white/60">{post.title}</span>
+            <span>Entry 00{blogPosts.indexOf(post) + 1}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">{post.title}</h1>
-          <p className="text-base md:text-lg text-gray-400 max-w-3xl leading-relaxed">{post.heroHighlight}</p>
-          <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+          
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-[#F5F5DC] leading-tight">{post.title}</h1>
+          <p className="text-lg md:text-xl text-[#F5F5DC]/80 max-w-3xl font-sans font-light leading-relaxed">{post.heroHighlight}</p>
+          
+          <div className="flex flex-wrap items-center gap-6 text-sm text-[#F5F5DC]/60 font-mono uppercase tracking-widest pt-4">
             <span>{post.date}</span>
-            <span>•</span>
+            <span className="w-1 h-1 bg-[#E2725B] rounded-full"></span>
             <span>{post.readTime}</span>
           </div>
+
           <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[11px] uppercase tracking-[0.2em] bg-white/5 border border-white/10 px-3 py-1 rounded-full text-gray-300"
+                className="text-[10px] uppercase tracking-widest bg-[#F5F5DC]/5 border border-[#F5F5DC]/20 px-3 py-1 rounded-sm text-[#F5F5DC]/70"
               >
                 {tag}
               </span>
@@ -58,40 +69,43 @@ export default function BlogDetailPage({ params }: BlogDetailPageProps) {
       </section>
 
       {/* Body */}
-      <section className="py-16 md:py-20">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-12">
-          <div className="bg-[#050505] rounded-3xl border border-white/10 shadow-sm p-6 md:p-10 space-y-10">
-            {post.sections.map((section) => (
-              <article key={section.heading} className="space-y-4">
-                {section.heading && (
-                  <h2 className="text-2xl md:text-3xl font-bold text-white">{section.heading}</h2>
-                )}
-                {section.paragraphs.map((paragraph, idx) => (
-                  <p key={idx} className="text-base md:text-lg text-gray-400 leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
-              </article>
-            ))}
+      <section className="py-24 relative">
+        <div className="max-w-4xl mx-auto px-6 md:px-12 space-y-16 relative z-10">
+          
+          {/* Paper Texture Background for Content */}
+          <div className="absolute inset-0 -mx-6 md:-mx-12 bg-white/50 dark:bg-[#0A1F1C]/50 pointer-events-none -z-10 rounded-3xl" />
 
-            <div className="border-t border-white/10 pt-6">
-              <h3 className="text-lg font-semibold text-white mb-3 uppercase tracking-[0.2em]">Key Takeaways</h3>
-              <ul className="space-y-2 text-gray-400">
-                {post.keyTakeaways.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="text-[#F2611D] font-bold mt-1">•</span>
-                    <span className="text-base leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {post.sections.map((section) => (
+            <article key={section.heading} className="space-y-6">
+              <h2 className="text-3xl font-serif font-bold text-[#1C1B1A] dark:text-[#F5F5DC]">{section.heading}</h2>
+              {section.paragraphs.map((paragraph, idx) => (
+                <p key={idx} className="text-lg text-[#1C1B1A]/80 dark:text-[#F5F5DC]/80 leading-relaxed font-sans">
+                  {paragraph}
+                </p>
+              ))}
+            </article>
+          ))}
+
+          <div className="border-t border-[#1C1B1A]/10 dark:border-[#F5F5DC]/10 pt-12 mt-12">
+            <h3 className="text-sm font-mono font-bold text-[#1C1B1A] dark:text-[#F5F5DC] mb-6 uppercase tracking-widest flex items-center gap-3">
+                <span className="w-2 h-2 bg-[#E2725B] rounded-full"></span>
+                Key Takeaways
+            </h3>
+            <ul className="space-y-4">
+              {post.keyTakeaways.map((item) => (
+                <li key={item} className="flex items-start gap-4">
+                  <span className="text-[#E2725B] font-serif italic text-xl">"</span>
+                  <span className="text-lg text-[#1C1B1A]/80 dark:text-[#F5F5DC]/80 italic font-serif">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
+
         </div>
       </section>
 
-      <SimplifiedCTA />
-      <FooterV2 />
+      <AtelierCTA />
+      <Footer />
     </div>
   );
 }
-

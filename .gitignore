@@ -34,5 +34,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# cursor/temporary files
+assets/
+*.png
+!public/**/*.png
+
 
 

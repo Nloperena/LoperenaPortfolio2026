@@ -1,274 +1,190 @@
 'use client'
 
-import React, { useMemo, useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import FaultyTerminal from '@/components/FaultyTerminal';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import ServicesDrawer from '@/components/ServicesDrawer';
-import TextType from '@/components/TextType';
+import { ArrowRight, ArrowDown, Layers } from 'lucide-react';
 
 const NewHero = React.memo(() => {
-  const [isInView, setIsInView] = useState(false);
   const [isServicesDrawerOpen, setIsServicesDrawerOpen] = useState(false);
-  const [showSkeleton, setShowSkeleton] = useState(false);
-  const [isBackgroundReady, setIsBackgroundReady] = useState(false);
-  const [showFaultyTerminal, setShowFaultyTerminal] = useState(false);
-  const [shouldPauseAnimation, setShouldPauseAnimation] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
 
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (pauseTimeoutRef.current) {
-        clearTimeout(pauseTimeoutRef.current);
-      }
-    };
-  }, []);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const scrollToProjects = () => {
-    const vitoSection = document.getElementById('vito-case-study');
-    if (vitoSection) {
-      vitoSection.scrollIntoView({ behavior: 'smooth' });
+    const projectsSection = document.getElementById('selected-works');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const scrollToServices = () => {
-    const servicesSection = document.getElementById('services-section');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Optimize DPR based on device capabilities
-  const optimizedDPR = useMemo(() => {
-    if (typeof window === 'undefined') return 1;
-    // Cap DPR at 1.5 for better performance (instead of 2)
-    return Math.min(window.devicePixelRatio || 1, 1.5);
-  }, []);
-
-  // Intersection Observer to detect when hero is in view
-  useEffect(() => {
-    let hasStarted = false;
-
-    // Helper function to start loading sequence
-    const startLoadingSequence = () => {
-      if (hasStarted) return;
-      hasStarted = true;
-      
-      // Show black skeleton first
-      setShowSkeleton(true);
-      // Start background fade after a brief delay
-      setTimeout(() => {
-        setIsBackgroundReady(true);
-        // Show FaultyTerminal after fade completes
-        setTimeout(() => {
-          setShowFaultyTerminal(true);
-        }, 700); // After fade duration (700ms)
-      }, 300); // Brief delay to show black first (300ms)
-    };
-
-    // Check if already in view on mount (e.g., hero is at top of page)
-    if (sectionRef.current) {
-      const rect = sectionRef.current.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-      if (isVisible) {
-        setIsInView(true);
-        startLoadingSequence();
-      }
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-            startLoadingSequence();
-          } else {
-            setIsInView(false);
-            hasStarted = false;
-            // Reset states when out of view
-            setShowSkeleton(false);
-            setIsBackgroundReady(false);
-            setShowFaultyTerminal(false);
-          }
-        });
-      },
-      {
-        threshold: 0.1, // Trigger when 10% of the section is visible
-        rootMargin: '50px', // Start loading slightly before it comes into view
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   return (
     <section 
       ref={sectionRef}
-      className="relative h-[calc(100vh-200px)] min-h-[600px] flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col pt-32 md:pt-0 justify-center bg-[#0A1F1C] overflow-hidden text-white border-b border-white/20"
     >
-      {/* Fallback background gradient - always visible */}
-      <div className="absolute inset-0 bg-[#1a4d3a]" style={{ zIndex: 0 }} />
-      
-      {/* Black skeleton loading state - fades to background */}
-      {showSkeleton && (
-        <div
-          className={`absolute inset-0 bg-black transition-opacity duration-700 ease-out ${
-            isBackgroundReady ? 'opacity-0' : 'opacity-100'
-          }`}
-          style={{ zIndex: 1 }}
-        />
-      )}
-
-      {/* FaultyTerminal Background - Only render after fade completes */}
-      {showFaultyTerminal && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className={`absolute inset-0 pointer-events-none ${
-            (isServicesDrawerOpen || shouldPauseAnimation) ? 'will-change-auto' : 'will-change-contents'
-          }`}
-          style={{ zIndex: 2 }}
-        >
-          <div className="w-full h-full pointer-events-auto">
-            <FaultyTerminal
-              scale={2.6}
-              gridMul={[2, 1]}
-              digitSize={1.2}
-              timeScale={0.7}
-              pause={isServicesDrawerOpen || shouldPauseAnimation}
-              scanlineIntensity={0.6}
-              glitchAmount={0.8}
-              flickerAmount={0.7}
-              noiseAmp={0.8}
-              chromaticAberration={0}
-              dither={0}
-              curvature={0}
-              tint="#1a4d3a"
-              mouseReact={!isServicesDrawerOpen && !shouldPauseAnimation}
-              mouseStrength={1.2}
-              dpr={optimizedDPR}
-              pageLoadAnimation={false}
-              brightness={0.8}
-            />
-          </div>
-          <div className="absolute inset-0 bg-black/30 pointer-events-none" />
-        </motion.div>
-      )}
-
-      {/* Content Overlay - Left Aligned */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 h-full flex items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-left space-y-6"
-        >
-          <TextType
-            as="h1"
-            text="NICHOLAS LOPERENA"
-            className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight block"
-            typingSpeed={75}
-            pauseDuration={1500}
-            showCursor={false}
-            loop={false}
-            startOnVisible={true}
-          />
-          <TextType
-            as="p"
-            text="DIGITAL ARCHITECT"
-            className="text-lg md:text-xl lg:text-2xl text-[#F2611D] font-semibold uppercase tracking-wide block"
-            typingSpeed={75}
-            pauseDuration={1500}
-            showCursor={false}
-            loop={false}
-            startOnVisible={true}
-            initialDelay={1500}
-          />
-          <p className="text-base md:text-lg text-white/90 max-w-2xl">
-            I design and build conversion-focused sites for B2B and industrial brands.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-3">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                // Trigger pause first, then open modal
-                setShouldPauseAnimation(true);
-                
-                // Show modal after brief delay
-                setTimeout(() => {
-                  setIsServicesDrawerOpen(true);
-                }, 50);
-                
-                // Resume after 2 seconds
-                if (pauseTimeoutRef.current) {
-                  clearTimeout(pauseTimeoutRef.current);
-                }
-                pauseTimeoutRef.current = setTimeout(() => {
-                  setShouldPauseAnimation(false);
-                }, 2000);
-              }}
-              className="bg-[#F2611D] text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-[#ff7a3d] transition-colors shadow-lg will-change-transform"
-            >
-              Schedule a Conversation
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={scrollToProjects}
-              className="bg-transparent text-white px-8 py-4 rounded-md font-semibold text-lg border-2 border-white hover:bg-white/10 transition-colors will-change-transform"
-            >
-              View Case Studies
-            </motion.button>
-          </div>
-        </motion.div>
+      {/* Swiss Grid Lines - Hero Specific */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Vertical Center Line */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/20 hidden md:block" />
+        {/* Horizontal Grid Line - Top Third */}
+        <div className="absolute left-0 right-0 top-1/3 h-px bg-white/20" />
+        {/* Horizontal Grid Line - Bottom Third */}
+        <div className="absolute left-0 right-0 bottom-1/3 h-px bg-white/20" />
+        {/* Left Margin Line */}
+        <div className="absolute left-6 md:left-12 top-0 bottom-0 w-px bg-white/20" />
+        {/* Right Margin Line */}
+        <div className="absolute right-6 md:right-12 top-0 bottom-0 w-px bg-white/20" />
       </div>
+
+      {/* Oak and Tree Decorative Background - Larger Than Life, Rooted */}
+      <div className="absolute inset-0 pointer-events-none overflow-visible" style={{ zIndex: 0 }}>
+        <div 
+          className="absolute right-0 bottom-0"
+          style={{
+            width: '55vw',
+            height: '120vh',
+            transform: 'translateX(0%) scaleX(-1) scale(1.05)',
+            minWidth: '1200px',
+            minHeight: '1800px',
+          }}
+        >
+          <img
+            src="/oakandtree.svg"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-contain"
+            style={{ 
+              filter: 'brightness(0) invert(1)',
+              mixBlendMode: 'soft-light',
+              opacity: 0.08,
+              objectPosition: 'bottom right',
+            }}
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      {/* Dynamic Overlay Text - 'LIVE + DEVELOPER + ARCHITECT' style */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden select-none opacity-[0.03]">
+        <div className="transform -rotate-12 whitespace-nowrap text-[15vw] md:text-[12vw] font-black uppercase tracking-tighter text-white flex gap-8">
+          <span>BUILD</span>
+          <span className="text-[#E2725B]">+</span>
+          <span>LEGACY</span>
+          <span className="text-[#E2725B]">+</span>
+          <span>SYSTEMS</span>
+        </div>
+      </div>
+
+      {/* Content Container with backdrop blur layer for headline clarity */}
+      <div className="absolute inset-0 pointer-events-none z-[5]" style={{ backdropFilter: 'blur(0.5px)' }}></div>
+
+      {/* Content Container */}
+      <motion.div 
+        style={{ y, opacity }}
+        className="relative z-10 w-full max-w-[90%] mx-auto grid grid-cols-1 items-center"
+      >
+        
+        <div className="space-y-8 text-center md:text-left">
+          {/* Headline - BOLD & HIGH CONTRAST */}
+          <div className="relative w-full">
+            <motion.h1
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[10vw] xl:text-[11vw] leading-[0.8] font-serif font-bold tracking-tighter text-white mix-blend-difference w-full"
+            >
+              BUILDING <br className="md:hidden" />
+              DIGITAL <br className="md:hidden" />
+              <span className="italic text-white/80 block md:inline font-light">LEGACIES</span>
+            </motion.h1>
+            
+            {/* Identity Line - Bold & Visible */}
+            <motion.div
+               initial={{ opacity: 0, x: -20 }}
+               animate={{ opacity: 1, x: 0 }}
+               transition={{ duration: 0.8, delay: 0.3 }}
+               className="mt-6 md:mt-8 flex items-center gap-4"
+            >
+               <div className="h-1 w-12 bg-[#E2725B]" />
+               <span className="text-xl md:text-2xl font-mono text-white font-bold tracking-tight">
+                 Nicholas (Nico) Loperena — Digital Architect
+               </span>
+            </motion.div>
+          </div>
+
+          {/* Bottom Controls Area */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 md:pt-12 border-t border-white/20 mt-8 md:mt-12">
+            
+            {/* Left: Narrative */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col gap-6"
+            >
+               <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-sans font-light leading-[1.6] max-w-xl">
+                 I build high-converting websites + systems for brands that need trust and growth.
+               </p>
+               
+               <div className="flex flex-wrap gap-4 mt-8">
+                  <button
+                    onClick={scrollToProjects}
+                    className="group flex items-center gap-2 px-8 py-4 bg-[#E2725B] text-white font-bold uppercase tracking-widest hover:bg-white hover:text-[#0A1F1C] transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none"
+                  >
+                    <span>View Case Studies</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  <a
+                    href="https://calendly.com/YOUR_USERNAME" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-medium uppercase tracking-widest hover:border-white hover:bg-white/10 transition-all duration-300"
+                  >
+                    <span>Explore Services / Book a Call</span>
+                  </a>
+               </div>
+            </motion.div>
+
+            {/* Right: Technical Data / Quote */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="md:pl-12 md:border-l border-white/20 flex flex-col justify-between"
+            >
+               <div className="relative">
+                 <p className="text-lg text-white/60 italic font-serif mb-8 pl-8 border-l border-[#E2725B]/50">
+                   &quot;My family has engineered structures since 1065—today, I build yours in code.&quot;
+                 </p>
+               </div>
+               
+               <div className="flex items-center justify-between text-xs font-mono text-white/40 uppercase tracking-widest bg-white/5 p-4 rounded-sm border border-white/10">
+                  <span className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-[#E2725B] rounded-full animate-pulse"></span>
+                    Available for Q1 2025
+                  </span>
+                  <span>REF: 1065-2025</span>
+               </div>
+            </motion.div>
+
+          </div>
+
+        </div>
+
+      </motion.div>
 
       {/* Services Drawer */}
       <ServicesDrawer 
         isOpen={isServicesDrawerOpen} 
-        onClose={() => {
-          // Pause animation for 2 seconds when closing
-          setShouldPauseAnimation(true);
-          setIsServicesDrawerOpen(false);
-          
-          // Resume after 2 seconds
-          if (pauseTimeoutRef.current) {
-            clearTimeout(pauseTimeoutRef.current);
-          }
-          pauseTimeoutRef.current = setTimeout(() => {
-            setShouldPauseAnimation(false);
-          }, 2000);
-        }}
-        onOpen={() => {
-          // Pause animation for 2 seconds when opening
-          setShouldPauseAnimation(true);
-          
-          // Show modal after brief delay to let pause take effect
-          setTimeout(() => {
-            setIsServicesDrawerOpen(true);
-          }, 50);
-          
-          // Resume after 2 seconds
-          if (pauseTimeoutRef.current) {
-            clearTimeout(pauseTimeoutRef.current);
-          }
-          pauseTimeoutRef.current = setTimeout(() => {
-            setShouldPauseAnimation(false);
-          }, 2000);
-        }}
+        onClose={() => setIsServicesDrawerOpen(false)}
+        onOpen={() => setIsServicesDrawerOpen(true)}
       />
     </section>
   );
@@ -277,4 +193,3 @@ const NewHero = React.memo(() => {
 NewHero.displayName = 'NewHero';
 
 export default NewHero;
-
