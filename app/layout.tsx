@@ -85,9 +85,48 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans font-medium antialiased bg-[#F5F5DC] text-[#1C1B1A] dark:bg-[#0A1F1C] dark:text-[#F5F5DC] transition-colors duration-300">
-        {/* Print Plate Border */}
-        <div className="fixed inset-4 border border-[#1C1B1A]/10 pointer-events-none z-[100] hidden md:block" />
+      <body className="font-serif font-normal antialiased text-[#111111] dark:bg-[#0A1F1C] dark:text-[#F5F5DC] transition-colors duration-300" style={{ 
+        backgroundColor: '#252525',
+        backgroundImage: `
+          repeating-linear-gradient(45deg, #252525 0px, #1f1f1f 1px, #252525 2px, #252525 10px),
+          repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, transparent 1px, transparent 2px, rgba(0,0,0,0.05) 3px)
+        `,
+        backgroundSize: '10px 10px, 4px 4px'
+      }}>
+        {/* SVG Filters for Ink Bleed and Halftone Effects */}
+        <svg className="absolute w-0 h-0" aria-hidden="true">
+          <defs>
+            <filter id="ink-bleed-filter" x="-50%" y="-50%" width="200%" height="200%">
+              <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
+              <feGaussianBlur stdDeviation="0.3" />
+            </filter>
+            <filter id="halftone-filter" x="-50%" y="-50%" width="200%" height="200%">
+              <feTurbulence baseFrequency="0.9" numOctaves="4" result="noise" />
+              <feColorMatrix in="noise" type="saturate" values="0"/>
+              <feComponentTransfer>
+                <feFuncA type="discrete" tableValues="0 0.3 0.7 1"/>
+              </feComponentTransfer>
+              <feGaussianBlur stdDeviation="0.5" />
+            </filter>
+          </defs>
+        </svg>
+        
+        {/* Wolf and Tree Watermark - Very subtle, fixed background */}
+        <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.02]">
+          <div 
+            className="absolute inset-0 bg-contain bg-center bg-no-repeat etching-style"
+            style={{
+              backgroundImage: 'url(/oakandtree.svg)',
+              backgroundSize: '60%',
+              backgroundPosition: 'center',
+              filter: 'brightness(0) invert(0.3) contrast(1.4) grayscale(0.3)',
+            }}
+          />
+        </div>
+        
+        {/* Print Plate Border - Double Line Style */}
+        <div className="fixed inset-4 border-[#111111]/10 pointer-events-none z-[100] hidden md:block" style={{ borderStyle: 'double', borderWidth: '3px' }} />
         
         {children}
         <Analytics />

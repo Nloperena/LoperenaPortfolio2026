@@ -17,13 +17,94 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'ai-is-going-to-hurt-your-wallet',
+    title: 'AI Is Going to Hurt Your Wallet (And You\'ll Have No Choice But to Pay)',
+    heroHighlight:
+      'Why the $20 Subscription Is Just the Bait. We are living in a bubble 17 times larger than the Dot-com bubble. The math doesn\'t add up. The inference costs are eclipsing revenue. When the music stops, you\'ll pay $200/month or get "AI Lite." Use it now while it\'s subsidized.',
+    excerpt:
+      'We need to talk about the money. Not the hype. Not the "superpower." The actual cash. Right now, the math doesn\'t add up. We are living in an incestuous loop of fake value—a bubble 17 times larger than the Dot-com crash. When it pops, that $20 subscription becomes $200. Use it now while venture capitalists are paying for your productivity.',
+    date: 'November 18, 2025',
+    readTime: '6 min read',
+    tags: ['AI', 'Industry Trends', 'Economics'],
+    sections: [
+      {
+        heading: '',
+        paragraphs: [
+          'We need to talk about the money. Not the hype. Not the "superpower." The actual cash.',
+          'Because right now, the math doesn\'t add up. In fact, it\'s terrifying.'
+        ]
+      },
+      {
+        heading: 'The Incestuous Loop',
+        paragraphs: [
+          'We are living in a bubble. But it\'s not just a bubble. It\'s an incestuous loop of fake value.',
+          'Here is the cycle: Microsoft gives OpenAI $10 billion. OpenAI uses that money to buy chips from Nvidia. Nvidia reports record profits. Nvidia\'s stock soars. Nvidia then invests back into other AI startups. Who then buy more chips from Nvidia.',
+          'It\'s a circle. Everyone is getting rich on paper. But where is the actual profit from the product?'
+        ]
+      },
+      {
+        heading: 'The Scale of the Bubble',
+        paragraphs: [
+          'Let\'s put this bubble into perspective. Analysts are now saying this isn\'t just a tech hype cycle.',
+          'They estimate this AI bubble is 17 times larger than the Dot-com bubble. It is 4 times larger than the 2008 housing crisis.',
+          'Read that again. We are sitting on a capital bubble four times the size of the one that nearly collapsed the global economy.'
+        ]
+      },
+      {
+        heading: 'The Real Numbers',
+        paragraphs: [
+          'Let\'s look at the real numbers fueling this.',
+          'In the first half of 2025 alone, OpenAI is projected to lose $13.5 billion. Not million. Billion. They are burning $2.5 billion in cash every six months just to keep the lights on.',
+          'Anthropic? They burned over $2.5 billion last year.',
+          'They are lighting money on fire to sell you a product for $20/month.'
+        ]
+      },
+      {
+        heading: 'The Math That Doesn\'t Add Up',
+        paragraphs: [
+          'Think about it. You pay $200 a year. They spend thousands of dollars in compute, cooling, and energy just to process your requests.',
+          'The inference costs (the cost to run the AI) are eclipsing their revenue. Every time you ask ChatGPT a question, they are subsidizing you.',
+          'This is not a business model. This is a user acquisition strategy funded by a circular investment economy.'
+        ]
+      },
+      {
+        heading: 'When the Music Stops',
+        paragraphs: [
+          'So, what happens when the music stops? When a bubble 17x the size of the Dot-com crash finally pops?',
+          'It will cave in on itself. And we will be left with two options.',
+          'Option A: The Price Hike. That $20 subscription becomes $200. The "democratization of AI" ends.',
+          'Option B: The Water Down. The models get stupid. They cap the compute. We get "AI Lite" because the real thing is too expensive to exist.'
+        ]
+      },
+      {
+        heading: 'What You Do Now',
+        paragraphs: [
+          'So what do you do? Panic? No.',
+          'You run.',
+          'We are living in a fleeting window of time. A subsidized era of super-intelligence. Venture capitalists are paying for your productivity.',
+          'Take advantage of every moment. Every minute. Right now.',
+          'Build the product. Write the code. Learn the skill. Squeeze every drop of value out of this tool while the price is artificially low.',
+          'Don\'t waste time debating if it\'s "real." Just use it.',
+          'The bill is coming due. Make sure you\'ve already built your future before it arrives.'
+        ]
+      }
+    ],
+    keyTakeaways: [
+      'The AI bubble is 17 times larger than the Dot-com bubble and 4 times larger than the 2008 housing crisis.',
+      'OpenAI is projected to lose $13.5 billion in the first half of 2025 alone—burning $2.5 billion every six months.',
+      'Inference costs eclipse revenue: every ChatGPT request is subsidized by venture capital, not actual profit.',
+      'When the bubble pops, you\'ll face two options: $200/month subscriptions or "AI Lite" with capped compute.',
+      'Use AI now while it\'s subsidized—this is a fleeting window where VCs are paying for your productivity.'
+    ]
+  },
+  {
     slug: 'stop-panicking-start-augmenting',
     title: 'Stop Panicking. Start Augmenting.',
     heroHighlight:
       'Why the AI Bubble Will Burst, But the AI Tool Is Here to Stay. Refusing to integrate AI is like being a boomer who refused to use the internet. You will be left behind. AI is a multiplier for skill, not a replacement for it.',
     excerpt:
       'Everyone is panicking about the "AI bubble" and how it\'s affecting their jobs. The truth is, AI is great. And the panic is a distraction. Refusing to integrate AI into your work is a critical mistake. This is a rare moment where you can genuinely feel like you have a superpower—but only if you use it correctly.',
-    date: 'September 17, 2025',
+    date: 'November 18, 2025',
     readTime: '4 min read',
     tags: ['AI', 'Developer Mindset', 'Industry Trends'],
     sections: [

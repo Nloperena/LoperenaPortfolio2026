@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, Users, Target, Star, Play } from 'lucide-react';
+import { TrendingUp, Users, Target, Star } from 'lucide-react';
 
 interface Metric {
   value: string;
@@ -134,24 +134,17 @@ const TestimonialVideosGrid: React.FC<TestimonialVideosGridProps> = ({
                 className="flex-shrink-0 w-[280px] sm:w-[320px] md:w-[400px] lg:w-[450px] bg-white rounded-xl overflow-hidden shadow-xl border border-gray-700 hover:shadow-2xl transition-shadow flex flex-col"
               >
                 {/* 1. Video Thumbnail - Top */}
-                <div className="relative aspect-[9/16] bg-black rounded-t-xl overflow-hidden flex-shrink-0 group/video">
+                <div className="relative aspect-[9/16] bg-black rounded-t-xl overflow-hidden flex-shrink-0">
                   <video
                     playsInline
                     autoPlay
                     muted
                     loop
                     className="w-full h-full object-cover"
-                    style={{ filter: 'brightness(1.2) contrast(1.1)' }}
                   >
                     <source src={testimonial.videoUrl} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                  {/* Gold Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none opacity-80 group-hover/video:opacity-100 transition-opacity">
-                    <div className="w-16 h-16 rounded-full bg-[#E2725B]/90 backdrop-blur-md flex items-center justify-center group-hover/video:scale-110 group-hover/video:bg-[#E2725B] transition-all duration-300 shadow-xl border-2 border-white/30">
-                      <Play className="w-8 h-8 text-white ml-1" fill="white" />
-                    </div>
-                  </div>
                 </div>
                 
                 {/* 2. Metrics Section - Middle (if available) */}

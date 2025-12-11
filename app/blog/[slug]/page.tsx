@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -10,13 +10,11 @@ import LetterGlitch from "@/components/LetterGlitch";
 import { blogPosts } from "@/data/blogPosts";
 
 interface BlogDetailPageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: { slug: string };
 }
 
 export default function BlogDetailPage({ params }: BlogDetailPageProps) {
-  // Handle both Promise and direct params for Next.js compatibility
-  const resolvedParams = params instanceof Promise ? use(params) : params;
-  const post = blogPosts.find((entry) => entry.slug === resolvedParams.slug);
+  const post = blogPosts.find((entry) => entry.slug === params.slug);
 
   if (!post) {
     notFound();

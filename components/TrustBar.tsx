@@ -24,24 +24,26 @@ const TrustBar = () => {
 
   return (
     <>
-      <section className="bg-[#F8F4F0] dark:bg-[#0A1F1C] border-b border-[#1C1B1A]/10 dark:border-white/10 py-12 relative overflow-hidden transition-colors duration-300">
-          <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#1C1B1A]/40 dark:text-white/40 whitespace-nowrap shrink-0">Trusted By</span>
-              
-              <div className="flex flex-wrap justify-center md:justify-start gap-8 md:gap-16 w-full">
+      <section className="bg-[#F2F0E6] dark:bg-[#0A1F1C] border-t double-line border-b double-line border-[#111111] dark:border-white/20 py-8 relative transition-colors duration-300" style={{ borderStyle: 'double', borderWidth: '3px', borderLeft: 'none', borderRight: 'none' }}>
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-[#111111]/20 dark:border-white/20">
+                  {/* Ledger-style grid with borders */}
                   {brands.map((brand, i) => (
-                      <motion.span 
-                          key={i} 
+                      <motion.div
+                          key={i}
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
-                          transition={{ delay: i * 0.1 }}
+                          transition={{ delay: i * 0.05 }}
                           onClick={() => brand.isClickable && handleBrandClick(brand)}
-                          className={`font-serif text-xl md:text-2xl text-[#1C1B1A]/60 dark:text-white/60 italic hover:text-[#E2725B] dark:hover:text-[#E2725B] transition-colors ${
-                            brand.isClickable ? 'cursor-pointer' : 'cursor-default'
-                          }`}
+                          className={`
+                            p-5 text-center font-serif text-lg md:text-xl text-[#111111] dark:text-white/90 italic
+                            ${(i + 1) % 3 !== 0 ? 'border-r border-[#111111]/20 dark:border-white/20' : ''}
+                            ${i < brands.length - (brands.length % 3 === 0 ? 3 : brands.length % 3) ? 'border-b border-[#111111]/20 dark:border-white/20' : ''}
+                            ${brand.isClickable ? 'cursor-pointer hover:bg-[#F2F0E6]/50 dark:hover:bg-white/5 transition-colors' : 'cursor-default'}
+                          `}
                       >
                           {brand.name}
-                      </motion.span>
+                      </motion.div>
                   ))}
               </div>
           </div>
@@ -53,6 +55,8 @@ const TrustBar = () => {
 }
 
 export default TrustBar;
+
+
 
 
 

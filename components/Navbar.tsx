@@ -43,11 +43,10 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Heritage', href: '/#heritage' },
-    { name: 'Portfolio', href: '/#selected-works' },
+    { name: 'Lineage', href: '/#heritage' },
+    { name: 'Works', href: '/#selected-works' },
     { name: 'The Ledger', href: '/#ledger-section' },
-    { name: 'Contact', action: 'modal' },
+    { name: 'Correspondence', action: 'modal' },
   ];
 
   const handleNavClick = (e: React.MouseEvent, link: any) => {
@@ -68,28 +67,25 @@ const Navbar = () => {
         transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled 
-            ? 'bg-[#F5F5DC]/90 dark:bg-[#0A1F1C]/90 backdrop-blur-md shadow-sm py-4 border-b border-[#1C1B1A]/10 dark:border-white/10' 
+            ? 'bg-[#F2F0E6]/95 dark:bg-[#0A1F1C]/90 backdrop-blur-md shadow-sm py-4 border-b border-[#1C1B1A]/10 dark:border-white/10' 
             : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-6 flex items-center justify-between">
           
           {/* Logo / Brand */}
           <Link href="#" className="group flex items-center gap-3">
             <div className={`relative w-20 h-20 flex-shrink-0 transition-all duration-300 ${
               scrolled ? 'opacity-100' : 'opacity-90'
             }`}>
-              <div className="absolute inset-0 bg-gradient-to-br from-[#E2725B]/10 to-[#006400]/10 rounded-full blur-sm group-hover:blur-md transition-all duration-300"></div>
-              <div className="relative w-full h-full p-2 bg-[#F5F5DC]/5 dark:bg-white/5 rounded-full border-2 border-[#E2725B]/20 dark:border-[#E2725B]/30 group-hover:border-[#E2725B]/40 dark:group-hover:border-[#E2725B]/50 transition-all duration-300">
-                <img
-                  src="/family-crest-illustration.png"
-                  alt="Loperena Family Crest"
-                  className="w-full h-full object-contain filter drop-shadow-lg group-hover:drop-shadow-xl group-hover:scale-110 transition-all duration-300"
-                />
-              </div>
+              <img
+                src="/family-crest-illustration.png"
+                alt="Loperena Family Crest"
+                className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+              />
             </div>
             <div className={`font-serif text-lg tracking-wide transition-colors duration-300 hidden sm:block ${
-              scrolled ? 'text-[#1C1B1A] dark:text-[#F5F5DC]' : 'text-white'
+              scrolled ? 'text-[#1C1B1A] dark:text-[#F5F5DC]' : 'text-[#0A1F1C]'
             }`}>
               LOPERENA
             </div>
@@ -102,8 +98,8 @@ const Navbar = () => {
                 key={link.name} 
                 href={link.href || '#'}
                 onClick={(e) => handleNavClick(e, link)}
-                className={`font-sans text-sm font-medium uppercase tracking-widest transition-colors duration-300 hover:text-[#E2725B] ${
-                  scrolled ? 'text-[#1C1B1A] dark:text-[#F5F5DC]' : 'text-white/80 hover:text-white'
+                className={`font-serif text-sm font-medium uppercase tracking-widest transition-colors duration-300 hover:text-[#B87333] ${
+                  scrolled ? 'text-[#1C1B1A] dark:text-[#F5F5DC]' : 'text-[#0A1F1C] hover:text-[#B87333]'
                 }`}
               >
                 {link.name}
@@ -116,22 +112,11 @@ const Navbar = () => {
                 className={`p-2 rounded-full transition-colors duration-300 ${
                     scrolled 
                         ? 'text-[#1C1B1A] hover:bg-[#1C1B1A]/10 dark:text-[#F5F5DC] dark:hover:bg-[#F5F5DC]/10' 
-                        : 'text-white hover:bg-white/10'
+                        : 'text-[#0A1F1C] hover:bg-[#0A1F1C]/10'
                 }`}
                 aria-label="Toggle Dark Mode"
             >
                 {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-
-            <button
-              onClick={() => setContactModalOpen(true)}
-              className={`px-5 py-2 rounded-sm font-mono text-xs uppercase tracking-widest border transition-all duration-300 ${
-                scrolled 
-                  ? 'border-[#E2725B] text-[#E2725B] hover:bg-[#E2725B] hover:text-[#F5F5DC]' 
-                  : 'border-white text-white hover:bg-white hover:text-[#0A1F1C]'
-              }`}
-            >
-              Consult
             </button>
           </div>
 
@@ -141,8 +126,8 @@ const Navbar = () => {
                   onClick={toggleDarkMode}
                   className={`p-2 rounded-full transition-colors duration-300 ${
                       scrolled 
-                          ? 'text-[#E2725B] dark:text-[#F5F5DC]' 
-                          : 'text-[#E2725B]'
+                          ? 'text-[#1C1B1A] dark:text-[#F5F5DC]' 
+                          : 'text-[#0A1F1C]'
                   }`}
                   aria-label="Toggle Dark Mode"
               >
@@ -150,10 +135,10 @@ const Navbar = () => {
               </button>
 
               <button 
-                className="text-[#E2725B]"
+                className={scrolled ? 'text-[#1C1B1A] dark:text-[#F5F5DC]' : 'text-[#0A1F1C]'}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} color={scrolled ? (darkMode ? '#F5F5DC' : '#1C1B1A') : '#FFFFFF'} />}
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
           </div>
         </div>

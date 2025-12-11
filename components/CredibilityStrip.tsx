@@ -108,7 +108,7 @@ const CredibilityStrip = () => {
                   muted
                   loop
                   className="w-full h-full object-cover group-hover:opacity-100 transition-all duration-700"
-                  style={{ filter: 'brightness(1.2) contrast(1.2)' }}
+                  style={{ filter: 'brightness(0.7) contrast(1.1)' }}
                 >
                   <source src={testimonial.videoUrl} type="video/mp4" />
                 </video>
@@ -116,7 +116,7 @@ const CredibilityStrip = () => {
                 
                 {/* Gold Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                  <div className="w-16 h-16 rounded-full bg-[#E2725B]/90 backdrop-blur-md flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E2725B] transition-all duration-300 shadow-xl border-2 border-white/30">
+                  <div className="w-16 h-16 rounded-full bg-[#8C7A5E]/80 dark:bg-[#E2725B]/80 backdrop-blur-md flex items-center justify-center group-hover:scale-110 group-hover:bg-[#8C7A5E] dark:group-hover:bg-[#E2725B] transition-all duration-300 shadow-xl border border-white/20">
                     <Play className="w-8 h-8 text-white ml-1" fill="white" />
                   </div>
                 </div>

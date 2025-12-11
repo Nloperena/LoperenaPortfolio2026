@@ -5,40 +5,65 @@ import { Github, Linkedin, Mail, Twitter, ArrowUpRight } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1C1B1A] text-[#F5F5DC] py-16 border-t border-[#800000]/30 relative overflow-hidden">
+    <footer className="bg-[#1C1B1A] text-[#F5F5DC] py-16 relative overflow-hidden">
+      {/* Antique Divider Above Footer */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B87333]/40 to-transparent"></div>
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-24 -mt-12 flex items-center justify-center">
+        <div className="w-16 h-16 rounded-full border-2 border-[#B87333]/30 bg-[#1C1B1A] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full border border-[#B87333]/20"></div>
+        </div>
+      </div>
       
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 relative z-10 pt-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
            
            {/* Brand & Tagline */}
            <div className="col-span-1 md:col-span-2">
               <div className="flex items-start gap-6 mb-6">
                 {/* Family Crest - Footer Size */}
-                <div className="flex-shrink-0 w-48 h-48 relative group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#E2725B]/20 to-[#006400]/20 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                  <div className="relative w-full h-full p-4 bg-[#F5F5DC]/10 rounded-full border-2 border-[#E2725B]/30 group-hover:border-[#E2725B]/50 transition-all duration-300">
-                    <img
-                      src="/family-crest-illustration.png"
-                      alt="Loperena Family Crest"
-                      className="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 filter drop-shadow-xl group-hover:scale-105"
-                    />
-                  </div>
+                <div className="flex-shrink-0 w-48 h-48 relative">
+                  <img
+                    src="/family-crest-illustration.png"
+                    alt="Loperena Family Crest"
+                    className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 filter drop-shadow-lg"
+                  />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-serif text-2xl text-[#F5F5DC] mb-2">Nicholas Loperena</h3>
-                  <p className="text-[#F5F5DC]/60 text-sm font-sans leading-relaxed mb-2">
-                    Ninth-generation builder crafting digital legacies.
+                  <h3 className="font-serif text-2xl font-bold text-[#F5F5DC] mb-2">Nicholas Loperena</h3>
+                  <p className="text-[#F5F5DC]/60 text-sm font-serif leading-relaxed mb-2">
+                    Ninth-generation engineer developing digital infrastructure.
                   </p>
                   <p className="text-[#F5F5DC]/40 text-xs font-mono uppercase tracking-widest">
-                    Rooted in history, engineered for the future.
+                    Rooted in tradition, designed for tomorrow.
                   </p>
                 </div>
               </div>
-              <div className="flex gap-6 mt-8">
-                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-[#F5F5DC]/60 hover:text-[#E2725B] transition-colors"><Github size={20}/></a>
-                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-[#F5F5DC]/60 hover:text-[#E2725B] transition-colors"><Linkedin size={20}/></a>
-                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-[#F5F5DC]/60 hover:text-[#E2725B] transition-colors"><Twitter size={20}/></a>
-                 <a href="mailto:nicholas@loperena.com" className="text-[#F5F5DC]/60 hover:text-[#E2725B] transition-colors"><Mail size={20}/></a>
+              <div className="flex gap-4 mt-8">
+                 <a 
+                   href="https://github.com/nicholasloperena" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="p-2 border border-[#B87333]/30 text-[#B87333]/70 hover:border-[#B87333] hover:text-[#B87333] hover:bg-[#B87333]/10 transition-all duration-300"
+                   title="GitHub"
+                 >
+                   <Github size={18}/>
+                 </a>
+                 <a 
+                   href="https://www.linkedin.com/in/nicholas-loperena-022813185/" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   className="p-2 border border-[#B87333]/30 text-[#B87333]/70 hover:border-[#B87333] hover:text-[#B87333] hover:bg-[#B87333]/10 transition-all duration-300"
+                   title="LinkedIn"
+                 >
+                   <Linkedin size={18}/>
+                 </a>
+                 <a 
+                   href="mailto:nicholas@loperena.com" 
+                   className="p-2 border border-[#B87333]/30 text-[#B87333]/70 hover:border-[#B87333] hover:text-[#B87333] hover:bg-[#B87333]/10 transition-all duration-300"
+                   title="Email"
+                 >
+                   <Mail size={18}/>
+                 </a>
               </div>
            </div>
 
@@ -51,14 +76,14 @@ const Footer = () => {
                     type="text" 
                     name="name" 
                     placeholder="NAME" 
-                    className="bg-[#333333] border-2 border-[#E2725B]/60 py-3 text-sm text-[#F5F5DC] placeholder-[#F5F5DC]/50 focus:border-[#E2725B] focus:bg-[#404040] outline-none transition-all px-3" 
+                    className="bg-[#333333] border border-[#8C7A5E]/50 py-3 text-sm text-[#F5F5DC] placeholder-[#F5F5DC]/50 font-serif focus:border-[#B87333] focus:bg-[#404040] outline-none transition-all px-3" 
                     required 
                   />
                   <input 
                     type="email" 
                     name="email" 
                     placeholder="EMAIL" 
-                    className="bg-[#333333] border-2 border-[#E2725B]/60 py-3 text-sm text-[#F5F5DC] placeholder-[#F5F5DC]/50 focus:border-[#E2725B] focus:bg-[#404040] outline-none transition-all px-3" 
+                    className="bg-[#333333] border border-[#8C7A5E]/50 py-3 text-sm text-[#F5F5DC] placeholder-[#F5F5DC]/50 font-serif focus:border-[#B87333] focus:bg-[#404040] outline-none transition-all px-3" 
                     required 
                   />
                 </div>
@@ -66,12 +91,12 @@ const Footer = () => {
                   name="message" 
                   placeholder="PROJECT DETAILS" 
                   rows={3} 
-                  className="w-full bg-[#333333] border-2 border-[#E2725B]/60 py-3 text-sm text-[#F5F5DC] placeholder-[#F5F5DC]/50 focus:border-[#E2725B] focus:bg-[#404040] outline-none transition-all resize-none px-3" 
+                  className="w-full bg-[#333333] border border-[#8C7A5E]/50 py-3 text-sm text-[#F5F5DC] placeholder-[#F5F5DC]/50 font-serif focus:border-[#B87333] focus:bg-[#404040] outline-none transition-all resize-none px-3" 
                   required
                 ></textarea>
                 <button 
                   type="submit" 
-                  className="w-full py-4 bg-[#E2725B] text-[#F5F5DC] font-mono text-xs uppercase tracking-widest hover:bg-[#F5F5DC] hover:text-[#0A1F1C] transition-colors shadow-lg"
+                  className="w-full py-4 bg-[#B87333] text-[#F5F5DC] font-serif text-xs font-bold uppercase tracking-widest hover:bg-[#B87333]/90 transition-colors shadow-lg"
                 >
                   Transmit
                 </button>
@@ -79,11 +104,22 @@ const Footer = () => {
            </div>
         </div>
 
+        {/* Subtle Navigation Links */}
+        <div className="border-t border-[#F5F5DC]/10 pt-6 mb-6">
+          <div className="flex flex-wrap justify-center gap-4 text-xs font-mono uppercase tracking-widest text-[#F5F5DC]/50">
+            <a href="#heritage" className="hover:text-[#B87333] transition-colors">Heritage</a>
+            <span className="text-[#F5F5DC]/20">|</span>
+            <a href="#tech-stack" className="hover:text-[#B87333] transition-colors">Tools</a>
+            <span className="text-[#F5F5DC]/20">|</span>
+            <a href="#selected-works" className="hover:text-[#B87333] transition-colors">Portfolio</a>
+          </div>
+        </div>
+
         {/* Copyright */}
-        <div className="border-t border-[#F5F5DC]/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-[#F5F5DC]/40 font-mono uppercase tracking-widest">
+        <div className="border-t border-[#F5F5DC]/10 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-[#F5F5DC]/40 font-mono uppercase tracking-widest">
            <div>&copy; 2025 Nicholas Loperena. All Rights Reserved.</div>
            <div className="mt-4 md:mt-0 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-[#006400] rounded-full"></span>
+              <span className="w-1.5 h-1.5 bg-[#B87333] rounded-full"></span>
               Designed & Built in Florida
            </div>
         </div>

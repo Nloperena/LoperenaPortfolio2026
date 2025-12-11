@@ -41,6 +41,8 @@ export default {
         'heritage-beige': '#F5F5DC',
         'heritage-maroon': '#800000',
         'heritage-terracotta': '#E2725B',
+        'old-world-copper': '#B87333', // Burnt Sienna/Copper - like sealing wax
+        'old-world-amber': '#D4A574', // Amber for highlights
         
         // Atelier Palette
         parchment: '#F5F5DC', // Updated to Heritage Beige
@@ -50,10 +52,12 @@ export default {
         gold: '#E2725B', // Updated to Heritage Terracotta for accents (or keep gold separate)
         
         // Architectural Minimalist Palette
-        'arch-green': '#0A1F1C',
+        'arch-green': '#0A1F1C', // Deepened to Hunter Green/British Racing Green
         'arch-white': '#F5F5DC', // Updated to User's Cream
         'arch-charcoal': '#1A1A1A',
-        'arch-accent': '#E2725B', 
+        'arch-accent': '#B87333', // Changed from #E2725B to Burnt Sienna/Copper
+        'burnt-sienna': '#B87333', // Burnt Sienna/Copper for Old World feel
+        'hunter-green': '#0A1F1C', // Deep Hunter Green (almost black) 
 
         // Legacy/System colors (mapped to new palette where appropriate or kept for utility)
         forest: '#1C1B1A', // Mapping forest to charcoal for text/elements

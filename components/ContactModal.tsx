@@ -57,19 +57,17 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const contactItems = [
     {
       icon: Phone,
-      label: 'Phone',
+      label: 'Telephone',
       value: contactInfo.phone,
       href: `tel:${contactInfo.phone.replace(/\s/g, '')}`,
       copyValue: contactInfo.phone,
-      color: 'text-green-600'
     },
     {
       icon: Mail,
-      label: 'Email',
+      label: 'Correspondence',
       value: contactInfo.email,
       href: `mailto:${contactInfo.email}`,
       copyValue: contactInfo.email,
-      color: 'text-blue-600'
     },
     {
       icon: Linkedin,
@@ -77,7 +75,6 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
       value: 'nicholasloperena',
       href: contactInfo.linkedin,
       copyValue: contactInfo.linkedin,
-      color: 'text-[#0077b5]'
     }
   ];
 
@@ -91,91 +88,83 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
           />
 
-          {/* Modal */}
+          {/* Envelope Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: 'spring', duration: 0.3 }}
+            transition={{ type: 'spring', duration: 0.4 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-              {/* Header */}
-              <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between rounded-t-2xl z-10">
-                <h2 className="text-2xl font-bold text-gray-900">Get In Touch</h2>
+            {/* Envelope Container */}
+            <div className="relative max-w-lg w-full">
+              {/* Envelope Back/Flap */}
+              <div className="absolute -top-8 left-0 right-0 h-16 bg-[#E8E4D8] border-2 border-[#111111]/20 transform -rotate-1 origin-top" style={{ clipPath: 'polygon(0 0, 100% 0, 95% 100%, 5% 100%)' }}></div>
+              
+              {/* Letter Paper */}
+              <div className="bg-[#F2F0E6] bg-paper-grain relative shadow-xl border border-[#111111]/30">
+                {/* Close Button */}
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                  aria-label="Close modal"
+                  className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center hover:bg-[#111111]/5 transition-colors z-10"
+                  aria-label="Close"
                 >
-                  <X className="w-5 h-5 text-gray-600" />
+                  <X className="w-4 h-4 text-[#111111]/60" />
                 </button>
-              </div>
 
-              {/* Content */}
-              <div className="p-6 space-y-4">
-                <p className="text-gray-600 mb-6">
-                  Choose your preferred way to reach out. I&apos;m always open to discussing new projects and opportunities.
-                </p>
+                {/* Return Address (Top Right) */}
+                <div className="absolute top-6 right-8 text-right">
+                  <p className="font-serif text-xs text-[#111111]/70">Nicholas Loperena</p>
+                  <p className="font-serif text-xs text-[#111111]/70">Florida, United States</p>
+                </div>
 
-                {contactItems.map((item, index) => {
-                  const IconComponent = item.icon;
-                  const isCopied = copiedField === item.label;
+                {/* Letter Content */}
+                <div className="px-12 py-16">
+                  {/* Contact Information */}
+                  <div className="space-y-6">
+                    {contactItems.map((item, index) => {
+                      const IconComponent = item.icon;
+                      const isCopied = copiedField === item.label;
 
-                  return (
-                    <motion.div
-                      key={item.label}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="border border-gray-200 rounded-xl p-4 hover:border-[#F2611D] transition-colors"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className={`p-3 rounded-lg bg-gray-50 ${item.color}`}>
-                          <IconComponent className="w-5 h-5" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm text-gray-500 mb-1">{item.label}</div>
-                          <a
-                            href={item.href}
-                            target={item.label === 'LinkedIn' ? '_blank' : undefined}
-                            rel={item.label === 'LinkedIn' ? 'noopener noreferrer' : undefined}
-                            className="text-lg font-semibold text-gray-900 hover:text-[#F2611D] transition-colors block mb-2 break-all"
-                          >
-                            {item.value}
-                          </a>
+                      return (
+                        <motion.div
+                          key={item.label}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="flex items-center gap-4 pb-6 border-b border-[#111111]/10 last:border-0 last:pb-0"
+                        >
+                          <IconComponent className="w-5 h-5 text-[#111111]/50 flex-shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <a
+                              href={item.href}
+                              target={item.label === 'LinkedIn' ? '_blank' : undefined}
+                              rel={item.label === 'LinkedIn' ? 'noopener noreferrer' : undefined}
+                              className="font-serif text-base text-[#111111] hover:text-[#111111]/70 transition-colors break-all"
+                            >
+                              {item.value}
+                            </a>
+                          </div>
                           <button
                             onClick={() => copyToClipboard(item.copyValue, item.label)}
-                            className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#F2611D] transition-colors"
+                            className="flex-shrink-0 text-[#111111]/40 hover:text-[#111111] transition-colors"
+                            title="Copy"
                           >
                             {isCopied ? (
-                              <>
-                                <Check className="w-4 h-4" />
-                                <span>Copied!</span>
-                              </>
+                              <Check className="w-4 h-4" />
                             ) : (
-                              <>
-                                <Copy className="w-4 h-4" />
-                                <span>Copy</span>
-                              </>
+                              <Copy className="w-4 h-4" />
                             )}
                           </button>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* Footer */}
-              <div className="px-6 py-4 bg-gray-50 rounded-b-2xl border-t border-gray-200">
-                <p className="text-xs text-gray-500 text-center">
-                  Prefer email? Just click the email address above to open your default email client.
-                </p>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>

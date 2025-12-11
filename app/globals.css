@@ -2,6 +2,432 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Old World Image Filter - Hand-tinted photograph aesthetic */
+img:not(.no-filter):not(.portfolio-image) {
+  filter: sepia(30%) contrast(110%) grayscale(40%);
+  transition: filter 0.5s ease;
+}
+
+img:not(.no-filter):not(.portfolio-image):hover {
+  filter: sepia(0%) contrast(100%) grayscale(0%);
+}
+
+/* Portfolio images - stronger sepia filter */
+.portfolio-image {
+  filter: sepia(0.8) grayscale(0.2);
+  transition: filter 0.5s ease;
+}
+
+.portfolio-image:hover {
+  filter: none;
+}
+
+/* Ensure body text is dark for readability */
+body {
+  color: #111111;
+}
+
+/* Old Style Figures - Numbers with ascenders/descenders like lowercase letters */
+body,
+.font-serif,
+.font-mono,
+h1, h2, h3, h4, h5, h6,
+p, span, div {
+  font-variant-numeric: oldstyle-nums;
+  font-feature-settings: "onum" 1;
+}
+
+/* Ensure stats and numbers use old style figures */
+.text-6xl,
+.text-7xl,
+.text-5xl,
+.text-4xl,
+.text-3xl,
+.text-2xl,
+.text-xl {
+  font-variant-numeric: oldstyle-nums;
+  font-feature-settings: "onum" 1;
+}
+
+/* Justified text for Old World aesthetic */
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Halftone/Dither Effect for Images - Newsprint Texture (Woodblock/Engraving style) */
+.halftone-image,
+.etching-style {
+  filter: url(#halftone-filter);
+}
+
+/* Apply halftone to specific images only (not all) */
+img.halftone-image,
+svg.halftone-image {
+  filter: url(#halftone-filter);
+}
+
+/* Signature Style - Handwriting font (more prominent) */
+.signature {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-variant-numeric: oldstyle-nums;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Marginalia - Sidenotes in right margin (more visible) */
+.marginalia {
+  position: absolute;
+  right: -140px;
+  width: 120px;
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: rgba(17, 17, 17, 0.6);
+  text-align: right;
+  line-height: 2;
+  font-variant-numeric: oldstyle-nums;
+  font-feature-settings: "onum" 1;
+}
+
+.marginalia div {
+  border-left: 1px solid rgba(17, 17, 17, 0.2);
+  padding-left: 8px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 1024px) {
+  .marginalia {
+    display: none;
+  }
+}
+
+/* Simplified Drop Cap - Cleaner Style */
+.drop-cap {
+  float: left;
+  font-size: 6rem;
+  line-height: 0.7;
+  padding-right: 0.75rem;
+  padding-top: 0.2rem;
+  font-family: 'EB Garamond', serif;
+  font-weight: 900;
+  color: #B87333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  margin-bottom: -0.3rem;
+  margin-top: 0;
+}
+
+/* Corner Flourishes - Brass Bracket Style */
+.journal-plate::before,
+.journal-plate::after {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #8B4513;
+  z-index: 10;
+}
+
+.journal-plate::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+  border-top-width: 3px;
+  border-left-width: 3px;
+}
+
+.journal-plate::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+  border-bottom-width: 3px;
+  border-right-width: 3px;
+}
+
+/* Additional corner flourishes using pseudo-elements on inner container */
+.journal-plate-inner::before,
+.journal-plate-inner::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #8B4513;
+  opacity: 0.6;
+}
+
+.journal-plate-inner::before {
+  top: -1px;
+  right: -1px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.journal-plate-inner::after {
+  bottom: -1px;
+  left: -1px;
+  border-right: none;
+  border-top: none;
+}
+
+/* Centered Masthead with Ornaments */
+.masthead-container {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.masthead-ornament {
+  font-size: 1.2rem;
+  color: #B87333;
+  opacity: 0.8;
+  display: inline-block;
+}
+
+.masthead-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: #111111;
+  text-transform: uppercase;
+  filter: url(#ink-bleed-filter);
+  margin: 1rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.masthead-section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* Editorial Deck */
+.editorial-deck {
+  max-width: 60%;
+  margin: 2rem auto;
+  padding: 1.5rem 0;
+  text-align: center;
+  border-top: 1px solid rgba(17, 17, 17, 0.2);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+}
+
+.editorial-deck p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: #111111;
+  font-weight: 400;
+}
+
+/* Two Column Layout with Illustration Run-Around */
+.journal-two-column {
+  column-count: 2;
+  column-gap: 3rem;
+  column-rule: 1px solid rgba(17, 17, 17, 0.15);
+  text-align: justify;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  position: relative;
+  font-family: 'EB Garamond', serif;
+  color: #111111;
+  break-inside: avoid;
+}
+
+.journal-two-column p {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Drop Cap - Blackletter/Copper Style */
+.drop-cap {
+  float: left;
+  font-size: 10rem;
+  line-height: 0.6;
+  padding-right: 1.2rem;
+  padding-top: 0.3rem;
+  font-family: 'EB Garamond', serif;
+  font-weight: 900;
+  font-style: normal;
+  color: #B87333;
+  text-shadow: 
+    3px 3px 6px rgba(0, 0, 0, 0.3),
+    0 0 12px rgba(184, 115, 51, 0.2);
+  margin-bottom: -0.6rem;
+  margin-top: -0.4rem;
+  filter: url(#ink-bleed-filter);
+}
+
+/* Illustration Run-Around - Positioned to straddle both columns */
+.illustration-runaround {
+  float: right;
+  width: 280px;
+  height: 280px;
+  margin: 1rem 0 1.5rem 1.5rem;
+  shape-outside: circle(50%);
+  shape-margin: 1.5rem;
+  filter: url(#halftone-filter);
+  position: relative;
+  clear: none;
+  break-inside: avoid;
+}
+
+.illustration-runaround > div {
+  width: 100%;
+  height: 100%;
+}
+
+.illustration-runaround svg,
+.illustration-runaround img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Wrapper for positioning */
+.journal-two-column-wrapper {
+  position: relative;
+  min-height: 600px;
+  margin-bottom: 2rem;
+}
+
+/* Portrait Seal - Circular with Decorative Border (Wax Seal Style) */
+.portrait-seal {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 6px double #8B4513;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 0 2px rgba(139, 69, 19, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.2);
+  background: #1C1B1A;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.portrait-seal::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(139, 69, 19, 0.2);
+  z-index: -1;
+}
+
+.portrait-seal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.3) contrast(1.1);
+}
+
+/* Signature Block - Positioned in bottom-right, aligned with second column */
+.signature-block {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(17, 17, 17, 0.2);
+  clear: both;
+  margin-left: calc(50% + 1.5rem); /* Align with start of second column */
+  max-width: calc(50% - 1.5rem); /* Match second column width */
+}
+
+.signature-content {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .signature-block {
+    margin-left: 0;
+    max-width: 100%;
+    justify-content: center;
+  }
+}
+
+.signature-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #1a1a1a;
+  letter-spacing: 0.1em;
+}
+
+.signature-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(17, 17, 17, 0.6);
+  margin-top: 0.25rem;
+}
+
+/* Figure Caption */
+.figure-caption {
+  font-size: 0.75rem;
+  font-style: italic;
+  text-align: center;
+  color: rgba(17, 17, 17, 0.7);
+  margin-top: 0.75rem;
+  font-family: 'EB Garamond', serif;
+}
+
+/* Filigree Ornaments - Extend to page borders */
+.filigree-left,
+.filigree-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #B87333 20%,
+    #B87333 80%,
+    transparent
+  );
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.filigree-left {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #B87333
+  );
+}
+
+.filigree-right {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    transparent,
+    #B87333
+  );
+}
+
 /* Hide scrollbar utility */
 .hide-scrollbar {
   -ms-overflow-style: none;
@@ -12,40 +438,228 @@
   display: none;
 }
 
-/* Custom marquee animation */
-@keyframes marquee-pixel-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-1 * var(--marquee-distance, 0px)));
-  }
+/* Ink Bleed Filter for Headers */
+.ink-bleed {
+  filter: url(#ink-bleed-filter);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  [aria-label='Brands ticker'] div[class*='animate-'] {
-    animation: none !important;
-  }
-  [aria-label='Brands ticker'] > div > div {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-  }
-  [aria-label='Brands ticker'] > div > div > div {
-    scroll-snap-align: center;
-  }
+/* Ornamental Divider - Fleuron SVG */
+.ornamental-divider {
+  position: relative;
+  height: 2px;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Blueprint Grid Pattern */
-.bg-blueprint-grid {
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+.ornamental-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, currentColor, transparent);
+  border-style: double;
+  border-width: 0 0 3px 0;
+  border-color: currentColor;
 }
 
-.bg-blueprint-grid-dark {
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, rgba(10, 31, 28, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(10, 31, 28, 0.05) 1px, transparent 1px);
+.ornamental-divider::after {
+  content: '❦';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: currentColor;
+  background: #F5F5DC;
+  padding: 0 0.5rem;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+/* Photo Corner Accents (L-shaped) - All 4 corners */
+.photo-corner {
+  position: relative;
+}
+
+.photo-corner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-top: 2px solid rgba(139, 69, 19, 0.5);
+  border-left: 2px solid rgba(139, 69, 19, 0.5);
+  border-right: none;
+  border-bottom: none;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.photo-corner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-bottom: 2px solid rgba(139, 69, 19, 0.5);
+  border-right: 2px solid rgba(139, 69, 19, 0.5);
+  border-left: none;
+  border-top: none;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Photo Corner Top Right */
+.photo-corner-top-right {
+  position: relative;
+}
+
+.photo-corner-top-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-top: 2px solid rgba(139, 69, 19, 0.5);
+  border-right: 2px solid rgba(139, 69, 19, 0.5);
+  border-left: none;
+  border-bottom: none;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Photo Corner Bottom Left */
+.photo-corner-bottom-left {
+  position: relative;
+}
+
+.photo-corner-bottom-left::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-bottom: 2px solid rgba(139, 69, 19, 0.5);
+  border-left: 2px solid rgba(139, 69, 19, 0.5);
+  border-right: none;
+  border-top: none;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Photo Corner All 4 Corners - Using pseudo-elements and additional element */
+.photo-corner-all {
+  position: relative;
+}
+
+.photo-corner-all::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-top: 2px solid rgba(139, 69, 19, 0.5);
+  border-left: 2px solid rgba(139, 69, 19, 0.5);
+  border-right: none;
+  border-bottom: none;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.photo-corner-all::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-bottom: 2px solid rgba(139, 69, 19, 0.5);
+  border-right: 2px solid rgba(139, 69, 19, 0.5);
+  border-left: none;
+  border-top: none;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Double Line Border Utility */
+.double-line {
+  border-style: double;
+  border-width: 3px;
+}
+
+/* Vintage Frame for Portfolio Images */
+.vintage-frame {
+  border: 2px solid #8B4513;
+  padding: 8px;
+  background: #fff;
+  box-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(139, 69, 19, 0.1);
+}
+
+/* Portfolio Sepia Filter */
+.portfolio-sepia {
+  filter: sepia(0.8) grayscale(0.2);
+  transition: filter 0.5s ease;
+}
+
+.portfolio-sepia:hover {
+  filter: none;
+}
+
+/* Old World Image Filter */
+.old-world-image {
+  filter: sepia(30%) contrast(110%) grayscale(40%);
+  transition: filter 0.5s ease;
+}
+
+.old-world-image:hover {
+  filter: sepia(0%) contrast(100%) grayscale(0%);
+}
+
+/* Specimen Chart Style - Border only, no background */
+.specimen-chart {
+  border: 1px solid rgba(17, 17, 17, 0.3);
+  position: relative;
+}
+
+/* Telegram/Letter Paper Style - Border only, no background */
+.telegram-paper {
+  border: 1px solid rgba(17, 17, 17, 0.3);
+  position: relative;
+  padding: 1.5rem;
+}
+
+/* Paper Grain Texture - Real paper texture image (landscape orientation) */
+.bg-paper-grain {
+  position: relative;
+  background-color: #F2F0E6;
+}
+
+.bg-paper-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/paper-texture.png');
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-size: 100% auto; /* Full width, maintain aspect ratio */
+  background-position: 0 0;
+  opacity: 0.25; /* Subtle blending */
+  mix-blend-mode: multiply; /* Natural blending with background */
+  filter: blur(0.4px); /* Soften hard edges and seams */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-paper-grain > * {
+  position: relative;
+  z-index: 1;
 }

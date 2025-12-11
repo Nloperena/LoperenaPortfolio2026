@@ -302,7 +302,7 @@ const ServicesDrawer = ({ isOpen, onClose, onOpen }: ServicesDrawerProps) => {
               )}
               <div>
                 <h2 id="drawer-title" className="text-xl font-bold text-gray-900">
-                  {currentView === 'list' ? "Let's Design Your Next Growth System" : 
+                  {currentView === 'list' ? "Services" : 
                    currentView === 'contact' ? "Let's Start a Conversation" :
                    selectedService}
                 </h2>
