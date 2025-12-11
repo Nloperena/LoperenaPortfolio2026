@@ -92,7 +92,7 @@ export default function BlogDetailPage({ params }: BlogDetailPageProps) {
             <ul className="space-y-4">
               {post.keyTakeaways.map((item) => (
                 <li key={item} className="flex items-start gap-4">
-                  <span className="text-[#E2725B] font-serif italic text-xl">"</span>
+                  <span className="text-[#E2725B] font-serif italic text-xl">&quot;</span>
                   <span className="text-lg text-[#1C1B1A]/80 dark:text-[#F5F5DC]/80 italic font-serif">{item}</span>
                 </li>
               ))}

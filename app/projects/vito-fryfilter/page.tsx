@@ -65,7 +65,7 @@ export default function VITOCaseStudy() {
       items: [
         'Education-First Content: Technical blogs and "How-To" guides.',
         'Multi-Platform Social Strategy: "2 Stories + 2 Posts" weekly cadence across 5 platforms.',
-        'Enterprise ABM: Bespoke sales materials for McDonald\'s, Burger King, Dunkin\', Jollibee.'
+        'Enterprise ABM: Bespoke sales materials for McDonald&apos;s, Burger King, Dunkin&apos;, Jollibee.'
       ]
     }
   ];
@@ -82,13 +82,13 @@ export default function VITOCaseStudy() {
       videoUrl: 'https://cdn.shopify.com/s/files/1/0004/2496/8203/files/Caption_video_project_2.mp4?v=1724179828',
       title: 'Teters Market',
       description: 'Discovered the secret for magical savings with VITO. Watch the oil costs drop by up to 50%.',
-      company: 'Teter\'s Market'
+      company: 'Teter&apos;s Market'
     },
     {
       videoUrl: 'https://cdn.shopify.com/s/files/1/0004/2496/8203/files/Caption_video_project_1.mp4?v=1724354006',
       title: 'Good Ol Days Diner',
       description: 'Maintained the flavor of yesteryears while stepping into the future. Homemade taste efficiently.',
-      company: 'Good Ol\' Days Diner',
+      company: 'Good Ol&apos; Days Diner',
     },
     {
       videoUrl: 'https://cdn.shopify.com/s/files/1/0004/2496/8203/files/Untitled-1_17.mp4?v=1726158775',
@@ -180,7 +180,7 @@ export default function VITOCaseStudy() {
                     <span className="font-mono text-xs text-[#F2611D] uppercase tracking-widest block mb-4">The Challenge</span>
                     <h2 className="text-4xl font-serif font-bold text-[#1a4d3a] dark:text-[#F5F5DC] mb-6">Superior Product, Outdated Presence.</h2>
                     <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                        VITO FryFilters had a superior product—offering 30% oil cost savings—but faced significant market hurdles. managing cooking oil is messy, dangerous, and expensive, yet the digital experience didn't reflect the solution's sophistication.
+                        VITO FryFilters had a superior product—offering 30% oil cost savings—but faced significant market hurdles. managing cooking oil is messy, dangerous, and expensive, yet the digital experience didn&apos;t reflect the solution&apos;s sophistication.
                     </p>
                     <div className="space-y-4">
                         <div className="flex items-start gap-3">
@@ -222,7 +222,7 @@ export default function VITOCaseStudy() {
                          </div>
                     </div>
                     <div className="absolute -bottom-6 -left-6 bg-[#1a4d3a] text-white p-6 rounded-lg shadow-xl max-w-xs">
-                        <p className="font-serif italic text-lg">"The Goal: Transform VITO into the premier digital-first brand in commercial fryer filtration."</p>
+                        <p className="font-serif italic text-lg">&quot;The Goal: Transform VITO into the premier digital-first brand in commercial fryer filtration.&quot;</p>
                     </div>
                 </div>
             </div>
@@ -308,7 +308,7 @@ export default function VITOCaseStudy() {
                     <ul className="space-y-4 text-white/80">
                         <li className="flex gap-3">
                             <span className="w-1.5 h-1.5 bg-[#F2611D] rounded-full mt-2"></span>
-                            <span><strong>Enterprise Partnerships:</strong> Secured and expanded relationships with McDonald's USA, Burger King, Dunkin', Denny's, and Jollibee.</span>
+                            <span><strong>Enterprise Partnerships:</strong> Secured and expanded relationships with McDonald&apos;s USA, Burger King, Dunkin&apos;, Denny&apos;s, and Jollibee.</span>
                         </li>
                         <li className="flex gap-3">
                             <span className="w-1.5 h-1.5 bg-[#F2611D] rounded-full mt-2"></span>
@@ -400,7 +400,7 @@ export default function VITOCaseStudy() {
         <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-3xl font-serif font-bold text-[#1a4d3a] dark:text-[#F5F5DC] mb-6">Conclusion</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed italic font-serif">
-                "This project demonstrates the power of a holistic marketing approach. By bridging the gap between creative storytelling and technical execution, I was able to not only modernize the VITO brand but also drive significant, quantifiable business growth. The systems and strategies implemented created a scalable foundation that continues to generate value today."
+                &quot;This project demonstrates the power of a holistic marketing approach. By bridging the gap between creative storytelling and technical execution, I was able to not only modernize the VITO brand but also drive significant, quantifiable business growth. The systems and strategies implemented created a scalable foundation that continues to generate value today.&quot;
             </p>
         </div>
       </section>
