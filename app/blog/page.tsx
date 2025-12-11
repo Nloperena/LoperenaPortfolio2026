@@ -59,8 +59,6 @@ export default function BlogIndexPage() {
                 className="group flex flex-col gap-6"
               >
                 <div className="flex items-center gap-4 text-xs font-mono text-[#1C1B1A]/40 dark:text-[#F5F5DC]/40 uppercase tracking-widest">
-                   <span className="text-[#E2725B] font-bold">{post.category || 'Insight'}</span>
-                   <span className="w-4 h-px bg-[#1C1B1A]/20 dark:bg-[#F5F5DC]/20"></span>
                    <span>{post.date}</span>
                 </div>
 
