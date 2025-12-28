@@ -39,17 +39,17 @@ const AboutMeSection = () => {
     { 
       year: '1065', 
       title: 'Structural Genesis', 
-      description: 'The foundation of the Loperena lineage in the Basque region, where engineering was first treated as a discipline of both survival and artistry.' 
+      description: 'A tradition of craftsmanship begins. The foundation of the Loperena lineage in the Basque region, where engineering was first treated as a discipline of both survival and artistry.' 
     },
     { 
       year: '1836', 
       title: 'Architectural Migration', 
-      description: 'Expansion into the Americas, translating traditional masonry and structural principles into the burgeoning infrastructure of the New World.' 
+      description: 'Taking our values to new horizons. Expansion into the Americas, translating traditional masonry and structural principles into the burgeoning infrastructure of the New World.' 
     },
     { 
       year: '2024', 
       title: 'Digital Systems Architecture', 
-      description: 'The convergence of ancestral precision with modern computation—architecting autonomous, high-concurrency systems that serve as enduring business foundations.' 
+      description: 'Bringing centuries of precision to the modern web. We aren\'t just coding; we are continuing a story. The convergence of ancestral precision with modern computation.' 
     }
   ];
 
@@ -76,16 +76,16 @@ const AboutMeSection = () => {
               <div className="space-y-4">
                 <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-[#8C7A5E] font-bold">I. PHILOSOPHY</span>
                 <p className="text-xl md:text-3xl font-serif italic text-[#1C1B1A] leading-snug border-l-4 border-[#8C7A5E] pl-8 py-2">
-                  &quot;We do not build for the moment; we architect for the legacy.&quot;
+                  &quot;Technology is most powerful when it feels human.&quot;
                 </p>
               </div>
               
               <div className="font-serif text-[#1C1B1A]/80 space-y-8 text-lg leading-[1.8]">
                 <p className="drop-cap">
-                  True architecture is the invisible alignment of technical precision and strategic intent. I believe that digital systems should behave like physical foundations—silent, strong, and capable of supporting your immense growth without fracture.
+                  While I anchor every project in technical precision, my true focus is on the people behind the brand. I believe digital systems should be like a well-crafted home—sturdy, welcoming, and built to support your family’s growth for generations.
                 </p>
                 <p>
-                  Together, we transform technical complexity into premium digital artifacts. We give your data a voice and your brand a structure that justifies high-tier market positions, ensuring that every line of code serves as a reinforcement for your long-term ROI.
+                  Together, we transform complex hurdles into elegant digital experiences. We give your data a voice and your brand a soul, ensuring every line of code serves as a foundation for our shared success.
                 </p>
               </div>
               
@@ -96,7 +96,7 @@ const AboutMeSection = () => {
                   </div>
                   <div>
                     <div className="font-serif font-bold text-xl text-[#1C1B1A] tracking-tight">Nicholas Loperena</div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8C7A5E] font-bold">Digital Architect</div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8C7A5E] font-bold">Architect & Partner</div>
                   </div>
                 </div>
                 
@@ -141,7 +141,7 @@ const AboutMeSection = () => {
                 <div className="space-y-4">
                   <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#4A1010] font-bold">CURRENT ENGAGEMENT</span>
                   <p className="font-serif text-base text-[#1C1B1A]/80 leading-relaxed italic">
-                    Currently architecting context-aware AI ecosystems that empower businesses with operational autonomy. We give your historical data a voice and a future.
+                    Currently Welcoming New Partners for 2025. We give your historical data a voice and a future.
                   </p>
                 </div>
               </div>

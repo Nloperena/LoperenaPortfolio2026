@@ -19,12 +19,12 @@ const projects = [
   {
     id: 'forza-adhesives',
     title: 'Forza Adhesives',
-    role: 'Digital Architect & Founder',
+    role: 'Digital Architect & Partner',
     year: '2025',
     outcome: 'Industrial Scale E-Commerce',
-    challenge: 'Architecting a premium digital storefront for high-performance industrial adhesives.',
-    craft: 'Context-aware catalog structure integrated within a high-speed Astro framework.',
-    result: 'Market Penetration achieved via an engineered industrial artifact that serves as a primary foundation for digital commerce.',
+    challenge: 'Forza needed a digital home that matched the strength and reliability of their industrial adhesives.',
+    craft: 'We designed a high-speed storefront that feels as premium as the products themselves, making complex ordering feel effortless.',
+    result: 'A digital foundation that transformed a complex catalog into an industry-leading commerce experience.',
     image: '/ForzaPreview.png',
     demoLink: 'https://forza-built-com.vercel.app',
     embedUrl: 'https://forza-built-com.vercel.app'
@@ -32,11 +32,11 @@ const projects = [
   {
     id: 'vito-shop',
     title: 'VITO Fryfilter',
-    role: 'Director of Marketing',
+    role: 'Architect & Partner',
     year: '2024',
     outcome: 'Surgical Digital Presence',
-    challenge: 'Legacy manual sales methods without e-commerce or U.S. brand visibility.',
-    craft: 'Established a sustainable digital commerce foundation using Shopify and ABM outreach.',
+    challenge: 'Helping a legacy brand find its footing in a digital-first market.',
+    craft: 'We built a bridge between traditional sales and modern e-commerce, opening doors to global partners like McDonald’s.',
     result: '584% Increase in Engagement and 19% revenue growth; secured partnerships with major QSR brands like McDonald\'s.',
     image: '/VITOShop.png',
     demoLink: 'https://shop.vitofryfilter.com'
@@ -44,7 +44,7 @@ const projects = [
   {
     id: 'loperena-lineage',
     title: 'Loperena Lineage',
-    role: 'Digital Archivist',
+    role: 'Architect & Partner',
     year: '2025',
     outcome: 'Foundational Trust Architecture',
     challenge: 'Documenting and architecting a digital lineage spanning centuries of engineering heritage.',
@@ -110,7 +110,7 @@ const ArchivalViewer = ({ url, title }: { url: string, title: string }) => {
         >
           <div className="bg-[#1C1B1A]/90 backdrop-blur-md border border-[#8C7A5E]/40 px-4 py-2 rounded-full flex items-center gap-2 shadow-2xl">
              <Info size={10} className="text-[#8C7A5E]" />
-             <span className="font-mono text-[8px] text-[#8C7A5E] uppercase tracking-[0.2em] font-bold">Secure Connection: Active</span>
+             <span className="font-mono text-[8px] text-[#8C7A5E] uppercase tracking-[0.2em] font-bold">Always Online & Ready to Help</span>
           </div>
         </motion.div>
       </div>
@@ -167,15 +167,15 @@ const SelectedWorks = () => {
                   
                   <div className="grid grid-cols-1 gap-10 text-lg font-serif leading-[1.8]">
                     <div className="space-y-3">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#8C7A5E] font-bold">I. CHALLENGE</span>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#8C7A5E] font-bold">I. THE PARTNERSHIP</span>
                       <p className="text-[#1C1B1A]/80 italic">{project.challenge}</p>
                     </div>
                     <div className="space-y-3">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#1A2F28] font-bold">II. CRAFT</span>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#1A2F28] font-bold">II. THE SOLUTION</span>
                       <p className="text-[#1C1B1A]/80 italic">{project.craft}</p>
                     </div>
                     <div className="space-y-3">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#4A1010] font-bold">III. STRATEGIC RESULT</span>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#4A1010] font-bold">III. THE SUCCESS</span>
                       <p className="text-[#1C1B1A] font-bold italic border-l-2 border-[#4A1010]/20 pl-6">{project.result}</p>
                     </div>
                   </div>

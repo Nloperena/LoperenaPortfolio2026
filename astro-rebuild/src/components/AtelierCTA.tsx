@@ -22,10 +22,10 @@ const AtelierCTA = () => {
           <div className="space-y-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#8C7A5E] font-bold">CONTACT THE ATELIER</span>
             <h2 className="font-serif text-5xl md:text-7xl font-bold tracking-tighter italic text-[#FAF9F6] leading-[1.1]">
-              Let&apos;s start a <br/>conversation.
+              Let&apos;s build something <br/>beautiful together.
             </h2>
             <p className="font-serif text-xl text-[#FAF9F6]/60 max-w-xl italic leading-relaxed">
-              &quot;I am always open to exploring new architectural challenges and building enduring digital systems together.&quot;
+              &quot;I believe the best systems start with a simple conversation. Whether you have a detailed blueprint or just a spark of an idea, I’m here to listen and help you find the way forward.&quot;
             </p>
           </div>
 
@@ -79,7 +79,7 @@ const AtelierCTA = () => {
             <div className="space-y-2">
               <label className="font-mono text-[9px] uppercase tracking-widest text-[#8C7A5E] font-bold">Project Scope / Vision</label>
               <textarea 
-                placeholder="DESCRIBE THE FOUNDATION YOU WISH TO BUILD..."
+                placeholder="Tell me about the dream you’re building..."
                 rows={4}
                 className="w-full bg-[#1C1B1A]/40 border-b border-[#8C7A5E]/30 text-[#FAF9F6] placeholder-[#FAF9F6]/20 py-3 px-0 text-xs font-mono tracking-widest focus:border-[#8C7A5E] outline-none resize-none transition-colors"
               />

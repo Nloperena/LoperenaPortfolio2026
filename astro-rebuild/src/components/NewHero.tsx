@@ -75,7 +75,7 @@ const NewHero = () => {
               className="space-y-6"
             >
                <p className="text-lg md:text-2xl text-[#1C1B1A]/80 font-serif leading-relaxed italic">
-                  Nicholas Loperena develops high-conversion websites and systems for brands focused on building trust and driving growth through context-aware intelligence.
+                  Nicholas Loperena partners with forward-thinking brands to build high-conversion systems rooted in trust and driven by intelligent growth.
                </p>
                
                <div className="flex flex-wrap gap-4">
@@ -83,14 +83,14 @@ const NewHero = () => {
                     href="#selected-works"
                     className="group flex items-center gap-2 px-6 py-3 bg-[#1A2F28] text-[#FAF9F6] font-serif font-bold uppercase tracking-widest text-xs hover:bg-[#4A1010] transition-all border border-[#8C7A5E]/20 shadow-lg"
                   >
-                    <span>View Archive</span>
+                    <span>Explore Our Work</span>
                     <ArrowRight size={14} />
                   </a>
                   <a
                     href="mailto:nicholas@loperena.com" 
                     className="px-6 py-3 border border-[#8C7A5E]/30 text-[#1C1B1A] font-serif font-bold uppercase tracking-widest text-xs hover:bg-[#8C7A5E]/5 transition-all"
                   >
-                    Start a conversation
+                    Let’s Talk About Your Vision
                   </a>
                </div>
             </motion.div>
@@ -108,7 +108,7 @@ const NewHero = () => {
                <div className="flex items-center justify-between text-[10px] font-mono text-[#8C7A5E] uppercase tracking-widest bg-[#8C7A5E]/5 p-4 border border-[#8C7A5E]/10">
                   <span className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-[#4A1010] rounded-full animate-pulse"></span>
-                    Operational: Q1 2025
+                    Currently Welcoming New Partners for 2025
                   </span>
                   <span className="opacity-40">REF.1065-2026</span>
                </div>
