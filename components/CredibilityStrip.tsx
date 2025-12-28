@@ -13,6 +13,7 @@ interface Metric {
 interface VideoTestimonial {
   videoUrl: string;
   title: string;
+  context?: string;
   description: string;
   clientName?: string;
   company?: string;
