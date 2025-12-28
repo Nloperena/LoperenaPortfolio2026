@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar';
+import NewHero from '../components/NewHero';
+import StatsBar from '../components/StatsBar';
+import TrustBar from '../components/TrustBar';
+import AboutMeSection from '../components/AboutMeSection';
+import TechArsenal from '../components/TechArsenal';
+import SelectedWorks from '../components/SelectedWorks';
+import AtelierCTA from '../components/AtelierCTA';
+import Footer from '../components/Footer';
+---
+
+<BaseLayout title="Nico Loperena | Digital Architect">
+	<Navbar client:load />
+	<NewHero client:load />
+	<StatsBar client:visible />
+	<TrustBar client:visible />
+	
+	<div class="ornamental-divider text-[#1C1B1A]/20"></div>
+	
+	<AboutMeSection client:visible />
+	
+	<div class="ornamental-divider text-[#1C1B1A]/20"></div>
+	
+	<TechArsenal client:visible />
+	
+	<div class="ornamental-divider text-[#1C1B1A]/20"></div>
+	
+	<SelectedWorks client:visible />
+	
+	<div class="ornamental-divider text-[#1C1B1A]/20"></div>
+	
+	<AtelierCTA client:visible />
+	<Footer />
+</BaseLayout>

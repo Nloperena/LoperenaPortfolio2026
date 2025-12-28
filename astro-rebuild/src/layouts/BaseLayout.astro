@@ -1,0 +1,130 @@
+---
+import '../styles/globals.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Nico Loperena - Digital Architect for B2B & Industrial Brands" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- Fonts -->
+		<link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+	</head>
+	<body class="min-h-screen antialiased">
+		<!-- SVG Filters for Heritage/Archival Effects -->
+		<svg class="absolute w-0 h-0" aria-hidden="true">
+			<defs>
+				<filter id="ink-bleed-filter" x="-50%" y="-50%" width="200%" height="200%">
+					<feTurbulence baseFrequency="0.015" numOctaves="3" result="noise" />
+					<feDisplacementMap in="SourceGraphic" in2="noise" scale="1" />
+					<feMorphology operator="dilate" radius="0.1" in="SourceGraphic" result="thick" />
+					<feGaussianBlur stdDeviation="0.2" in="thick" />
+					<feComposite operator="over" in="thick" in2="SourceGraphic" />
+				</filter>
+				<filter id="halftone-filter" x="-50%" y="-50%" width="200%" height="200%">
+					<feTurbulence baseFrequency="0.9" numOctaves="4" result="noise" />
+					<feColorMatrix in="noise" type="saturate" values="0"/>
+					<feComponentTransfer>
+						<feFuncA type="discrete" tableValues="0 0.3 0.7 1"/>
+					</feComponentTransfer>
+					<feGaussianBlur stdDeviation="0.5" />
+				</filter>
+			</defs>
+		</svg>
+
+		<!-- Desk/Table Background -->
+		<div class="desk-surface min-h-screen py-4 px-2 md:py-8 md:px-6 lg:py-12 lg:px-8">
+			
+			<!-- Wolf and Tree Watermark -->
+			<div class="fixed inset-0 pointer-events-none z-0 opacity-[0.08]">
+				<div 
+					class="absolute inset-[-10%] bg-center bg-no-repeat"
+					style="background-image: url('/oakandtree.svg'); background-size: contain; filter: sepia(0.8) contrast(1.1) brightness(0.9) grayscale(0.4); mix-blend-mode: multiply;"
+				></div>
+			</div>
+
+			<!-- 3D Book Container -->
+			<div 
+				class="max-w-[1600px] mx-auto bg-[#FAF9F6] relative shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5),0_50px_100px_-20px_rgba(0,0,0,0.4)] overflow-hidden"
+				style="
+					border-radius: 4px;
+					border: 10px solid #FAF9F6;
+					box-shadow: 
+						0 20px 40px rgba(0, 0, 0, 0.4),
+						0 40px 80px rgba(0, 0, 0, 0.3),
+						inset 0 0 120px rgba(0, 0, 0, 0.08);
+				"
+			>
+				<!-- Gutter/Spine Crease -->
+				<div 
+					class="absolute left-1/2 top-0 bottom-0 w-px pointer-events-none hidden lg:block z-20 shadow-[0_0_15px_rgba(0,0,0,0.3)]"
+					style="background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.1) 80%, transparent); transform: translateX(-50%);"
+				></div>
+				
+				<!-- Global Paper Texture Overlay - Multiply Blend -->
+				<div class="absolute inset-0 pointer-events-none bg-paper-grain opacity-[0.2] mix-blend-multiply z-30"></div>
+
+				<!-- Subtle Noise Overlay -->
+				<div class="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-30"></div>
+				
+				<!-- Vignette Effect -->
+				<div class="absolute inset-0 pointer-events-none z-30 shadow-[inset_0_0_150px_rgba(0,0,0,0.1)]"></div>
+
+				<!-- Print Marks (Registration Crosses) -->
+				<div class="absolute top-4 left-4 w-6 h-6 border-l border-t border-[#1C1B1A]/20 pointer-events-none z-40"></div>
+				<div class="absolute top-4 right-4 w-6 h-6 border-r border-t border-[#1C1B1A]/20 pointer-events-none z-40"></div>
+				<div class="absolute bottom-4 left-4 w-6 h-6 border-l border-b border-[#1C1B1A]/20 pointer-events-none z-40"></div>
+				<div class="absolute bottom-4 right-4 w-6 h-6 border-r border-b border-[#1C1B1A]/20 pointer-events-none z-40"></div>
+				
+				<main class="relative z-10">
+					<slot />
+				</main>
+			</div>
+		</div>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--font-satoshi: 'Satoshi', sans-serif;
+		--font-playfair: 'Playfair Display', serif;
+		--font-eb-garamond: 'EB Garamond', serif;
+		--font-jetbrains-mono: 'JetBrains Mono', monospace;
+		--font-inter: 'Inter', sans-serif;
+	}
+	
+	.desk-surface {
+		background-color: #252525;
+		background-image: 
+			repeating-linear-gradient(45deg, #252525 0px, #1f1f1f 1px, #252525 2px, #252525 10px),
+			repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, transparent 1px, transparent 2px, rgba(0,0,0,0.05) 3px);
+		background-size: 10px 10px, 4px 4px;
+	}
+
+	body {
+		font-family: var(--font-satoshi);
+		background-color: #1a1a1a;
+	}
+
+	.bg-paper-grain {
+		background-image: url('/paper-texture.png');
+		background-repeat: repeat;
+	}
+
+	.ink-bleed {
+		filter: url(#ink-bleed-filter);
+	}
+</style>

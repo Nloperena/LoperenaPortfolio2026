@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+
+  body {
+    @apply bg-[#FAF9F6] text-[#1C1B1A];
+    font-family: 'Inter', sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.ornamental-divider {
+  @apply h-px w-full my-16 bg-[#8C7A5E] opacity-20 relative;
+}
+
+.ornamental-divider::before,
+.ornamental-divider::after {
+  content: "♦";
+  @apply absolute top-1/2 -translate-y-1/2 px-6 text-[14px] text-[#8C7A5E] opacity-60;
+  background-color: #FAF9F6;
+}
+
+.ornamental-divider::before {
+  @apply left-1/4;
+}
+
+.ornamental-divider::after {
+  @apply right-1/4;
+}
+
+/* Heritage Drop Cap */
+.drop-cap::first-letter {
+  @apply float-left text-6xl md:text-7xl font-serif font-bold mr-3 mt-2 text-[#4A1010] leading-[0.8];
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+  filter: url(#ink-bleed-filter);
+}
+
+/* Archival Heading Styles */
+h1, h2, h3 {
+  @apply tracking-tighter text-[#4A1010] font-serif;
+}
+
+h1 {
+  @apply font-bold leading-[0.85];
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  @apply font-bold leading-tight;
+  letter-spacing: -0.03em;
+}
+
+/* Vertical Optimization */
+@media (max-height: 800px) {
+  .section-padding {
+    @apply py-8 md:py-12;
+  }
+  
+  .hero-height {
+    @apply min-h-[60vh] max-h-[700px];
+  }
+}
+
+@media (min-height: 801px) {
+  .section-padding {
+    @apply py-16 md:py-20;
+  }
+  
+  .hero-height {
+    @apply min-h-[80vh];
+  }
+}
+
