@@ -224,7 +224,7 @@ export const IntakeModal = () => {
                   className="w-full bg-neutral-900 hover:bg-white text-neutral-400 hover:text-[#0a0a0a] transition-colors duration-300 flex items-center justify-between p-8 md:p-12 border-t border-neutral-800 group shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <span className="font-mono text-xl md:text-2xl font-bold tracking-widest uppercase">
-                    {submitStatus === 'sending' ? 'SENDING…' : submitStatus === 'success' ? 'THANK YOU' : 'SEND PROJECT BRIEF - →'}
+                    {submitStatus === 'sending' ? 'SENDING…' : submitStatus === 'success' ? 'THANK YOU' : 'SEND PROJECT BRIEF'}
                   </span>
                   {submitStatus !== 'success' && (
                     <span className="font-mono text-3xl group-hover:translate-x-4 transition-transform duration-300">
