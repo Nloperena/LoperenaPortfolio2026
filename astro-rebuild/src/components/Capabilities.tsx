@@ -380,7 +380,7 @@ export const Capabilities = () => {
       rotate: 45,
       scale: 1.08,
       opacity: 1,
-      transition: { type: "spring", stiffness: 200, damping: 25 }
+      transition: { type: "spring" as const, stiffness: 200, damping: 25 }
     }
   };
 
@@ -389,7 +389,7 @@ export const Capabilities = () => {
     hover: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 200, damping: 25 }
+      transition: { type: "spring" as const, stiffness: 200, damping: 25 }
     }
   };
 
