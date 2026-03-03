@@ -372,7 +372,7 @@ export const Capabilities = () => {
   ];
 
   const activeCapability = activeId ? capabilities.find(c => c.id === activeId) : null;
-  const drillDownTransition = { type: "spring", stiffness: 300, damping: 30 };
+  const drillDownTransition = { type: "spring" as const, stiffness: 300, damping: 30 };
 
   const iconMotion = {
     rest: { rotate: 0, scale: 1, opacity: 0.85 },
