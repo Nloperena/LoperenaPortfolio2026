@@ -57,7 +57,10 @@ export const POST: APIRoute = async ({ request }) => {
   const pool = getPool();
   if (!pool) {
     return new Response(
-      JSON.stringify({ ok: false, error: 'Contact form is not available in this environment.' }),
+      JSON.stringify({
+        ok: false,
+        error: 'Contact form is unavailable: database is not configured on the server.',
+      }),
       { status: 503, headers }
     );
   }
@@ -77,7 +80,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   return new Response(
-    JSON.stringify({ ok: true, message: 'Thank you — I’ll be in touch soon.' }),
+    JSON.stringify({ ok: true, message: 'Thank you — I\'ll be in touch soon.' }),
     { status: 201, headers }
   );
 };
