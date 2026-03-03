@@ -5,6 +5,8 @@ import { FinalCTA } from './FinalCTA';
 import { BlueprintBackground } from './BlueprintBackground';
 import { IntakeModal } from './IntakeModal';
 import { StackRibbon } from './StackRibbon';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
 	title: string;
@@ -18,14 +20,21 @@ const { title, description = "Nico Loperena - Full-Stack Developer" } = Astro.pr
 <html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		
+		<link rel="preload" as="image" href="/professional-photo.webp" />
+
 		<!-- Fonts -->
-		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&family=IBM+Plex+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+		<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&family=IBM+Plex+Mono:wght@400;700&display=swap"></noscript>
+		<Analytics />
+		<SpeedInsights />
 	</head>
 	<body class="min-h-screen flex flex-col relative text-foreground selection:bg-highlight/30">
 		<BlueprintBackground client:load />
@@ -41,7 +50,7 @@ const { title, description = "Nico Loperena - Full-Stack Developer" } = Astro.pr
 			<div class="w-full bg-background relative z-20 pb-24 min-h-screen">
 				<slot />
 			</div>
-			<FinalCTA client:load />
+			<FinalCTA client:visible />
 		</div>
 	</body>
 </html>

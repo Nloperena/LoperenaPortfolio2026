@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { track } from '../utils/analytics';
 
 const HERO_VIDEO_SRC = '/Still-motion_of_me.webm';
 const HERO_IMAGE_WEBP = '/professional-photo.webp';
@@ -15,6 +16,8 @@ export const Hero = () => {
   }, []);
 
   const handleContactClick = () => {
+    track('hero_cta_click', { cta: 'contact' });
+    track('contact_click', { source: 'hero' });
     // @ts-ignore
     if (typeof window !== 'undefined' && window.openContactHub) {
       // @ts-ignore
@@ -109,7 +112,7 @@ export const Hero = () => {
               <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">
                 Senior Software Architect
               </span>
-              <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-accent/60 hidden sm:block ml-auto">
+              <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-accent hidden sm:block ml-auto">
                 Orlando, FL / Global
               </span>
             </motion.div>
@@ -154,14 +157,15 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Right side: still-motion video with photo fallback — fills entire cell */}
-        <div className="lg:col-span-4 lg:row-span-2 lg:col-start-9 lg:row-start-2 relative border-b lg:border-b-0 border-accent/20 bg-white/20 min-h-[420px] overflow-hidden">
-          <motion.div variants={contentReveal} className="absolute inset-0 w-full h-full">
+        {/* Right side: still-motion video with photo fallback — centered on mobile, fills entire cell on desktop */}
+        <div className="lg:col-span-4 lg:row-span-2 lg:col-start-9 lg:row-start-2 relative border-b lg:border-b-0 border-accent/20 bg-white/5 lg:bg-white/20 min-h-[420px] flex items-center justify-center p-8 lg:p-0 overflow-hidden">
+          <motion.div variants={contentReveal} className="relative lg:absolute lg:inset-0 w-full max-w-xs lg:max-w-none aspect-[4/5] lg:aspect-auto lg:h-full shadow-2xl lg:shadow-none border border-accent/20 lg:border-none overflow-hidden">
             {!videoReady && (
               <img
                 src={HERO_IMAGE_WEBP}
                 alt="Nico Loperena"
                 loading="eager"
+                fetchPriority="high"
                 className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 bg-background"
                 onError={(e) => {
                   const el = e.currentTarget;
@@ -179,12 +183,14 @@ export const Hero = () => {
               loop
               playsInline
               autoPlay
-              preload="auto"
+              preload="metadata"
               className={`absolute inset-0 w-full h-full object-cover grayscale contrast-125 bg-background ${videoReady ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
               onCanPlay={() => setVideoReady(true)}
               onLoadedData={() => setVideoReady(true)}
               onError={() => setVideoReady(false)}
-            />
+            >
+              <track kind="captions" src="" label="English" default />
+            </video>
           </motion.div>
         </div>
 
@@ -211,7 +217,9 @@ export const Hero = () => {
 
                 <a
                   href="/about"
+                  onClick={() => track('hero_cta_click', { cta: 'about' })}
                   className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-accent hover:text-foreground transition-colors whitespace-nowrap"
+                  aria-label="View career samples and experience details"
                 >
                   View Career Samples
                 </a>

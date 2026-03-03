@@ -44,6 +44,7 @@ const { project } = Astro.props;
       <a 
         href={project.link} 
         target="_blank" 
+        onclick={`window.va && window.va('event', { name: 'project_click', data: { id: '${project.id}', title: '${project.title}', url: '${project.link}' } })`}
         class="text-xs font-bold text-accent uppercase tracking-widest hover:underline flex items-center gap-2"
       >
         Live Demo 

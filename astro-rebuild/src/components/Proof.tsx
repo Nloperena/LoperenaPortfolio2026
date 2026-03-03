@@ -73,7 +73,7 @@ export const Proof = () => {
                  <h2 className="text-[clamp(3rem,6vw,8rem)] font-black uppercase leading-[0.9] tracking-tighter text-gray-900 max-w-5xl">
                    &ldquo;{testimonials[0].hook}&rdquo;
                  </h2>
-                 <p className="text-2xl lg:text-3xl font-light leading-relaxed max-w-4xl text-gray-600 mt-8">
+                 <p className="text-xl md:text-2xl lg:text-3xl font-light leading-relaxed max-w-4xl text-gray-600 mt-8">
                    {testimonials[0].quote}
                  </p>
                </motion.div>
@@ -86,7 +86,7 @@ export const Proof = () => {
                  <h2 className="text-[clamp(3rem,6vw,8rem)] font-black uppercase leading-[0.9] tracking-tighter text-gray-900 max-w-5xl">
                    &ldquo;{testimonials[1].hook}&rdquo;
                  </h2>
-                 <p className="text-2xl lg:text-3xl font-light leading-relaxed max-w-4xl text-gray-600 mt-8">
+                 <p className="text-xl md:text-2xl lg:text-3xl font-light leading-relaxed max-w-4xl text-gray-600 mt-8">
                    {testimonials[1].quote}
                  </p>
                </motion.div>
@@ -99,7 +99,7 @@ export const Proof = () => {
                 <h2 className="text-[clamp(3rem,6vw,8rem)] font-black uppercase leading-[0.9] tracking-tighter text-gray-900 max-w-5xl">
                   &ldquo;{testimonials[2].hook}&rdquo;
                 </h2>
-                <p className="text-2xl lg:text-3xl font-light leading-relaxed max-w-4xl text-gray-600 mt-8">
+                <p className="text-xl md:text-2xl lg:text-3xl font-light leading-relaxed max-w-4xl text-gray-600 mt-8">
                   {testimonials[2].quote}
                 </p>
               </motion.div>

@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { track } from '../utils/analytics';
+
+type SubmitStatus = 'idle' | 'sending' | 'success' | 'error';
 
 export const IntakeModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
 
   useEffect(() => {
     // Override the global openContactHub function to open this modal
     // @ts-ignore
     window.openContactHub = () => {
+      track('intake_modal_open');
       setIsOpen(true);
     };
   }, []);
@@ -38,10 +45,44 @@ export const IntakeModal = () => {
 
   const contentVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    track('intake_modal_submit');
+    setSubmitError(null);
+    setSubmitStatus('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          company: formData.company.trim() || undefined,
+          message: formData.message.trim() || undefined,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setSubmitError(data.error || 'Something went wrong');
+        setSubmitStatus('error');
+        return;
+      }
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', company: '', message: '' });
+      setTimeout(() => {
+        setIsOpen(false);
+        setSubmitStatus('idle');
+      }, 1500);
+    } catch {
+      setSubmitError('Network error. Please try again.');
+      setSubmitStatus('error');
     }
   };
 
@@ -64,7 +105,10 @@ export const IntakeModal = () => {
 
           {/* Close Button */}
           <button 
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              track('intake_modal_close');
+              setIsOpen(false);
+            }}
             className="absolute top-6 right-6 md:top-8 md:right-8 z-50 font-mono text-xs font-bold tracking-widest text-neutral-500 hover:text-white transition-colors duration-300 uppercase flex items-center gap-3 group"
           >
             Close
@@ -112,60 +156,84 @@ export const IntakeModal = () => {
           {/* Right Column (The Intake Form) - 40% */}
           <div className="w-full md:w-[40%] relative z-10 flex flex-col bg-[#0a0a0a]/95 backdrop-blur-md">
             <div className="flex-1 flex flex-col justify-center p-8 md:p-12 lg:p-20">
-              <motion.form variants={contentVariants} className="flex flex-col gap-12 w-full max-w-lg mx-auto md:mx-0">
-                
+              <motion.form
+                variants={contentVariants}
+                className="flex flex-col gap-12 w-full max-w-lg mx-auto md:mx-0"
+                onSubmit={handleSubmit}
+              >
+                {submitError && (
+                  <p className="font-mono text-sm text-red-400" role="alert">{submitError}</p>
+                )}
                 <div className="flex flex-col gap-2 group">
-                  <label className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Name</label>
-                  <input 
-                    type="text" 
+                  <label htmlFor="contact-name" className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Name</label>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
                     placeholder="Jane Doe"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                     className="w-full bg-transparent border-b border-neutral-800 pb-2 text-2xl font-light text-[#ededed] placeholder:text-neutral-700 focus:outline-none focus:border-[#ededed] transition-colors rounded-none"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2 group">
-                  <label className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Email</label>
-                  <input 
-                    type="email" 
+                  <label htmlFor="contact-email" className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Email</label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
                     placeholder="jane@company.com"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                     className="w-full bg-transparent border-b border-neutral-800 pb-2 text-2xl font-light text-[#ededed] placeholder:text-neutral-700 focus:outline-none focus:border-[#ededed] transition-colors rounded-none"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2 group">
-                  <label className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Company</label>
-                  <input 
-                    type="text" 
+                  <label htmlFor="contact-company" className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Company</label>
+                  <input
+                    id="contact-company"
+                    name="company"
+                    type="text"
                     placeholder="Acme Corp"
+                    value={formData.company}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))}
                     className="w-full bg-transparent border-b border-neutral-800 pb-2 text-2xl font-light text-[#ededed] placeholder:text-neutral-700 focus:outline-none focus:border-[#ededed] transition-colors rounded-none"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2 group">
-                  <label className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Project Scope</label>
-                  <textarea 
+                  <label htmlFor="contact-message" className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Project Scope</label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
                     placeholder="We need to migrate our legacy catalog to a Headless architecture..."
                     rows={3}
+                    value={formData.message}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                     className="w-full bg-transparent border-b border-neutral-800 pb-2 text-xl font-light text-[#ededed] placeholder:text-neutral-700 focus:outline-none focus:border-[#ededed] transition-colors resize-none rounded-none"
-                  ></textarea>
+                  />
                 </div>
 
+                <button
+                  type="submit"
+                  disabled={submitStatus === 'sending'}
+                  className="w-full bg-neutral-900 hover:bg-white text-neutral-400 hover:text-[#0a0a0a] transition-colors duration-300 flex items-center justify-between p-8 md:p-12 border-t border-neutral-800 group shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <span className="font-mono text-xl md:text-2xl font-bold tracking-widest uppercase">
+                    {submitStatus === 'sending' ? 'SENDING…' : submitStatus === 'success' ? 'THANK YOU' : 'SEND PROJECT BRIEF -&gt;'}
+                  </span>
+                  {submitStatus !== 'success' && (
+                    <span className="font-mono text-3xl group-hover:translate-x-4 transition-transform duration-300">
+                      →
+                    </span>
+                  )}
+                </button>
               </motion.form>
             </div>
-
-            {/* Massive Submit Button */}
-            <motion.button 
-              variants={contentVariants}
-              className="w-full bg-neutral-900 hover:bg-white text-neutral-400 hover:text-[#0a0a0a] transition-colors duration-300 flex items-center justify-between p-8 md:p-12 border-t border-neutral-800 group shrink-0"
-              onClick={(e) => { e.preventDefault(); alert("Form submitted (Demo)"); setIsOpen(false); }}
-            >
-              <span className="font-mono text-xl md:text-2xl font-bold tracking-widest uppercase">
-                SEND PROJECT BRIEF -&gt;
-              </span>
-              <span className="font-mono text-3xl group-hover:translate-x-4 transition-transform duration-300">
-                →
-              </span>
-            </motion.button>
           </div>
 
         </motion.div>

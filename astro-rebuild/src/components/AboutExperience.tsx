@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { stackTechnologies, stackCopy } from '../data/stack';
+import { track } from '../utils/analytics';
 
 const experience = [
   {
@@ -82,7 +83,7 @@ export const AboutExperience = () => {
         
         <div className="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-10 pt-32 pb-16">
           <div className="flex flex-col justify-center">
-            <div className="font-mono text-[10px] md:text-xs font-bold tracking-[0.3em] text-accent/50 uppercase mb-8">
+            <div className="font-mono text-[10px] md:text-xs font-bold tracking-[0.3em] text-accent uppercase mb-8">
               <SplitText text="[ ABOUT ME ]" />
             </div>
             <h1 className="text-[clamp(3rem,6vw,8rem)] break-words font-sans font-black tracking-tighter leading-[0.9] text-foreground uppercase mb-8">
@@ -112,6 +113,7 @@ export const AboutExperience = () => {
               <a 
                 href="/Nicholas_Loperena_Resume.pdf" 
                 download="Nicholas_Loperena_Resume.pdf"
+                onClick={() => track('about_resume_download')}
                 className="inline-flex items-center gap-4 bg-foreground text-background py-5 px-8 font-mono text-xs font-bold uppercase tracking-[0.2em] hover:bg-highlight hover:text-foreground transition-all duration-300 group"
               >
                 DOWNLOAD RESUME
@@ -157,7 +159,13 @@ export const AboutExperience = () => {
                     className="flex flex-col border-b border-black/10 last:border-b-0 group/row"
                   >
                     <button 
-                      onClick={() => setExpandedRow(isExpanded ? null : idx)}
+                      onClick={() => {
+                        const nextState = isExpanded ? null : idx;
+                        setExpandedRow(nextState);
+                        if (nextState !== null) {
+                          track('about_experience_expand', { company: job.company });
+                        }
+                      }}
                       className="w-full grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 py-8 items-start md:items-center text-left hover:bg-black/5 transition-colors duration-300 cursor-pointer relative md:px-4 md:-mx-4"
                     >
                       <div className="col-span-1 md:col-span-3 lg:col-span-2 font-mono text-xs text-black/60 mb-1 md:mb-0">{job.year}</div>
@@ -241,6 +249,8 @@ export const AboutExperience = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
                   onClick={() => {
+                    track('contact_click', { source: 'about_discuss' });
+                    track('about_discuss_stack_click');
                     if (typeof window !== 'undefined' && (window as unknown as { openContactHub?: () => void }).openContactHub) {
                       (window as unknown as { openContactHub: () => void }).openContactHub();
                     }
@@ -303,7 +313,7 @@ export const AboutExperience = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="font-sans text-xl md:text-2xl font-light text-foreground/60 max-w-md"
+              className="font-sans text-xl md:text-2xl font-light text-foreground/70 max-w-md"
             >
               Here’s where I’ve learned the craft—and keep learning.
             </motion.p>

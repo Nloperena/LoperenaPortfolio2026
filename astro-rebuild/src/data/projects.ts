@@ -40,7 +40,7 @@ export const projects: Project[] = [
     longDescription: 'Moved a traditional industrial sales process into a modern online storefront that supports global buyers and partner channels.',
     tags: ['Shopify', 'React', 'Liquid'],
     link: 'https://shop.vitofryfilter.com',
-    image: '/VITOShop.png',
+    image: '/VITOShop.webp',
     allowEmbed: false
   },
   {

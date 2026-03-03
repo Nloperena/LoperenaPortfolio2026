@@ -13,9 +13,9 @@ const year = new Date().getFullYear();
     
     <div class="flex flex-col md:items-end gap-6">
       <div class="flex gap-8">
-        <a href="https://www.linkedin.com/in/nicholas-loperena-022813185/" target="_blank" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">LinkedIn</a>
-        <a href="https://github.com/NLoperena" target="_blank" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">GitHub</a>
-        <a href="mailto:NicholasLoperena@gmail.com" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">Email</a>
+        <a href="https://www.linkedin.com/in/nicholas-loperena-022813185/" target="_blank" onclick="window.va && window.va('event', { name: 'final_cta_social_click', data: { platform: 'linkedin' } })" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">LinkedIn</a>
+        <a href="https://github.com/NLoperena" target="_blank" onclick="window.va && window.va('event', { name: 'final_cta_social_click', data: { platform: 'github' } })" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">GitHub</a>
+        <a href="mailto:NicholasLoperena@gmail.com" onclick="window.va && window.va('event', { name: 'final_cta_social_click', data: { platform: 'email' } })" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">Email</a>
       </div>
       <p class="text-xs font-mono text-foreground-light/30 uppercase tracking-[0.3em] font-bold">
         © {year} Nico Loperena

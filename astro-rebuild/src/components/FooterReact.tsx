@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { track } from '../utils/analytics';
 import {
   sectionSequence,
   drawLineX,
@@ -35,7 +36,7 @@ export const FooterReact = () => {
               <h3 className="font-sans text-xl md:text-2xl font-black uppercase tracking-tighter text-foreground mb-2">
                 Nico Loperena
               </h3>
-              <p className="font-sans text-xs md:text-sm text-foreground/60 leading-relaxed max-w-[250px]">
+              <p className="font-sans text-xs md:text-sm text-foreground/70 leading-relaxed max-w-[250px]">
                 Senior Software Architect building high-performance web ecosystems, AI integrations, and cloud infrastructure.
               </p>
             </motion.div>
@@ -91,6 +92,7 @@ export const FooterReact = () => {
                   href="https://www.linkedin.com/in/nicholas-loperena-022813185/"
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => track('final_cta_social_click', { platform: 'linkedin' })}
                   className="group flex items-center w-fit hover:bg-white transition-colors duration-0"
                   initial="rest"
                   whileHover="hover"
@@ -105,6 +107,7 @@ export const FooterReact = () => {
                   href="https://github.com/NLoperena"
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => track('final_cta_social_click', { platform: 'github' })}
                   className="group flex items-center w-fit hover:bg-white transition-colors duration-0"
                   initial="rest"
                   whileHover="hover"
@@ -117,6 +120,7 @@ export const FooterReact = () => {
                 </motion.a>
                 <motion.a
                   href="mailto:NicholasLoperena@gmail.com"
+                  onClick={() => track('final_cta_social_click', { platform: 'email' })}
                   className="group flex items-center w-fit hover:bg-white transition-colors duration-0"
                   initial="rest"
                   whileHover="hover"
@@ -138,7 +142,7 @@ export const FooterReact = () => {
           
           <div className="overflow-hidden w-full">
             <motion.div variants={stampUp} className="flex w-full items-center justify-between">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-foreground/40">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-foreground/70">
                 © {currentYear} Nico Loperena
               </span>
               {/* Optional minimal accent lines on right side */}
