@@ -102,7 +102,7 @@ export const FinalCTA = () => {
         <div className="w-full h-24 md:h-20 border-t border-neutral-800/50 bg-transparent relative z-20 flex items-center shrink-0">
           <div className="w-full px-6 md:px-12 flex flex-col md:flex-row items-center justify-between h-full py-4 md:py-0">
             <div className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-500 mb-2 md:mb-0">
-              © {currentYear} NICO LOPERENA // FULL-STACK DEVELOPER
+              © {currentYear} NICO LOPERENA // SENIOR FULL-STACK AI-NATIVE ENGINEER
             </div>
             
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
