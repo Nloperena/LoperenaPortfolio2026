@@ -12,9 +12,9 @@
     "db:schema": "heroku pg:psql -a $HEROKU_APP_NAME < database/schema.sql"
   },
   "dependencies": {
-    "@astrojs/node": "^9.0.0",
     "@astrojs/react": "^4.1.2",
     "@astrojs/tailwind": "^5.1.1",
+    "@astrojs/vercel": "^9.0.4",
     "@react-three/drei": "^9.99.0",
     "@react-three/fiber": "^8.15.16",
     "@vercel/analytics": "^1.6.1",
@@ -23,10 +23,10 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.0.0-alpha.0",
     "lucide-react": "^0.462.0",
+    "pg": "^8.13.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
-    "pg": "^8.13.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss": "^3.4.11"
   },
