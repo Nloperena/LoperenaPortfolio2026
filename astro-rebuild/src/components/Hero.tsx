@@ -57,12 +57,12 @@ export const Hero = () => {
     }
   };
 
-  const drawLineX = {
+  const drawLineX: any = {
     hidden: { scaleX: 0, originX: 0, opacity: 0 },
     show: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: "circOut" } }
   };
 
-  const drawLineY = {
+  const drawLineY: any = {
     hidden: { scaleY: 0, originY: 0, opacity: 0 },
     show: { scaleY: 1, opacity: 1, transition: { duration: 0.8, ease: "circOut" } }
   };
