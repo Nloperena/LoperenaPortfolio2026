@@ -123,7 +123,7 @@ export const AboutExperience = () => {
       </section>
 
       {/* SECTION 2: EXPERIENCE LEDGER (Sticks to Top) */}
-      <section className="sticky top-0 min-h-screen w-full bg-white text-black z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.2)] flex flex-col justify-center pt-32 pb-32 px-4 md:px-8 border-t border-black/10">
+      <section className="sticky top-0 min-h-screen w-full bg-white text-black z-20 flex flex-col justify-center pt-32 pb-32 px-4 md:px-8">
          <div className="max-w-[1400px] w-full mx-auto flex flex-col">
             <div className="mb-16 overflow-hidden">
               <motion.h2 
