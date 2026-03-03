@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BarChart3, Briefcase, Cloud, Cpu, Globe, X, Database, Network } from 'lucide-react';
+import { track } from '../utils/analytics';
 import {
   sectionSequence,
   drawLineX,
@@ -454,7 +455,14 @@ export const Capabilities = () => {
               const Icon = cap.icon;
               return (
                 <div key={cap.id} className="border-b border-accent/20 bg-background transition-colors duration-300">
-                  <button onClick={() => setActiveId(isActive ? null : cap.id)} className="w-full p-6 md:p-8 flex justify-between items-center text-left hover:bg-white transition-colors duration-0">
+                  <button 
+                    onClick={() => {
+                      const nextId = isActive ? null : cap.id;
+                      setActiveId(nextId);
+                      if (nextId) track('capabilities_card_select', { id: cap.id, title: cap.title });
+                    }} 
+                    className="w-full p-6 md:p-8 flex justify-between items-center text-left hover:bg-white transition-colors duration-0"
+                  >
                     <div className="flex items-start gap-4">
                       <div className="font-mono text-[10px] md:text-xs font-bold text-accent/70 pt-1 tracking-[0.2em]">{cap.id} //</div>
                       <div className="font-sans text-xl md:text-2xl font-black text-foreground tracking-tight max-w-[20ch]">{cap.title}</div>
@@ -499,7 +507,11 @@ export const Capabilities = () => {
                                  <div className="flex gap-2 flex-wrap">
                                     {cap.badges.map((b, i) => <span key={i} className="font-mono text-[9px] uppercase tracking-widest px-3 py-1.5 bg-[#2C2A27] rounded-full text-white">{b}</span>)}
                                  </div>
-                                 <a href="/work" className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2C2A27] hover:text-[#7A7670] transition-colors flex items-center gap-2 shrink-0 group">
+                                 <a 
+                                   href="/work" 
+                                   onClick={() => track('capabilities_see_work', { from: 'mobile' })}
+                                   className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2C2A27] hover:text-[#7A7670] transition-colors flex items-center gap-2 shrink-0 group py-2"
+                                 >
                                     SEE WORK <span className="inline-block transform -rotate-45 transition-transform duration-300 group-hover:rotate-0">→</span>
                                  </a>
                               </div>
@@ -540,7 +552,10 @@ export const Capabilities = () => {
                     return (
                       <motion.article
                         key={capability.id}
-                        onClick={() => setActiveId(capability.id)}
+                        onClick={() => {
+                          setActiveId(capability.id);
+                          track('capabilities_card_select', { id: capability.id, title: capability.title });
+                        }}
                         className={`group relative ${capability.span} border-b border-accent/20 bg-accent/[0.01] hover:bg-white transition-colors duration-0 overflow-hidden min-h-[250px] cursor-pointer ${rightBorderClass}`}
                         initial="rest"
                         whileHover="hover"
@@ -592,7 +607,10 @@ export const Capabilities = () => {
                         return (
                           <button
                             key={cap.id}
-                            onClick={() => setActiveId(cap.id)}
+                            onClick={() => {
+                              setActiveId(cap.id);
+                              track('capabilities_card_select', { id: cap.id, title: cap.title });
+                            }}
                             className={`relative text-left w-full px-8 py-6 transition-colors duration-0 ${isActive ? 'bg-[#EEEAE3]' : 'hover:bg-[#F9F9F8]'}`}
                           >
                             <div className={`absolute left-0 top-0 bottom-0 w-[3px] transition-colors duration-300 ${isActive ? 'bg-[#2C2A27]' : 'bg-transparent'}`}></div>
@@ -616,7 +634,10 @@ export const Capabilities = () => {
                     </svg>
 
                     <button 
-                      onClick={() => setActiveId(null)}
+                      onClick={() => {
+                        setActiveId(null);
+                        track('capabilities_close');
+                      }}
                       className="absolute top-8 right-8 font-mono text-[10px] font-bold tracking-widest uppercase text-[#7A7670] hover:text-[#2C2A27] transition-colors z-50 flex items-center gap-2 group"
                     >
                       Close <X size={16} strokeWidth={2.5} />
@@ -696,7 +717,11 @@ export const Capabilities = () => {
                                   </div>
                                </div>
                                <div className="flex items-center justify-end px-8 py-6 w-[25%]">
-                                  <a href="/work" className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2C2A27] hover:text-[#7A7670] transition-colors flex items-center gap-2 group">
+                                  <a 
+                                    href="/work" 
+                                    onClick={() => track('capabilities_see_work', { from: 'desktop' })}
+                                    className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2C2A27] hover:text-[#7A7670] transition-colors flex items-center gap-2 group"
+                                  >
                                      SEE A PROJECT <span className="inline-block transform -rotate-45 transition-transform duration-300 group-hover:rotate-0">→</span>
                                   </a>
                                </div>

@@ -1,6 +1,17 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+
+const LazyIframe = ({ src, title, className }: { src: string, title: string, className: string }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "200px" });
+  return (
+    <div ref={ref} className="absolute inset-0 w-full h-full">
+      {isInView && <iframe src={src} title={title} className={className} />}
+    </div>
+  );
+};
 import { projects } from "../data/projects";
+import { track } from '../utils/analytics';
 
 export const ProjectsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,7 +50,7 @@ export const ProjectsSection = () => {
 
       {/* Scroll Hint (Fades out when scrolling starts) */}
       <motion.div 
-        className="fixed bottom-8 right-8 font-mono text-[10px] tracking-widest text-accent uppercase z-40 hidden md:flex items-center gap-3 bg-background/80 backdrop-blur-sm px-4 py-2 border border-accent/20 shadow-lg shadow-accent/5"
+        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 font-mono text-[10px] tracking-widest text-accent uppercase z-40 flex items-center gap-3 bg-background/80 backdrop-blur-sm px-4 py-2 border border-accent/20 shadow-lg shadow-accent/5"
         style={{ opacity: useTransform(smoothProgress, [0, 0.02], [1, 0]) }}
       >
         <span>Scroll to Explore</span>
@@ -66,7 +77,7 @@ export const ProjectsSection = () => {
             <div className="absolute bottom-16 md:bottom-24 left-0 right-0 h-px bg-accent/20"></div>
             <div className="absolute top-0 bottom-0 left-1/2 w-px bg-accent/20 hidden md:block"></div>
 
-            <div className="absolute top-24 left-6 md:top-32 md:left-12 font-mono text-[10px] md:text-xs font-bold tracking-[0.3em] text-accent/50 uppercase">
+            <div className="absolute top-24 left-6 md:top-32 md:left-12 font-mono text-[10px] md:text-xs font-bold tracking-[0.3em] text-accent uppercase">
               [ PORTFOLIO LEDGER ]
             </div>
 
@@ -144,6 +155,7 @@ export const ProjectsSection = () => {
                       href={project.link} 
                       target="_blank" 
                       rel="noreferrer"
+                      onClick={() => track('project_click', { id: project.id, title: project.title, url: project.link })}
                       className="group/btn relative flex items-center justify-between p-4 md:p-6 lg:p-8 bg-neutral-900 text-white border border-transparent overflow-hidden"
                     >
                       <div className="absolute inset-0 bg-white translate-y-[101%] group-hover/btn:translate-y-0 transition-transform duration-300 ease-[0.16,1,0.3,1] z-0"></div>
@@ -174,11 +186,10 @@ export const ProjectsSection = () => {
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                   >
                     {project.allowEmbed && project.link ? (
-                      <iframe 
+                      <LazyIframe 
                         src={project.link} 
                         className="absolute inset-0 w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700 pointer-events-auto"
                         title={project.title}
-                        loading="lazy"
                       />
                     ) : project.image ? (
                       <img 
@@ -187,7 +198,7 @@ export const ProjectsSection = () => {
                         className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
                       />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center font-mono text-sm text-foreground/30 uppercase tracking-widest">
+                      <div className="absolute inset-0 flex items-center justify-center font-mono text-sm text-foreground/70 uppercase tracking-widest">
                         SYSTEM PREVIEW UNAVAILABLE
                       </div>
                     )}

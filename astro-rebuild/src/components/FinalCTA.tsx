@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { track } from '../utils/analytics';
 
 export const FinalCTA = () => {
   const currentYear = new Date().getFullYear();
@@ -11,6 +12,7 @@ export const FinalCTA = () => {
   });
 
   const handleContactClick = () => {
+    track('contact_click', { source: 'final_cta' });
     // @ts-ignore
     if (typeof window !== 'undefined' && window.openContactHub) {
       // @ts-ignore
@@ -114,6 +116,7 @@ export const FinalCTA = () => {
                   href={social.url} 
                   target={social.label !== 'EMAIL' ? "_blank" : undefined}
                   rel={social.label !== 'EMAIL' ? "noreferrer" : undefined}
+                  onClick={() => track('final_cta_social_click', { platform: social.label.toLowerCase() })}
                   className="group flex items-center gap-1 cursor-pointer"
                 >
                   <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">

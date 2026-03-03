@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { track } from '../utils/analytics';
 
 const NavLink = ({ href, label, onClick }: { href?: string, label: string, onClick?: () => void }) => {
+  const handleClick = () => {
+    track('nav_click', { link: label.toLowerCase() });
+    if (onClick) onClick();
+  };
+
   if (onClick) {
     return (
       <motion.button 
-        onClick={onClick}
+        onClick={handleClick}
         className="relative flex items-center justify-center h-full px-2 lg:px-4 w-full cursor-pointer bg-transparent border-none"
         initial="rest"
         whileHover="hover"
@@ -29,6 +35,7 @@ const NavLink = ({ href, label, onClick }: { href?: string, label: string, onCli
   return (
     <motion.a 
       href={href} 
+      onClick={() => track('nav_click', { link: label.toLowerCase() })}
       className="relative flex items-center justify-center h-full px-2 lg:px-4 w-full"
       initial="rest"
       whileHover="hover"
@@ -49,8 +56,11 @@ const NavLink = ({ href, label, onClick }: { href?: string, label: string, onCli
   );
 };
 
+import { MobileMenu } from './MobileMenu';
+
 export const Nav = () => {
   const [time, setTime] = useState("LOCAL: 00:00:00 EST");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const updateClock = () => {
@@ -65,6 +75,7 @@ export const Nav = () => {
   }, []);
 
   const handleContactClick = () => {
+    track('contact_click', { source: 'nav' });
     // @ts-ignore
     if (typeof window !== 'undefined' && window.openContactHub) {
       // @ts-ignore
@@ -81,52 +92,67 @@ export const Nav = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 h-16 bg-[#f4f4f0]/80 backdrop-blur-md border-b border-gray-300">
-      <div className="grid grid-cols-12 h-full w-full">
-        
-        {/* Zone 1: The Identity */}
-        <div className="col-span-4 lg:col-span-3 flex items-center px-4 lg:px-8 border-r border-gray-300 h-full">
-          <a href="/" className="flex items-baseline gap-2">
-            <span className="font-sans text-xs lg:text-sm font-black tracking-tighter uppercase text-foreground leading-none">
-              NICO LOPERENA
-            </span>
-            <span className="font-mono text-[8px] lg:text-[10px] text-foreground/40 font-bold tracking-widest hidden xl:inline-block leading-none">
-              // DEVELOPER
-            </span>
-          </a>
-        </div>
-
-        {/* Zone 2: Live System Status */}
-        <div className="col-span-4 lg:col-span-4 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-2 lg:px-8 border-r border-gray-300 h-full gap-1 xl:gap-4">
-          <div className="flex items-center gap-2 lg:gap-3">
-            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest text-foreground/70 hidden sm:inline-block truncate">
-              BASED IN ORLANDO, FL
-            </span>
+    <>
+      <nav className="fixed top-0 left-0 w-full z-50 h-16 bg-[#f4f4f0]/80 backdrop-blur-md border-b border-gray-300">
+        <div className="grid grid-cols-12 h-full w-full">
+          
+          {/* Zone 1: The Identity */}
+          <div className="col-span-8 lg:col-span-3 flex items-center px-4 lg:px-8 lg:border-r border-gray-300 h-full">
+            <a href="/" className="flex items-baseline gap-2">
+              <span className="font-sans text-xs lg:text-sm font-black tracking-tighter uppercase text-foreground leading-none">
+                NICO LOPERENA
+              </span>
+              <span className="font-mono text-[8px] lg:text-[10px] text-foreground/70 font-bold tracking-widest hidden xl:inline-block leading-none">
+                // DEVELOPER
+              </span>
+            </a>
           </div>
-          <div className="font-mono text-[9px] lg:text-[11px] font-bold text-foreground/80 tracking-widest whitespace-nowrap">
-            {time}
+
+          {/* MOBILE HAMBURGER */}
+          <div className="col-span-4 flex lg:hidden items-center justify-end px-4 h-full border-l border-gray-300">
+            <button 
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="flex flex-col gap-1.5 justify-center items-center w-10 h-10 cursor-pointer bg-transparent border-none outline-none"
+              aria-label="Open mobile menu"
+            >
+              <div className="w-5 h-px bg-foreground"></div>
+              <div className="w-5 h-px bg-foreground"></div>
+            </button>
           </div>
+
+          {/* Zone 2: Live System Status (Desktop Only) */}
+          <div className="hidden lg:flex lg:col-span-4 flex-col xl:flex-row items-center justify-center xl:justify-between px-2 lg:px-8 border-r border-gray-300 h-full gap-1 xl:gap-4">
+            <div className="flex items-center gap-2 lg:gap-3">
+              <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest text-foreground/70 hidden sm:inline-block truncate">
+                BASED IN ORLANDO, FL
+              </span>
+            </div>
+            <div className="font-mono text-[9px] lg:text-[11px] font-bold text-foreground/80 tracking-widest whitespace-nowrap">
+              {time}
+            </div>
+          </div>
+
+          {/* Zone 3: Navigation Links (Desktop Only) */}
+          <div className="hidden lg:flex lg:col-span-3 items-center justify-between px-2 lg:px-6 border-r border-gray-300 h-full">
+            <NavLink href="/work" label="WORK" />
+            <NavLink href="/about" label="ABOUT" />
+            <NavLink label="SKILLS" onClick={toggleStackRibbon} />
+          </div>
+
+          {/* Zone 4: The Action Grid Cell (Desktop Only) */}
+          <button 
+            onClick={handleContactClick}
+            className="hidden lg:flex lg:col-span-2 h-full bg-neutral-900 text-white hover:bg-white hover:text-neutral-900 transition-colors duration-0 items-center justify-center group cursor-pointer border-none outline-none"
+          >
+            <span className="font-mono text-[10px] lg:text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+              <span className="hidden lg:inline-block">LET'S TALK</span>
+              <span className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300">↗</span>
+            </span>
+          </button>
+
         </div>
-
-        {/* Zone 3: Navigation Links */}
-        <div className="col-span-3 lg:col-span-3 flex items-center justify-between px-2 lg:px-6 border-r border-gray-300 h-full">
-          <NavLink href="/work" label="WORK" />
-          <NavLink href="/about" label="ABOUT" />
-          <NavLink label="SKILLS" onClick={toggleStackRibbon} />
-        </div>
-
-        {/* Zone 4: The Action Grid Cell */}
-        <button 
-          onClick={handleContactClick}
-          className="col-span-1 lg:col-span-2 h-full bg-neutral-900 text-white hover:bg-white hover:text-neutral-900 transition-colors duration-0 flex items-center justify-center group cursor-pointer border-none outline-none"
-        >
-          <span className="font-mono text-[10px] lg:text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-            <span className="hidden lg:inline-block">LET'S TALK</span>
-            <span className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300">↗</span>
-          </span>
-        </button>
-
-      </div>
-    </nav>
+      </nav>
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+    </>
   );
 };

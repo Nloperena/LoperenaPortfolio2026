@@ -4,17 +4,21 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "node ./dist/server/entry.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "convert-media": "node scripts/convert-media.js"
+    "convert-media": "node scripts/convert-media.js",
+    "db:schema": "heroku pg:psql -a $HEROKU_APP_NAME < database/schema.sql"
   },
   "dependencies": {
+    "@astrojs/node": "^9.0.0",
     "@astrojs/react": "^4.1.2",
     "@astrojs/tailwind": "^5.1.1",
     "@react-three/drei": "^9.99.0",
     "@react-three/fiber": "^8.15.16",
+    "@vercel/analytics": "^1.6.1",
+    "@vercel/speed-insights": "^1.3.1",
     "astro": "^5.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.0.0-alpha.0",
@@ -22,11 +26,17 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
+    "pg": "^8.13.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss": "^3.4.11"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0"
   }

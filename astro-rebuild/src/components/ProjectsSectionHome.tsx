@@ -1,6 +1,17 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+
+const LazyIframe = ({ src, title, className }: { src: string, title: string, className: string }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "200px" });
+  return (
+    <div ref={ref} className="w-full h-full">
+      {isInView && <iframe src={src} title={title} className={className} />}
+    </div>
+  );
+};
 import { projects } from "../data/projects";
+import { track } from '../utils/analytics';
 import {
   sectionSequence,
   drawLineX,
@@ -69,7 +80,7 @@ export const ProjectsSectionHome = () => {
                     <div className="space-y-2">
                       <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-accent">{project.year}</span>
                       <h3 className="text-4xl md:text-5xl font-black tracking-tighter leading-none text-foreground uppercase">{project.title}</h3>
-                      <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-foreground/50">{project.tags.slice(0, 3).join(' / ')}</p>
+                      <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-foreground/70">{project.tags.slice(0, 3).join(' / ')}</p>
                     </div>
                   </div>
                   
@@ -82,6 +93,7 @@ export const ProjectsSectionHome = () => {
                       href={project.link} 
                       target="_blank" 
                       rel="noreferrer"
+                      onClick={() => track('project_click', { id: project.id, title: project.title, url: project.link })}
                       className="inline-flex items-center gap-3 text-[10px] font-mono font-bold uppercase tracking-[0.3em] px-8 py-4 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 pointer-events-auto"
                     >
                       Visit Live
@@ -99,7 +111,7 @@ export const ProjectsSectionHome = () => {
                         <div className="w-2 h-2 rounded-full bg-accent-sage/30 group-hover:bg-accent-sage transition-colors duration-500"></div>
                         <div className="w-2 h-2 rounded-full bg-highlight/30 group-hover:bg-highlight transition-colors duration-500"></div>
                         <div className="w-2 h-2 rounded-full bg-accent/30 group-hover:bg-accent transition-colors duration-500"></div>
-                        <div className="ml-2 font-mono text-[9px] text-foreground/40 tracking-widest uppercase truncate group-hover:text-foreground/80 transition-colors duration-500">
+                        <div className="ml-2 font-mono text-[9px] text-foreground/70 tracking-widest uppercase truncate group-hover:text-foreground/80 transition-colors duration-500">
                           {project.link.replace('https://', '')}
                         </div>
                       </div>
@@ -108,17 +120,16 @@ export const ProjectsSectionHome = () => {
                       <div className="relative flex-1 bg-white overflow-hidden">
                         {project.allowEmbed && project.link ? (
                           <div className="absolute inset-0 w-[160%] h-[160%] origin-top-left scale-[0.625] bg-white">
-                            <iframe 
+                            <LazyIframe 
                               src={project.link} 
                               className="w-full h-full border-0 pointer-events-none group-hover:pointer-events-auto transition-all grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 duration-700"
                               title={project.title}
-                              loading="lazy"
                             />
                           </div>
                         ) : project.image ? (
                           <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
                         ) : (
-                          <div className="absolute inset-0 w-full h-full flex items-center justify-center font-mono text-xs uppercase tracking-[0.2em] text-foreground/50 bg-background">
+                          <div className="absolute inset-0 w-full h-full flex items-center justify-center font-mono text-xs uppercase tracking-[0.2em] text-foreground/70 bg-background">
                             Live Project
                           </div>
                         )}

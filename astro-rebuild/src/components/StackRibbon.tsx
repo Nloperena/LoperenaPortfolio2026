@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { stackTechnologies, stackCopy } from '../data/stack';
+import { track } from '../utils/analytics';
 
 export const StackRibbon = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,11 @@ export const StackRibbon = () => {
     // Override the global toggle function
     // @ts-ignore
     window.toggleStackRibbonState = () => {
-      setIsOpen(prev => !prev);
+      setIsOpen(prev => {
+        const nextState = !prev;
+        track('skills_drawer_toggle', { open: nextState });
+        return nextState;
+      });
     };
   }, []);
 
@@ -17,6 +22,7 @@ export const StackRibbon = () => {
     if (!isOpen) return;
 
     const handleScroll = () => {
+      track('skills_drawer_toggle', { open: false });
       setIsOpen(false);
     };
 
@@ -26,6 +32,7 @@ export const StackRibbon = () => {
       if (target.closest('nav') || target.closest('#stack-ribbon-container')) {
         return;
       }
+      track('skills_drawer_toggle', { open: false });
       setIsOpen(false);
     };
 
@@ -91,6 +98,7 @@ export const StackRibbon = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                     onClick={() => {
+                      track('contact_click', { source: 'stack_ribbon' });
                       if (typeof window !== 'undefined' && (window as unknown as { openContactHub?: () => void }).openContactHub) {
                         (window as unknown as { openContactHub: () => void }).openContactHub();
                       }
