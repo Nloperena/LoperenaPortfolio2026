@@ -67,7 +67,7 @@ export const Hero = () => {
     show: { scaleY: 1, opacity: 1, transition: { duration: 0.8, ease: "circOut" } }
   };
 
-  const contentReveal = {
+  const contentReveal: any = {
     hidden: { y: "100%" },
     show: { y: "0%", transition: { type: "spring", stiffness: 100, damping: 20, mass: 1 } }
   };
