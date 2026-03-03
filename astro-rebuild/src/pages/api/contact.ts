@@ -57,7 +57,7 @@ export const POST: APIRoute = async ({ request }) => {
   const pool = getPool();
   if (!pool) {
     return new Response(
-      JSON.stringify({ ok: false, error: 'Database not configured' }),
+      JSON.stringify({ ok: false, error: 'Contact form is not available in this environment.' }),
       { status: 503, headers }
     );
   }
