@@ -8,6 +8,7 @@ export const IntakeModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
 
   useEffect(() => {
@@ -56,6 +57,7 @@ export const IntakeModal = () => {
     e.preventDefault();
     track('intake_modal_submit');
     setSubmitError(null);
+    setSubmitMessage(null);
     setSubmitStatus('sending');
     try {
       const res = await fetch('/api/contact', {
@@ -70,18 +72,20 @@ export const IntakeModal = () => {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setSubmitError(data.error || 'Something went wrong');
+        setSubmitError(data.error || 'Something went wrong. Please try again.');
         setSubmitStatus('error');
         return;
       }
+      setSubmitMessage(data.message ?? 'Thank you — I\'ll be in touch soon.');
       setSubmitStatus('success');
       setFormData({ name: '', email: '', company: '', message: '' });
       setTimeout(() => {
         setIsOpen(false);
         setSubmitStatus('idle');
-      }, 1500);
+        setSubmitMessage(null);
+      }, 3000);
     } catch {
-      setSubmitError('Network error. Please try again.');
+      setSubmitError('Network error. Please check your connection and try again.');
       setSubmitStatus('error');
     }
   };
@@ -108,6 +112,8 @@ export const IntakeModal = () => {
             onClick={() => {
               track('intake_modal_close');
               setIsOpen(false);
+              setSubmitError(null);
+              setSubmitMessage(null);
             }}
             className="absolute top-6 right-6 md:top-8 md:right-8 z-50 font-mono text-xs font-bold tracking-widest text-neutral-500 hover:text-white transition-colors duration-300 uppercase flex items-center gap-3 group"
           >
@@ -162,7 +168,14 @@ export const IntakeModal = () => {
                 onSubmit={handleSubmit}
               >
                 {submitError && (
-                  <p className="font-mono text-sm text-red-400" role="alert">{submitError}</p>
+                  <div className="font-mono text-sm text-red-400 bg-red-950/40 border border-red-800/60 px-4 py-3 rounded-sm" role="alert">
+                    {submitError}
+                  </div>
+                )}
+                {submitStatus === 'success' && submitMessage && (
+                  <div className="font-mono text-sm text-emerald-400 bg-emerald-950/40 border border-emerald-800/60 px-4 py-3 rounded-sm" role="status">
+                    {submitMessage}
+                  </div>
                 )}
                 <div className="flex flex-col gap-2 group">
                   <label htmlFor="contact-name" className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Name</label>
@@ -224,7 +237,7 @@ export const IntakeModal = () => {
                   className="w-full bg-neutral-900 hover:bg-white text-neutral-400 hover:text-[#0a0a0a] transition-colors duration-300 flex items-center justify-between p-8 md:p-12 border-t border-neutral-800 group shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <span className="font-mono text-xl md:text-2xl font-bold tracking-widest uppercase">
-                    {submitStatus === 'sending' ? 'SENDING…' : submitStatus === 'success' ? 'THANK YOU' : 'SEND PROJECT BRIEF'}
+                    {submitStatus === 'sending' ? 'SENDING…' : submitStatus === 'success' ? 'SENT' : 'SEND PROJECT BRIEF'}
                   </span>
                   {submitStatus !== 'success' && (
                     <span className="font-mono text-3xl group-hover:translate-x-4 transition-transform duration-300">
