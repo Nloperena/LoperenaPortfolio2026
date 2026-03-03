@@ -2,13 +2,37 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { track } from '../utils/analytics';
 
+const CONTACT_EMAIL = 'NicholasLoperena@gmail.com';
+const CONTACT_PHONE = ''; // e.g. '+15551234567' for SMS fallback
+
 type SubmitStatus = 'idle' | 'sending' | 'success' | 'error';
+
+function buildEmailFallbackBody(formData: { name: string; email: string; company: string; message: string }): string {
+  const lines = [
+    `Name: ${formData.name}`,
+    `Email: ${formData.email}`,
+    formData.company ? `Company: ${formData.company}` : '',
+    formData.message ? `Project scope:\n${formData.message}` : '',
+  ].filter(Boolean);
+  return encodeURIComponent(lines.join('\n\n'));
+}
+
+function buildSmsFallbackBody(formData: { name: string; email: string; company: string; message: string }): string {
+  const lines = [
+    `Name: ${formData.name}`,
+    `Email: ${formData.email}`,
+    formData.company ? `Company: ${formData.company}` : '',
+    formData.message ? `Scope: ${formData.message}` : '',
+  ].filter(Boolean);
+  return encodeURIComponent(lines.join('\n'));
+}
 
 export const IntakeModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const [copyDone, setCopyDone] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
 
   useEffect(() => {
@@ -114,6 +138,7 @@ export const IntakeModal = () => {
               setIsOpen(false);
               setSubmitError(null);
               setSubmitMessage(null);
+              setCopyDone(false);
             }}
             className="absolute top-6 right-6 md:top-8 md:right-8 z-50 font-mono text-xs font-bold tracking-widest text-neutral-500 hover:text-white transition-colors duration-300 uppercase flex items-center gap-3 group"
           >
@@ -168,9 +193,54 @@ export const IntakeModal = () => {
                 onSubmit={handleSubmit}
               >
                 {submitError && (
-                  <div className="font-mono text-sm text-red-400 bg-red-950/40 border border-red-800/60 px-4 py-3 rounded-sm" role="alert">
-                    {submitError}
-                  </div>
+                  <>
+                    <div className="font-mono text-sm text-red-400 bg-red-950/40 border border-red-800/60 px-4 py-3 rounded-sm" role="alert">
+                      {submitError}
+                    </div>
+                    <div className="flex flex-col gap-3">
+                      <p className="font-mono text-[10px] font-bold tracking-widest text-neutral-500 uppercase">
+                        Send your message instead:
+                      </p>
+                      <div className="flex flex-wrap gap-3">
+                        <a
+                          href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Project brief from ${formData.name}`)}&body=${buildEmailFallbackBody(formData)}`}
+                          className="inline-flex items-center justify-center font-mono text-xs font-bold tracking-widest uppercase px-5 py-3 bg-neutral-800 hover:bg-white text-neutral-300 hover:text-[#0a0a0a] border border-neutral-700 transition-colors"
+                          onClick={() => track('intake_fallback_click', { method: 'email' })}
+                        >
+                          Email me
+                        </a>
+                        {CONTACT_PHONE ? (
+                          <a
+                            href={`sms:${CONTACT_PHONE}?body=${buildSmsFallbackBody(formData)}`}
+                            className="inline-flex items-center justify-center font-mono text-xs font-bold tracking-widest uppercase px-5 py-3 bg-neutral-800 hover:bg-white text-neutral-300 hover:text-[#0a0a0a] border border-neutral-700 transition-colors"
+                            onClick={() => track('intake_fallback_click', { method: 'sms' })}
+                          >
+                            Text me
+                          </a>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const text = [
+                                `Name: ${formData.name}`,
+                                `Email: ${formData.email}`,
+                                formData.company ? `Company: ${formData.company}` : '',
+                                formData.message ? `Project scope: ${formData.message}` : '',
+                              ].filter(Boolean).join('\n\n');
+                              navigator.clipboard.writeText(text).then(() => {
+                                track('intake_fallback_click', { method: 'copy' });
+                                setCopyDone(true);
+                                setTimeout(() => setCopyDone(false), 2000);
+                              });
+                            }}
+                            className="inline-flex items-center justify-center font-mono text-xs font-bold tracking-widest uppercase px-5 py-3 bg-neutral-800 hover:bg-white text-neutral-300 hover:text-[#0a0a0a] border border-neutral-700 transition-colors"
+                          >
+                            {copyDone ? 'Copied!' : 'Copy message'}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </>
                 )}
                 {submitStatus === 'success' && submitMessage && (
                   <div className="font-mono text-sm text-emerald-400 bg-emerald-950/40 border border-emerald-800/60 px-4 py-3 rounded-sm" role="status">
