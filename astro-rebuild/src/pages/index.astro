@@ -1,36 +1,44 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar';
-import NewHero from '../components/NewHero';
-import StatsBar from '../components/StatsBar';
-import TrustBar from '../components/TrustBar';
-import AboutMeSection from '../components/AboutMeSection';
-import TechArsenal from '../components/TechArsenal';
-import SelectedWorks from '../components/SelectedWorks';
-import AtelierCTA from '../components/AtelierCTA';
-import Footer from '../components/Footer';
+import Layout from '../components/Layout.astro';
+import { Hero } from '../components/Hero';
+import { Capabilities } from '../components/Capabilities';
+import { ProjectsSectionHome } from '../components/ProjectsSectionHome';
+import { Proof } from '../components/Proof';
+
 ---
 
-<BaseLayout title="Nico Loperena | Digital Architect">
-	<Navbar client:load />
-	<NewHero client:load />
-	<StatsBar client:visible />
-	<TrustBar client:visible />
-	
-	<div class="ornamental-divider text-[#1C1B1A]/20"></div>
-	
-	<AboutMeSection client:visible />
-	
-	<div class="ornamental-divider text-[#1C1B1A]/20"></div>
-	
-	<TechArsenal client:visible />
-	
-	<div class="ornamental-divider text-[#1C1B1A]/20"></div>
-	
-	<SelectedWorks client:visible />
-	
-	<div class="ornamental-divider text-[#1C1B1A]/20"></div>
-	
-	<AtelierCTA client:visible />
-	<Footer />
-</BaseLayout>
+<Layout title="Nico Loperena | Senior Full-Stack Developer">
+	<!-- Schema.org Structured Data -->
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Nicholas Loperena",
+		"alternateName": "Nick Loperena",
+		"jobTitle": "Senior Software Architect",
+		"url": "https://nicoloperena.com",
+		"sameAs": [
+			"https://www.linkedin.com/in/nicholas-loperena-022813185/"
+		],
+		"knowsAbout": ["Web Development", "E-Commerce", "Performance Engineering", "React", "Next.js", "Astro"],
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Orlando",
+			"addressRegion": "FL",
+			"addressCountry": "US"
+		}
+	})} />
+
+	<div class="space-y-32 md:space-y-48 pb-40">
+		<!-- Hero (Editorial Brutalism) with Framer Motion -->
+		<Hero client:load />
+
+		<!-- Unified Integrity & Impact Section (Full Width) -->
+		<Capabilities client:load />
+
+		<!-- Projects -->
+		<ProjectsSectionHome client:load />
+
+		<!-- Engineered for Impact Proof Block -->
+		<Proof client:load />
+	</div>
+</Layout>

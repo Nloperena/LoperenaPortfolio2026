@@ -1,0 +1,15 @@
+{
+  "name": "loperena-intake-backend",
+  "description": "Heroku backend for intake form submissions",
+  "repository": "",
+  "keywords": ["node", "express", "postgres", "heroku"],
+  "env": {
+    "NODE_ENV": {
+      "value": "production"
+    },
+    "ALLOWED_ORIGINS": {
+      "description": "Comma-separated list of allowed frontend origins"
+    }
+  },
+  "addons": ["heroku-postgresql:mini"]
+}

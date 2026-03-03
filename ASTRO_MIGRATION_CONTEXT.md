@@ -91,3 +91,8 @@ This document provides the full context, aesthetic guidelines, and technical req
 4. Port React components. Many can stay as `.tsx` but used with `client:load` or `client:visible`.
 5. Optimize images using Astro's `<Image />` component.
 
+
+
+
+
+

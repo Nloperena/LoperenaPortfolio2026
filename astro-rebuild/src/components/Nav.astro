@@ -1,0 +1,41 @@
+---
+const navLinks = [
+  { name: 'Work', href: '/work' },
+  { name: 'About', href: '/about' },
+];
+---
+
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl">
+  <div class="bg-background/80 backdrop-blur-xl border border-accent/10 py-3 px-8 rounded-full flex justify-between items-center shadow-xl shadow-accent/5">
+    <a href="/" class="group flex items-center gap-2">
+      <div class="w-7 h-7 bg-accent-sage flex items-center justify-center rounded-full group-hover:rotate-[360deg] transition-transform duration-1000">
+        <span class="text-background font-serif font-bold text-xs italic">L</span>
+      </div>
+      <span class="font-serif text-sm font-bold text-foreground tracking-tighter uppercase italic">Loperena</span>
+    </a>
+    
+    <div class="flex gap-8 items-center">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href}
+          class="text-xs font-mono font-bold uppercase tracking-[0.2em] text-foreground/60 hover:text-accent-sage transition-colors"
+        >
+          {link.name}
+        </a>
+      ))}
+      <a 
+        href="mailto:NicholasLoperena@gmail.com" 
+        class="bg-highlight text-foreground text-[11px] font-mono font-bold uppercase tracking-widest px-5 py-2.5 rounded-full hover:bg-highlight/90 transition-all shadow-lg shadow-highlight/20"
+      >
+        Hire Me
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+

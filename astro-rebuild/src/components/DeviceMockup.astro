@@ -1,0 +1,86 @@
+---
+interface Props {
+  image?: string;
+  link?: string;
+  allowEmbed?: boolean;
+  title?: string;
+}
+
+const { image, link, allowEmbed = false, title } = Astro.props;
+---
+
+<div class="mockup-responsive-container group w-full">
+  <!-- Desktop View: Clean Rectangular Container -->
+  <div class="hidden md:block">
+    <div class="relative mx-auto w-full">
+      <div class="relative rounded-2xl bg-background-dark shadow-2xl overflow-hidden border border-accent/20 transition-all duration-500 group-hover:shadow-highlight/5 group-hover:border-highlight/20">
+        <!-- Minimal Browser Bar -->
+        <div class="h-10 bg-black/20 flex items-center px-6 gap-3 border-b border-white/5">
+          <div class="flex gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-accent-sage/30 group-hover:bg-accent-sage transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-highlight/30 group-hover:bg-highlight transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-accent/30 group-hover:bg-accent transition-colors"></div>
+          </div>
+          <div class="flex-1 flex justify-center">
+            <div class="bg-white/5 px-4 py-1 rounded-full text-[11px] text-foreground-light/30 font-mono tracking-[0.2em] truncate max-w-[400px]">
+              {link?.replace('https://', '').toUpperCase() || 'ARTIFACT.IO'}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Large 16:10 Rectangular Content (Slightly taller than 16:9) -->
+        <div class="aspect-[16/10] bg-white relative overflow-hidden">
+          {allowEmbed && link ? (
+            <div class="desktop-iframe-wrapper absolute inset-0 w-[160%] h-[160%] origin-top-left scale-[0.625]">
+              <iframe 
+                src={link} 
+                class="w-full h-full border-0 pointer-events-none group-hover:pointer-events-auto transition-all bg-white"
+                title={title}
+                loading="lazy"
+              ></iframe>
+            </div>
+          ) : image ? (
+            <img src={image} alt={title} class="w-full h-full object-cover" />
+          ) : (
+            <div class="w-full h-full flex items-center justify-center text-accent/10 italic font-serif">
+              Work Specimen
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile View: Phone Mockup -->
+  <div class="block md:hidden">
+    <div class="relative mx-auto w-full max-w-[280px]">
+      <div class="relative rounded-[3rem] bg-background-dark p-3 shadow-2xl border-[8px] border-accent/20 overflow-hidden aspect-[9/19.5]">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-black/40 rounded-b-2xl z-20 flex items-center justify-center">
+            <div class="w-3 h-3 rounded-full bg-background-dark border border-white/5"></div>
+        </div>
+        <div class="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+          {allowEmbed && link ? (
+            <iframe 
+              src={link} 
+              class="w-full h-full border-0"
+              title={title}
+              loading="lazy"
+            ></iframe>
+          ) : image ? (
+            <img src={image} alt={title} class="w-full h-full object-cover" />
+          ) : (
+            <div class="w-full h-full flex items-center justify-center text-accent/10 italic font-serif">
+              Mobile Preview
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  iframe {
+    background: white;
+  }
+</style>
