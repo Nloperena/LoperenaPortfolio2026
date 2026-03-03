@@ -37,7 +37,7 @@ export const FooterReact = () => {
                 Nico Loperena
               </h3>
               <p className="font-sans text-xs md:text-sm text-foreground/70 leading-relaxed max-w-[250px]">
-                Senior Software Architect building high-performance web ecosystems, AI integrations, and cloud infrastructure.
+                Senior Full-Stack AI-Native Engineer building high-performance web ecosystems, AI integrations, and cloud infrastructure.
               </p>
             </motion.div>
           </div>

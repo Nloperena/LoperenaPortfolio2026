@@ -110,7 +110,7 @@ export const Hero = () => {
           <div className="overflow-hidden">
             <motion.div variants={contentReveal} className="flex items-center justify-between w-full">
               <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">
-                Senior Software Architect
+                Senior Full-Stack AI-Native Engineer
               </span>
               <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-accent hidden sm:block ml-auto">
                 Orlando, FL / Global
