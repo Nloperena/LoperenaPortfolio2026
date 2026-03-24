@@ -55,7 +55,7 @@ const projects = [
     techDetails: ['Next.js', 'Supabase', 'B2B APIs', 'Workflow Automation'],
     fig: 'FIG 1.3',
     image: '/FPUSA.png',
-    embedUrl: 'https://furniturepackagesusa.com',
+    embedUrl: 'https://fpusa.vercel.app',
     link: '#',
     demoLink: '#',
     repoLink: '#'

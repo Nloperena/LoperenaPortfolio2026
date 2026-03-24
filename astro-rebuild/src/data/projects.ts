@@ -50,7 +50,7 @@ export const projects: Project[] = [
     description: 'Streamlined B2B architecture for commercial procurement.',
     longDescription: 'Simplified a complex procurement workflow for large furniture packages so teams can quote, coordinate, and move projects forward faster.',
     tags: ['Next.js', 'PostgreSQL', 'B2B', 'COBOL'],
-    link: 'https://furniturepackagesusa.com',
+    link: 'https://fpusa.vercel.app',
     image: '/FPUSA.png',
     allowEmbed: true
   }
