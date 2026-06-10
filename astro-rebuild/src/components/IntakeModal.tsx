@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { track } from '../utils/analytics';
 
-const CONTACT_EMAIL = 'NicholasLoperena@gmail.com';
+const CONTACT_EMAIL = 'nicholasloperena@gmail.com';
 const CONTACT_PHONE = ''; // e.g. '+15551234567' for SMS fallback
+
+/** Set in Vercel: PUBLIC_INTAKE_API_URL=https://your-app.herokuapp.com/api/submissions */
+const INTAKE_API_URL = (import.meta.env.PUBLIC_INTAKE_API_URL as string | undefined)?.trim() || '';
+const USE_HEROKU_BACKEND = INTAKE_API_URL.includes('/api/submissions');
 
 type SubmitStatus = 'idle' | 'sending' | 'success' | 'error';
 
@@ -77,37 +81,73 @@ export const IntakeModal = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const getContactEndpoint = () => {
+    if (USE_HEROKU_BACKEND) return INTAKE_API_URL;
+    if (typeof window !== 'undefined' && window.location.hostname === 'nicoloperena.com') {
+      return 'https://www.nicoloperena.com/api/contact';
+    }
+    return '/api/contact';
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     track('intake_modal_submit');
     setSubmitError(null);
     setSubmitMessage(null);
     setSubmitStatus('sending');
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const values = {
+      name: String(fd.get('name') ?? formData.name).trim(),
+      email: String(fd.get('email') ?? formData.email).trim(),
+      company: String(fd.get('company') ?? formData.company).trim(),
+      message: String(fd.get('message') ?? formData.message).trim(),
+    };
+
+    if (!values.name || !values.email) {
+      setSubmitError('Name and email are required.');
+      setSubmitStatus('error');
+      return;
+    }
+
     try {
-      const res = await fetch('/api/contact', {
+      const endpoint = getContactEndpoint();
+      const payload = USE_HEROKU_BACKEND
+        ? {
+            name: values.name,
+            email: values.email,
+            company: values.company || undefined,
+            message: values.message || undefined,
+            projectScope: values.message || undefined,
+          }
+        : {
+            name: values.name,
+            email: values.email,
+            company: values.company || undefined,
+            message: values.message || undefined,
+          };
+
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          company: formData.company.trim() || undefined,
-          message: formData.message.trim() || undefined,
-        }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setSubmitError(data.error || 'Something went wrong. Please try again.');
+        setSubmitError(
+          data.error ||
+            (USE_HEROKU_BACKEND ? 'Submission failed. Please try again or use Email me below.' : 'Something went wrong. Please try again.')
+        );
         setSubmitStatus('error');
         return;
       }
-      setSubmitMessage(data.message ?? 'Thank you — I\'ll be in touch soon.');
+      setSubmitMessage(
+        data.message ?? (USE_HEROKU_BACKEND ? 'Thank you — your brief was received.' : "Thank you — I'll be in touch soon.")
+      );
       setSubmitStatus('success');
       setFormData({ name: '', email: '', company: '', message: '' });
-      setTimeout(() => {
-        setIsOpen(false);
-        setSubmitStatus('idle');
-        setSubmitMessage(null);
-      }, 3000);
+      form.reset();
     } catch {
       setSubmitError('Network error. Please check your connection and try again.');
       setSubmitStatus('error');
@@ -253,6 +293,7 @@ export const IntakeModal = () => {
                     id="contact-name"
                     name="name"
                     type="text"
+                    autoComplete="name"
                     placeholder="Jane Doe"
                     required
                     value={formData.name}
@@ -267,6 +308,7 @@ export const IntakeModal = () => {
                     id="contact-email"
                     name="email"
                     type="email"
+                    autoComplete="email"
                     placeholder="jane@company.com"
                     required
                     value={formData.email}
@@ -281,6 +323,7 @@ export const IntakeModal = () => {
                     id="contact-company"
                     name="company"
                     type="text"
+                    autoComplete="organization"
                     placeholder="Acme Corp"
                     value={formData.company}
                     onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))}
