@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { siteProfile } from '../data/site';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -107,6 +108,15 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 className="font-sans text-5xl sm:text-6xl font-black uppercase tracking-tighter text-[#ededed] hover:text-[#C4A484] transition-colors"
               >
                 About
+              </motion.a>
+              <motion.a 
+                href={siteProfile.resumePath}
+                download={siteProfile.resumeDownloadName}
+                onClick={onClose}
+                variants={itemVariants}
+                className="font-sans text-5xl sm:text-6xl font-black uppercase tracking-tighter text-[#ededed] hover:text-[#C4A484] transition-colors"
+              >
+                Resume
               </motion.a>
               <motion.button 
                 onClick={handleSkillsClick}

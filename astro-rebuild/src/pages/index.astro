@@ -4,25 +4,27 @@ import { Hero } from '../components/Hero';
 import { Capabilities } from '../components/Capabilities';
 import { ProjectsSectionHome } from '../components/ProjectsSectionHome';
 import { Proof } from '../components/Proof';
+import { siteProfile } from '../data/site';
 
 ---
 
-<Layout title="Nico Loperena | Senior Full-Stack AI-Native Engineer">
+<Layout title={`${siteProfile.name} | ${siteProfile.title}`}>
 	<!-- Schema.org Structured Data -->
 	<script type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "Person",
-		"name": "Nicholas Loperena",
-		"alternateName": "Nick Loperena",
-		"jobTitle": "Senior Full-Stack AI-Native Engineer",
-		"url": "https://nicoloperena.com",
+		"name": siteProfile.legalName,
+		"alternateName": siteProfile.name,
+		"jobTitle": siteProfile.title,
+		"url": siteProfile.siteUrl,
 		"sameAs": [
-			"https://www.linkedin.com/in/nicholas-loperena-022813185/"
+			siteProfile.linkedInUrl,
+			siteProfile.githubUrl
 		],
-		"knowsAbout": ["Web Development", "E-Commerce", "Performance Engineering", "React", "Next.js", "Astro"],
+		"knowsAbout": ["Web Development", "Full-Stack Engineering", "React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "Astro"],
 		"address": {
 			"@type": "PostalAddress",
-			"addressLocality": "Orlando",
+			"addressLocality": "Kissimmee",
 			"addressRegion": "FL",
 			"addressCountry": "US"
 		}
