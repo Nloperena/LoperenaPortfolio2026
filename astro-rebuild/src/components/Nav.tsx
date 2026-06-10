@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { track } from '../utils/analytics';
+import { siteProfile } from '../data/site';
 
 const NavLink = ({ href, label, onClick }: { href?: string, label: string, onClick?: () => void }) => {
   const handleClick = () => {
@@ -103,7 +104,7 @@ export const Nav = () => {
                 NICO LOPERENA
               </span>
               <span className="font-mono text-[8px] lg:text-[10px] text-foreground/70 font-bold tracking-widest hidden xl:inline-block leading-none">
-                // DEVELOPER
+                // {siteProfile.title.split(' ').slice(-2).join(' ').toUpperCase()}
               </span>
             </a>
           </div>
@@ -121,10 +122,10 @@ export const Nav = () => {
           </div>
 
           {/* Zone 2: Live System Status (Desktop Only) */}
-          <div className="hidden lg:flex lg:col-span-4 flex-col xl:flex-row items-center justify-center xl:justify-between px-2 lg:px-8 border-r border-gray-300 h-full gap-1 xl:gap-4">
+          <div className="hidden lg:flex lg:col-span-3 flex-col xl:flex-row items-center justify-center xl:justify-between px-2 lg:px-6 border-r border-gray-300 h-full gap-1 xl:gap-4">
             <div className="flex items-center gap-2 lg:gap-3">
               <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest text-foreground/70 hidden sm:inline-block truncate">
-                BASED IN ORLANDO, FL
+                {siteProfile.locationShort}
               </span>
             </div>
             <div className="font-mono text-[9px] lg:text-[11px] font-bold text-foreground/80 tracking-widest whitespace-nowrap">
@@ -133,9 +134,10 @@ export const Nav = () => {
           </div>
 
           {/* Zone 3: Navigation Links (Desktop Only) */}
-          <div className="hidden lg:flex lg:col-span-3 items-center justify-between px-2 lg:px-6 border-r border-gray-300 h-full">
+          <div className="hidden lg:flex lg:col-span-4 items-center justify-between px-1 lg:px-4 border-r border-gray-300 h-full">
             <NavLink href="/work" label="WORK" />
             <NavLink href="/about" label="ABOUT" />
+            <NavLink href={siteProfile.resumePath} label="RESUME" />
             <NavLink label="SKILLS" onClick={toggleStackRibbon} />
           </div>
 

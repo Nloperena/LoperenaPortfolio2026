@@ -2,37 +2,38 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { stackTechnologies, stackCopy } from '../data/stack';
 import { track } from '../utils/analytics';
+import { siteProfile } from '../data/site';
 
 const experience = [
   {
     year: '2025 - PRESENT',
-    role: 'SENIOR FULL-STACK ENGINEER (TECH LEAD)',
+    role: 'SENIOR FULL-STACK ENGINEER',
     company: 'FORZA',
-    description: 'Lead architect for flagship digital products (ForzaBuilt.com, RuggedRed.com). Developing customer support agents via Google Gemini API and built internal product/media management portals using Vite, React, PostgreSQL, and Heroku.'
+    description: 'Lead full-stack web development for multi-brand industrial sites. Rebuilt ForzaBuilt.com and RuggedRed.com on React/Astro with Vercel deployments, interactive product tools, and Core Web Vitals optimization.'
   },
   {
     year: '2024 - PRESENT',
-    role: 'SENIOR CONSULTANT — AI & WEB',
-    company: 'INDEPENDENT',
-    description: 'Designing and delivering custom AI solutions that automate business workflows. Building high-performance web applications optimized for Core Web Vitals and advising on digital transformation strategy.'
+    role: 'FOUNDER & LEAD FULL-STACK ENGINEER',
+    company: 'NEXRENA',
+    description: 'Built and operate a custom platform (Next.js, Node/Express, PostgreSQL) for CRM, project management, invoicing, and client delivery with API-integrated workflows.'
   },
   {
     year: '2023 - 2024',
-    role: 'DIR. OF DIGITAL MARKETING & DEV',
+    role: 'WEB DEVELOPER',
     company: 'VITO FRYFILTER',
-    description: 'Architected a complete Shopify e-commerce ecosystem producing 285% YoY traffic growth. Built automated testimonial systems and designed data-segmented email marketing funnels achieving 30% open rates.'
+    description: 'Architected Shopify e-commerce producing 285% YoY traffic growth and 2.8% conversion rate. Built testimonial automation (8 to 40+ Google reviews, still active) and email marketing systems.'
   },
   {
     year: '2022 - 2024',
     role: 'FULL-STACK WEB DEVELOPER',
     company: 'VILLA MARKETERS',
-    description: 'Managed technical infrastructure for 15+ WordPress sites with 99%+ uptime. Implemented custom PHP/React functionality and executed technical SEO strategies for high-competition keywords.'
+    description: 'Managed 15+ WordPress sites with 99%+ uptime. Custom HTML/CSS/JS, Elementor, and technical SEO for high-competition vacation rental keywords.'
   },
   {
     year: '2020 - 2023',
     role: 'IT ADMINISTRATOR & DEVELOPER',
     company: 'FURNITURE PACKAGES USA',
-    description: 'Owned the entire IT infrastructure while building early internal automation tools to connect inventory and marketing data. Served as primary technical advisor for operational requirements.'
+    description: 'Owned IT infrastructure while building internal automation and web tooling. Primary technical advisor bridging operations and engineering.'
   }
 ];
 
@@ -87,9 +88,9 @@ export const AboutExperience = () => {
               <SplitText text="[ ABOUT ME ]" />
             </div>
             <h1 className="text-[clamp(3rem,6vw,8rem)] break-words font-sans font-black tracking-tighter leading-[0.9] text-foreground uppercase mb-8">
-              <SplitText text="SYSTEMS." />
+              <SplitText text="ENGINEERING." />
               <br />
-              <SplitText text="STRATEGY." delay={0.4} />
+              <SplitText text="DELIVERY." delay={0.4} />
             </h1>
           </div>
           
@@ -101,7 +102,7 @@ export const AboutExperience = () => {
               transition={{ delay: 0.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="font-sans text-2xl lg:text-3xl leading-relaxed text-foreground/80 font-light mb-12"
             >
-              Senior software engineer with 7+ years building full-stack applications, with a sharp focus on integrating AI into real product workflows. I bring a practical, ROI-driven perspective: systems built at previous roles continue generating measurable results long after handoff.
+              Senior full-stack engineer with 7+ years shipping production web applications and APIs (React, Next.js, Node.js, TypeScript, Python, PostgreSQL). Remote-first. Systems built at previous roles continue delivering measurable results after handoff.
             </motion.p>
             
             <motion.div 
@@ -111,8 +112,8 @@ export const AboutExperience = () => {
               transition={{ delay: 1.0, duration: 0.6 }}
             >
               <a 
-                href="/Nicholas_Loperena_Resume.pdf" 
-                download="Nicholas_Loperena_Resume.pdf"
+                href={siteProfile.resumePath} 
+                download={siteProfile.resumeDownloadName}
                 onClick={() => track('about_resume_download')}
                 className="inline-flex items-center gap-4 bg-foreground text-background py-5 px-8 font-mono text-xs font-bold uppercase tracking-[0.2em] hover:bg-highlight hover:text-foreground transition-all duration-300 group"
               >

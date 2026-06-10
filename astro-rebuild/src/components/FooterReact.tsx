@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { track } from '../utils/analytics';
+import { siteProfile } from '../data/site';
 import {
   sectionSequence,
   drawLineX,
@@ -37,7 +38,7 @@ export const FooterReact = () => {
                 Nico Loperena
               </h3>
               <p className="font-sans text-xs md:text-sm text-foreground/70 leading-relaxed max-w-[250px]">
-                Senior Full-Stack AI-Native Engineer building high-performance web ecosystems, AI integrations, and cloud infrastructure.
+                {siteProfile.footerBlurb}
               </p>
             </motion.div>
           </div>
@@ -56,7 +57,7 @@ export const FooterReact = () => {
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
                 <span className="font-sans text-xs md:text-sm font-bold uppercase tracking-wider text-foreground">
-                  Accepting New Projects
+                  {siteProfile.availability}
                 </span>
               </div>
             </motion.div>
@@ -74,7 +75,7 @@ export const FooterReact = () => {
                 Base of Operations
               </span>
               <span className="font-sans text-xs md:text-sm font-bold uppercase tracking-wider text-foreground">
-                Orlando, FL // EST
+                {siteProfile.locationShort}
               </span>
             </motion.div>
           </div>
@@ -89,7 +90,7 @@ export const FooterReact = () => {
               </span>
               <div className="flex flex-col gap-2">
                 <motion.a
-                  href="https://www.linkedin.com/in/nicholas-loperena-022813185/"
+                  href={siteProfile.linkedInUrl}
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => track('final_cta_social_click', { platform: 'linkedin' })}
@@ -104,7 +105,7 @@ export const FooterReact = () => {
                   <motion.span variants={arrowIn} className="font-mono text-xs text-foreground ml-1">→</motion.span>
                 </motion.a>
                 <motion.a
-                  href="https://github.com/NLoperena"
+                  href={siteProfile.githubUrl}
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => track('final_cta_social_click', { platform: 'github' })}
@@ -119,7 +120,7 @@ export const FooterReact = () => {
                   <motion.span variants={arrowIn} className="font-mono text-xs text-foreground ml-1">→</motion.span>
                 </motion.a>
                 <motion.a
-                  href="mailto:NicholasLoperena@gmail.com"
+                  href={`mailto:${siteProfile.email}`}
                   onClick={() => track('final_cta_social_click', { platform: 'email' })}
                   className="group flex items-center w-fit hover:bg-white transition-colors duration-0"
                   initial="rest"

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { track } from '../utils/analytics';
+import { siteProfile } from '../data/site';
 
 export const FinalCTA = () => {
   const currentYear = new Date().getFullYear();
@@ -62,17 +63,17 @@ export const FinalCTA = () => {
           <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-end border-b md:border-b-0 md:border-r border-neutral-800/50 relative">
             {/* Eyebrow */}
             <div className="absolute top-8 left-8 md:top-12 md:left-12 font-mono text-[10px] md:text-xs font-bold tracking-[0.3em] text-neutral-500 uppercase flex items-center gap-4">
-              Ready when you are <span className="hidden sm:block w-12 h-px bg-neutral-800"></span> Let’s build something
+              {siteProfile.availability} <span className="hidden sm:block w-12 h-px bg-neutral-800"></span> {siteProfile.workStyle}
             </div>
             
             <motion.div style={{ y: y1, opacity: opacity1 }}>
               <h2 className="text-[clamp(3.5rem,7vw,9rem)] font-black leading-[0.85] tracking-tighter uppercase text-[#ededed]">
-                BUILD<br/>
-                SOMETHING<br/>
-                LASTING.
+                LET&apos;S<br/>
+                CONNECT<br/>
+                SOON.
               </h2>
               <p className="font-serif text-neutral-400 mt-8 text-xl max-w-md italic leading-relaxed">
-                Have a project in mind? I’d love to hear about it—and help you ship something that lasts.
+                Hiring for a senior full-stack role? I&apos;d love to hear about your team, stack, and what you&apos;re building.
               </p>
             </motion.div>
           </div>
@@ -102,14 +103,14 @@ export const FinalCTA = () => {
         <div className="w-full h-24 md:h-20 border-t border-neutral-800/50 bg-transparent relative z-20 flex items-center shrink-0">
           <div className="w-full px-6 md:px-12 flex flex-col md:flex-row items-center justify-between h-full py-4 md:py-0">
             <div className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-500 mb-2 md:mb-0">
-              © {currentYear} NICO LOPERENA // SENIOR FULL-STACK AI-NATIVE ENGINEER
+              © {currentYear} NICO LOPERENA // {siteProfile.title.toUpperCase()}
             </div>
             
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
               {[
-                { label: 'LINKEDIN', url: 'https://www.linkedin.com/in/nicholas-loperena-022813185/' },
-                { label: 'GITHUB', url: 'https://github.com/NLoperena' },
-                { label: 'EMAIL', url: 'mailto:NicholasLoperena@gmail.com' }
+                { label: 'LINKEDIN', url: siteProfile.linkedInUrl },
+                { label: 'GITHUB', url: siteProfile.githubUrl },
+                { label: 'EMAIL', url: `mailto:${siteProfile.email}` }
               ].map((social) => (
                 <a 
                   key={social.label}

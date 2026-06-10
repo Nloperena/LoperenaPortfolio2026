@@ -31,8 +31,9 @@ export const stackTechnologies = [
 ];
 
 export const stackCopy = {
-  eyebrow: "[ SYSTEM INFRASTRUCTURE ]",
-  headline: "ENGINEERED FOR SCALE.",
-  description: "The tools are a means to an end. While I specialize in the modern JavaScript ecosystem and AI integration, my ultimate focus is on building resilient systems that solve your specific business challenges.",
-  ctaButton: "Discuss your stack",
+  eyebrow: "[ TECHNICAL STACK ]",
+  headline: "BUILT FOR PRODUCTION.",
+  description:
+    "React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS — with practical AI tooling where it speeds delivery. Focused on maintainable systems that ship and scale.",
+  ctaButton: "Discuss opportunities",
 };

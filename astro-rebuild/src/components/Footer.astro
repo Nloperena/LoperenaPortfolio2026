@@ -1,32 +1,27 @@
 ---
+import { siteProfile } from '../data/site';
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="py-24 px-6 border-t border-accent/10 mt-20 bg-background-dark text-foreground-light">
   <div class="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
     <div>
-      <h2 class="font-serif text-3xl font-bold text-highlight mb-4 italic">Nico Loperena</h2>
+      <h2 class="font-serif text-3xl font-bold text-highlight mb-4 italic">{siteProfile.name}</h2>
       <p class="text-sm text-foreground-light/60 font-serif italic max-w-sm leading-relaxed">
-        Senior Full-Stack AI-Native Engineer building high-performance web ecosystems, AI integrations, and cloud infrastructure that help businesses scale.
+        {siteProfile.footerBlurb}
       </p>
     </div>
     
     <div class="flex flex-col md:items-end gap-6">
       <div class="flex gap-8">
-        <a href="https://www.linkedin.com/in/nicholas-loperena-022813185/" target="_blank" onclick="window.va && window.va('event', { name: 'final_cta_social_click', data: { platform: 'linkedin' } })" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">LinkedIn</a>
-        <a href="https://github.com/NLoperena" target="_blank" onclick="window.va && window.va('event', { name: 'final_cta_social_click', data: { platform: 'github' } })" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">GitHub</a>
-        <a href="mailto:NicholasLoperena@gmail.com" onclick="window.va && window.va('event', { name: 'final_cta_social_click', data: { platform: 'email' } })" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">Email</a>
+        <a href={siteProfile.linkedInUrl} target="_blank" onclick="window.va && window.va('event', { name: 'final_cta_social_click', data: { platform: 'linkedin' } })" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">LinkedIn</a>
+        <a href={siteProfile.githubUrl} target="_blank" onclick="window.va && window.va('event', { name: 'final_cta_social_click', data: { platform: 'github' } })" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">GitHub</a>
+        <a href={`mailto:${siteProfile.email}`} onclick="window.va && window.va('event', { name: 'final_cta_social_click', data: { platform: 'email' } })" class="text-xs font-mono font-bold uppercase tracking-[0.2em] hover:text-highlight transition-colors">Email</a>
       </div>
       <p class="text-xs font-mono text-foreground-light/30 uppercase tracking-[0.3em] font-bold">
-        © {year} Nico Loperena
+        © {year} {siteProfile.name}
       </p>
     </div>
   </div>
 </footer>
-
-
-
-
-
-
-

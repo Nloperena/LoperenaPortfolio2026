@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { track } from '../utils/analytics';
+import { siteProfile } from '../data/site';
 
 const HERO_VIDEO_SRC = '/Still-motion_of_me.webm';
 const HERO_IMAGE_WEBP = '/professional-photo.webp';
@@ -110,10 +111,10 @@ export const Hero = () => {
           <div className="overflow-hidden">
             <motion.div variants={contentReveal} className="flex items-center justify-between w-full">
               <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">
-                Senior Full-Stack AI-Native Engineer
+                {siteProfile.title}
               </span>
               <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-accent hidden sm:block ml-auto">
-                Orlando, FL / Global
+                {siteProfile.location}
               </span>
             </motion.div>
           </div>
@@ -199,16 +200,16 @@ export const Hero = () => {
           <div className="overflow-hidden">
             <motion.div variants={contentReveal} className="w-full flex flex-col gap-8">
               <p className="font-serif italic text-lg md:text-xl text-foreground/80 leading-relaxed m-0 max-w-4xl">
-                I engineer high-performance websites, integrate AI solutions, and design cloud infrastructure to help brands operate faster and convert more qualified leads.
+                {siteProfile.tagline}
               </p>
 
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+              <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-6">
                 <button
                   onClick={handleContactClick}
                   className="group relative bg-foreground text-background py-5 px-7 font-mono text-xs font-bold uppercase tracking-[0.2em] hover:bg-highlight hover:text-foreground transition-all duration-300 shadow-none rounded-none border border-foreground"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-3">
-                    Start a Project
+                    Get in Touch
                     <span className="font-mono text-lg transition-transform duration-300 group-hover:translate-x-1.5 leading-none -mt-0.5">
                       →
                     </span>
@@ -216,12 +217,21 @@ export const Hero = () => {
                 </button>
 
                 <a
+                  href={siteProfile.resumePath}
+                  download={siteProfile.resumeDownloadName}
+                  onClick={() => track('hero_cta_click', { cta: 'resume' })}
+                  className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-foreground border border-foreground/30 hover:border-foreground py-5 px-7 transition-colors whitespace-nowrap"
+                >
+                  Download Resume
+                </a>
+
+                <a
                   href="/about"
                   onClick={() => track('hero_cta_click', { cta: 'about' })}
                   className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-accent hover:text-foreground transition-colors whitespace-nowrap"
-                  aria-label="View career samples and experience details"
+                  aria-label="View experience and career details"
                 >
-                  View Career Samples
+                  View Experience
                 </a>
               </div>
             </motion.div>

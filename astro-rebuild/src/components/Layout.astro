@@ -7,13 +7,15 @@ import { IntakeModal } from './IntakeModal';
 import { StackRibbon } from './StackRibbon';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import { siteProfile } from '../data/site';
 
 interface Props {
 	title: string;
 	description?: string;
 }
 
-const { title, description = "Nico Loperena - Senior Full-Stack AI-Native Engineer" } = Astro.props;
+const { title, description = `${siteProfile.name} - ${siteProfile.titleExtended}` } = Astro.props;
+const ogImage = new URL(siteProfile.ogImage, siteProfile.siteUrl).href;
 ---
 
 <!doctype html>
@@ -22,9 +24,19 @@ const { title, description = "Nico Loperena - Senior Full-Stack AI-Native Engine
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="canonical" href={siteProfile.siteUrl} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={siteProfile.siteUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
 		
 		<link rel="preload" as="image" href="/professional-photo.webp" />
 
