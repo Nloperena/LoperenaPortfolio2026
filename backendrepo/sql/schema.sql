@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS intake_submissions (
   id BIGSERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   email TEXT NOT NULL,
-  company TEXT NOT NULL,
+  company TEXT NOT NULL DEFAULT '',
   project_scope TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
