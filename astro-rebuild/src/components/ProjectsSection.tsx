@@ -16,8 +16,8 @@ import { track } from '../utils/analytics';
 export const ProjectsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Create a scroll track based on the number of panels (1 title panel + projects)
-  const totalPanels = projects.length + 1;
+  // Create a scroll track based on the number of project panels
+  const totalPanels = projects.length;
   const trackHeight = `${totalPanels * 100}vh`;
 
   const { scrollYProgress } = useScroll({
@@ -70,47 +70,6 @@ export const ProjectsSection = () => {
             width: `${totalPanels * 100}vw` 
           }}
         >
-          {/* PANEL 1: Title Frame */}
-          <div className="w-screen h-[100svh] flex-shrink-0 relative border-r border-accent/20 flex flex-col justify-center">
-            {/* Structural Lines */}
-            <div className="absolute top-16 md:top-24 left-0 right-0 h-px bg-accent/20"></div>
-            <div className="absolute bottom-16 md:bottom-24 left-0 right-0 h-px bg-accent/20"></div>
-            <div className="absolute top-0 bottom-0 left-1/2 w-px bg-accent/20 hidden md:block"></div>
-
-            <div className="absolute top-24 left-6 md:top-32 md:left-12 font-mono text-[10px] md:text-xs font-bold tracking-[0.3em] text-accent uppercase">
-              [ PORTFOLIO LEDGER ]
-            </div>
-
-            <div className="w-full px-6 md:px-12 lg:px-24 relative overflow-hidden">
-              <h1 className="text-[clamp(4rem,10vw,12rem)] font-sans font-black uppercase leading-[0.85] tracking-tighter text-foreground relative z-10">
-                <motion.span 
-                  className="block"
-                  initial={{ y: "100%", opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  SHIPPED.
-                </motion.span>
-                <motion.span 
-                  className="block text-accent/80"
-                  initial={{ y: "100%", opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-                >
-                  SYSTEMS.
-                </motion.span>
-              </h1>
-              
-              {/* Background decorative typography */}
-              <div className="absolute right-[-5%] top-[10%] text-[20vw] font-black text-accent/[0.02] select-none pointer-events-none leading-none z-0">
-                WORK
-              </div>
-            </div>
-          </div>
-
-          {/* PANELS 2+: Project Specs */}
           {projects.map((project, index) => (
             <div key={project.id} className="w-screen h-[100svh] flex-shrink-0 relative border-r border-accent/20">
               <div className="flex flex-col md:grid md:grid-cols-12 h-full w-full">

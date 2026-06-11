@@ -37,17 +37,22 @@ export function runHeroIntro(root: HTMLElement, gsap: GsapInstance): gsap.core.T
       root.querySelectorAll('.hero-highlight'),
       { y: 14, opacity: 0, duration: 0.45, stagger: 0.07 },
       '-=0.3'
-    )
-    .from(
-      root.querySelector('.hero-video'),
+    );
+
+  const video = root.querySelector('.hero-video');
+  if (video) {
+    tl.from(
+      video,
       { y: 40, opacity: 0, scale: 0.94, duration: 1.1, ease: 'power2.out' },
       '-=0.85'
-    )
-    .from(
-      root.querySelectorAll('.hero-cta > *'),
-      { y: 18, opacity: 0, duration: 0.5, stagger: 0.08 },
-      '-=0.55'
     );
+  }
+
+  tl.from(
+    root.querySelectorAll('.hero-cta > *'),
+    { y: 18, opacity: 0, duration: 0.5, stagger: 0.08 },
+    '-=0.55'
+  );
 
   return tl;
 }

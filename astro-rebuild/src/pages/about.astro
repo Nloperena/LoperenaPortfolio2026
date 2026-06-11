@@ -1,8 +1,14 @@
 ---
 import Layout from '../components/Layout.astro';
+import { PageHero } from '../components/PageHero';
 import { AboutExperience } from '../components/AboutExperience';
 ---
 
 <Layout title="About | Nico Loperena" description="Senior full-stack engineer with 7+ years shipping React, Next.js, Node.js, and PostgreSQL systems. Experience, stack, and resume.">
-  <AboutExperience client:idle />
+  <div transition:name="page-hero">
+    <PageHero page="about" client:load />
+  </div>
+  <div transition:name="page-body">
+    <AboutExperience client:idle />
+  </div>
 </Layout>

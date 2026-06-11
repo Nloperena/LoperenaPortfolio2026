@@ -1,6 +1,6 @@
 ---
 import Layout from '../components/Layout.astro';
-import { Hero } from '../components/Hero';
+import { PageHero } from '../components/PageHero';
 import { Capabilities } from '../components/Capabilities';
 import { ProjectsSectionHome } from '../components/ProjectsSectionHome';
 import { Proof } from '../components/Proof';
@@ -31,16 +31,14 @@ import { siteProfile } from '../data/site';
 	})} />
 
 	<div class="space-y-32 md:space-y-48 pb-40">
-		<!-- Hero (Editorial Brutalism) with Framer Motion -->
-		<Hero client:only="react" />
+		<div transition:name="page-hero">
+			<PageHero page="home" client:load />
+		</div>
 
-		<!-- Unified Integrity & Impact Section (Full Width) -->
-		<Capabilities client:visible />
-
-		<!-- Projects -->
-		<ProjectsSectionHome client:visible />
-
-		<!-- Engineered for Impact Proof Block -->
-		<Proof client:visible />
+		<div transition:name="page-body">
+			<Capabilities client:visible />
+			<ProjectsSectionHome client:visible />
+			<Proof client:visible />
+		</div>
 	</div>
 </Layout>
