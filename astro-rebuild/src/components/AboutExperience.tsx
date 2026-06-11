@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { stackTechnologies, stackCopy } from '../data/stack';
 import { track } from '../utils/analytics';
-import { siteProfile } from '../data/site';
 
 const experience = [
   {
@@ -37,39 +36,7 @@ const experience = [
   }
 ];
 
-const SplitText = ({ text, delay = 0 }: { text: string, delay?: number }) => {
-  return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={{
-        visible: { transition: { staggerChildren: 0.04, delayChildren: delay } }
-      }}
-      className="inline-block"
-    >
-      {text.split('').map((char, i) => (
-        <motion.span
-          key={i}
-          variants={{
-            hidden: { opacity: 0, y: 20, rotateX: -90, filter: 'blur(4px)' },
-            visible: { 
-              opacity: 1, 
-              y: 0, 
-              rotateX: 0,
-              filter: 'blur(0px)',
-              transition: { type: "spring", damping: 15, stiffness: 400 }
-            }
-          }}
-          className="inline-block origin-bottom"
-          style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
-        >
-          {char}
-        </motion.span>
-      ))}
-    </motion.div>
-  );
-};
+];
 
 export const AboutExperience = () => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
@@ -77,56 +44,10 @@ export const AboutExperience = () => {
 
   return (
     <div className="w-full relative block bg-background pb-0">
-      
-      {/* SECTION 1: HERO (Sticks to Top) */}
-      <section className="sticky top-0 min-h-screen w-full flex items-center justify-center bg-background z-10 overflow-hidden px-4 md:px-8 border-b border-accent/20">
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(to right, #7D6B5D 1px, transparent 1px), linear-gradient(to bottom, #7D6B5D 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-        
-        <div className="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-10 pt-32 pb-16">
-          <div className="flex flex-col justify-center">
-            <div className="font-mono text-[10px] md:text-xs font-bold tracking-[0.3em] text-accent uppercase mb-8">
-              <SplitText text="[ ABOUT ME ]" />
-            </div>
-            <h1 className="text-[clamp(3rem,6vw,8rem)] break-words font-sans font-black tracking-tighter leading-[0.9] text-foreground uppercase mb-8">
-              <SplitText text="ENGINEERING." />
-              <br />
-              <SplitText text="DELIVERY." delay={0.4} />
-            </h1>
-          </div>
-          
-          <div className="flex flex-col justify-center">
-            <motion.p 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-sans text-2xl lg:text-3xl leading-relaxed text-foreground/80 font-light mb-12"
-            >
-              Senior full-stack engineer with 7+ years shipping production web applications and APIs (React, Next.js, Node.js, TypeScript, Python, PostgreSQL). Remote-first. Systems built at previous roles continue delivering measurable results after handoff.
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 1.0, duration: 0.6 }}
-            >
-              <a 
-                href={siteProfile.resumePath} 
-                download={siteProfile.resumeDownloadName}
-                onClick={() => track('about_resume_download')}
-                className="inline-flex items-center gap-4 bg-foreground text-background py-5 px-8 font-mono text-xs font-bold uppercase tracking-[0.2em] hover:bg-highlight hover:text-foreground transition-all duration-300 group"
-              >
-                DOWNLOAD RESUME
-                <span className="font-mono text-lg leading-none -mt-0.5 transition-transform duration-300 group-hover:translate-y-1">↓</span>
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2: EXPERIENCE LEDGER (Sticks to Top) */}
-      <section className="sticky top-0 min-h-screen w-full bg-white text-black z-20 flex flex-col justify-center pt-32 pb-32 px-4 md:px-8">
+      <section
+        id="experience"
+        className="sticky top-0 min-h-screen w-full bg-white text-black z-20 flex flex-col justify-center pt-24 pb-32 px-4 md:px-8 border-t border-accent/20"
+      >
          <div className="max-w-[1400px] w-full mx-auto flex flex-col">
             <div className="mb-16 overflow-hidden">
               <motion.h2 

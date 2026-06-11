@@ -87,3 +87,61 @@
   animation: tagPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   opacity: 0;
 }
+
+/* Astro view transitions */
+@keyframes page-rise-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+}
+
+@keyframes page-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-crossfade-out {
+  from { opacity: 1; }
+  to { opacity: 0.85; }
+}
+
+@keyframes hero-crossfade-in {
+  from { opacity: 0.85; }
+  to { opacity: 1; }
+}
+
+::view-transition-old(page-body) {
+  animation: page-rise-out 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-new(page-body) {
+  animation: page-rise-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+::view-transition-old(page-hero) {
+  animation: hero-crossfade-out 0.4s ease both;
+}
+
+::view-transition-new(page-hero) {
+  animation: hero-crossfade-in 0.5s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page-body),
+  ::view-transition-new(page-body),
+  ::view-transition-old(page-hero),
+  ::view-transition-new(page-hero) {
+    animation: none;
+  }
+}
