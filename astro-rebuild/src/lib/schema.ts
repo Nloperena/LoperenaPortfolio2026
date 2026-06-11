@@ -8,11 +8,7 @@ import { siteProfile } from '../data/site';
 
 import { absoluteUrl } from '../data/seo';
 
-
-
 const personId = `${siteProfile.siteUrl}/#person`;
-
-
 
 type Crumb = { name: string; path: string };
 
@@ -68,6 +64,10 @@ export function personJsonLd(options?: { includeExperience?: boolean }) {
 
     jobTitle: siteProfile.title,
 
+    description: `${siteProfile.availability}. ${siteProfile.founderLine}.`,
+
+    image: absoluteUrl('/og/og-about.png'),
+
     url: siteProfile.siteUrl,
 
     email: `mailto:${siteProfile.email}`,
@@ -109,12 +109,7 @@ export function personJsonLd(options?: { includeExperience?: boolean }) {
       '@type': 'Organization',
       name: 'Nexrena',
       url: siteProfile.nexrenaUrl,
-      description: 'B2B web design, SEO, and digital growth agency',
-    },
-    worksFor: {
-      '@type': 'Organization',
-      name: 'Nexrena',
-      url: siteProfile.nexrenaUrl,
+      description: 'B2B web design, SEO, and digital growth agency (founder-led)',
     },
 
     knowsAbout: [

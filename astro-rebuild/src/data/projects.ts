@@ -6,6 +6,7 @@ export interface Project {
   longDescription: string;
   tags: string[];
   link: string;
+  nexrenaCaseStudy?: string;
   image?: string;
   allowEmbed?: boolean;
 }
@@ -19,6 +20,7 @@ export const projects: Project[] = [
     longDescription: 'Rebuilt a complex industrial adhesives catalog into a clean B2B storefront that helps buyers find products faster and place orders with less friction.',
     tags: ['Astro', 'Next.js', 'B2B', 'Tailwind'],
     link: 'https://forzabuilt.com',
+    nexrenaCaseStudy: 'https://www.nexrena.com/work/forzabuilt/',
     allowEmbed: true
   },
   {
@@ -29,6 +31,7 @@ export const projects: Project[] = [
     longDescription: 'Modernized a legacy commerce stack with a headless setup focused on speed, maintainability, and conversion-oriented UX.',
     tags: ['React', 'AWS', 'E-Commerce', 'Node.js'],
     link: 'https://ruggedred.com',
+    nexrenaCaseStudy: 'https://www.nexrena.com/work/rugged-red/',
     image: '/RuggedRed.png',
     allowEmbed: true
   },
@@ -40,6 +43,7 @@ export const projects: Project[] = [
     longDescription: 'Moved a traditional industrial sales process into a modern online storefront that supports global buyers and partner channels.',
     tags: ['Shopify', 'React', 'Liquid'],
     link: 'https://shop.vitofryfilter.com',
+    nexrenaCaseStudy: 'https://www.nexrena.com/work/vito-fryfilter/',
     image: '/VITOShop.webp',
     allowEmbed: false
   },
@@ -51,6 +55,7 @@ export const projects: Project[] = [
     longDescription: 'Simplified a complex procurement workflow for large furniture packages so teams can quote, coordinate, and move projects forward faster.',
     tags: ['Next.js', 'PostgreSQL', 'B2B', 'COBOL'],
     link: 'https://fpusa.vercel.app',
+    nexrenaCaseStudy: 'https://www.nexrena.com/work/furniture-packages-usa/',
     image: '/FPUSA.png',
     allowEmbed: true
   }

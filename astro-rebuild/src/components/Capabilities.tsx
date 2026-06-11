@@ -29,7 +29,7 @@ const WebAppMockup = ({ isBefore }: { isBefore?: boolean }) => {
       <div className="flex-1 flex flex-col relative bg-white overflow-hidden p-16 pb-20">
         <div className={`transition-opacity duration-500 z-0 ${isBefore ? 'opacity-20' : 'opacity-100'}`}>
           <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1]}} style={{ willChange: "transform, opacity" }}>
-            <h1 className="text-6xl md:text-8xl lg:text-[7rem] text-[#2C2A27] leading-[0.85]" style={{ fontFamily: '"Playfair Display", "Fraunces", serif', fontStyle: 'italic' }}>SHOP.<br/>FAST.</h1>
+            <p className="text-6xl md:text-8xl lg:text-[7rem] text-[#2C2A27] leading-[0.85]" style={{ fontFamily: '"Playfair Display", "Fraunces", serif', fontStyle: 'italic' }} aria-hidden="true">SHOP.<br/>FAST.</p>
           </motion.div>
           <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.5}} className="mt-8" style={{ willChange: "opacity" }}>
              <button className="bg-[#2C2A27] text-white px-8 py-4 font-mono text-[10px] uppercase tracking-widest font-bold">Start Shopping →</button>
@@ -313,9 +313,9 @@ export const Capabilities = () => {
       id: "01",
       title: "High-Performance Web Apps",
       desc: "Fast, conversion-focused web experiences that are maintainable, scalable, and built for growth.",
-      scenario: "Your current e-commerce or B2B site takes 4 seconds to load, causing high-intent buyers to bounce before seeing your catalog. I migrate legacy systems to Headless architectures that load instantly, integrating seamlessly with your CMS or inventory management to capture lost revenue.",
-      stat: "83%",
-      statLabel: "AVG. LOAD TIME REDUCTION",
+      scenario: "Rebuilt ForzaBuilt's 200+ SKU B2B catalog on Astro with sub-second loads and 99% Lighthouse desktop—headless patterns, CMS governance, and redirect-safe migrations I apply on product teams shipping commerce or marketing sites.",
+      stat: "99%",
+      statLabel: "LIGHTHOUSE DESKTOP",
       quote: '"INCREDIBLE ENGAGEMENT FROM A HUGE POTENTIAL CUSTOMER." — FORZA',
       badges: ['NEXT.JS', 'ASTRO', 'VERCEL'],
       icon: Globe,
@@ -325,10 +325,10 @@ export const Capabilities = () => {
       id: "02",
       title: "AI Integrations",
       desc: "Practical AI workflows that reduce manual work, accelerate delivery, and improve decision speed.",
-      scenario: "Your team is burning hours manually answering routine customer inquiries or digging through internal documents. I engineer custom LLM workflows that securely index your company's data, allowing employees or customers to instantly query exactly what they need, drastically reducing operational drag.",
+      scenario: "Shipped internal LLM workflows that indexed API docs and onboarding FAQs—cutting integration question turnaround from hours to minutes for teams wiring new fulfillment and webhook endpoints.",
       stat: "12x",
       statLabel: "FASTER KNOWLEDGE RETRIEVAL",
-      quote: '"DRASTICALLY REDUCED OUR OPERATIONAL DRAG." — OPS TEAM',
+      quote: 'PRODUCTION RAG OVER INTERNAL DOCS — NOT A DEMO.',
       badges: ['OPENAI', 'PYTHON', 'VECTOR DB'],
       icon: Cpu,
       span: "lg:col-span-6"
@@ -337,10 +337,10 @@ export const Capabilities = () => {
       id: "03",
       title: "Cloud Architecture",
       desc: "Reliable cloud foundations designed for uptime, flexibility, and long-term operational efficiency.",
-      scenario: "Your infrastructure crashes during traffic spikes, or your AWS bill is bleeding money due to over-provisioned, messy servers. I design and deploy scalable, modern cloud environments that auto-scale when you need power and spin down when you don't, ensuring 99.9% uptime and predictable costs.",
+      scenario: "Designed CDN-backed, load-balanced app tiers for B2B launch traffic—auto-scaling Node services, PostgreSQL failover paths, and observability hooks ops teams could run without a dedicated platform engineer on call.",
       stat: "99.9%",
-      statLabel: "GUARANTEED UPTIME",
-      quote: '"OUR INFRASTRUCTURE FINALLY SCALES WITH OUR TRAFFIC." — CTO',
+      statLabel: "UPTIME TARGET",
+      quote: 'AWS · DOCKER · CDN — SHIPPED, NOT SLIDEDECK.',
       badges: ['AWS', 'DOCKER', 'CDN'],
       icon: Cloud,
       span: "lg:col-span-4"
@@ -349,10 +349,10 @@ export const Capabilities = () => {
       id: "04",
       title: "Data Analytics",
       desc: "Clear analytics pipelines and reporting that translate raw data into meaningful business actions.",
-      scenario: "Your sales, marketing, and operational data are trapped in silos, forcing you to guess which channels are actually profitable. I build automated pipelines that aggregate your data into a single, real-time dashboard, giving leadership absolute clarity to make financial decisions.",
-      stat: "360°",
-      statLabel: "PIPELINE VISIBILITY",
-      quote: '"GAVE LEADERSHIP ABSOLUTE CLARITY TO MAKE DECISIONS." — CEO',
+      scenario: "Wired PostgreSQL reporting pipelines and funnel dashboards so leadership could see channel performance without manual spreadsheet exports—metrics tied to MQL and revenue outcomes, not vanity traffic.",
+      stat: "0→28",
+      statLabel: "MQLS IN 4 MONTHS",
+      quote: 'POSTGRESQL PIPELINES · REAL FUNNEL DATA.',
       badges: ['POSTGRESQL', 'API', 'DASHBOARDS'],
       icon: BarChart3,
       span: "lg:col-span-4"
@@ -361,10 +361,10 @@ export const Capabilities = () => {
       id: "05",
       title: "Technical Consulting",
       desc: "Architecture-level guidance to prioritize the right technical investments and reduce costly rework.",
-      scenario: "You are about to hand $150,000 to an outsourced agency for a massive digital transformation, but you don't have an internal technical leader to verify if their architecture makes sense. I act as your fractional architect, auditing proposals, enforcing code standards, and ensuring you don't build a product that needs to be rewritten.",
-      stat: "100%",
-      statLabel: "ARCHITECTURE CONFIDENCE",
-      quote: '"VERIFIED OUR INVESTMENTS AND PREVENTED COSTLY REWORK." — FOUNDER',
+      scenario: "Fractional architecture reviews across vendor proposals and in-flight rebuilds—catching redirect gaps, CMS governance issues, and scope creep before they became rewrite-level debt on B2B migrations.",
+      stat: "200+",
+      statLabel: "SKU MIGRATION SCOPE",
+      quote: 'AUDITS · ROADMAPS · CODE STANDARDS ENFORCED.',
       badges: ['AUDITS', 'STRATEGY', 'ROADMAPS'],
       icon: Briefcase,
       span: "lg:col-span-4"
