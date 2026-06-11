@@ -134,9 +134,10 @@ export const Nav = () => {
           </div>
 
           {/* Zone 3: Navigation Links (Desktop Only) */}
-          <div className="hidden lg:flex lg:col-span-4 items-center justify-between px-1 lg:px-4 border-r border-gray-300 h-full">
+          <div className="hidden lg:flex lg:col-span-4 items-center justify-between px-1 lg:px-2 border-r border-gray-300 h-full">
             <NavLink href="/work" label="WORK" />
             <NavLink href="/about" label="ABOUT" />
+            <NavLink href="/blog" label="BLOG" />
             <NavLink href={siteProfile.resumePath} label="RESUME" />
             <NavLink label="SKILLS" onClick={toggleStackRibbon} />
           </div>

@@ -2,13 +2,31 @@
 import Layout from '../components/Layout.astro';
 import { PageHero } from '../components/PageHero';
 import { AboutExperience } from '../components/AboutExperience';
+import { pageSeo } from '../data/seo';
+import { pageImages } from '../data/pageImages';
+import { breadcrumbJsonLd, personJsonLd, profilePageJsonLd } from '../lib/schema';
+
+const seo = pageSeo.about;
 ---
 
-<Layout title="About | Nico Loperena" description="Senior full-stack engineer with 7+ years shipping React, Next.js, Node.js, and PostgreSQL systems. Experience, stack, and resume.">
-  <div transition:name="page-hero">
-    <PageHero page="about" client:load />
-  </div>
-  <div transition:name="page-body">
-    <AboutExperience client:idle />
-  </div>
+<Layout
+	title={seo.title}
+	description={seo.description}
+	canonicalPath={seo.path}
+	ogImage={pageImages.about.og}
+	ogType={seo.ogType}
+>
+	<script type="application/ld+json" set:html={JSON.stringify(profilePageJsonLd())} />
+	<script type="application/ld+json" set:html={JSON.stringify(personJsonLd({ includeExperience: true }))} />
+	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd([
+		{ name: 'Home', path: '/' },
+		{ name: 'About', path: '/about' },
+	]))} />
+
+	<div transition:name="page-hero">
+		<PageHero page="about" client:load />
+	</div>
+	<div transition:name="page-body">
+		<AboutExperience client:idle />
+	</div>
 </Layout>

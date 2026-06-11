@@ -4,31 +4,23 @@ import { PageHero } from '../components/PageHero';
 import { Capabilities } from '../components/Capabilities';
 import { ProjectsSectionHome } from '../components/ProjectsSectionHome';
 import { Proof } from '../components/Proof';
-import { siteProfile } from '../data/site';
+import { NexrenaHub } from '../components/NexrenaHub';
+import { pageSeo } from '../data/seo';
+import { pageImages } from '../data/pageImages';
+import { personJsonLd, websiteJsonLd } from '../lib/schema';
 
+const seo = pageSeo.home;
 ---
 
-<Layout title={`${siteProfile.name} | ${siteProfile.title}`}>
-	<!-- Schema.org Structured Data -->
-	<script type="application/ld+json" set:html={JSON.stringify({
-		"@context": "https://schema.org",
-		"@type": "Person",
-		"name": siteProfile.legalName,
-		"alternateName": siteProfile.name,
-		"jobTitle": siteProfile.title,
-		"url": siteProfile.siteUrl,
-		"sameAs": [
-			siteProfile.linkedInUrl,
-			siteProfile.githubUrl
-		],
-		"knowsAbout": ["Web Development", "Full-Stack Engineering", "React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "Astro"],
-		"address": {
-			"@type": "PostalAddress",
-			"addressLocality": "Kissimmee",
-			"addressRegion": "FL",
-			"addressCountry": "US"
-		}
-	})} />
+<Layout
+	title={seo.title}
+	description={seo.description}
+	canonicalPath={seo.path}
+	ogImage={pageImages.home.og}
+	ogType={seo.ogType}
+>
+	<script type="application/ld+json" set:html={JSON.stringify(personJsonLd())} />
+	<script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd())} />
 
 	<div class="space-y-32 md:space-y-48 pb-40">
 		<div transition:name="page-hero">
@@ -39,6 +31,7 @@ import { siteProfile } from '../data/site';
 			<Capabilities client:visible />
 			<ProjectsSectionHome client:visible />
 			<Proof client:visible />
+			<NexrenaHub client:visible />
 		</div>
 	</div>
 </Layout>

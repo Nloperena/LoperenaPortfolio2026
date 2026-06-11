@@ -1,45 +1,44 @@
-# Contact form: database setup (Vercel)
+# Contact form setup (Vercel)
 
-The contact form stores submissions in Postgres. On **nicoloperena.com** you see *"Contact form is unavailable: database is not configured on the server"* until a database is connected and the right env var is set.
+## What was broken in production (Jun 2026)
 
-## Option A: Add Neon Postgres from Vercel (recommended)
+| URL | `/api/contact` result |
+|-----|------------------------|
+| `https://nicoloperena.com` (no www) | **404** — apex was not hitting the SSR API |
+| `https://www.nicoloperena.com` | **503** — API works, but no database configured |
 
-1. Open [Vercel Dashboard](https://vercel.com/dashboard) → your **project** (e.g. LoperenaPortfolio2026).
-2. Go to **Storage** (or **Integrations** → Marketplace).
-3. Add **Neon Postgres** (or “Postgres”): Create/connect a database and **Connect** it to this project.
-4. When connecting, choose **Production** (and Preview if you want) so the deployment gets the env vars.
-5. The integration injects **`DATABASE_URL`** automatically. **Redeploy** the project (Deployments → … → Redeploy) so the new env is used.
+The site form uses `fetch('/api/contact')`, so visitors on the apex domain saw a broken form.
 
-## Option B: Use your own Postgres URL
+## Fixes in code (deploy to activate)
 
-If you already have a Postgres database (e.g. Neon, Supabase, Railway):
+1. **`vercel.json`** — redirect `nicoloperena.com` → `www.nicoloperena.com` (all paths)
+2. **`contact.ts`** — saves to Postgres **or** sends email via **Resend** (either one = success)
+3. **Fallback UI** — on error, modal shows **Email me** button (already built in)
 
-1. Vercel Dashboard → your project → **Settings** → **Environment Variables**.
-2. Add one of (the app checks in this order):
-   - **`DATABASE_URL`** (recommended), or  
-   - **`POSTGRES_URL`**
-3. Value: your full connection string, e.g.  
-   `postgres://user:password@host:5432/dbname?sslmode=require`
-4. **Redeploy** after saving.
+## Option A: Resend email (fastest — recommended)
 
-## Create the table
+1. Create free account at [resend.com](https://resend.com)
+2. Create API key
+3. Vercel → project → **Settings → Environment Variables** (Production):
+   - `RESEND_API_KEY` = `re_...`
+   - `CONTACT_TO_EMAIL` = `nicholasloperena@gmail.com`
+   - `RESEND_FROM` = `Portfolio <onboarding@resend.dev>` (testing) or `Contact <contact@nicoloperena.com>` after domain verify
+4. **Redeploy**
 
-Run this SQL once in your database (Neon SQL Editor, Supabase SQL, etc.):
+No Postgres required if Resend is configured.
 
-```sql
-CREATE TABLE IF NOT EXISTS contact_submissions (
-  id         SERIAL PRIMARY KEY,
-  name       VARCHAR(255) NOT NULL,
-  email      VARCHAR(255) NOT NULL,
-  company    VARCHAR(255),
-  message    TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+## Option B: Neon Postgres (optional archive)
 
-CREATE INDEX IF NOT EXISTS idx_contact_submissions_created_at
-  ON contact_submissions (created_at DESC);
+See steps in this file's previous version — add `DATABASE_URL`, run `database/schema.sql`, redeploy.
+
+Both Resend **and** Postgres can be enabled; the form succeeds if either works.
+
+## After deploy
+
+Test:
+
+```powershell
+Invoke-RestMethod -Uri "https://www.nicoloperena.com/api/contact" -Method POST -ContentType "application/json" -Body '{"name":"Test","email":"you@example.com","message":"hello"}'
 ```
 
-The same schema is in `database/schema.sql`.
-
-After the database is connected and the table exists, the live contact form will save submissions and the error will go away.
+Expect `{ "ok": true, ... }` with status 201.

@@ -75,6 +75,19 @@ export const PageHero = ({ page }: PageHeroProps) => {
       className={`relative w-full ${minHeight} bg-background pt-28 pb-16 md:pt-32 md:pb-20 px-4 md:px-8 lg:px-12 z-10 overflow-hidden`}
       data-hero-animate
     >
+      {config.heroImage && (
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+          <img
+            src={config.heroImage}
+            alt=""
+            className="h-full w-full object-cover opacity-[0.12]"
+            loading="eager"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background" />
+        </div>
+      )}
+
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.035]"
         style={{
