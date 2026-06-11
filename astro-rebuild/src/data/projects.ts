@@ -8,6 +8,7 @@ export interface Project {
   link: string;
   nexrenaCaseStudy?: string;
   image?: string;
+  /** Enables opt-in live iframe preview — never auto-loaded for performance. */
   allowEmbed?: boolean;
 }
 

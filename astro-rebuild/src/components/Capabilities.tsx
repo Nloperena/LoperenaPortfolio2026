@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BarChart3, Briefcase, Cloud, Cpu, Globe, X, Database, Network } from 'lucide-react';
 import { track } from '../utils/analytics';
+import { CapabilitiesHeader } from './CapabilitiesHeader';
 import {
   sectionSequence,
-  drawLineX,
-  drawLineY,
   stampUp,
   VIEWPORT_ONCE,
 } from '../utils/motionBlueprint';
@@ -403,61 +402,7 @@ export const Capabilities = () => {
         viewport={VIEWPORT_ONCE}
       >
         {/* --- HEADER ROW --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-accent/20">
-          <div className="lg:col-span-7 p-8 md:p-12 relative flex flex-col justify-center bg-white/30 border-b lg:border-b-0 lg:border-r border-accent/20">
-            <motion.div className="absolute top-0 left-0 right-0 h-px bg-accent/20" variants={drawLineX} />
-            <motion.div className="absolute bottom-0 left-0 right-0 h-px bg-accent/20 lg:hidden" variants={drawLineX} />
-            <motion.div className="absolute top-0 bottom-0 left-0 w-px bg-accent/20" variants={drawLineY} />
-            <div className="overflow-hidden">
-              <motion.div variants={stampUp} className="flex items-center gap-6 mb-4">
-                <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">
-                  Full-stack scope
-                </span>
-                <div className="h-px flex-1 bg-accent/20" />
-              </motion.div>
-            </div>
-            <div className="overflow-hidden">
-              <motion.h2 variants={stampUp} className="text-4xl md:text-6xl font-sans font-black tracking-tighter uppercase text-foreground leading-[0.95]">
-                Shipped in production.
-              </motion.h2>
-            </div>
-            <motion.p
-              variants={stampUp}
-              className="mt-6 max-w-xl font-serif text-lg md:text-xl italic leading-relaxed text-foreground/75"
-            >
-              Web apps, APIs, and cloud infrastructure for B2B and e-commerce — scoped for teams that need speed and maintainability after launch.
-            </motion.p>
-          </div>
-
-          <div className="lg:col-span-5 grid grid-cols-2 bg-accent/[0.02]">
-            {[
-              { value: '285%', label: 'YoY traffic growth', note: 'VITO Shopify rebuild' },
-              { value: '2.8%', label: 'Conversion rate', note: 'E-commerce at scale' },
-              { value: '40+', label: 'Google reviews', note: 'Automation still running' },
-              { value: '7+ yrs', label: 'In production', note: 'React · Node · PostgreSQL' },
-            ].map((metric, index) => (
-              <motion.div
-                key={metric.label}
-                variants={stampUp}
-                className={`p-6 md:p-8 flex flex-col justify-between min-h-[140px] ${
-                  index % 2 === 0 ? 'border-r border-accent/20' : ''
-                } ${index < 2 ? 'border-b border-accent/20' : ''}`}
-              >
-                <span className="font-sans text-3xl md:text-4xl font-black tracking-tighter text-foreground">
-                  {metric.value}
-                </span>
-                <div>
-                  <span className="block font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-foreground">
-                    {metric.label}
-                  </span>
-                  <span className="mt-1 block font-mono text-[9px] uppercase tracking-widest text-accent/80">
-                    {metric.note}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        <CapabilitiesHeader />
 
         {/* --- CAPABILITIES BODY --- */}
         <div className="w-full relative">

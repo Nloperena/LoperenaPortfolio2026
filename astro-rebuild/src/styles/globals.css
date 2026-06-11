@@ -137,7 +137,29 @@
   animation: hero-crossfade-in 0.5s ease both;
 }
 
+@keyframes project-preview-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.project-preview-skeleton {
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(125, 107, 93, 0.08) 45%,
+    rgba(196, 164, 132, 0.18) 50%,
+    rgba(125, 107, 93, 0.08) 55%,
+    transparent 100%
+  );
+  animation: project-preview-shimmer 1.4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .project-preview-skeleton {
+    animation: none;
+    background: rgba(125, 107, 93, 0.08);
+  }
+
   ::view-transition-old(page-body),
   ::view-transition-new(page-body),
   ::view-transition-old(page-hero),
