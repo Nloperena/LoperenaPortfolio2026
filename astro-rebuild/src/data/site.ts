@@ -12,6 +12,10 @@ export const siteProfile = {
   specialty: 'React, Next.js, Node.js, TypeScript, PostgreSQL, AWS',
   tagline:
     'Production web applications and APIs with React, Next.js, Node.js, TypeScript, and PostgreSQL — shipped for B2B and e-commerce teams, remote-first.',
+  heroHeadlineLines: ['Senior Full-Stack', 'Engineer'],
+  heroSubline:
+    'I build production web applications, APIs, and cloud infrastructure — from interface to database.',
+  heroHighlights: ['React & Next.js', 'Node & TypeScript', 'PostgreSQL & AWS'],
   footerBlurb:
     'Senior full-stack engineer building production web applications, APIs, and cloud-deployed platforms for B2B and e-commerce.',
   linkedInUrl: 'https://www.linkedin.com/in/nicholas-loperena/',
