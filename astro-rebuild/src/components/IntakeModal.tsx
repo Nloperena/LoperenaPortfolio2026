@@ -169,18 +169,46 @@ export const IntakeModal = () => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[200] h-screen w-screen bg-[#0a0a0a] flex flex-col md:flex-row overflow-y-auto md:overflow-hidden text-[#ededed]"
+          className="fixed inset-0 z-[200] h-screen w-screen flex flex-col md:flex-row overflow-y-auto md:overflow-hidden text-[#ededed]"
           variants={modalVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
         >
-          {/* Subtle architectural grid lines behind everything */}
-          <div className="absolute inset-0 pointer-events-none z-0" style={{
-            backgroundImage: 'linear-gradient(to right, #262626 1px, transparent 1px), linear-gradient(to bottom, #262626 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
-            opacity: 0.3
-          }}></div>
+          {/* Branded background — revealed through black gradient */}
+          <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+            <img
+              src="/contact-modal-bg.png"
+              alt=""
+              className="h-full w-full object-cover object-[70%_40%] scale-105"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+
+          {/* Black gradient stack — keeps UI mostly black, image peeks at edges */}
+          <div
+            className="absolute inset-0 z-[1] pointer-events-none"
+            aria-hidden="true"
+            style={{
+              background: [
+                'linear-gradient(105deg, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.72) 68%, rgba(0,0,0,0.55) 100%)',
+                'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 35%, transparent 62%)',
+                'radial-gradient(ellipse 90% 80% at 85% 15%, rgba(196,164,132,0.12) 0%, transparent 55%)',
+              ].join(', '),
+            }}
+          />
+
+          {/* Subtle blueprint grid on top of gradient */}
+          <div
+            className="absolute inset-0 pointer-events-none z-[2] opacity-[0.18]"
+            aria-hidden="true"
+            style={{
+              backgroundImage:
+                'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+            }}
+          />
 
           {/* Close Button */}
           <button 
@@ -199,7 +227,7 @@ export const IntakeModal = () => {
           </button>
 
           {/* Left Column (Colossal Typography & Parameters) - 60% */}
-          <div className="w-full md:w-[60%] border-b md:border-b-0 md:border-r border-neutral-800 p-8 md:p-12 lg:p-20 relative z-10 flex flex-col justify-between min-h-[50vh] md:min-h-0 bg-[#0a0a0a]/90 backdrop-blur-sm">
+          <div className="w-full md:w-[60%] border-b md:border-b-0 md:border-r border-neutral-800/80 p-8 md:p-12 lg:p-20 relative z-10 flex flex-col justify-between min-h-[50vh] md:min-h-0 bg-black/55 backdrop-blur-[2px]">
             <motion.div variants={contentVariants} className="mt-8 md:mt-0">
               <h2 className="text-[clamp(4rem,6vw,8rem)] font-black uppercase leading-[0.85] tracking-tighter text-[#ededed]">
                 GET IN<br/>
@@ -207,7 +235,7 @@ export const IntakeModal = () => {
               </h2>
             </motion.div>
 
-            <motion.div variants={contentVariants} className="flex flex-col mt-16 md:mt-auto border border-neutral-800 bg-[#0a0a0a] max-w-xl">
+            <motion.div variants={contentVariants} className="flex flex-col mt-16 md:mt-auto border border-neutral-800/90 bg-black/65 backdrop-blur-sm max-w-xl">
               <div className="grid grid-cols-1 sm:grid-cols-3 border-b border-neutral-800">
                 <div className="p-4 sm:col-span-1 border-b sm:border-b-0 sm:border-r border-neutral-800 font-mono text-[10px] font-bold text-neutral-500 tracking-widest uppercase">
                   AVAILABILITY
@@ -237,7 +265,7 @@ export const IntakeModal = () => {
           </div>
 
           {/* Right Column (The Intake Form) - 40% */}
-          <div className="w-full md:w-[40%] relative z-10 flex flex-col bg-[#0a0a0a]/95 backdrop-blur-md">
+          <div className="w-full md:w-[40%] relative z-10 flex flex-col bg-black/75 backdrop-blur-md md:border-l border-neutral-800/60">
             <div className="flex-1 flex flex-col justify-center p-8 md:p-12 lg:p-20">
               <motion.div variants={contentVariants} className="mb-10 flex flex-col gap-4">
                 <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase">

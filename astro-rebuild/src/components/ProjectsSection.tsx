@@ -1,17 +1,8 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
-
-const LazyIframe = ({ src, title, className }: { src: string, title: string, className: string }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "200px" });
-  return (
-    <div ref={ref} className="absolute inset-0 w-full h-full">
-      {isInView && <iframe src={src} title={title} className={className} />}
-    </div>
-  );
-};
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { projects } from "../data/projects";
 import { track } from '../utils/analytics';
+import { ProjectPreviewMedia } from "./ProjectPreviewMedia";
 
 export const ProjectsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -158,23 +149,14 @@ export const ProjectsSection = () => {
                     viewport={{ margin: "-20%" }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                   >
-                    {project.allowEmbed && project.link ? (
-                      <LazyIframe 
-                        src={project.link} 
-                        className="absolute inset-0 w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700 pointer-events-auto"
-                        title={project.title}
-                      />
-                    ) : project.image ? (
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center font-mono text-sm text-foreground/70 uppercase tracking-widest">
-                        SYSTEM PREVIEW UNAVAILABLE
-                      </div>
-                    )}
+                    <ProjectPreviewMedia
+                      projectId={project.id}
+                      title={project.title}
+                      link={project.link}
+                      image={project.image}
+                      allowEmbed={project.allowEmbed}
+                      imageClassName="grayscale hover:grayscale-0 transition-all duration-700"
+                    />
                   </motion.div>
                 </div>
 

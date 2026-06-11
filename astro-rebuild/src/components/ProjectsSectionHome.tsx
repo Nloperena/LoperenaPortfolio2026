@@ -1,17 +1,8 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
-
-const LazyIframe = ({ src, title, className }: { src: string, title: string, className: string }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "200px" });
-  return (
-    <div ref={ref} className="w-full h-full">
-      {isInView && <iframe src={src} title={title} className={className} />}
-    </div>
-  );
-};
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { projects } from "../data/projects";
 import { track } from '../utils/analytics';
+import { ProjectPreviewMedia } from "./ProjectPreviewMedia";
 import {
   sectionSequence,
   drawLineX,
@@ -118,21 +109,14 @@ export const ProjectsSectionHome = () => {
                       
                       {/* Content Area */}
                       <div className="relative flex-1 bg-white overflow-hidden">
-                        {project.allowEmbed && project.link ? (
-                          <div className="absolute inset-0 w-[160%] h-[160%] origin-top-left scale-[0.625] bg-white">
-                            <LazyIframe 
-                              src={project.link} 
-                              className="w-full h-full border-0 pointer-events-none group-hover:pointer-events-auto transition-all grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 duration-700"
-                              title={project.title}
-                            />
-                          </div>
-                        ) : project.image ? (
-                          <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
-                        ) : (
-                          <div className="absolute inset-0 w-full h-full flex items-center justify-center font-mono text-xs uppercase tracking-[0.2em] text-foreground/70 bg-background">
-                            Live Project
-                          </div>
-                        )}
+                        <ProjectPreviewMedia
+                          projectId={project.id}
+                          title={project.title}
+                          link={project.link}
+                          image={project.image}
+                          allowEmbed={project.allowEmbed}
+                          imageClassName="grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                        />
                         <div className="absolute inset-0 border border-accent/10 pointer-events-none z-10 shadow-[inset_0_0_20px_rgba(0,0,0,0.05)]"></div>
                       </div>
                     </div>
