@@ -1,9 +1,7 @@
 import React, { useLayoutEffect, useRef } from 'react';
-import gsap from 'gsap';
 import { track } from '../utils/analytics';
 import { siteProfile } from '../data/site';
 import { HeroPortrait } from './HeroPortrait';
-import { bindHeroParallax, runHeroIntro } from '../utils/heroAnimations';
 
 export const Hero = () => {
   const rootRef = useRef<HTMLElement>(null);
@@ -12,15 +10,29 @@ export const Hero = () => {
     const root = rootRef.current;
     if (!root) return;
 
-    const ctx = gsap.context(() => {
-      runHeroIntro(root);
-    }, root);
+    let cleanupParallax = () => {};
+    let ctx: { revert: () => void } | null = null;
+    let cancelled = false;
 
-    const cleanupParallax = bindHeroParallax(root);
+    void (async () => {
+      const [{ default: gsap }, { runHeroIntro, bindHeroParallax }] = await Promise.all([
+        import('gsap'),
+        import('../utils/heroAnimations'),
+      ]);
+
+      if (cancelled || !rootRef.current) return;
+
+      ctx = gsap.context(() => {
+        runHeroIntro(root, gsap);
+      }, root);
+
+      cleanupParallax = bindHeroParallax(root, gsap);
+    })();
 
     return () => {
+      cancelled = true;
       cleanupParallax();
-      ctx.revert();
+      ctx?.revert();
     };
   }, []);
 
@@ -33,6 +45,9 @@ export const Hero = () => {
       window.openContactHub();
     }
   };
+
+  const headlineLines = siteProfile.heroHeadlineLines ?? ['Senior Full-Stack', 'Engineer'];
+  const highlights = siteProfile.heroHighlights ?? ['React & Next.js', 'Node & TypeScript', 'PostgreSQL & AWS'];
 
   return (
     <section
@@ -59,7 +74,7 @@ export const Hero = () => {
           </div>
 
           <div className="space-y-1 md:space-y-2">
-            {siteProfile.heroHeadlineLines.map((line, index) => (
+            {headlineLines.map((line, index) => (
               <div key={line} className="overflow-hidden">
                 <h1
                   className={`hero-headline-line block text-[clamp(2.75rem,8vw,6.5rem)] font-sans font-black uppercase leading-[0.92] tracking-tighter ${
@@ -73,11 +88,11 @@ export const Hero = () => {
           </div>
 
           <p className="hero-subline max-w-xl font-serif text-lg md:text-xl italic leading-relaxed text-foreground/80">
-            {siteProfile.heroSubline}
+            {siteProfile.heroSubline ?? siteProfile.tagline}
           </p>
 
           <div className="flex flex-wrap gap-2 md:gap-3">
-            {siteProfile.heroHighlights.map((item) => (
+            {highlights.map((item) => (
               <span
                 key={item}
                 className="hero-highlight inline-flex items-center border border-accent/25 bg-white/50 px-3 py-2 font-mono text-[10px] md:text-[11px] font-bold uppercase tracking-[0.18em] text-foreground/80"
