@@ -2,6 +2,7 @@
 title: "What Employers Should Look for When Hiring a Senior Full-Stack Engineer (Remote)"
 description: "A hiring guide for recruiters and engineering leaders: how to evaluate senior full-stack engineers for remote roles in React, Next.js, Node.js, TypeScript, and PostgreSQL."
 pubDate: 2026-06-10
+audience: recruiter
 tags: ["Hiring", "Recruiting", "Remote", "Full-Stack", "Senior Engineer"]
 ogImage: "/blog/blog-hiring-remote-engineer.png"
 ---

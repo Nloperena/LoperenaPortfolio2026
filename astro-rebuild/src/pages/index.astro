@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '../components/Layout.astro';
 import { PageHero } from '../components/PageHero';
 import { Capabilities } from '../components/Capabilities';
@@ -28,10 +30,10 @@ const seo = pageSeo.home;
 		</div>
 
 		<div transition:name="page-body">
-			<Capabilities client:visible />
-			<ProjectsSectionHome client:visible />
-			<Proof client:visible />
-			<NexrenaHub client:visible />
+			<Capabilities client:idle />
+			<ProjectsSectionHome client:idle />
+			<Proof client:idle />
+			<NexrenaHub client:idle />
 		</div>
 	</div>
 </Layout>

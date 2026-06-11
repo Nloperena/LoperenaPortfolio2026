@@ -2,6 +2,7 @@
 title: "PostgreSQL Patterns for Full-Stack Apps in Production"
 description: "Schema design, indexing, and API patterns I use with PostgreSQL, Node.js, and Next.js for reliable production applications."
 pubDate: 2026-05-13
+audience: engineering
 tags: ["PostgreSQL", "Node.js", "TypeScript", "API", "Database"]
 ogImage: "/blog/blog-postgresql.png"
 ---

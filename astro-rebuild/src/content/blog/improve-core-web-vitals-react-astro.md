@@ -3,6 +3,7 @@ title: "How to Improve Core Web Vitals on React and Astro Sites"
 description: "Practical Core Web Vitals fixes for React and Astro — LCP, INP, and CLS improvements that hold up after launch on Vercel."
 pubDate: 2026-05-27
 updatedDate: 2026-06-10
+audience: engineering
 tags: ["Core Web Vitals", "React", "Astro", "Performance", "Vercel"]
 ogImage: "/blog/blog-core-web-vitals.png"
 ---

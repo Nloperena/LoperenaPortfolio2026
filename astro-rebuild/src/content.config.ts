@@ -8,6 +8,7 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
+    audience: z.enum(['recruiter', 'engineering']).optional(),
     ogImage: z.string().optional(),
     draft: z.boolean().default(false),
   }),
