@@ -110,6 +110,14 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 About
               </motion.a>
               <motion.a 
+                href="/blog" 
+                onClick={onClose}
+                variants={itemVariants}
+                className="font-sans text-5xl sm:text-6xl font-black uppercase tracking-tighter text-[#ededed] hover:text-[#C4A484] transition-colors"
+              >
+                Blog
+              </motion.a>
+              <motion.a 
                 href={siteProfile.resumePath}
                 download={siteProfile.resumeDownloadName}
                 onClick={onClose}

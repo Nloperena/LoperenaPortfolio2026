@@ -90,6 +90,34 @@ export const FooterReact = () => {
               </span>
               <div className="flex flex-col gap-2">
                 <motion.a
+                  href="/blog"
+                  onClick={() => track('final_cta_social_click', { platform: 'blog' })}
+                  className="group flex items-center w-fit hover:bg-white transition-colors duration-0"
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
+                >
+                  <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-widest text-foreground hover:text-highlight transition-colors">
+                    Blog
+                  </span>
+                  <motion.span variants={arrowIn} className="font-mono text-xs text-foreground ml-1">→</motion.span>
+                </motion.a>
+                <motion.a
+                  href={siteProfile.nexrenaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track('final_cta_social_click', { platform: 'nexrena' })}
+                  className="group flex items-center w-fit hover:bg-white transition-colors duration-0"
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
+                >
+                  <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-widest text-foreground hover:text-highlight transition-colors">
+                    Nexrena (Agency)
+                  </span>
+                  <motion.span variants={arrowIn} className="font-mono text-xs text-foreground ml-1">↗</motion.span>
+                </motion.a>
+                <motion.a
                   href={siteProfile.linkedInUrl}
                   target="_blank"
                   rel="noreferrer"

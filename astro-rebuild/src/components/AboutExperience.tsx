@@ -1,42 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { education } from '../data/education';
+import { experience } from '../data/experience';
 import { stackTechnologies, stackCopy } from '../data/stack';
 import { track } from '../utils/analytics';
 
-const experience = [
-  {
-    year: '2025 - PRESENT',
-    role: 'SENIOR FULL-STACK ENGINEER',
-    company: 'FORZA',
-    description: 'Lead full-stack web development for multi-brand industrial sites. Rebuilt ForzaBuilt.com and RuggedRed.com on React/Astro with Vercel deployments, interactive product tools, and Core Web Vitals optimization.'
-  },
-  {
-    year: '2024 - PRESENT',
-    role: 'FOUNDER & LEAD FULL-STACK ENGINEER',
-    company: 'NEXRENA',
-    description: 'Built and operate a custom platform (Next.js, Node/Express, PostgreSQL) for CRM, project management, invoicing, and client delivery with API-integrated workflows.'
-  },
-  {
-    year: '2023 - 2024',
-    role: 'WEB DEVELOPER',
-    company: 'VITO FRYFILTER',
-    description: 'Architected Shopify e-commerce producing 285% YoY traffic growth and 2.8% conversion rate. Built testimonial automation (8 to 40+ Google reviews, still active) and email marketing systems.'
-  },
-  {
-    year: '2022 - 2024',
-    role: 'FULL-STACK WEB DEVELOPER',
-    company: 'VILLA MARKETERS',
-    description: 'Managed 15+ WordPress sites with 99%+ uptime. Custom HTML/CSS/JS, Elementor, and technical SEO for high-competition vacation rental keywords.'
-  },
-  {
-    year: '2020 - 2023',
-    role: 'IT ADMINISTRATOR & DEVELOPER',
-    company: 'FURNITURE PACKAGES USA',
-    description: 'Owned IT infrastructure while building internal automation and web tooling. Primary technical advisor bridging operations and engineering.'
-  }
-];
-
-];
+function formatCompany(company: string, location?: string) {
+  const base = company.toUpperCase();
+  return location ? `${base} · ${location.toUpperCase()}` : base;
+}
 
 export const AboutExperience = () => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
@@ -73,7 +45,7 @@ export const AboutExperience = () => {
                 const isExpanded = expandedRow === idx;
                 return (
                   <motion.div 
-                    key={idx} 
+                    key={job.id} 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
@@ -90,9 +62,23 @@ export const AboutExperience = () => {
                       }}
                       className="w-full grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 py-8 items-start md:items-center text-left hover:bg-black/5 transition-colors duration-300 cursor-pointer relative md:px-4 md:-mx-4"
                     >
-                      <div className="col-span-1 md:col-span-3 lg:col-span-2 font-mono text-xs text-black/60 mb-1 md:mb-0">{job.year}</div>
-                      <div className="col-span-1 md:col-span-4 lg:col-span-4 font-sans text-xl md:text-2xl font-bold uppercase tracking-widest text-black">{job.role}</div>
-                      <div className="col-span-1 md:col-span-4 lg:col-span-4 font-sans text-sm md:text-base uppercase tracking-widest text-black/70 mt-1 md:mt-0">{job.company}</div>
+                      <div className="col-span-1 md:col-span-3 lg:col-span-2 font-mono text-xs text-black/60 mb-1 md:mb-0">{job.dates}</div>
+                      <div className="col-span-1 md:col-span-4 lg:col-span-4 font-sans text-xl md:text-2xl font-bold uppercase tracking-widest text-black">{job.role.toUpperCase()}</div>
+                      <div className="col-span-1 md:col-span-4 lg:col-span-4 font-sans text-sm md:text-base uppercase tracking-widest text-black/70 mt-1 md:mt-0">
+                        {job.companyUrl ? (
+                          <a
+                            href={job.companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-black transition-colors underline-offset-4 hover:underline"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {formatCompany(job.company, job.location)}
+                          </a>
+                        ) : (
+                          formatCompany(job.company, job.location)
+                        )}
+                      </div>
                       <div className="col-span-1 md:col-span-1 lg:col-span-2 flex justify-end items-center absolute top-8 right-0 md:relative md:top-0">
                         <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-2 text-black/40 group-hover/row:text-black transition-colors">
                           <span className="hidden lg:inline-block">{isExpanded ? 'Show less' : 'Read more'}</span>
@@ -114,9 +100,11 @@ export const AboutExperience = () => {
                                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black/40">WHAT I DID</span>
                             </div>
                             <div className="md:col-span-9 lg:col-span-8">
-                              <p className="font-sans text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-black/80">
-                                {job.description}
-                              </p>
+                              <ul className="font-sans text-lg md:text-xl font-light leading-relaxed text-black/80 space-y-3 list-disc pl-5">
+                                {job.bullets.map((bullet) => (
+                                  <li key={bullet}>{bullet}</li>
+                                ))}
+                              </ul>
                             </div>
                           </div>
                         </motion.div>
@@ -243,50 +231,42 @@ export const AboutExperience = () => {
 
           <div className="flex flex-col gap-16 lg:border-l border-foreground/10 lg:pl-16 relative">
             <div className="absolute top-0 bottom-0 left-0 w-px bg-accent/30 scale-y-0 transform origin-top hidden lg:block" />
-            
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="relative"
-            >
-              <div className="flex items-center gap-4 mb-8">
-                <img src="/ucf.webp" alt="University of Central Florida seal" className="h-14 w-14 object-contain shrink-0" width={56} height={56} />
-                <h3 className="font-sans text-2xl md:text-3xl font-bold uppercase tracking-widest text-foreground">
-                  University of Central Florida
-                </h3>
-              </div>
-              <div className="space-y-8">
-                <div className="group">
-                  <span className="font-mono text-sm md:text-base uppercase tracking-widest text-accent mb-2 block">2019 - 2020</span>
-                  <span className="font-sans text-lg md:text-xl text-foreground/80 group-hover:text-foreground transition-colors duration-300">Cyber Defense Professional Certificate</span>
+
+            {education.map((school, schoolIdx) => (
+              <motion.div
+                key={school.school}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + schoolIdx * 0.2, duration: 0.6 }}
+                className="relative"
+              >
+                <div className="flex items-center gap-4 mb-8">
+                  <img
+                    src={school.logo}
+                    alt={school.logoAlt}
+                    className="h-14 w-14 object-contain shrink-0"
+                    width={56}
+                    height={56}
+                  />
+                  <h3 className="font-sans text-2xl md:text-3xl font-bold uppercase tracking-widest text-foreground">
+                    {school.school}
+                  </h3>
                 </div>
-                <div className="group">
-                  <span className="font-mono text-sm md:text-base uppercase tracking-widest text-accent mb-2 block">2019</span>
-                  <span className="font-sans text-lg md:text-xl text-foreground/80 group-hover:text-foreground transition-colors duration-300">Full-Stack Web Development Bootcamp</span>
+                <div className="space-y-8">
+                  {school.items.map((item) => (
+                    <div key={item.label} className="group">
+                      <span className="font-mono text-sm md:text-base uppercase tracking-widest text-accent mb-2 block">
+                        {item.dates}
+                      </span>
+                      <span className="font-sans text-lg md:text-xl text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="relative"
-            >
-              <div className="flex items-center gap-4 mb-8">
-                <img src="/valencia-college.webp" alt="Valencia College seal" className="h-14 w-14 object-contain shrink-0" width={56} height={56} />
-                <h3 className="font-sans text-2xl md:text-3xl font-bold uppercase tracking-widest text-foreground">
-                  Valencia College
-                </h3>
-              </div>
-              <div className="group">
-                <span className="font-mono text-sm md:text-base uppercase tracking-widest text-accent mb-2 block">2015 - 2016</span>
-                <span className="font-sans text-lg md:text-xl text-foreground/80 group-hover:text-foreground transition-colors duration-300">Business Certificate</span>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

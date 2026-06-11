@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /operations
 Disallow: /api/ops/
+
+Sitemap: https://www.nicoloperena.com/sitemap.xml

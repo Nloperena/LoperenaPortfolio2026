@@ -2,13 +2,30 @@
 import Layout from '../components/Layout.astro';
 import { PageHero } from '../components/PageHero';
 import { ProjectsSection } from '../components/ProjectsSection';
+import { pageSeo } from '../data/seo';
+import { pageImages } from '../data/pageImages';
+import { breadcrumbJsonLd, projectsJsonLd } from '../lib/schema';
+
+const seo = pageSeo.work;
 ---
 
-<Layout title="Work | Nico Loperena" description="Selected production work — B2B storefronts, e-commerce platforms, and full-stack web applications built with React, Next.js, Astro, and PostgreSQL.">
-  <div transition:name="page-hero">
-    <PageHero page="work" client:load />
-  </div>
-  <div transition:name="page-body">
-    <ProjectsSection client:idle />
-  </div>
+<Layout
+	title={seo.title}
+	description={seo.description}
+	canonicalPath={seo.path}
+	ogImage={pageImages.work.og}
+	ogType={seo.ogType}
+>
+	<script type="application/ld+json" set:html={JSON.stringify(projectsJsonLd())} />
+	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd([
+		{ name: 'Home', path: '/' },
+		{ name: 'Work', path: '/work' },
+	]))} />
+
+	<div transition:name="page-hero">
+		<PageHero page="work" client:load />
+	</div>
+	<div transition:name="page-body">
+		<ProjectsSection client:idle />
+	</div>
 </Layout>
