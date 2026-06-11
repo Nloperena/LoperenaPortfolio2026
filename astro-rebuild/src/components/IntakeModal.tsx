@@ -11,19 +11,22 @@ const INTAKE_API_URL = (import.meta.env.PUBLIC_INTAKE_API_URL as string | undefi
 const USE_HEROKU_BACKEND = INTAKE_API_URL.includes('/api/submissions');
 
 type SubmitStatus = 'idle' | 'sending' | 'success' | 'error';
+type InquiryType = 'hiring' | 'project';
 
-function buildEmailFallbackBody(formData: { name: string; email: string; company: string; message: string }): string {
+function buildEmailFallbackBody(formData: { name: string; email: string; company: string; message: string }, inquiryType: InquiryType): string {
   const lines = [
+    `Inquiry: ${inquiryType === 'hiring' ? 'Hiring / role' : 'Client project'}`,
     `Name: ${formData.name}`,
     `Email: ${formData.email}`,
     formData.company ? `Company: ${formData.company}` : '',
-    formData.message ? `Project scope:\n${formData.message}` : '',
+    formData.message ? (inquiryType === 'hiring' ? `Message:\n${formData.message}` : `Project scope:\n${formData.message}`) : '',
   ].filter(Boolean);
   return encodeURIComponent(lines.join('\n\n'));
 }
 
-function buildSmsFallbackBody(formData: { name: string; email: string; company: string; message: string }): string {
+function buildSmsFallbackBody(formData: { name: string; email: string; company: string; message: string }, inquiryType: InquiryType): string {
   const lines = [
+    `Inquiry: ${inquiryType === 'hiring' ? 'Hiring' : 'Project'}`,
     `Name: ${formData.name}`,
     `Email: ${formData.email}`,
     formData.company ? `Company: ${formData.company}` : '',
@@ -34,6 +37,7 @@ function buildSmsFallbackBody(formData: { name: string; email: string; company: 
 
 export const IntakeModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [inquiryType, setInquiryType] = useState<InquiryType>('hiring');
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
@@ -105,6 +109,12 @@ export const IntakeModal = () => {
       company: String(fd.get('company') ?? formData.company).trim(),
       message: String(fd.get('message') ?? formData.message).trim(),
     };
+    const inquiryPrefix = inquiryType === 'hiring'
+      ? '[Hiring inquiry]'
+      : '[Project inquiry — routed from portfolio]';
+    const composedMessage = values.message
+      ? `${inquiryPrefix}\n\n${values.message}`
+      : inquiryPrefix;
 
     if (!values.name || !values.email) {
       setSubmitError('Name and email are required.');
@@ -120,13 +130,13 @@ export const IntakeModal = () => {
             email: values.email,
             company: values.company || undefined,
             message: values.message || undefined,
-            projectScope: values.message || undefined,
+            projectScope: composedMessage || undefined,
           }
         : {
             name: values.name,
             email: values.email,
             company: values.company || undefined,
-            message: values.message || undefined,
+            message: composedMessage || undefined,
           };
 
       const res = await fetch(endpoint, {
@@ -177,6 +187,7 @@ export const IntakeModal = () => {
             onClick={() => {
               track('intake_modal_close');
               setIsOpen(false);
+              setInquiryType('hiring');
               setSubmitError(null);
               setSubmitMessage(null);
               setCopyDone(false);
@@ -228,6 +239,86 @@ export const IntakeModal = () => {
           {/* Right Column (The Intake Form) - 40% */}
           <div className="w-full md:w-[40%] relative z-10 flex flex-col bg-[#0a0a0a]/95 backdrop-blur-md">
             <div className="flex-1 flex flex-col justify-center p-8 md:p-12 lg:p-20">
+              <motion.div variants={contentVariants} className="mb-10 flex flex-col gap-4">
+                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase">
+                  I&apos;m reaching out about
+                </span>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setInquiryType('hiring');
+                      track('intake_inquiry_select', { type: 'hiring' });
+                    }}
+                    className={`p-4 border text-left transition-colors ${
+                      inquiryType === 'hiring'
+                        ? 'border-[#ededed] bg-neutral-900 text-[#ededed]'
+                        : 'border-neutral-800 text-neutral-500 hover:border-neutral-600 hover:text-neutral-300'
+                    }`}
+                  >
+                    <span className="block font-mono text-[10px] font-bold uppercase tracking-widest mb-2">Hiring</span>
+                    <span className="block font-sans text-sm leading-snug text-neutral-400">
+                      Recruiter, employer, or team building a role.
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setInquiryType('project');
+                      track('intake_inquiry_select', { type: 'project' });
+                    }}
+                    className={`p-4 border text-left transition-colors ${
+                      inquiryType === 'project'
+                        ? 'border-[#ededed] bg-neutral-900 text-[#ededed]'
+                        : 'border-neutral-800 text-neutral-500 hover:border-neutral-600 hover:text-neutral-300'
+                    }`}
+                  >
+                    <span className="block font-mono text-[10px] font-bold uppercase tracking-widest mb-2">Client project</span>
+                    <span className="block font-sans text-sm leading-snug text-neutral-400">
+                      Web design, SEO, or agency engagement.
+                    </span>
+                  </button>
+                </div>
+              </motion.div>
+
+              {inquiryType === 'project' ? (
+                <motion.div variants={contentVariants} className="flex flex-col gap-8 w-full max-w-lg mx-auto md:mx-0">
+                  <p className="font-serif text-lg italic leading-relaxed text-neutral-400">
+                    Client projects run through{' '}
+                    <a
+                      href={siteProfile.nexrenaUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#ededed] underline underline-offset-4 hover:text-white"
+                    >
+                      Nexrena
+                    </a>
+                    — my B2B web design and SEO agency for Central Florida and US teams.
+                  </p>
+                  <p className="font-mono text-xs leading-relaxed text-neutral-500 uppercase tracking-wider">
+                    This portfolio is for hiring conversations. For a 90-day growth plan, scope review, or agency retainer, use Nexrena&apos;s contact flow.
+                  </p>
+                  <a
+                    href={`${siteProfile.nexrenaUrl}/contact/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => track('intake_nexrena_redirect')}
+                    className="w-full bg-neutral-900 hover:bg-white text-neutral-400 hover:text-[#0a0a0a] transition-colors duration-300 flex items-center justify-between p-8 border border-neutral-800 group"
+                  >
+                    <span className="font-mono text-lg font-bold tracking-widest uppercase">
+                      Contact Nexrena
+                    </span>
+                    <span className="font-mono text-2xl group-hover:translate-x-2 transition-transform duration-300">↗</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setInquiryType('hiring')}
+                    className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500 hover:text-[#ededed] transition-colors text-left"
+                  >
+                    ← Hiring inquiry instead
+                  </button>
+                </motion.div>
+              ) : (
               <motion.form
                 variants={contentVariants}
                 className="flex flex-col gap-12 w-full max-w-lg mx-auto md:mx-0"
@@ -244,7 +335,7 @@ export const IntakeModal = () => {
                       </p>
                       <div className="flex flex-wrap gap-3">
                         <a
-                          href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Project brief from ${formData.name}`)}&body=${buildEmailFallbackBody(formData)}`}
+                          href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Hiring inquiry from ${formData.name}`)}&body=${buildEmailFallbackBody(formData, inquiryType)}`}
                           className="inline-flex items-center justify-center font-mono text-xs font-bold tracking-widest uppercase px-5 py-3 bg-neutral-800 hover:bg-white text-neutral-300 hover:text-[#0a0a0a] border border-neutral-700 transition-colors"
                           onClick={() => track('intake_fallback_click', { method: 'email' })}
                         >
@@ -252,7 +343,7 @@ export const IntakeModal = () => {
                         </a>
                         {CONTACT_PHONE ? (
                           <a
-                            href={`sms:${CONTACT_PHONE}?body=${buildSmsFallbackBody(formData)}`}
+                            href={`sms:${CONTACT_PHONE}?body=${buildSmsFallbackBody(formData, inquiryType)}`}
                             className="inline-flex items-center justify-center font-mono text-xs font-bold tracking-widest uppercase px-5 py-3 bg-neutral-800 hover:bg-white text-neutral-300 hover:text-[#0a0a0a] border border-neutral-700 transition-colors"
                             onClick={() => track('intake_fallback_click', { method: 'sms' })}
                           >
@@ -319,7 +410,7 @@ export const IntakeModal = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 group">
-                  <label htmlFor="contact-company" className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Company</label>
+                  <label htmlFor="contact-company" className="font-mono text-[10px] font-bold tracking-[0.2em] text-neutral-500 uppercase transition-colors group-focus-within:text-highlight">Company / team</label>
                   <input
                     id="contact-company"
                     name="company"
@@ -360,6 +451,7 @@ export const IntakeModal = () => {
                   )}
                 </button>
               </motion.form>
+              )}
             </div>
           </div>
 

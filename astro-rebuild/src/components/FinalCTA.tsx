@@ -108,15 +108,17 @@ export const FinalCTA = () => {
             
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
               {[
-                { label: 'LINKEDIN', url: siteProfile.linkedInUrl },
-                { label: 'GITHUB', url: siteProfile.githubUrl },
-                { label: 'EMAIL', url: `mailto:${siteProfile.email}` }
+                { label: 'BLOG', url: '/blog', external: false },
+                { label: 'NEXRENA', url: siteProfile.nexrenaUrl, external: true },
+                { label: 'LINKEDIN', url: siteProfile.linkedInUrl, external: true },
+                { label: 'GITHUB', url: siteProfile.githubUrl, external: true },
+                { label: 'EMAIL', url: `mailto:${siteProfile.email}`, external: false, isEmail: true }
               ].map((social) => (
                 <a 
                   key={social.label}
                   href={social.url} 
-                  target={social.label !== 'EMAIL' ? "_blank" : undefined}
-                  rel={social.label !== 'EMAIL' ? "noreferrer" : undefined}
+                  target={social.external ? "_blank" : undefined}
+                  rel={social.external ? "noopener noreferrer" : undefined}
                   onClick={() => track('final_cta_social_click', { platform: social.label.toLowerCase() })}
                   className="group flex items-center gap-1 cursor-pointer"
                 >
@@ -124,7 +126,7 @@ export const FinalCTA = () => {
                     {social.label}
                   </span>
                   <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 font-mono text-[10px] md:text-xs text-white">
-                    ↗
+                    {social.external ? '↗' : '→'}
                   </span>
                 </a>
               ))}

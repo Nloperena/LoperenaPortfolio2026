@@ -108,7 +108,7 @@ export const ProjectsSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ margin: "-10%" }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                    className="mt-auto shrink-0 pt-2"
+                    className="mt-auto shrink-0 pt-2 flex flex-col gap-2"
                   >
                     <a 
                       href={project.link} 
@@ -125,6 +125,20 @@ export const ProjectsSection = () => {
                         ↗
                       </span>
                     </a>
+                    {project.nexrenaCaseStudy && (
+                      <a
+                        href={project.nexrenaCaseStudy}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => track('project_click', { id: project.id, title: project.title, url: project.nexrenaCaseStudy, type: 'case_study' })}
+                        className="group/case relative flex items-center justify-between p-4 md:p-5 border border-accent/20 bg-background hover:bg-white transition-colors duration-300"
+                      >
+                        <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-foreground group-hover/case:text-neutral-900">
+                          Nexrena case study
+                        </span>
+                        <span className="font-mono text-sm text-foreground/70 group-hover/case:text-neutral-900">↗</span>
+                      </a>
+                    )}
                   </motion.div>
                 </div>
 
