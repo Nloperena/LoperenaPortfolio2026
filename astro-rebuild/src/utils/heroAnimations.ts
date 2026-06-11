@@ -1,6 +1,10 @@
-import gsap from 'gsap';
+import type gsap from 'gsap';
 
-export function runHeroIntro(root: HTMLElement): gsap.core.Timeline | null {
+type GsapInstance = typeof gsap;
+
+export function runHeroIntro(root: HTMLElement, gsap: GsapInstance): gsap.core.Timeline | null {
+  if (typeof window === 'undefined') return null;
+
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     gsap.set(root.querySelectorAll('[data-hero-animate]'), { clearProps: 'all' });
     return null;
@@ -48,7 +52,9 @@ export function runHeroIntro(root: HTMLElement): gsap.core.Timeline | null {
   return tl;
 }
 
-export function bindHeroParallax(root: HTMLElement): () => void {
+export function bindHeroParallax(root: HTMLElement, gsap: GsapInstance): () => void {
+  if (typeof window === 'undefined') return () => {};
+
   const video = root.querySelector('.hero-video');
   if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     return () => {};
