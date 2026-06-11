@@ -51,10 +51,16 @@ export const Proof = () => {
         <div className="relative z-10 w-full max-w-[1400px] mx-auto h-full flex flex-col border-x border-accent/20 bg-background/95 backdrop-blur-sm shadow-2xl shadow-accent/5">
           
           {/* Header Row */}
-          <div className="border-b border-accent/20 p-6 md:p-8 shrink-0 bg-white/30 flex items-center">
+          <div className="border-b border-accent/20 p-6 md:p-8 shrink-0 bg-white/30 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
              <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-accent">
-               Engineered for Impact
+               References from production teams
              </span>
+             <p className="font-serif text-sm md:text-base italic text-foreground/65 max-w-xl">
+               Stakeholder feedback from B2B and e-commerce projects I led as senior engineer. Full ROI case studies live on{' '}
+               <a href="https://www.nexrena.com/work/" target="_blank" rel="noopener noreferrer" className="text-accent underline-offset-4 hover:underline">
+                 Nexrena
+               </a>.
+             </p>
           </div>
 
           {/* Colossal Central Grid Cell */}

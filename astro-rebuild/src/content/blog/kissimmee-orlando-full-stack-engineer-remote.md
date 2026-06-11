@@ -2,6 +2,7 @@
 title: "Senior Full-Stack Engineer in Kissimmee & Orlando — Remote Delivery for Florida Teams"
 description: "Nicholas Loperena is a senior full-stack engineer based in Kissimmee, FL (Orlando metro), available for remote roles serving Central Florida and US companies. React, Next.js, Node.js, TypeScript, PostgreSQL."
 pubDate: 2026-06-03
+audience: recruiter
 tags: ["Kissimmee", "Orlando", "Florida", "Remote", "Full-Stack Engineer"]
 ogImage: "/blog/blog-kissimmee-remote-engineer.png"
 ---

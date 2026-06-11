@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { education } from '../data/education';
 import { experience } from '../data/experience';
 import { stackTechnologies, stackCopy } from '../data/stack';
+import { siteProfile } from '../data/site';
 import { track } from '../utils/analytics';
 
 function formatCompany(company: string, location?: string) {
@@ -115,6 +116,44 @@ export const AboutExperience = () => {
               })}
             </div>
          </div>
+      </section>
+
+      <section className="sticky top-0 min-h-[70vh] w-full bg-background z-20 flex flex-col justify-center pt-24 pb-24 px-4 md:px-8 border-t border-accent/20">
+        <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-7">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-accent">
+              Nexrena founder
+            </span>
+            <h2 className="mt-4 text-[clamp(2rem,4vw,3.5rem)] font-black uppercase tracking-tighter leading-[0.95] text-foreground">
+              Agency work lives at Nexrena.
+            </h2>
+            <p className="mt-5 max-w-2xl font-serif text-lg md:text-xl italic leading-relaxed text-foreground/75">
+              {siteProfile.nexrenaBlurb} This portfolio is for hiring conversations—web design, SEO, and full-service growth engagements run through Nexrena.
+            </p>
+          </div>
+          <div className="lg:col-span-5 flex flex-col gap-4">
+            <a
+              href={siteProfile.nexrenaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track('about_nexrena_click', { source: 'founder_callout' })}
+              className="inline-flex items-center justify-between gap-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-foreground border border-accent/30 hover:bg-foreground hover:text-background py-5 px-6 transition-colors"
+            >
+              Visit Nexrena (agency)
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href={`${siteProfile.nexrenaUrl}/about/leadership/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track('about_nexrena_click', { source: 'leadership' })}
+              className="inline-flex items-center justify-between gap-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-foreground/80 border border-accent/20 hover:border-accent/40 py-5 px-6 transition-colors"
+            >
+              Leadership & two-site model
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* SECTION 3: What I work with — same content as Skills ribbon, fitted here */}

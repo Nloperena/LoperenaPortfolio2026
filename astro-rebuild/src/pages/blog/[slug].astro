@@ -6,6 +6,7 @@ import { pageImages } from '../../data/pageImages';
 import { absoluteUrl } from '../../data/seo';
 import { formatPostDate, postPath } from '../../lib/blog';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/schema';
+import { nexrenaCrossLinksByPost } from '../../data/nexrenaCrossLinks';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -20,6 +21,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const url = absoluteUrl(postPath(post.id));
 const ogImage = post.data.ogImage ?? pageImages.blog.og;
+const nexrenaLinks = nexrenaCrossLinksByPost[post.id] ?? [];
 ---
 
 <Layout
@@ -87,6 +89,30 @@ const ogImage = post.data.ogImage ?? pageImages.blog.og;
       <div class="prose prose-lg max-w-none prose-headings:font-sans prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight prose-p:font-serif prose-p:text-foreground/85 prose-a:text-accent prose-a:no-underline hover:prose-a:text-foreground prose-strong:text-foreground prose-li:font-serif">
         <Content />
       </div>
+
+      {nexrenaLinks.length > 0 && (
+        <aside class="mt-12 border border-accent/20 bg-white/40 p-6 md:p-8">
+          <p class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">Related on Nexrena</p>
+          <p class="mt-2 font-serif text-sm italic text-foreground/70">
+            Agency case studies and B2B growth guides on my separate commercial site.
+          </p>
+          <ul class="mt-5 space-y-4">
+            {nexrenaLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-sans text-base font-bold text-foreground hover:text-accent transition-colors"
+                >
+                  {link.label} ↗
+                </a>
+                <p class="mt-1 font-serif text-sm text-foreground/70">{link.description}</p>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
     </div>
   </article>
 </Layout>

@@ -2,6 +2,7 @@
 title: "Building B2B E-Commerce with Next.js and Headless Patterns"
 description: "Architecture lessons from shipping B2B storefronts—catalog UX, checkout flows, and maintainable Next.js stacks for industrial buyers."
 pubDate: 2026-05-20
+audience: engineering
 tags: ["B2B", "E-Commerce", "Next.js", "React", "Architecture"]
 ogImage: "/blog/blog-b2b-ecommerce.png"
 ---
