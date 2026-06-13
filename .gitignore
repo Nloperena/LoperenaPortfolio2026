@@ -39,3 +39,11 @@ next-env.d.ts
 
 
 
+
+# env example templates (excluded from repository)
+.env.example
+.env*.example
+**/.env.example
+**/.env*.example
+env.example
+**/env.example
