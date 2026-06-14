@@ -20,37 +20,37 @@ export function runHeroIntro(root: HTMLElement, gsap: GsapInstance): gsap.core.T
   })
     .from(
       root.querySelector('.hero-meta'),
-      { y: 16, opacity: 0, duration: 0.55 },
+      { y: 16, duration: 0.55 },
       '-=0.45'
     )
     .from(
       root.querySelectorAll('.hero-headline-line'),
-      { yPercent: 115, opacity: 0, duration: 0.85, stagger: 0.14 },
+      { yPercent: 115, duration: 0.85, stagger: 0.14 },
       '-=0.25'
     )
     .from(
       root.querySelector('.hero-subline'),
-      { y: 20, opacity: 0, duration: 0.65 },
+      { y: 20, duration: 0.65 },
       '-=0.35'
     )
     .from(
       root.querySelectorAll('.hero-highlight'),
-      { y: 14, opacity: 0, duration: 0.45, stagger: 0.07 },
+      { y: 14, duration: 0.45, stagger: 0.07 },
       '-=0.3'
     );
 
-  const video = root.querySelector('.hero-video');
-  if (video) {
+  const portrait = root.querySelector('.hero-portrait');
+  if (portrait) {
     tl.from(
-      video,
-      { y: 40, opacity: 0, scale: 0.94, duration: 1.1, ease: 'power2.out' },
+      portrait,
+      { y: 24, duration: 0.85, ease: 'power2.out' },
       '-=0.85'
     );
   }
 
   tl.from(
     root.querySelectorAll('.hero-cta > *'),
-    { y: 18, opacity: 0, duration: 0.5, stagger: 0.08 },
+    { y: 18, duration: 0.5, stagger: 0.08 },
     '-=0.55'
   );
 
@@ -60,8 +60,12 @@ export function runHeroIntro(root: HTMLElement, gsap: GsapInstance): gsap.core.T
 export function bindHeroParallax(root: HTMLElement, gsap: GsapInstance): () => void {
   if (typeof window === 'undefined') return () => {};
 
-  const video = root.querySelector('.hero-video');
-  if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return () => {};
+  }
+
+  const portrait = root.querySelector('.hero-portrait');
+  if (!portrait) {
     return () => {};
   }
 
@@ -70,16 +74,16 @@ export function bindHeroParallax(root: HTMLElement, gsap: GsapInstance): () => v
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
 
-    gsap.to(video, {
-      x: x * 10,
-      y: y * 14,
+    gsap.to(portrait, {
+      x: x * 6,
+      y: y * 8,
       duration: 0.6,
       ease: 'power2.out',
     });
   };
 
   const onLeave = () => {
-    gsap.to(video, { x: 0, y: 0, duration: 0.8, ease: 'power2.out' });
+    gsap.to(portrait, { x: 0, y: 0, duration: 0.8, ease: 'power2.out' });
   };
 
   root.addEventListener('mousemove', onMove);

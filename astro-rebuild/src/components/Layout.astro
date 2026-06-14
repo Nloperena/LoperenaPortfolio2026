@@ -5,7 +5,6 @@ import { Nav } from './Nav';
 import { FinalCTA } from './FinalCTA';
 import { BlueprintBackground } from './BlueprintBackground';
 import { IntakeModal } from './IntakeModal';
-import { StackRibbon } from './StackRibbon';
 import { TransitionScroll } from './TransitionScroll';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
@@ -75,28 +74,25 @@ const robotsContent = noindex ? 'noindex, nofollow' : 'index, follow';
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&family=IBM+Plex+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&family=IBM+Plex+Mono:wght@400;700&display=swap"></noscript>
+		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=IBM+Plex+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+		<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=IBM+Plex+Mono:wght@400;700&display=swap"></noscript>
 		<ClientRouter fallback="swap" />
 		<Analytics />
 		<SpeedInsights />
 	</head>
-	<body class="min-h-screen flex flex-col relative text-foreground selection:bg-highlight/30">
+	<body class="min-h-screen flex flex-col relative text-foreground">
 		<TransitionScroll client:load />
 		<BlueprintBackground client:load transition:persist="blueprint" />
 		
 		<!-- Command Center Intake Modal -->
 		<IntakeModal client:load transition:persist="intake-modal" />
 
-		<!-- Stack Ribbon Drawer -->
-		<StackRibbon client:load transition:persist="stack-ribbon" />
-		
 		<div class="relative z-10 min-h-screen bg-transparent">
 			<Nav client:load transition:persist="nav" />
-			<div class="w-full bg-background relative z-20 pb-24 min-h-screen">
+			<div class="relative z-20 w-full bg-background pb-8">
 				<slot />
 			</div>
-			<FinalCTA client:visible />
+			<FinalCTA client:load />
 		</div>
 	</body>
 </html>

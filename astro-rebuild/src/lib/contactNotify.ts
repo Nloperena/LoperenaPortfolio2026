@@ -3,6 +3,10 @@ export type ContactPayload = {
   email: string;
   company?: string;
   message?: string;
+  roleTitle?: string;
+  compBand?: string;
+  remotePolicy?: string;
+  inquiryType?: string;
 };
 
 /** Sends contact form to inbox via Resend when RESEND_API_KEY is set on Vercel. */
@@ -15,11 +19,17 @@ export async function sendContactEmail(payload: ContactPayload): Promise<boolean
     process.env.RESEND_FROM?.trim() || 'Portfolio Contact <onboarding@resend.dev>';
 
   const lines = [
+    payload.inquiryType ? `Inquiry: ${payload.inquiryType}` : '',
     `Name: ${payload.name}`,
     `Email: ${payload.email}`,
     payload.company ? `Company: ${payload.company}` : '',
-    payload.message ? `\nProject scope:\n${payload.message}` : '',
+    payload.roleTitle ? `Role: ${payload.roleTitle}` : '',
+    payload.compBand ? `Comp band: ${payload.compBand}` : '',
+    payload.remotePolicy ? `Remote policy: ${payload.remotePolicy}` : '',
+    payload.message ? `\nMessage:\n${payload.message}` : '',
   ].filter(Boolean);
+
+  const subjectPrefix = payload.inquiryType?.toLowerCase().includes('hiring') ? 'Hiring inquiry' : 'Portfolio inquiry';
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -31,7 +41,7 @@ export async function sendContactEmail(payload: ContactPayload): Promise<boolean
       from,
       to: [to],
       reply_to: payload.email,
-      subject: `Portfolio inquiry from ${payload.name}`,
+      subject: `${subjectPrefix} from ${payload.name}`,
       text: lines.join('\n'),
     }),
   });

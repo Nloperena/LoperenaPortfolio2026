@@ -41,14 +41,15 @@ heroku config:set ALLOWED_ORIGINS="https://www.nicoloperena.com,https://nicolope
 
 if (-not $env:OPS_PASSWORD) {
   $generated = -join ((48..57 + 65..90 + 97..122) | Get-Random -Count 24 | ForEach-Object { [char]$_ })
-  Write-Host "Setting OPS_PASSWORD (save this — inbox login at /operations):"
+  Write-Host "Setting OPS_PASSWORD (save this - inbox login at /operations):"
   Write-Host $generated
   heroku config:set "OPS_PASSWORD=$generated" -a $AppName
 } else {
   heroku config:set "OPS_PASSWORD=$env:OPS_PASSWORD" -a $AppName
 }
 
-if (-not (heroku config:get OPS_SESSION_SECRET -a $AppName 2>$null)) {
+$existingSecret = heroku config:get OPS_SESSION_SECRET -a $AppName 2>$null
+if (-not $existingSecret) {
   $secret = -join ((48..57 + 65..90 + 97..122) | Get-Random -Count 32 | ForEach-Object { [char]$_ })
   heroku config:set "OPS_SESSION_SECRET=$secret" -a $AppName
 }

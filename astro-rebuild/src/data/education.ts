@@ -1,4 +1,4 @@
-/** Education — keep in sync with Nicholas_Loperena_Resume_v6.pdf / gen_v6.py */
+/** Education — keep in sync with Nicholas_Loperena_Resume_v8.pdf */
 export type EducationEntry = {
   school: string;
   logo: string;

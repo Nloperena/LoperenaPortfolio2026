@@ -1,0 +1,102 @@
+---
+export const prerender = true;
+
+import Layout from '../components/Layout.astro';
+import { siteProfile } from '../data/site';
+import { hiringProfile } from '../data/hiring';
+import { experience } from '../data/experience';
+import { education } from '../data/education';
+import { stackGroups } from '../data/stack';
+import { breadcrumbJsonLd } from '../lib/schema';
+
+const title = `Resume | ${siteProfile.legalName} — Senior Full-Stack Engineer`;
+const description = `${siteProfile.legalName} — ${hiringProfile.title}. ${hiringProfile.yearsExperience} years. ${hiringProfile.specialty}. ${hiringProfile.availability}`;
+---
+
+<Layout title={title} description={description} canonicalPath="/resume" ogType="profile">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Resume', path: '/resume' },
+  ]))} />
+
+  <article class="pt-16 pb-24 px-4 md:px-6 lg:px-8 max-w-3xl mx-auto font-sans text-foreground leading-relaxed">
+    <header class="border-b-2 border-foreground pb-6 mb-8">
+      <p class="font-mono text-[10px] font-bold uppercase tracking-widest text-secondary mb-2">HTML resume</p>
+      <h1 class="font-mono text-3xl md:text-4xl font-black uppercase tracking-tight">{siteProfile.legalName}</h1>
+      <p class="mt-2 text-lg">{siteProfile.titleExtended}</p>
+      <p class="mt-2 text-sm text-secondary">
+        {siteProfile.location} · {siteProfile.email} · {hiringProfile.phone}
+      </p>
+      <p class="mt-1 text-sm">
+        <a href={siteProfile.linkedInUrl} class="underline hover:bg-highlight">LinkedIn</a>
+        · <a href={siteProfile.githubUrl} class="underline hover:bg-highlight">GitHub</a>
+        · <a href={siteProfile.siteUrl} class="underline hover:bg-highlight">{siteProfile.siteUrl.replace('https://', '')}</a>
+      </p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <a
+          href={siteProfile.resumePath}
+          download={siteProfile.resumeDownloadName}
+          class="inline-block border-2 border-foreground bg-highlight px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest"
+        >
+          Download PDF
+        </a>
+        <a href="/for-recruiters" class="inline-block border-2 border-foreground px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-concrete">
+          Recruiter hub
+        </a>
+      </div>
+    </header>
+
+    <section class="mb-8">
+      <h2 class="font-mono text-sm font-black uppercase tracking-widest border-b border-foreground pb-1 mb-3">Summary</h2>
+      <p>
+        Senior full-stack engineer in Kissimmee, FL, open to remote roles with US employers. {hiringProfile.yearsExperience} years from IT infrastructure and web development into owning full-stack delivery for B2B manufacturing, e-commerce, and client platforms. React, Next.js, Node.js, TypeScript, Python, and PostgreSQL on Vercel and AWS.
+      </p>
+      <p class="mt-3">
+        {hiringProfile.workAuthorization} {hiringProfile.roleTypes.join('; ')}.
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="font-mono text-sm font-black uppercase tracking-widest border-b border-foreground pb-1 mb-3">Technical skills</h2>
+      <ul class="space-y-2">
+        {stackGroups.map((group) => (
+          <li><strong>{group.label}:</strong> {group.items.join(', ')}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="font-mono text-sm font-black uppercase tracking-widest border-b border-foreground pb-1 mb-3">Experience</h2>
+      {experience.map((job) => (
+        <div class="mb-6">
+          <h3 class="font-semibold">{job.role}</h3>
+          <p class="text-sm text-secondary">{job.company}{job.location ? ` · ${job.location}` : ''} · {job.dates}</p>
+          <ul class="mt-2 list-disc pl-5 space-y-1 text-sm">
+            {job.bullets.map((bullet) => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <section class="mb-8">
+      <h2 class="font-mono text-sm font-black uppercase tracking-widest border-b border-foreground pb-1 mb-3">Education</h2>
+      {education.map((school) => (
+        <div class="mb-4">
+          <h3 class="font-semibold">{school.school}</h3>
+          <ul class="mt-1 text-sm space-y-1">
+            {school.items.map((item) => (
+              <li>{item.dates} — {item.label}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <footer class="border-t-2 border-foreground pt-6 text-sm text-secondary">
+      <p>{hiringProfile.availability} · {hiringProfile.workStyle}</p>
+      <p class="mt-2">{hiringProfile.compensationNote}</p>
+    </footer>
+  </article>
+</Layout>

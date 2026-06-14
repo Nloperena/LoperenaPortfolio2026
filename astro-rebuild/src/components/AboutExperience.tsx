@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { education } from '../data/education';
 import { experience } from '../data/experience';
-import { stackTechnologies, stackCopy } from '../data/stack';
 import { siteProfile } from '../data/site';
 import { track } from '../utils/analytics';
+import { RecruiterSkim } from './RecruiterSkim';
+import { StackSection } from './StackSection';
 
 function formatCompany(company: string, location?: string) {
   const base = company.toUpperCase();
@@ -13,16 +14,16 @@ function formatCompany(company: string, location?: string) {
 
 export const AboutExperience = () => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
-  const shouldReduceMotion = useReducedMotion();
 
   return (
     <div className="w-full relative block bg-background pb-0">
+      <RecruiterSkim compact />
       <section
         id="experience"
-        className="sticky top-0 min-h-screen w-full bg-white text-black z-20 flex flex-col justify-center pt-24 pb-32 px-4 md:px-8 border-t border-accent/20"
+        className="w-full bg-background text-foreground pt-20 pb-12 md:pb-16 px-4 md:px-6 border-t-2 border-foreground"
       >
          <div className="max-w-[1400px] w-full mx-auto flex flex-col">
-            <div className="mb-16 overflow-hidden">
+            <div className="mb-8 overflow-hidden">
               <motion.h2 
                 initial={{ y: "100%" }}
                 whileInView={{ y: 0 }}
@@ -35,7 +36,7 @@ export const AboutExperience = () => {
             </div>
             
             <div className="flex flex-col flex-1">
-              <div className="grid grid-cols-12 gap-4 pb-4 border-b border-black/20 text-black/50">
+              <div className="grid grid-cols-12 gap-4 pb-4 border-b-2 border-foreground text-secondary">
                 <div className="col-span-3 lg:col-span-2 font-mono text-[10px] font-bold uppercase tracking-widest hidden md:block">YEAR</div>
                 <div className="col-span-12 md:col-span-4 lg:col-span-4 font-mono text-[10px] font-bold uppercase tracking-widest">ROLE</div>
                 <div className="col-span-4 md:col-span-4 lg:col-span-4 font-mono text-[10px] font-bold uppercase tracking-widest hidden md:block">ORGANIZATION</div>
@@ -51,7 +52,7 @@ export const AboutExperience = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ delay: idx * 0.1, duration: 0.6 }}
-                    className="flex flex-col border-b border-black/10 last:border-b-0 group/row"
+                    className="flex flex-col border-b-2 border-foreground last:border-b-0 group/row"
                   >
                     <button 
                       onClick={() => {
@@ -61,11 +62,11 @@ export const AboutExperience = () => {
                           track('about_experience_expand', { company: job.company });
                         }
                       }}
-                      className="w-full grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 py-8 items-start md:items-center text-left hover:bg-black/5 transition-colors duration-300 cursor-pointer relative md:px-4 md:-mx-4"
+                      className="w-full grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 py-8 items-start md:items-center text-left hover:bg-highlight transition-none cursor-pointer relative md:px-4 md:-mx-4"
                     >
-                      <div className="col-span-1 md:col-span-3 lg:col-span-2 font-mono text-xs text-black/60 mb-1 md:mb-0">{job.dates}</div>
-                      <div className="col-span-1 md:col-span-4 lg:col-span-4 font-sans text-xl md:text-2xl font-bold uppercase tracking-widest text-black">{job.role.toUpperCase()}</div>
-                      <div className="col-span-1 md:col-span-4 lg:col-span-4 font-sans text-sm md:text-base uppercase tracking-widest text-black/70 mt-1 md:mt-0">
+                      <div className="col-span-1 md:col-span-3 lg:col-span-2 font-mono text-xs text-secondary mb-1 md:mb-0">{job.dates}</div>
+                      <div className="col-span-1 md:col-span-4 lg:col-span-4 font-mono text-xl md:text-2xl font-bold uppercase tracking-tight">{job.role.toUpperCase()}</div>
+                      <div className="col-span-1 md:col-span-4 lg:col-span-4 font-mono text-sm md:text-base uppercase tracking-wide mt-1 md:mt-0">
                         {job.companyUrl ? (
                           <a
                             href={job.companyUrl}
@@ -81,7 +82,7 @@ export const AboutExperience = () => {
                         )}
                       </div>
                       <div className="col-span-1 md:col-span-1 lg:col-span-2 flex justify-end items-center absolute top-8 right-0 md:relative md:top-0">
-                        <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-2 text-black/40 group-hover/row:text-black transition-colors">
+                        <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-2 text-secondary group-hover/row:text-foreground transition-none">
                           <span className="hidden lg:inline-block">{isExpanded ? 'Show less' : 'Read more'}</span>
                           <span className={`text-2xl leading-none transition-transform duration-300 ${isExpanded ? 'rotate-45' : 'rotate-0'}`}>+</span>
                         </span>
@@ -94,14 +95,14 @@ export const AboutExperience = () => {
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                          className="overflow-hidden bg-black/[0.02] md:-mx-4 md:px-4"
+                          className="overflow-hidden bg-concrete border-t-2 border-foreground md:-mx-4 md:px-4"
                         >
                           <div className="py-8 grid grid-cols-1 md:grid-cols-12 gap-8">
                             <div className="md:col-span-3 lg:col-span-2 hidden md:block">
-                               <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black/40">WHAT I DID</span>
+                               <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]">WHAT I DID</span>
                             </div>
                             <div className="md:col-span-9 lg:col-span-8">
-                              <ul className="font-sans text-lg md:text-xl font-light leading-relaxed text-black/80 space-y-3 list-disc pl-5">
+                              <ul className="font-sans text-base md:text-lg leading-relaxed space-y-3 list-disc pl-5 border-l-4 border-foreground ml-2">
                                 {job.bullets.map((bullet) => (
                                   <li key={bullet}>{bullet}</li>
                                 ))}
@@ -118,26 +119,24 @@ export const AboutExperience = () => {
          </div>
       </section>
 
-      <section className="sticky top-0 min-h-[70vh] w-full bg-background z-20 flex flex-col justify-center pt-24 pb-24 px-4 md:px-8 border-t border-accent/20">
-        <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <section className="w-full bg-concrete py-12 md:py-16 px-4 md:px-6 border-t-2 border-foreground">
+        <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center border-2 border-foreground bg-background p-8 md:p-10 shadow-brutal">
           <div className="lg:col-span-7">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-accent">
-              Nexrena founder
-            </span>
-            <h2 className="mt-4 text-[clamp(2rem,4vw,3.5rem)] font-black uppercase tracking-tighter leading-[0.95] text-foreground">
-              Agency work lives at Nexrena.
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em]">Separate from this portfolio</span>
+            <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] font-mono font-black uppercase tracking-tighter leading-[0.95]">
+              Client work on Nexrena.
             </h2>
-            <p className="mt-5 max-w-2xl font-serif text-lg md:text-xl italic leading-relaxed text-foreground/75">
-              {siteProfile.nexrenaBlurb} This portfolio is for hiring conversations—web design, SEO, and full-service growth engagements run through Nexrena.
+            <p className="mt-5 max-w-2xl font-sans text-base md:text-lg leading-relaxed">
+              {siteProfile.nexrenaBlurb}
             </p>
           </div>
-          <div className="lg:col-span-5 flex flex-col gap-4">
+          <div className="lg:col-span-5 flex flex-col gap-3">
             <a
               href={siteProfile.nexrenaUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track('about_nexrena_click', { source: 'founder_callout' })}
-              className="inline-flex items-center justify-between gap-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-foreground border border-accent/30 hover:bg-foreground hover:text-background py-5 px-6 transition-colors"
+              className="brutal-btn !justify-between"
             >
               Visit Nexrena (agency)
               <span aria-hidden="true">↗</span>
@@ -147,7 +146,7 @@ export const AboutExperience = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track('about_nexrena_click', { source: 'leadership' })}
-              className="inline-flex items-center justify-between gap-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-foreground/80 border border-accent/20 hover:border-accent/40 py-5 px-6 transition-colors"
+              className="brutal-btn-ghost !justify-between"
             >
               Leadership & two-site model
               <span aria-hidden="true">↗</span>
@@ -156,95 +155,9 @@ export const AboutExperience = () => {
         </div>
       </section>
 
-      {/* SECTION 3: What I work with — same content as Skills ribbon, fitted here */}
-      <section className="sticky top-0 min-h-screen w-full bg-[#0a0a0a] text-[#ededed] z-30 flex flex-col">
-        <div className="w-full max-w-[1400px] mx-auto flex flex-col flex-1 min-h-0">
-          {/* Top row: Structural redesign */}
-          <div className="p-8 md:p-12 lg:p-16 flex flex-col bg-[#0a0a0a]">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-neutral-500 mb-12"
-            >
-              {stackCopy.eyebrow}
-            </motion.span>
-            
-            <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 justify-between items-start">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-[clamp(3rem,6vw,6rem)] font-black uppercase tracking-tighter leading-[0.9] text-[#ededed] max-w-3xl"
-              >
-                {stackCopy.headline}
-              </motion.h2>
-              
-              <div className="flex flex-col gap-8 max-w-md w-full shrink-0 pt-2 lg:pt-4">
-                <motion.p
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.15 }}
-                  className="text-lg md:text-xl font-light leading-relaxed text-neutral-400"
-                >
-                  {stackCopy.description}
-                </motion.p>
-                <motion.button
-                  type="button"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  onClick={() => {
-                    track('contact_click', { source: 'about_discuss' });
-                    track('about_discuss_stack_click');
-                    if (typeof window !== 'undefined' && (window as unknown as { openContactHub?: () => void }).openContactHub) {
-                      (window as unknown as { openContactHub: () => void }).openContactHub();
-                    }
-                  }}
-                  className="inline-flex items-center justify-between gap-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#ededed] hover:text-[#0a0a0a] border border-neutral-700 hover:bg-[#ededed] hover:border-[#ededed] py-4 px-6 transition-all duration-300 group"
-                >
-                  {stackCopy.ctaButton}
-                  <span className="text-lg leading-none transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </motion.button>
-              </div>
-            </div>
-          </div>
+      <StackSection />
 
-          {/* Infinite marquee — same as ribbon */}
-          <div className="relative w-full py-8 md:py-12 overflow-hidden flex items-center bg-[#0a0a0a] flex-1 min-h-[200px]" style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
-            <motion.div
-              className="flex whitespace-nowrap"
-              animate={shouldReduceMotion ? { x: 0 } : { x: ['0%', '-33.333%'] }}
-              transition={{ duration: 25, ease: 'linear', repeat: Infinity }}
-            >
-              {[...stackTechnologies, ...stackTechnologies, ...stackTechnologies].map((tech, i) => {
-                const TechIcon = tech.icon;
-                return (
-                  <div
-                    key={i}
-                    className="flex items-center gap-6 px-8 md:px-10 text-[#ededed] text-[4vw] md:text-[3vw] font-bold tracking-tight uppercase leading-none select-none"
-                  >
-                    {TechIcon ? (
-                      <TechIcon className="text-[0.9em] text-[#ededed] shrink-0" />
-                    ) : (
-                      <span className="text-[0.75em] text-neutral-500 shrink-0">■</span>
-                    )}
-                    <span>{tech.name}</span>
-                    <span className="text-neutral-600">//</span>
-                  </div>
-                );
-              })}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4: EDUCATION (Sticks to Top) */}
-      <section className="sticky top-0 min-h-[90vh] w-full bg-background z-40 flex flex-col justify-center pt-32 pb-32 px-4 md:px-8">
-        <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+      <section className="w-full bg-background py-16 md:py-20 px-4 md:px-6 border-t-2 border-foreground">        <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 border-2 border-foreground bg-background p-8 md:p-12 shadow-brutal-lg">
           <div>
             <div className="overflow-hidden mb-8">
               <motion.h2 
@@ -262,14 +175,14 @@ export const AboutExperience = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="font-sans text-xl md:text-2xl font-light text-foreground/70 max-w-md"
+              className="font-sans text-lg md:text-xl max-w-md"
             >
-              Here’s where I’ve learned the craft—and keep learning.
+              UCF boot camp, cyber defense coursework, and Valencia business studies — plus a lot of learning on the job since.
             </motion.p>
           </div>
 
-          <div className="flex flex-col gap-16 lg:border-l border-foreground/10 lg:pl-16 relative">
-            <div className="absolute top-0 bottom-0 left-0 w-px bg-accent/30 scale-y-0 transform origin-top hidden lg:block" />
+          <div className="flex flex-col gap-16 lg:border-l-2 lg:border-foreground lg:pl-12 relative">
+            <div className="absolute top-0 bottom-0 left-0 w-0.5 bg-highlight hidden lg:block" />
 
             {education.map((school, schoolIdx) => (
               <motion.div
@@ -288,17 +201,17 @@ export const AboutExperience = () => {
                     width={56}
                     height={56}
                   />
-                  <h3 className="font-sans text-2xl md:text-3xl font-bold uppercase tracking-widest text-foreground">
+                  <h3 className="font-mono text-xl md:text-2xl font-bold uppercase tracking-tight">
                     {school.school}
                   </h3>
                 </div>
                 <div className="space-y-8">
                   {school.items.map((item) => (
                     <div key={item.label} className="group">
-                      <span className="font-mono text-sm md:text-base uppercase tracking-widest text-accent mb-2 block">
+                      <span className="font-mono text-sm uppercase tracking-widest mb-2 block bg-foreground text-background px-2 py-0.5 w-fit">
                         {item.dates}
                       </span>
-                      <span className="font-sans text-lg md:text-xl text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                      <span className="font-sans text-base md:text-lg group-hover:bg-highlight px-1 -mx-1 transition-none">
                         {item.label}
                       </span>
                     </div>

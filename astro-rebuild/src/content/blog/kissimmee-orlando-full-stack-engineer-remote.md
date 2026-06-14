@@ -41,7 +41,7 @@ If you found this page searching **"full stack developer Kissimmee"** or **"Reac
 2. Can join your Slack tomorrow and own a sprint
 3. Understands Florida business contexts (tourism, real estate, B2B distribution, hospitality tech)
 
-That is the profile I optimize this site for. The [about page](/about) has full work history; the [portfolio](/work) has shipped systems; my [resume](/Nicholas_Loperena_Resume_v6.pdf) is one click away.
+That is the profile I optimize this site for. The [about page](/about) has full work history; the [portfolio](/work) has shipped systems; my [resume](/resume) is one click away.
 
 ## Remote policy: what I am looking for
 
@@ -59,7 +59,7 @@ Orlando and Kissimmee continue to grow as hubs for simulation, hospitality tech,
 
 ## Next steps for recruiters and hiring managers
 
-- **Recruiters:** [Download resume (PDF)](/Nicholas_Loperena_Resume_v6.pdf) · [LinkedIn](https://www.linkedin.com/in/nicholas-loperena/)
+- **Recruiters:** [Download resume (PDF)](/Nicholas_Loperena_Resume_v8.pdf) · [Recruiter hub](/for-recruiters) · [LinkedIn](https://www.linkedin.com/in/nicholas-loperena/)
 - **Hiring managers:** [View work samples](/work) · [Read the hiring guide](/blog/hiring-senior-full-stack-engineer-remote)
 - **Contact:** use the form on [About](/about) or email nicholasloperena@gmail.com
 

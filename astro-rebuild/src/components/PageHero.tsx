@@ -65,63 +65,46 @@ export const PageHero = ({ page }: PageHeroProps) => {
 
   const minHeight = config.compact
     ? 'min-h-[72svh] lg:min-h-[68svh]'
-    : 'min-h-[100svh] lg:min-h-[calc(100svh-8rem)]';
+    : 'min-h-[100svh] lg:min-h-[calc(100svh-4rem)]';
 
   const hasCtas = config.showContact || config.showResume || config.showExperienceLink;
 
   return (
     <section
       ref={rootRef}
-      className={`relative w-full ${minHeight} bg-background pt-28 pb-16 md:pt-32 md:pb-20 px-4 md:px-8 lg:px-12 z-10 overflow-hidden`}
+      className={`relative w-full ${minHeight} bg-background pt-16 pb-8 md:pb-10 px-0 z-10 overflow-hidden border-b-2 border-foreground`}
       data-hero-animate
     >
       {config.heroImage && (
-        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
-          <img
-            src={config.heroImage}
-            alt=""
-            className="h-full w-full object-cover opacity-[0.12]"
-            loading="eager"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background" />
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.08] mix-blend-multiply" aria-hidden>
+          <img src={config.heroImage} alt="" className="h-full w-full object-cover" loading="eager" decoding="async" />
         </div>
       )}
 
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #7D6B5D 1px, transparent 1px), linear-gradient(to bottom, #7D6B5D 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }}
-        aria-hidden
-      />
-
-      <div
-        className={`relative z-10 mx-auto flex w-full max-w-[1400px] flex-col gap-10 lg:gap-0 ${
+        className={`relative z-10 mx-auto flex w-full max-w-[1400px] flex-col gap-8 lg:gap-0 px-4 md:px-6 lg:px-8 ${
           config.showPortrait
-            ? 'lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.72fr)] lg:items-center'
-            : 'lg:max-w-4xl'
+            ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.55fr)] lg:items-stretch'
+            : 'lg:max-w-5xl'
         } ${minHeight}`}
       >
         <div
-          className={`order-2 lg:order-1 flex flex-col gap-8 md:gap-10 py-2 lg:py-10 ${
-            config.showPortrait ? 'lg:pr-10' : ''
+          className={`order-1 flex flex-col gap-6 md:gap-8 py-4 lg:py-8 ${
+            config.showPortrait ? 'lg:border-r-2 lg:border-foreground lg:pr-8' : ''
           }`}
         >
-          <div className="hero-meta flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.28em] text-accent">
-            <span>{config.eyebrow}</span>
-            <span className="hidden sm:inline text-accent/40">/</span>
-            <span className="text-accent/80">{config.meta}</span>
+          <div className="hero-meta flex flex-wrap items-center gap-3 border-2 border-foreground bg-concrete px-4 py-3 w-fit">
+            <span className="brutal-label">{config.eyebrow}</span>
+            <span className="text-foreground font-mono text-xs">|</span>
+            <span className="brutal-label text-secondary">{config.meta}</span>
           </div>
 
-          <div className="space-y-1 md:space-y-2">
+          <div className="space-y-0 border-2 border-foreground bg-background shadow-brutal-lg">
             {config.headlineLines.map((line, index) => (
-              <div key={`${page}-${line}`} className="overflow-hidden">
+              <div key={`${page}-${line}`} className="overflow-hidden border-b-2 border-foreground last:border-b-0">
                 <h1
-                  className={`hero-headline-line block text-[clamp(2.75rem,8vw,6.5rem)] font-sans font-black uppercase leading-[0.92] tracking-tighter ${
-                    index === 1 ? 'text-accent' : 'text-foreground'
+                  className={`hero-headline-line block px-4 md:px-6 py-3 md:py-4 text-[clamp(2.5rem,9vw,5.5rem)] font-mono font-black uppercase leading-[0.95] tracking-tighter ${
+                    index === 1 ? 'bg-highlight text-foreground' : 'bg-background text-foreground'
                   }`}
                 >
                   {line}
@@ -130,15 +113,15 @@ export const PageHero = ({ page }: PageHeroProps) => {
             ))}
           </div>
 
-          <p className="hero-subline max-w-xl font-serif text-lg md:text-xl italic leading-relaxed text-foreground/80">
+          <p className="hero-subline max-w-2xl font-sans text-base md:text-lg leading-relaxed text-foreground border-l-4 border-foreground pl-4 md:pl-5">
             {config.subline}
           </p>
 
-          <div className="flex flex-wrap gap-2 md:gap-3">
+          <div className="flex flex-wrap gap-2">
             {config.highlights.map((item) => (
               <span
                 key={item}
-                className="hero-highlight inline-flex items-center border border-accent/25 bg-white/50 px-3 py-2 font-mono text-[10px] md:text-[11px] font-bold uppercase tracking-[0.18em] text-foreground/80"
+                className="hero-highlight inline-flex items-center border-2 border-foreground bg-concrete px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em]"
               >
                 {item}
               </span>
@@ -146,18 +129,12 @@ export const PageHero = ({ page }: PageHeroProps) => {
           </div>
 
           {hasCtas && (
-            <div className="hero-cta flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4">
+            <div className="hero-cta flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-2">
               {config.showContact && (
-                <button
-                  type="button"
-                  onClick={handleContactClick}
-                  className="group bg-foreground text-background py-4 px-6 md:py-5 md:px-7 font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] hover:bg-highlight hover:text-foreground transition-colors duration-300 border border-foreground"
-                >
+                <button type="button" onClick={handleContactClick} className="brutal-btn group">
                   <span className="flex items-center gap-3">
                     Get in Touch
-                    <span className="text-lg leading-none transition-transform duration-300 group-hover:translate-x-1.5">
-                      →
-                    </span>
+                    <span className="text-lg leading-none group-hover:translate-x-1 transition-none">→</span>
                   </span>
                 </button>
               )}
@@ -167,7 +144,7 @@ export const PageHero = ({ page }: PageHeroProps) => {
                   href={siteProfile.resumePath}
                   download={siteProfile.resumeDownloadName}
                   onClick={() => track('hero_cta_click', { cta: 'resume', page })}
-                  className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-foreground border border-foreground/30 hover:border-foreground py-4 px-6 md:py-5 md:px-7 transition-colors"
+                  className="brutal-btn-ghost"
                 >
                   Download Resume
                 </a>
@@ -177,17 +154,14 @@ export const PageHero = ({ page }: PageHeroProps) => {
                 <a
                   href="/about"
                   onClick={() => track('hero_cta_click', { cta: 'about', page })}
-                  className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-accent hover:text-foreground transition-colors"
+                  className="brutal-link px-2 py-4"
                 >
                   View Experience
                 </a>
               )}
 
               {page === 'about' && (
-                <a
-                  href="#experience"
-                  className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-accent hover:text-foreground transition-colors"
-                >
+                <a href="#experience" className="brutal-link px-2 py-4">
                   View Timeline ↓
                 </a>
               )}
@@ -196,15 +170,15 @@ export const PageHero = ({ page }: PageHeroProps) => {
         </div>
 
         {config.showPortrait && (
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end lg:pl-6">
+          <div className="order-2 flex justify-center lg:justify-end items-center lg:pl-8 py-4 lg:py-8">
             <HeroPortrait />
           </div>
         )}
       </div>
 
-      <div className="pointer-events-none absolute bottom-8 left-4 md:left-8 hidden lg:block">
-        <div className="hero-frame-line h-px w-24 bg-accent/30 mb-3" />
-        <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent/60 max-w-[12rem] leading-relaxed">
+      <div className="pointer-events-none absolute bottom-6 left-4 md:left-8 hidden lg:block max-w-xs">
+        <div className="hero-frame-line h-[3px] w-16 bg-foreground mb-3" />
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground leading-relaxed">
           {config.footerNote}
         </p>
       </div>

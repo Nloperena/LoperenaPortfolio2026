@@ -48,25 +48,25 @@ const nexrenaLinks = nexrenaCrossLinksByPost[post.id] ?? [];
     { name: post.data.title, path: postPath(post.id) },
   ]))} />
 
-  <article class="px-4 md:px-8 pb-32 pt-28 md:pt-32">
-    <div class="mx-auto max-w-3xl">
-      <header class="mb-10 border-b border-accent/20 pb-10">
-        <a href="/blog" class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent hover:text-foreground transition-colors">
+  <article class="px-4 md:px-6 pb-32 pt-28 md:pt-32">
+    <div class="mx-auto max-w-3xl border-2 border-foreground bg-background p-8 md:p-12 shadow-brutal-lg">
+      <header class="mb-10 border-b-2 border-foreground pb-10">
+        <a href="/blog" class="font-mono text-[10px] font-bold uppercase tracking-[0.18em] hover:bg-highlight px-1 -mx-1">
           ← Back to blog
         </a>
-        <time datetime={post.data.pubDate.toISOString()} class="mt-6 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent/80">
+        <time datetime={post.data.pubDate.toISOString()} class="mt-6 block font-mono text-[10px] font-bold uppercase tracking-[0.18em]">
           {formatPostDate(post.data.pubDate)}
         </time>
-        <h1 class="mt-4 font-sans text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-tighter leading-[0.95] text-foreground">
+        <h1 class="mt-4 font-mono text-[clamp(2rem,5vw,3rem)] font-black uppercase tracking-tighter leading-[0.95]">
           {post.data.title}
         </h1>
-        <p class="mt-5 font-serif text-lg md:text-xl italic leading-relaxed text-foreground/75">
+        <p class="mt-5 font-sans text-lg md:text-xl leading-relaxed">
           {post.data.description}
         </p>
         {post.data.tags.length > 0 && (
           <div class="mt-6 flex flex-wrap gap-2">
             {post.data.tags.map((tag) => (
-              <span class="border border-accent/20 px-2 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-foreground/70">
+              <span class="border-2 border-foreground px-2 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.15em]">
                 {tag}
               </span>
             ))}
@@ -80,20 +80,20 @@ const nexrenaLinks = nexrenaCrossLinksByPost[post.id] ?? [];
           alt={post.data.title}
           width="1200"
           height="675"
-          class="mb-10 aspect-[16/9] w-full border border-accent/15 object-cover"
+          class="mb-10 aspect-[16/9] w-full border-2 border-foreground object-cover"
           loading="eager"
           decoding="async"
         />
       )}
 
-      <div class="prose prose-lg max-w-none prose-headings:font-sans prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight prose-p:font-serif prose-p:text-foreground/85 prose-a:text-accent prose-a:no-underline hover:prose-a:text-foreground prose-strong:text-foreground prose-li:font-serif">
+      <div class="prose prose-lg max-w-none prose-headings:font-mono prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight prose-p:font-sans prose-p:text-foreground prose-a:text-foreground prose-a:underline prose-a:decoration-2 hover:prose-a:bg-highlight prose-strong:text-foreground prose-li:font-sans">
         <Content />
       </div>
 
       {nexrenaLinks.length > 0 && (
-        <aside class="mt-12 border border-accent/20 bg-white/40 p-6 md:p-8">
-          <p class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">Related on Nexrena</p>
-          <p class="mt-2 font-serif text-sm italic text-foreground/70">
+        <aside class="mt-12 border-2 border-foreground bg-concrete p-6 md:p-8">
+          <p class="font-mono text-[10px] font-bold uppercase tracking-[0.18em]">Related on Nexrena</p>
+          <p class="mt-2 font-sans text-sm">
             Agency case studies and B2B growth guides on my separate commercial site.
           </p>
           <ul class="mt-5 space-y-4">
@@ -103,11 +103,11 @@ const nexrenaLinks = nexrenaCrossLinksByPost[post.id] ?? [];
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="font-sans text-base font-bold text-foreground hover:text-accent transition-colors"
+                  class="font-mono text-sm font-bold uppercase hover:bg-highlight px-1 -mx-1"
                 >
                   {link.label} ↗
                 </a>
-                <p class="mt-1 font-serif text-sm text-foreground/70">{link.description}</p>
+                <p class="mt-1 font-sans text-sm">{link.description}</p>
               </li>
             ))}
           </ul>

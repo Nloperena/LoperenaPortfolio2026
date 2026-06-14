@@ -3,10 +3,11 @@ export const prerender = true;
 
 import Layout from '../components/Layout.astro';
 import { PageHero } from '../components/PageHero';
-import { Capabilities } from '../components/Capabilities';
+import { RecruiterSkim } from '../components/RecruiterSkim';
+import { WhatIBring } from '../components/WhatIBring';
 import { ProjectsSectionHome } from '../components/ProjectsSectionHome';
 import { Proof } from '../components/Proof';
-import { NexrenaHub } from '../components/NexrenaHub';
+import { HiringClose } from '../components/HiringClose';
 import { pageSeo } from '../data/seo';
 import { pageImages } from '../data/pageImages';
 import { personJsonLd, websiteJsonLd } from '../lib/schema';
@@ -24,16 +25,17 @@ const seo = pageSeo.home;
 	<script type="application/ld+json" set:html={JSON.stringify(personJsonLd())} />
 	<script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd())} />
 
-	<div class="space-y-32 md:space-y-48 pb-40">
+	<div class="pb-8">
 		<div transition:name="page-hero">
 			<PageHero page="home" client:load />
 		</div>
 
 		<div transition:name="page-body">
-			<Capabilities client:idle />
+			<RecruiterSkim client:idle />
+			<WhatIBring client:idle />
 			<ProjectsSectionHome client:idle />
 			<Proof client:idle />
-			<NexrenaHub client:idle />
+			<HiringClose client:idle />
 		</div>
 	</div>
 </Layout>

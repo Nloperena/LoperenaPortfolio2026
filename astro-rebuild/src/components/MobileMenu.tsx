@@ -8,7 +8,6 @@ interface MobileMenuProps {
 }
 
 export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
-  // Prevent background scrolling when open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -29,125 +28,86 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  const handleSkillsClick = () => {
-    onClose();
-    // @ts-ignore
-    if (typeof window !== 'undefined' && window.toggleStackRibbonState) {
-      // @ts-ignore
-      window.toggleStackRibbonState();
-    }
-  };
-
   const menuVariants = {
     hidden: { x: '100%' },
-    visible: { 
+    visible: {
       x: 0,
-      transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1], staggerChildren: 0.1, delayChildren: 0.2 }
+      transition: { duration: 0.35, ease: [0.76, 0, 0.24, 1], staggerChildren: 0.06, delayChildren: 0.1 },
     },
     exit: {
       x: '100%',
-      transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] }
-    }
+      transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] },
+    },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { 
-      opacity: 1, 
+    hidden: { opacity: 0, x: 16 },
+    visible: {
+      opacity: 1,
       x: 0,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
-    }
+      transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+    },
   };
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[200] h-[100svh] w-screen bg-[#0a0a0a]/95 backdrop-blur-md flex flex-col text-[#ededed] lg:hidden"
+          className="fixed inset-0 z-[200] h-[100svh] w-screen bg-background text-foreground flex flex-col lg:hidden border-l-4 border-highlight"
           variants={menuVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
         >
-          {/* Subtle architectural grid lines behind everything */}
-          <div className="absolute inset-0 pointer-events-none z-0" style={{
-            backgroundImage: 'linear-gradient(to right, #262626 1px, transparent 1px), linear-gradient(to bottom, #262626 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
-            opacity: 0.5
-          }}></div>
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.06]"
+            style={{
+              backgroundImage:
+                'linear-gradient(to right, var(--color-highlight-line) 1px, transparent 1px), linear-gradient(to bottom, var(--color-highlight-line) 1px, transparent 1px)',
+              backgroundSize: '32px 32px',
+            }}
+          />
 
-          {/* Header area with Close button */}
-          <div className="h-16 w-full flex items-center justify-between px-4 border-b border-neutral-800 relative z-10 bg-[#0a0a0a]">
-            <span className="font-sans text-xs font-black tracking-tighter uppercase text-[#ededed] leading-none">
-              NICO LOPERENA
-            </span>
-            <button 
+          <div className="h-16 w-full flex items-center justify-between px-4 border-b-2 border-foreground relative z-10">
+            <span className="font-mono text-xs font-black tracking-tight uppercase">NICO LOPERENA</span>
+            <button
               onClick={onClose}
-              className="font-mono text-[10px] font-bold tracking-widest text-neutral-500 hover:text-white transition-colors duration-300 uppercase flex items-center gap-2 group h-full px-2 cursor-pointer"
+              className="font-mono text-[10px] font-bold tracking-widest uppercase flex items-center gap-2 h-full px-2 cursor-pointer hover:bg-highlight hover:text-foreground"
             >
-              Close
-              <span className="text-lg leading-none -mt-0.5 group-hover:rotate-90 transition-transform duration-300">[ X ]</span>
+              Close [X]
             </button>
           </div>
 
-          {/* Navigation Links */}
           <div className="flex-1 flex flex-col justify-center px-8 relative z-10">
-            <nav className="flex flex-col gap-8">
-              <motion.a 
-                href="/work" 
-                onClick={onClose}
-                variants={itemVariants}
-                className="font-sans text-5xl sm:text-6xl font-black uppercase tracking-tighter text-[#ededed] hover:text-[#C4A484] transition-colors"
-              >
-                Work
-              </motion.a>
-              <motion.a 
-                href="/about" 
-                onClick={onClose}
-                variants={itemVariants}
-                className="font-sans text-5xl sm:text-6xl font-black uppercase tracking-tighter text-[#ededed] hover:text-[#C4A484] transition-colors"
-              >
-                About
-              </motion.a>
-              <motion.a 
-                href="/blog" 
-                onClick={onClose}
-                variants={itemVariants}
-                className="font-sans text-5xl sm:text-6xl font-black uppercase tracking-tighter text-[#ededed] hover:text-[#C4A484] transition-colors"
-              >
-                Blog
-              </motion.a>
-              <motion.a 
-                href={siteProfile.resumePath}
-                download={siteProfile.resumeDownloadName}
-                onClick={onClose}
-                variants={itemVariants}
-                className="font-sans text-5xl sm:text-6xl font-black uppercase tracking-tighter text-[#ededed] hover:text-[#C4A484] transition-colors"
-              >
-                Resume
-              </motion.a>
-              <motion.button 
-                onClick={handleSkillsClick}
-                variants={itemVariants}
-                className="text-left font-sans text-5xl sm:text-6xl font-black uppercase tracking-tighter text-[#ededed] hover:text-[#C4A484] transition-colors bg-transparent border-none outline-none cursor-pointer"
-              >
-                Skills
-              </motion.button>
+            <nav className="flex flex-col gap-6">
+              {[
+                { href: '/work', label: 'Work', onClick: onClose },
+                { href: '/about', label: 'About', onClick: onClose },
+                { href: '/about#stack', label: 'Stack', onClick: onClose },
+                { href: '/blog', label: 'Blog', onClick: onClose },
+                { href: siteProfile.resumePath, label: 'Resume', onClick: onClose, download: siteProfile.resumeDownloadName },
+              ].map((item) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  download={item.download}
+                  onClick={item.onClick}
+                  variants={itemVariants}
+                  className="font-mono text-4xl sm:text-5xl font-black uppercase tracking-tighter hover:bg-highlight hover:text-foreground px-2 -mx-2"
+                >
+                  {item.label}
+                </motion.a>
+              ))}
             </nav>
           </div>
 
-          {/* Footer CTA */}
-          <motion.div variants={itemVariants} className="w-full relative z-10 border-t border-neutral-800 bg-[#0a0a0a]">
-            <button 
+          <motion.div variants={itemVariants} className="w-full relative z-10 border-t-2 border-foreground">
+            <button
               onClick={handleContactClick}
-              className="w-full h-20 bg-[#ededed] text-[#0a0a0a] hover:bg-white transition-colors duration-0 flex items-center justify-between px-8 group border-none outline-none cursor-pointer"
+              className="w-full h-20 bg-highlight text-foreground hover:bg-foreground hover:text-background transition-none flex items-center justify-between px-8 border-none outline-none cursor-pointer"
             >
-              <span className="font-mono text-xs font-bold uppercase tracking-widest">
-                LET'S TALK
-              </span>
-              <span className="font-mono text-xl group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300">
-                ↗
-              </span>
+              <span className="font-mono text-xs font-bold uppercase tracking-widest">Let&apos;s talk</span>
+              <span className="font-mono text-xl">↗</span>
             </button>
           </motion.div>
         </motion.div>

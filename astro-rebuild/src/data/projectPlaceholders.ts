@@ -18,14 +18,20 @@ export const projectPlaceholders: Record<string, ProjectPlaceholder> = {
     accent: '#8B3A3A',
     status: 'HEADLESS ECOMMERCE',
   },
-  'vito-shop': {
+  'vito-fryfilter': {
     fig: 'FIG.03',
     monogram: 'VF',
+    accent: '#E2725B',
+    status: 'SHOPIFY STOREFRONT',
+  },
+  'nexrena-platform': {
+    fig: 'FIG.04',
+    monogram: 'NX',
     accent: '#4A5D4E',
-    status: 'GLOBAL DTC',
+    status: 'OPS PLATFORM',
   },
   'furniture-packages-usa': {
-    fig: 'FIG.04',
+    fig: 'FIG.05',
     monogram: 'FP',
     accent: '#7D6B5D',
     status: 'B2B PROCUREMENT',

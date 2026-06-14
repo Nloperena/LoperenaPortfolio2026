@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run dev --prefix astro-rebuild",
+    "build": "npm run build --prefix astro-rebuild",
+    "preview": "npm run preview --prefix astro-rebuild",
+    "dev:legacy": "next dev",
+    "build:legacy": "next build",
     "start": "next start",
     "lint": "next lint"
   },

@@ -294,13 +294,13 @@ export function blogIndexJsonLd(posts: { title: string; url: string; date: strin
 
     '@type': 'Blog',
 
-    name: `${siteProfile.name} — Engineering & Hiring Blog`,
+    name: `${siteProfile.name} — Engineering Blog`,
 
     url: absoluteUrl('/blog'),
 
     description:
 
-      'Articles for recruiters, employers, and engineering leaders from a senior full-stack engineer in Kissimmee, FL.',
+      'Technical writing on full-stack engineering, architecture, and production delivery from a senior engineer in Kissimmee, FL.',
 
     author: { '@id': personId },
 

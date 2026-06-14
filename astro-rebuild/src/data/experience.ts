@@ -1,4 +1,4 @@
-/** Work history — keep in sync with Nicholas_Loperena_Resume_v6.pdf / gen_v6.py */
+/** Work history — keep in sync with Nicholas_Loperena_Resume_v8.pdf */
 export type ExperienceEntry = {
   id: string;
   dates: string;
@@ -10,17 +10,6 @@ export type ExperienceEntry = {
 };
 
 export const experience: ExperienceEntry[] = [
-  {
-    id: 'forza',
-    dates: 'Jan 2025 – Present',
-    role: 'Senior Full-Stack Engineer',
-    company: 'Forza',
-    location: 'Remote',
-    bullets: [
-      'Rebuilt ForzaBuilt.com and RuggedRed.com on React/Astro; improved Core Web Vitals',
-      'Shipped interactive product tools and industry landing pages on Vercel',
-    ],
-  },
   {
     id: 'nexrena',
     dates: 'Apr 2024 – Present',
@@ -34,9 +23,21 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
+    id: 'forza',
+    dates: 'Jan 2025 – May 2026',
+    role: 'Senior Full-Stack Engineer',
+    company: 'Forza',
+    location: 'Remote',
+    bullets: [
+      'Rebuilt ForzaBuilt.com and RuggedRed.com on React/Astro; improved Core Web Vitals',
+      'Shipped interactive product tools and industry landing pages on Vercel',
+      'Employee of the Month (September 2025)',
+    ],
+  },
+  {
     id: 'vito',
     dates: 'Dec 2023 – Sep 2024',
-    role: 'Web Developer',
+    role: 'Full-Stack Web Developer',
     company: 'VITO Fryfilter, Inc.',
     bullets: [
       'Shopify e-commerce: 285% YoY traffic growth, 2.8% conversion rate, +19% sales',
@@ -46,10 +47,10 @@ export const experience: ExperienceEntry[] = [
   {
     id: 'villa-marketers',
     dates: 'Mar 2022 – Mar 2024',
-    role: 'SEO Copywriter & Junior Developer',
+    role: 'Full-Stack Web Developer & SEO Specialist',
     company: 'Villa Marketers',
     location: 'Remote',
-    bullets: ['15+ WordPress sites, 99%+ uptime; first-page rankings for key terms'],
+    bullets: ['11+ WordPress sites, 99%+ uptime; first-page rankings for key terms'],
   },
   {
     id: 'fpusa',

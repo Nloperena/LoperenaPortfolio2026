@@ -1,34 +1,69 @@
 export type CapabilityMetric = {
+
   value: string;
+
   label: string;
+
   note: string;
+
 };
 
+
+
 export const capabilityProof = {
-  eyebrow: 'Scope & proof',
-  headline: 'Built for production teams.',
+
+  eyebrow: 'What I bring',
+
+  headline: 'I own the work end to end.',
+
   subheadline:
-    'Full-stack web apps, APIs, and cloud infrastructure for B2B and e-commerce — scoped for speed, maintainability, and measurable outcomes after launch.',
+
+    'From UI to API to deploy — the same person in standup, in the PR, and when something needs fixing in production.',
+
   metrics: [
+
     {
+
       value: '99%',
+
       label: 'Lighthouse desktop',
+
       note: 'Forzabuilt · 200+ SKU catalog',
+
     },
+
     {
-      value: '0→28',
-      label: 'Qualified inbound',
-      note: 'First 4 months post-launch',
+
+      value: '8 yrs',
+
+      label: 'Shipping in production',
+
+      note: 'IT roots → full-stack',
+
     },
+
     {
-      value: '285%',
-      label: 'YoY traffic growth',
-      note: 'VITO Shopify rebuild',
+
+      value: '40+',
+
+      label: 'Google reviews',
+
+      note: 'VITO · automated testimonial pipeline',
+
     },
+
     {
-      value: '7+ yrs',
-      label: 'In production',
-      note: 'React · Node · PostgreSQL',
+
+      value: '+285%',
+
+      label: 'Traffic YoY',
+
+      note: 'VITO Shopify storefront',
+
     },
+
   ] satisfies CapabilityMetric[],
+
 } as const;
+
+

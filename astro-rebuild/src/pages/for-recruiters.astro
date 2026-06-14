@@ -1,0 +1,32 @@
+---
+export const prerender = true;
+
+import Layout from '../components/Layout.astro';
+import { ForRecruitersHub } from '../components/ForRecruitersHub';
+import { siteProfile } from '../data/site';
+import { hiringProfile } from '../data/hiring';
+import { breadcrumbJsonLd } from '../lib/schema';
+
+const title = `For Recruiters | ${siteProfile.legalName} — Senior Full-Stack Engineer`;
+const description = `${hiringProfile.workAuthorization} ${hiringProfile.availability} React, Next.js, Node.js, TypeScript, PostgreSQL. Resume, work samples, and contact.`;
+---
+
+<Layout title={title} description={description} canonicalPath="/for-recruiters" ogType="website">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'For Recruiters', path: '/for-recruiters' },
+  ]))} />
+
+  <div class="pt-16 pb-8">
+    <header class="border-b-2 border-foreground bg-highlight px-4 py-8 md:px-6 lg:px-8">
+      <div class="mx-auto max-w-[1400px]">
+        <span class="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-secondary">Hiring</span>
+        <h1 class="mt-2 font-mono text-3xl font-black uppercase tracking-tighter md:text-5xl">For recruiters</h1>
+        <p class="mt-4 max-w-2xl font-sans text-base leading-relaxed md:text-lg">
+          Quick reference for senior full-stack hiring — work authorization, stack, ideal roles, and direct links to resume and portfolio.
+        </p>
+      </div>
+    </header>
+    <ForRecruitersHub client:load />
+  </div>
+</Layout>

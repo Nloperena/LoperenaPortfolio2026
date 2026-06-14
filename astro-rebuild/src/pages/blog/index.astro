@@ -5,6 +5,7 @@ import Layout from '../../components/Layout.astro';
 import { PageHero } from '../../components/PageHero';
 import { pageSeo, absoluteUrl } from '../../data/seo';
 import { pageImages } from '../../data/pageImages';
+import { siteProfile } from '../../data/site';
 import { formatPostDate, getPublishedPosts, getPostAudience, postPath } from '../../lib/blog';
 import { blogIndexJsonLd, breadcrumbJsonLd } from '../../lib/schema';
 
@@ -37,58 +38,93 @@ const blogSchemaPosts = posts.map((post) => ({
   </div>
 
   <div transition:name="page-body" class="px-4 md:px-8 pb-32">
-    <section class="mx-auto max-w-[1400px] border-t border-accent/20 pt-16">
+    <section class="mx-auto max-w-[1400px] border-2 border-foreground bg-background px-6 py-8 md:px-10 md:py-10 mb-16 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-brutal">
+      <div>
+        <p class="font-mono text-[10px] font-bold uppercase tracking-[0.22em]">Senior full-stack engineer</p>
+        <p class="mt-2 font-sans text-base md:text-lg max-w-xl">
+          Open to remote US roles. Resume, portfolio, and a direct way to reach me below.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={siteProfile.resumePath}
+          download={siteProfile.resumeDownloadName}
+          class="brutal-btn !py-3 !px-5 text-[10px]"
+        >
+          Download resume
+        </a>
+        <a href="/for-recruiters" class="brutal-btn-ghost !py-3 !px-5 text-[10px]">
+          For recruiters
+        </a>
+        <a
+          href={siteProfile.linkedInUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="brutal-btn-ghost !py-3 !px-5 text-[10px]"
+        >
+          LinkedIn
+        </a>
+        <a
+          href={`mailto:${siteProfile.email}`}
+          class="brutal-btn-ghost !py-3 !px-5 text-[10px]"
+        >
+          Email
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-[1400px] border-t-2 border-foreground pt-16">
       <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <p class="font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-accent">For recruiters & employers</p>
-          <h2 class="mt-3 font-sans text-3xl md:text-5xl font-black uppercase tracking-tighter text-foreground">
-            Kissimmee · Remote · Full-stack
+          <p class="font-mono text-[10px] font-bold uppercase tracking-[0.22em]">For teams evaluating engineers</p>
+          <h2 class="mt-3 font-mono text-3xl md:text-5xl font-black uppercase tracking-tighter">
+            Technical depth & craft
           </h2>
-          <p class="mt-4 max-w-2xl font-serif text-base md:text-lg italic text-foreground/70">
-            Hiring guides for engineering leaders, plus technical notes from production work in React, Next.js, and PostgreSQL.
+          <p class="mt-4 max-w-2xl font-sans text-base md:text-lg">
+            Notes from production work — how I approach migrations, data, performance, and full-stack delivery.
           </p>
         </div>
         <a
           href="/rss.xml"
-          class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/70 hover:text-foreground transition-colors"
+          class="font-mono text-[10px] font-bold uppercase tracking-[0.18em] hover:bg-highlight px-2 py-1"
         >
           RSS feed →
         </a>
       </div>
 
-      <div class="mb-16 border-b border-accent/20 pb-16">
-        <h2 class="font-sans text-2xl md:text-4xl font-black uppercase tracking-tighter text-foreground">
-          Hiring & remote delivery
+      <div class="mb-16 border-b-2 border-foreground pb-16">
+        <h2 class="font-mono text-2xl md:text-4xl font-black uppercase tracking-tighter">
+          Delivery & background
         </h2>
         <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
           {recruiterPosts.map((post) => (
-            <article class="group flex flex-col border border-accent/20 bg-white/40 hover:bg-white/70 transition-colors">
-              <a href={postPath(post.id)} class="block overflow-hidden border-b border-accent/15">
+            <article class="group flex flex-col border-2 border-foreground bg-background hover:bg-highlight transition-none shadow-brutal-sm">
+              <a href={postPath(post.id)} class="block overflow-hidden border-b-2 border-foreground">
                 <img
                   src={post.data.ogImage ?? pageImages.blog.og}
                   alt={post.data.title}
                   width="1200"
                   height="675"
-                  class="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  class="aspect-[16/9] w-full object-cover"
                   loading="lazy"
                   decoding="async"
                 />
               </a>
               <div class="flex flex-1 flex-col p-6 md:p-8">
-                <time datetime={post.data.pubDate.toISOString()} class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+                <time datetime={post.data.pubDate.toISOString()} class="font-mono text-[10px] font-bold uppercase tracking-[0.18em]">
                   {formatPostDate(post.data.pubDate)}
                 </time>
-                <h3 class="mt-4 font-sans text-xl md:text-2xl font-bold uppercase tracking-tight text-foreground">
-                  <a href={postPath(post.id)} class="hover:text-accent transition-colors">
+                <h3 class="mt-4 font-mono text-xl md:text-2xl font-bold uppercase tracking-tight">
+                  <a href={postPath(post.id)} class="hover:underline decoration-2 underline-offset-4">
                     {post.data.title}
                   </a>
                 </h3>
-                <p class="mt-3 flex-1 font-serif text-base leading-relaxed text-foreground/75">
+                <p class="mt-3 flex-1 font-sans text-base leading-relaxed">
                   {post.data.description}
                 </p>
                 <a
                   href={postPath(post.id)}
-                  class="mt-6 inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-foreground group-hover:text-accent transition-colors"
+                  class="mt-6 inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em]"
                 >
                   Read article <span aria-hidden="true">→</span>
                 </a>
@@ -99,46 +135,46 @@ const blogSchemaPosts = posts.map((post) => ({
       </div>
 
       <div>
-        <p class="font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-accent">Engineering notes</p>
-        <h2 class="mt-3 font-sans text-2xl md:text-4xl font-black uppercase tracking-tighter text-foreground">
+        <p class="font-mono text-[10px] font-bold uppercase tracking-[0.22em]">Engineering notes</p>
+        <h2 class="mt-3 font-mono text-2xl md:text-4xl font-black uppercase tracking-tighter">
           Production patterns & stack
         </h2>
         <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
           {engineeringPosts.map((post) => (
-          <article class="group flex flex-col border border-accent/20 bg-white/40 hover:bg-white/70 transition-colors">
-            <a href={postPath(post.id)} class="block overflow-hidden border-b border-accent/15">
+          <article class="group flex flex-col border-2 border-foreground bg-background hover:bg-highlight transition-none shadow-brutal-sm">
+            <a href={postPath(post.id)} class="block overflow-hidden border-b-2 border-foreground">
               <img
                 src={post.data.ogImage ?? pageImages.blog.og}
                 alt={post.data.title}
                 width="1200"
                 height="675"
-                class="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                class="aspect-[16/9] w-full object-cover"
                 loading="lazy"
                 decoding="async"
               />
             </a>
             <div class="flex flex-1 flex-col p-6 md:p-8">
-              <time datetime={post.data.pubDate.toISOString()} class="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+              <time datetime={post.data.pubDate.toISOString()} class="font-mono text-[10px] font-bold uppercase tracking-[0.18em]">
                 {formatPostDate(post.data.pubDate)}
               </time>
-              <h3 class="mt-4 font-sans text-xl md:text-2xl font-bold uppercase tracking-tight text-foreground">
-                <a href={postPath(post.id)} class="hover:text-accent transition-colors">
+              <h3 class="mt-4 font-mono text-xl md:text-2xl font-bold uppercase tracking-tight">
+                <a href={postPath(post.id)} class="hover:underline decoration-2 underline-offset-4">
                   {post.data.title}
                 </a>
               </h3>
-              <p class="mt-3 flex-1 font-serif text-base leading-relaxed text-foreground/75">
+              <p class="mt-3 flex-1 font-sans text-base leading-relaxed">
                 {post.data.description}
               </p>
               <div class="mt-5 flex flex-wrap gap-2">
                 {post.data.tags.slice(0, 3).map((tag) => (
-                  <span class="border border-accent/20 px-2 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-foreground/70">
+                  <span class="border-2 border-foreground px-2 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.15em]">
                     {tag}
                   </span>
                 ))}
               </div>
               <a
                 href={postPath(post.id)}
-                class="mt-6 inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-foreground group-hover:text-accent transition-colors"
+                class="mt-6 inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em]"
               >
                 Read article <span aria-hidden="true">→</span>
               </a>

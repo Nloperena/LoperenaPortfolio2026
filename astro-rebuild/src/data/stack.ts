@@ -1,3 +1,4 @@
+import type { IconType } from 'react-icons';
 import {
   SiReact,
   SiNextdotjs,
@@ -7,14 +8,24 @@ import {
   SiAmazonwebservices,
   SiNodedotjs,
   SiTailwindcss,
-  SiSalesforce,
-  SiGoogleanalytics,
+  SiShopify,
+  SiVercel,
   SiPython,
-  SiAnthropic,
-  SiGooglegemini
 } from 'react-icons/si';
 
-export const stackTechnologies = [
+export type StackTech = {
+  name: string;
+  icon?: IconType;
+};
+
+export type StackGroup = {
+  id: string;
+  label: string;
+  items: string[];
+};
+
+/** Full list for icon marquees or legacy use — prefer stackGroups for display. */
+export const stackTechnologies: StackTech[] = [
   { name: 'REACT', icon: SiReact },
   { name: 'NEXT.JS', icon: SiNextdotjs },
   { name: 'ASTRO', icon: SiAstro },
@@ -23,17 +34,43 @@ export const stackTechnologies = [
   { name: 'AWS', icon: SiAmazonwebservices },
   { name: 'NODE.JS', icon: SiNodedotjs },
   { name: 'TAILWIND', icon: SiTailwindcss },
-  { name: 'SALESFORCE', icon: SiSalesforce },
-  { name: 'GA4', icon: SiGoogleanalytics },
+  { name: 'VERCEL', icon: SiVercel },
+  { name: 'SHOPIFY', icon: SiShopify },
   { name: 'PYTHON', icon: SiPython },
-  { name: 'CLAUDE', icon: SiAnthropic },
-  { name: 'GEMINI', icon: SiGooglegemini },
+];
+
+/** Homepage “Core stack” strip — hiring signal only. */
+export const coreHiringStack = stackTechnologies.filter((t) =>
+  ['REACT', 'NEXT.JS', 'TYPESCRIPT', 'NODE.JS', 'POSTGRESQL', 'AWS', 'PYTHON'].includes(t.name),
+);
+
+export const stackGroups: StackGroup[] = [
+  {
+    id: 'frontend',
+    label: 'Frontend',
+    items: ['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind'],
+  },
+  {
+    id: 'backend',
+    label: 'Backend & data',
+    items: ['Node.js', 'PostgreSQL', 'REST', 'Express'],
+  },
+  {
+    id: 'platform',
+    label: 'Platform',
+    items: ['AWS', 'Vercel', 'Shopify', 'CDN'],
+  },
+  {
+    id: 'workflow',
+    label: 'Workflow',
+    items: ['Git', 'CI/CD', 'Code review', 'Cursor in the loop'],
+  },
 ];
 
 export const stackCopy = {
-  eyebrow: "[ TECHNICAL STACK ]",
-  headline: "BUILT FOR PRODUCTION.",
+  eyebrow: 'Stack',
+  headline: 'Tools I ship with in production.',
   description:
-    "React, Next.js, Node.js, TypeScript, PostgreSQL, and AWS — with practical AI tooling where it speeds delivery. Focused on maintainable systems that ship and scale.",
-  ctaButton: "Discuss opportunities",
-};
+    'The stack I reach for on client and product work — not a buzzword cloud. I care more about clear ownership, review, and what happens after launch than chasing every new tool.',
+  proofLine: 'Used on Forzabuilt · VITO Fryfilter · Nexrena · Furniture Packages USA',
+} as const;

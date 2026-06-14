@@ -9,131 +9,110 @@ export const FinalCTA = () => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end end"]
+    offset: ['start end', 'end end'],
   });
 
   const handleContactClick = () => {
     track('contact_click', { source: 'final_cta' });
-    // @ts-ignore
+    // @ts-expect-error global contact hub
     if (typeof window !== 'undefined' && window.openContactHub) {
-      // @ts-ignore
+      // @ts-expect-error global contact hub
       window.openContactHub();
     }
   };
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, 0]);
-  const opacity1 = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [80, 0]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.75], [0, 1]);
 
   return (
     <section ref={containerRef} className="relative w-full h-[100vh] -z-10">
-      <div className="fixed bottom-0 left-0 w-full h-screen bg-[#0a0a0a] text-[#ededed] overflow-hidden flex flex-col pointer-events-auto">
-      
-      {/* Noise Texture */}
-      <div className="absolute inset-0 z-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}></div>
+      <div className="fixed bottom-0 left-0 w-full h-screen bg-background-dark text-foreground-light overflow-hidden flex flex-col pointer-events-auto border-t-4 border-foreground">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.08]"
+          aria-hidden="true"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, var(--color-highlight-line) 1px, transparent 1px), linear-gradient(to bottom, var(--color-highlight-line) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }}
+        />
 
-      {/* Radial Gradients for Cinematic Lighting */}
-      <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100vh] pointer-events-none z-0"
-        style={{
-          background: 'radial-gradient(circle at 50% 120%, rgba(255, 255, 255, 0.08) 0%, rgba(10, 10, 10, 1) 70%)',
-          opacity: opacity1
-        }}
-      />
-      
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-neutral-800/30 blur-[120px] pointer-events-none z-0"
-        animate={{
-          x: ["-50%", "-40%", "-60%", "-50%"],
-          y: ["-50%", "-60%", "-40%", "-50%"],
-        }}
-        transition={{
-          duration: 20,
-          ease: "linear",
-          repeat: Infinity,
-        }}
-      />
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-[1400px] flex-col border-x-2 border-foreground">
+          <div className="grid flex-1 grid-cols-1 md:grid-cols-2">
+            <div className="relative flex flex-col justify-end border-b-2 border-foreground bg-background-dark p-8 md:border-b-0 md:border-r-2 md:p-12 lg:p-16">
+              <div className="absolute left-8 top-8 flex items-center gap-4 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-secondary md:left-12 md:top-12">
+                {siteProfile.availability}
+                <span className="hidden h-0.5 w-8 bg-highlight sm:block" />
+                {siteProfile.workStyle}
+              </div>
 
-      {/* Main Grid Wrapper */}
-      <div className="flex-1 w-full max-w-[1400px] mx-auto border-x border-neutral-800/50 relative z-10 flex flex-col h-full pt-20 md:pt-0">
-        
-        {/* The Main Grid Split (50/50) */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2">
-          
-          {/* Left Column: Fluid Colossal Typography */}
-          <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-end border-b md:border-b-0 md:border-r border-neutral-800/50 relative">
-            {/* Eyebrow */}
-            <div className="absolute top-8 left-8 md:top-12 md:left-12 font-mono text-[10px] md:text-xs font-bold tracking-[0.3em] text-neutral-500 uppercase flex items-center gap-4">
-              {siteProfile.availability} <span className="hidden sm:block w-12 h-px bg-neutral-800"></span> {siteProfile.workStyle}
+              <motion.div style={{ y: y1, opacity: opacity1 }}>
+                <h2 className="font-mono text-[clamp(3rem,7vw,8rem)] font-black uppercase leading-[0.88] tracking-tighter">
+                  LET&apos;S
+                  <br />
+                  CONNECT
+                  <br />
+                  SOON.
+                </h2>
+                <p className="mt-6 max-w-md font-sans text-lg leading-relaxed text-secondary">
+                  Hiring for a senior full-stack role? I&apos;d like to hear about your team, what you&apos;re
+                  building, and whether I&apos;m a good fit.
+                </p>
+              </motion.div>
             </div>
-            
-            <motion.div style={{ y: y1, opacity: opacity1 }}>
-              <h2 className="text-[clamp(3.5rem,7vw,9rem)] font-black leading-[0.85] tracking-tighter uppercase text-[#ededed]">
-                LET&apos;S<br/>
-                CONNECT<br/>
-                SOON.
-              </h2>
-              <p className="font-serif text-neutral-400 mt-8 text-xl max-w-md italic leading-relaxed">
-                Hiring for a senior full-stack role? I&apos;d love to hear about your team, stack, and what you&apos;re building.
-              </p>
-            </motion.div>
-          </div>
 
-          {/* Right Column: CTA */}
-          <div className="group relative flex flex-col items-start justify-end p-8 md:p-12 lg:p-16 cursor-pointer overflow-hidden text-left bg-transparent" onClick={handleContactClick}>
-            <div className="absolute inset-0 bg-neutral-900/0 group-hover:bg-neutral-900/40 transition-colors duration-700 pointer-events-none"></div>
-            
-            <motion.div 
-              className="flex flex-col gap-6 w-full relative z-10"
-              style={{ y: y1, opacity: opacity1 }}
+            <div
+              className="group relative flex cursor-pointer flex-col items-start justify-end overflow-hidden border-b-2 border-foreground bg-highlight p-8 text-foreground md:border-b-0 md:p-12 lg:p-16"
+              onClick={handleContactClick}
             >
-              <span className="font-sans text-[clamp(2.5rem,5vw,5rem)] font-bold uppercase tracking-tight text-[#ededed] leading-[1.1] group-hover:text-white transition-colors duration-500">
-                LET'S TALK
-              </span>
-              <div className="flex items-center">
-                <span className="text-neutral-600 group-hover:text-white transform group-hover:translate-x-4 transition-all duration-500 text-5xl md:text-6xl leading-none font-light">
+              <motion.div className="relative z-10 flex w-full flex-col gap-4" style={{ y: y1, opacity: opacity1 }}>
+                <span className="font-mono text-[clamp(2rem,5vw,4.5rem)] font-black uppercase leading-none tracking-tight group-hover:underline decoration-4 underline-offset-8">
+                  LET&apos;S TALK
+                </span>
+                <span className="font-mono text-5xl leading-none md:text-6xl group-hover:translate-x-3 transition-none">
                   →
                 </span>
+              </motion.div>
+            </div>
+          </div>
+
+          <div className="relative z-20 flex min-h-20 shrink-0 items-center border-t-2 border-foreground bg-foreground">
+            <div className="flex h-full w-full flex-col items-center justify-between gap-4 px-6 py-4 md:flex-row md:px-12 md:py-0">
+              <div className="font-mono text-[10px] font-bold uppercase tracking-widest text-background">
+                © {currentYear} NICO LOPERENA // {siteProfile.title.toUpperCase()}
               </div>
-            </motion.div>
-          </div>
 
-        </div>
-
-        {/* The System Status Footer Strip */}
-        <div className="w-full h-24 md:h-20 border-t border-neutral-800/50 bg-transparent relative z-20 flex items-center shrink-0">
-          <div className="w-full px-6 md:px-12 flex flex-col md:flex-row items-center justify-between h-full py-4 md:py-0">
-            <div className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-500 mb-2 md:mb-0">
-              © {currentYear} NICO LOPERENA // {siteProfile.title.toUpperCase()}
-            </div>
-            
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-              {[
-                { label: 'BLOG', url: '/blog', external: false },
-                { label: 'NEXRENA', url: siteProfile.nexrenaUrl, external: true },
-                { label: 'LINKEDIN', url: siteProfile.linkedInUrl, external: true },
-                { label: 'GITHUB', url: siteProfile.githubUrl, external: true },
-                { label: 'EMAIL', url: `mailto:${siteProfile.email}`, external: false, isEmail: true }
-              ].map((social) => (
-                <a 
-                  key={social.label}
-                  href={social.url} 
-                  target={social.external ? "_blank" : undefined}
-                  rel={social.external ? "noopener noreferrer" : undefined}
-                  onClick={() => track('final_cta_social_click', { platform: social.label.toLowerCase() })}
-                  className="group flex items-center gap-1 cursor-pointer"
-                >
-                  <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
-                    {social.label}
-                  </span>
-                  <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 font-mono text-[10px] md:text-xs text-white">
-                    {social.external ? '↗' : '→'}
-                  </span>
-                </a>
-              ))}
+              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+                {[
+                  { label: 'RESUME', url: siteProfile.resumePath, external: false, download: siteProfile.resumeDownloadName },
+                  { label: 'RECRUITERS', url: '/for-recruiters', external: false },
+                  { label: 'BLOG', url: '/blog', external: false },
+                  { label: 'NEXRENA', url: siteProfile.nexrenaUrl, external: true },
+                  { label: 'LINKEDIN', url: siteProfile.linkedInUrl, external: true },
+                  { label: 'GITHUB', url: siteProfile.githubUrl, external: true },
+                  { label: 'EMAIL', url: `mailto:${siteProfile.email}`, external: false },
+                ].map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.url}
+                    download={'download' in social ? social.download : undefined}
+                    target={social.external ? '_blank' : undefined}
+                    rel={social.external ? 'noopener noreferrer' : undefined}
+                    onClick={() => track('final_cta_social_click', { platform: social.label.toLowerCase() })}
+                    className="group flex cursor-pointer items-center gap-1"
+                  >
+                    <span className="px-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-background group-hover:bg-highlight group-hover:text-foreground">
+                      {social.label}
+                    </span>
+                    <span className="font-mono text-[10px] text-highlight opacity-0 group-hover:opacity-100">
+                      {social.external ? '↗' : '→'}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );

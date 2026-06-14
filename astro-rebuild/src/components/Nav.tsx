@@ -1,74 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { track } from '../utils/analytics';
 import { siteProfile } from '../data/site';
+import { MobileMenu } from './MobileMenu';
 
-const NavLink = ({ href, label, onClick }: { href?: string, label: string, onClick?: () => void }) => {
+const NavLink = ({ href, label, onClick }: { href?: string; label: string; onClick?: () => void }) => {
   const handleClick = () => {
     track('nav_click', { link: label.toLowerCase() });
-    if (onClick) onClick();
+    onClick?.();
   };
+
+  const className =
+    'relative flex items-center justify-center h-full w-full px-2 lg:px-3 border-none bg-transparent cursor-pointer font-mono text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.18em] text-foreground hover:bg-highlight hover:text-foreground transition-none';
 
   if (onClick) {
     return (
-      <motion.button 
-        onClick={handleClick}
-        className="relative flex items-center justify-center h-full px-2 lg:px-4 w-full cursor-pointer bg-transparent border-none"
-        initial="rest"
-        whileHover="hover"
-        animate="rest"
-      >
-        <span className="text-[9px] lg:text-xs font-mono font-bold uppercase tracking-[0.2em] text-foreground/80 group-hover:text-foreground transition-colors relative z-10">
-          {label}
-        </span>
-        {/* Underline slides in from left to right */}
-        <motion.div 
-          className="absolute bottom-[35%] left-[15%] right-[15%] h-px bg-foreground"
-          variants={{
-            rest: { scaleX: 0, originX: 0, opacity: 0 },
-            hover: { scaleX: 1, originX: 0, opacity: 1, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }
-          }}
-        />
-      </motion.button>
+      <button type="button" onClick={handleClick} className={className}>
+        {label}
+      </button>
     );
   }
 
   return (
-    <motion.a 
-      href={href} 
-      onClick={() => track('nav_click', { link: label.toLowerCase() })}
-      className="relative flex items-center justify-center h-full px-2 lg:px-4 w-full"
-      initial="rest"
-      whileHover="hover"
-      animate="rest"
-    >
-      <span className="text-[9px] lg:text-xs font-mono font-bold uppercase tracking-[0.2em] text-foreground/80 group-hover:text-foreground transition-colors relative z-10">
-        {label}
-      </span>
-      {/* Underline slides in from left to right */}
-      <motion.div 
-        className="absolute bottom-[35%] left-[15%] right-[15%] h-px bg-foreground"
-        variants={{
-          rest: { scaleX: 0, originX: 0, opacity: 0 },
-          hover: { scaleX: 1, originX: 0, opacity: 1, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }
-        }}
-      />
-    </motion.a>
+    <a href={href} onClick={() => track('nav_click', { link: label.toLowerCase() })} className={className}>
+      {label}
+    </a>
   );
 };
 
-import { MobileMenu } from './MobileMenu';
-
 export const Nav = () => {
-  const [time, setTime] = useState("LOCAL: 00:00:00 EST");
+  const [time, setTime] = useState('00:00:00 EST');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const updateClock = () => {
       const now = new Date();
-      const options = { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false } as const;
-      const timeString = new Intl.DateTimeFormat('en-US', options).format(now);
-      setTime(`LOCAL: ${timeString} EST`);
+      const options = {
+        timeZone: 'America/New_York',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      } as const;
+      setTime(`${new Intl.DateTimeFormat('en-US', options).format(now)} EST`);
     };
     updateClock();
     const interval = setInterval(updateClock, 1000);
@@ -84,75 +57,57 @@ export const Nav = () => {
     }
   };
 
-  const toggleStackRibbon = () => {
-    // @ts-ignore
-    if (typeof window !== 'undefined' && window.toggleStackRibbonState) {
-      // @ts-ignore
-      window.toggleStackRibbonState();
-    }
-  };
-
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 h-16 bg-[#f4f4f0]/80 backdrop-blur-md border-b border-gray-300">
-        <div className="grid grid-cols-12 h-full w-full">
-          
-          {/* Zone 1: The Identity */}
-          <div className="col-span-8 lg:col-span-3 flex items-center px-4 lg:px-8 lg:border-r border-gray-300 h-full">
-            <a href="/" className="flex items-baseline gap-2">
-              <span className="font-sans text-xs lg:text-sm font-black tracking-tighter uppercase text-foreground leading-none">
+      <nav className="fixed top-0 left-0 w-full z-50 h-16 bg-background border-b-2 border-foreground">
+        <div className="grid grid-cols-12 h-full w-full max-w-[100vw]">
+          <div className="col-span-8 lg:col-span-3 flex items-center px-4 lg:px-6 border-r-2 border-foreground h-full min-w-0">
+            <a href="/" className="flex items-baseline gap-2 min-w-0">
+              <span className="font-mono text-[10px] lg:text-xs font-black tracking-tight uppercase truncate">
                 NICO LOPERENA
               </span>
-              <span className="font-mono text-[8px] lg:text-[10px] text-foreground/70 font-bold tracking-widest hidden xl:inline-block leading-none">
-                // {siteProfile.title.split(' ').slice(-2).join(' ').toUpperCase()}
+              <span className="font-mono text-[8px] lg:text-[9px] font-bold tracking-widest hidden xl:inline shrink-0">
+                // ENG
               </span>
             </a>
           </div>
 
-          {/* MOBILE HAMBURGER */}
-          <div className="col-span-4 flex lg:hidden items-center justify-end px-4 h-full border-l border-gray-300">
-            <button 
+          <div className="col-span-4 flex lg:hidden items-center justify-end px-4 h-full border-l-2 border-foreground">
+            <button
+              type="button"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="flex flex-col gap-1.5 justify-center items-center w-10 h-10 cursor-pointer bg-transparent border-none outline-none"
+              className="flex flex-col gap-1.5 justify-center items-center w-10 h-10 bg-transparent border-2 border-foreground"
               aria-label="Open mobile menu"
             >
-              <div className="w-5 h-px bg-foreground"></div>
-              <div className="w-5 h-px bg-foreground"></div>
+              <div className="w-5 h-0.5 bg-foreground" />
+              <div className="w-5 h-0.5 bg-foreground" />
             </button>
           </div>
 
-          {/* Zone 2: Live System Status (Desktop Only) */}
-          <div className="hidden lg:flex lg:col-span-3 flex-col xl:flex-row items-center justify-center xl:justify-between px-2 lg:px-6 border-r border-gray-300 h-full gap-1 xl:gap-4">
-            <div className="flex items-center gap-2 lg:gap-3">
-              <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest text-foreground/70 hidden sm:inline-block truncate">
-                {siteProfile.locationShort}
-              </span>
-            </div>
-            <div className="font-mono text-[9px] lg:text-[11px] font-bold text-foreground/80 tracking-widest whitespace-nowrap">
+          <div className="hidden lg:flex lg:col-span-3 flex-col xl:flex-row items-center justify-center xl:justify-between px-4 border-r-2 border-foreground h-full gap-1">
+            <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-secondary truncate hidden sm:inline">
+              {siteProfile.locationShort}
+            </span>
+            <span className="font-mono text-[10px] font-bold tracking-widest whitespace-nowrap hidden xl:block bg-concrete border border-foreground px-2 py-1">
               {time}
-            </div>
+            </span>
           </div>
 
-          {/* Zone 3: Navigation Links (Desktop Only) */}
-          <div className="hidden lg:flex lg:col-span-4 items-center justify-between px-1 lg:px-2 border-r border-gray-300 h-full">
+          <div className="hidden lg:grid lg:col-span-4 grid-cols-5 h-full border-r-2 border-foreground divide-x-2 divide-foreground">
             <NavLink href="/work" label="WORK" />
             <NavLink href="/about" label="ABOUT" />
             <NavLink href="/blog" label="BLOG" />
             <NavLink href={siteProfile.resumePath} label="RESUME" />
-            <NavLink label="SKILLS" onClick={toggleStackRibbon} />
+            <NavLink href="/about#stack" label="STACK" />
           </div>
 
-          {/* Zone 4: The Action Grid Cell (Desktop Only) */}
-          <button 
+          <button
+            type="button"
             onClick={handleContactClick}
-            className="hidden lg:flex lg:col-span-2 h-full bg-neutral-900 text-white hover:bg-white hover:text-neutral-900 transition-colors duration-0 items-center justify-center group cursor-pointer border-none outline-none"
+            className="hidden lg:flex lg:col-span-2 h-full bg-foreground text-background hover:bg-highlight hover:text-foreground items-center justify-center cursor-pointer border-none font-mono text-[10px] font-bold uppercase tracking-widest transition-none"
           >
-            <span className="font-mono text-[10px] lg:text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-              <span className="hidden lg:inline-block">LET'S TALK</span>
-              <span className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300">↗</span>
-            </span>
+            LET&apos;S TALK ↗
           </button>
-
         </div>
       </nav>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />

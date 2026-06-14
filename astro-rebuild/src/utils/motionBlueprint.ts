@@ -29,10 +29,11 @@ export const drawLineY = {
 } as const;
 
 export const stampUp = {
-  hidden: { y: "100%" },
+  hidden: { opacity: 0, y: 16 },
   show: {
+    opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 200, damping: 25 },
+    transition: { duration: 0.35, ease: BLUEPRINT_EASE },
   },
 } as const;
 
