@@ -32,12 +32,12 @@ export function runHeroIntro(root: HTMLElement, gsap: GsapInstance): gsap.core.T
       root.querySelector('.hero-subline'),
       { y: 20, duration: 0.65 },
       '-=0.35'
-    )
-    .from(
-      root.querySelectorAll('.hero-highlight'),
-      { y: 14, duration: 0.45, stagger: 0.07 },
-      '-=0.3'
     );
+
+  const highlights = root.querySelectorAll('.hero-highlight');
+  if (highlights.length) {
+    tl.from(highlights, { y: 14, duration: 0.45, stagger: 0.07 }, '-=0.3');
+  }
 
   const portrait = root.querySelector('.hero-portrait');
   if (portrait) {

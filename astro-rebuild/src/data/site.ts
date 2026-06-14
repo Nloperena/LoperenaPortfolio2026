@@ -14,9 +14,9 @@ export const siteProfile = {
 
   locationShort: 'Kissimmee, FL // Remote // EST',
 
-  availability: 'Open to remote senior full-stack roles (US)',
+  availability: 'Open to all remote roles (US)',
 
-  availabilityShort: 'OPEN TO REMOTE SENIOR ROLES',
+  availabilityShort: 'OPEN TO ALL REMOTE ROLES',
 
   workStyle: 'Remote · US-based · EST overlap',
 
@@ -30,9 +30,9 @@ export const siteProfile = {
 
   heroSubline:
 
-    'I\'m Nico — eight years shipping full-stack products for B2B and e-commerce teams. I started in IT and help desk, went deep on web and engineering, and I still care most about what happens after launch: systems that stay fast, clear to work with, and easy for the next person to pick up.',
+    'Eight years shipping full-stack products for remote US teams — React, Node, TypeScript, and PostgreSQL in production.',
 
-  heroHighlights: ['8 yrs in production', 'Collaborative · remote-ready', 'React · Node · TypeScript'],
+  heroHighlights: [] as readonly string[],
 
   footerBlurb:
 
@@ -97,6 +97,8 @@ export const pageHeroes: Record<
 
     compact: boolean;
 
+    simple: boolean;
+
     footerNote: string;
 
   }
@@ -105,7 +107,7 @@ export const pageHeroes: Record<
 
   home: {
 
-    eyebrow: 'Open to remote senior roles',
+    eyebrow: 'Open to all Remote Roles',
 
     meta: siteProfile.location,
 
@@ -125,7 +127,9 @@ export const pageHeroes: Record<
 
     compact: false,
 
-    footerNote: 'Remote US · EST overlap · Happy to talk stack and team fit',
+    simple: true,
+
+    footerNote: '',
 
   },
 
@@ -154,6 +158,8 @@ export const pageHeroes: Record<
     showExperienceLink: false,
 
     compact: false,
+
+    simple: false,
 
     footerNote: siteProfile.availability,
 
@@ -185,6 +191,8 @@ export const pageHeroes: Record<
 
     compact: true,
 
+    simple: false,
+
     footerNote: 'Scroll the gallery or read case studies on the homepage',
 
   },
@@ -214,6 +222,8 @@ export const pageHeroes: Record<
     showExperienceLink: false,
 
     compact: true,
+
+    simple: false,
 
     footerNote: 'Scroll for articles',
 
