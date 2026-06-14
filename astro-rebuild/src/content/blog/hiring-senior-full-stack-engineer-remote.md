@@ -4,7 +4,7 @@ description: "A hiring guide for recruiters and engineering leaders: how to eval
 pubDate: 2026-06-10
 audience: recruiter
 tags: ["Hiring", "Recruiting", "Remote", "Full-Stack", "Senior Engineer"]
-ogImage: "/blog/blog-hiring-remote-engineer.png"
+ogImage: "/blog/og-hiring-senior-full-stack-engineer-remote.png"
 ---
 
 If you are a recruiter, hiring manager, or founder trying to fill a **senior full-stack engineer** role, the hardest part is not finding resumes—it is separating production experience from portfolio theater.

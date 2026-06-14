@@ -2,6 +2,7 @@
 export const prerender = true;
 
 import Layout from '../components/Layout.astro';
+import { pageImages } from '../data/pageImages';
 import { siteProfile } from '../data/site';
 import { hiringProfile } from '../data/hiring';
 import { experience } from '../data/experience';
@@ -13,7 +14,14 @@ const title = `Resume | ${siteProfile.legalName} — Senior Full-Stack Engineer`
 const description = `${siteProfile.legalName} — ${hiringProfile.title}. ${hiringProfile.yearsExperience} years. ${hiringProfile.specialty}. ${hiringProfile.availability}`;
 ---
 
-<Layout title={title} description={description} canonicalPath="/resume" ogType="profile">
+<Layout
+  title={title}
+  description={description}
+  canonicalPath="/resume"
+  ogImage={pageImages.resume.og}
+  ogImageAlt={pageImages.resume.alt}
+  ogType="profile"
+>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd([
     { name: 'Home', path: '/' },
     { name: 'Resume', path: '/resume' },

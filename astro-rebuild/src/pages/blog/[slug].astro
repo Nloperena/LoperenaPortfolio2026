@@ -2,9 +2,9 @@
 export const prerender = true;
 
 import Layout from '../../components/Layout.astro';
-import { pageImages } from '../../data/pageImages';
+import { pageImages, blogPostOgImage } from '../../data/pageImages';
 import { absoluteUrl } from '../../data/seo';
-import { formatPostDate, postPath } from '../../lib/blog';
+import { formatPostDate, normalizePostSlug, postPath } from '../../lib/blog';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/schema';
 import { nexrenaCrossLinksByPost } from '../../data/nexrenaCrossLinks';
 import { getCollection, render } from 'astro:content';
@@ -12,7 +12,7 @@ import { getCollection, render } from 'astro:content';
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map((post) => ({
-    params: { slug: post.id },
+    params: { slug: normalizePostSlug(post.id) },
     props: { post },
   }));
 }
@@ -20,8 +20,9 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const url = absoluteUrl(postPath(post.id));
-const ogImage = post.data.ogImage ?? pageImages.blog.og;
-const nexrenaLinks = nexrenaCrossLinksByPost[post.id] ?? [];
+const ogImage = post.data.ogImage ?? blogPostOgImage(post.id);
+const slug = normalizePostSlug(post.id);
+const nexrenaLinks = nexrenaCrossLinksByPost[slug] ?? [];
 ---
 
 <Layout
@@ -29,6 +30,7 @@ const nexrenaLinks = nexrenaCrossLinksByPost[post.id] ?? [];
   description={post.data.description}
   canonicalPath={postPath(post.id)}
   ogImage={ogImage}
+  ogImageAlt={post.data.title}
   ogType="article"
   articlePublishedTime={post.data.pubDate.toISOString()}
   articleModifiedTime={(post.data.updatedDate ?? post.data.pubDate).toISOString()}

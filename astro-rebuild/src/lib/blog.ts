@@ -17,8 +17,13 @@ export function formatPostDate(date: Date): string {
   }).format(date);
 }
 
+/** Strip `.md` from Astro content collection ids for clean URL slugs. */
+export function normalizePostSlug(slug: string): string {
+  return slug.replace(/\.md$/, '');
+}
+
 export function postPath(slug: string): `/blog/${string}` {
-  return `/blog/${slug}`;
+  return `/blog/${normalizePostSlug(slug)}`;
 }
 
 export type BlogAudience = 'recruiter' | 'engineering';

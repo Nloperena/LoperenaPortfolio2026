@@ -4,7 +4,7 @@ description: "Architecture lessons from shipping B2B storefronts—catalog UX, c
 pubDate: 2026-05-20
 audience: engineering
 tags: ["B2B", "E-Commerce", "Next.js", "React", "Architecture"]
-ogImage: "/blog/blog-b2b-ecommerce.png"
+ogImage: "/blog/og-building-b2b-ecommerce-nextjs.png"
 ---
 
 B2B e-commerce is not B2C with a login wall. Buyers often need spec sheets, bulk pricing, compatibility filters, and fast reorder flows—not lifestyle photography and one-click checkout.

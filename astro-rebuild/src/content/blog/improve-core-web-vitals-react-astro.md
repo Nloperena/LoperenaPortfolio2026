@@ -5,7 +5,7 @@ pubDate: 2026-05-27
 updatedDate: 2026-06-10
 audience: engineering
 tags: ["Core Web Vitals", "React", "Astro", "Performance", "Vercel"]
-ogImage: "/blog/blog-core-web-vitals.png"
+ogImage: "/blog/og-improve-core-web-vitals-react-astro.png"
 ---
 
 Google’s Core Web Vitals are still one of the clearest signals that a site is built for real users—not just demos. When I rebuilt [ForzaBuilt.com](https://forzabuilt.com) and [RuggedRed.com](https://ruggedred.com) on React and Astro, performance wasn’t a nice-to-have; it was part of the product.

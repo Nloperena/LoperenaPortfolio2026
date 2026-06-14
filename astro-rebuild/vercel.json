@@ -5,6 +5,16 @@
       "has": [{ "type": "host", "value": "nicoloperena.com" }],
       "destination": "https://www.nicoloperena.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/blog/:slug.md",
+      "destination": "/blog/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug.md/",
+      "destination": "/blog/:slug/",
+      "permanent": true
     }
   ],
   "headers": [

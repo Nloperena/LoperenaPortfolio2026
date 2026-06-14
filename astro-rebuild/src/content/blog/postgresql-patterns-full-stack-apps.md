@@ -4,7 +4,7 @@ description: "Schema design, indexing, and API patterns I use with PostgreSQL, N
 pubDate: 2026-05-13
 audience: engineering
 tags: ["PostgreSQL", "Node.js", "TypeScript", "API", "Database"]
-ogImage: "/blog/blog-postgresql.png"
+ogImage: "/blog/og-postgresql-patterns-full-stack-apps.png"
 ---
 
 PostgreSQL is the default database on most of my projects—from a custom CRM at Nexrena to contact intake on this portfolio. It’s boring in the best way: strong consistency, mature tooling, and a query planner that rewards thoughtful indexing.

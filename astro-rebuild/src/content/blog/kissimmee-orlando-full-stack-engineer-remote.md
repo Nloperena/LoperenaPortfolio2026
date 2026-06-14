@@ -4,7 +4,7 @@ description: "Nicholas Loperena is a senior full-stack engineer based in Kissimm
 pubDate: 2026-06-03
 audience: recruiter
 tags: ["Kissimmee", "Orlando", "Florida", "Remote", "Full-Stack Engineer"]
-ogImage: "/blog/blog-kissimmee-remote-engineer.png"
+ogImage: "/blog/og-kissimmee-orlando-full-stack-engineer-remote.png"
 ---
 
 Companies searching for a **full-stack developer in Kissimmee**, **software engineer in Orlando**, or **remote engineer in Central Florida** often get two bad options: local generalists without modern stack depth, or remote contractors with no regional accountability.

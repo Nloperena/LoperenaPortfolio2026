@@ -24,4 +24,7 @@ Thumbs.db
 # Astro
 .astro/
 
+# OG screenshot capture temp files
+.audit-screenshots/
+
 

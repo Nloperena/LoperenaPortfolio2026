@@ -25,6 +25,7 @@ const blogSchemaPosts = posts.map((post) => ({
   description={seo.description}
   canonicalPath={seo.path}
   ogImage={pageImages.blog.og}
+  ogImageAlt={pageImages.blog.alt}
   ogType={seo.ogType}
 >
   <script type="application/ld+json" set:html={JSON.stringify(blogIndexJsonLd(blogSchemaPosts))} />

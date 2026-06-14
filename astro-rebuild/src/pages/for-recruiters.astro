@@ -3,6 +3,7 @@ export const prerender = true;
 
 import Layout from '../components/Layout.astro';
 import { ForRecruitersHub } from '../components/ForRecruitersHub';
+import { pageImages } from '../data/pageImages';
 import { siteProfile } from '../data/site';
 import { hiringProfile } from '../data/hiring';
 import { breadcrumbJsonLd } from '../lib/schema';
@@ -11,7 +12,14 @@ const title = `For Recruiters | ${siteProfile.legalName} — Senior Full-Stack E
 const description = `${hiringProfile.workAuthorization} ${hiringProfile.availability} React, Next.js, Node.js, TypeScript, PostgreSQL. Resume, work samples, and contact.`;
 ---
 
-<Layout title={title} description={description} canonicalPath="/for-recruiters" ogType="website">
+<Layout
+  title={title}
+  description={description}
+  canonicalPath="/for-recruiters"
+  ogImage={pageImages.forRecruiters.og}
+  ogImageAlt={pageImages.forRecruiters.alt}
+  ogType="website"
+>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd([
     { name: 'Home', path: '/' },
     { name: 'For Recruiters', path: '/for-recruiters' },
