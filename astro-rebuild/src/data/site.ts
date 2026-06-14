@@ -8,15 +8,15 @@ export const siteProfile = {
 
   titleExtended:
 
-    'Senior Full-Stack Engineer | React, Next.js, Node.js, TypeScript | Remote (US)',
+    'Senior Full-Stack Engineer | React, Next.js, Node.js, TypeScript, Python | PostgreSQL, AWS | Remote (US)',
 
   location: 'Kissimmee, FL · Remote (US)',
 
   locationShort: 'Kissimmee, FL // Remote // EST',
 
-  availability: 'Open to all remote roles (US)',
+  availability: 'Open to remote senior full-stack roles (US)',
 
-  availabilityShort: 'OPEN TO ALL REMOTE ROLES',
+  availabilityShort: 'OPEN TO REMOTE SENIOR ROLES',
 
   workStyle: 'Remote · US-based · EST overlap',
 
@@ -107,7 +107,7 @@ export const pageHeroes: Record<
 
   home: {
 
-    eyebrow: 'Open to all Remote Roles',
+    eyebrow: 'Open to Remote Senior Roles',
 
     meta: siteProfile.location,
 

@@ -5,7 +5,7 @@
 export const featuredWorkSection = {
   title: 'Featured Work',
   intro:
-    'Live systems I helped build and still maintain — from catalog migrations and Shopify commerce to multi-brand architecture and the ops platform I run day to day.',
+    'Live systems I helped build and still maintain — from catalog migrations and Shopify commerce to multi-brand architecture and the ops platform I run day to day. Nexrena is my client studio; this portfolio is for engineering hiring.',
 } as const;
 
 export type FeaturedWorkItem = {
