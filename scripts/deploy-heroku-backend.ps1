@@ -39,6 +39,20 @@ if ($addons -notmatch "heroku-postgresql") {
 Write-Host "Setting CORS origins..."
 heroku config:set ALLOWED_ORIGINS="https://www.nicoloperena.com,https://nicoloperena.com,http://localhost:4321" -a $AppName
 
+if (-not $env:OPS_PASSWORD) {
+  $generated = -join ((48..57 + 65..90 + 97..122) | Get-Random -Count 24 | ForEach-Object { [char]$_ })
+  Write-Host "Setting OPS_PASSWORD (save this — inbox login at /operations):"
+  Write-Host $generated
+  heroku config:set "OPS_PASSWORD=$generated" -a $AppName
+} else {
+  heroku config:set "OPS_PASSWORD=$env:OPS_PASSWORD" -a $AppName
+}
+
+if (-not (heroku config:get OPS_SESSION_SECRET -a $AppName 2>$null)) {
+  $secret = -join ((48..57 + 65..90 + 97..122) | Get-Random -Count 32 | ForEach-Object { [char]$_ })
+  heroku config:set "OPS_SESSION_SECRET=$secret" -a $AppName
+}
+
 Write-Host "Running database schema..."
 Get-Content "$RepoRoot\backendrepo\sql\schema.sql" | heroku pg:psql -a $AppName
 
@@ -53,10 +67,12 @@ $url = "https://$AppName.herokuapp.com"
 Write-Host ""
 Write-Host "Done. Backend URL: $url"
 Write-Host "Health: $url/health"
-Write-Host "Submissions: $url/api/submissions"
+Write-Host "Submissions API: $url/api/submissions"
+Write-Host "Password inbox: $url/operations"
 Write-Host ""
-Write-Host "Add to Vercel env:"
+Write-Host "Optional Vercel env override:"
 Write-Host "  PUBLIC_INTAKE_API_URL=$url/api/submissions"
+Write-Host "  PUBLIC_INTAKE_OPS_URL=$url/operations"
 Write-Host ""
 Write-Host "Test health:"
 Write-Host "  Invoke-RestMethod $url/health"

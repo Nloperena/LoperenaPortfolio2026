@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Contact Inbox | Operations</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        background: #0a0a0a;
+        color: #ededed;
+      }
+      .wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+      .panel { width: 100%; max-width: 28rem; border: 1px solid #262626; padding: 2rem; }
+      h1 { margin: 0.5rem 0 0; font-size: 1.75rem; text-transform: uppercase; letter-spacing: -0.02em; }
+      .eyebrow { font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: #737373; }
+      input, button { font: inherit; }
+      input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #262626;
+        color: inherit;
+        padding: 0.5rem 0;
+        font-size: 1.125rem;
+        font-weight: 300;
+      }
+      input:focus { outline: none; border-color: #ededed; }
+      button {
+        cursor: pointer;
+        border: 1px solid #262626;
+        background: #171717;
+        color: #a3a3a3;
+        padding: 1rem 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+      button:hover { background: #fff; color: #0a0a0a; }
+      button:disabled { opacity: 0.6; cursor: not-allowed; }
+      .error { color: #f87171; border: 1px solid #450a0a; background: #1a0505; padding: 0.75rem 1rem; font-size: 0.875rem; }
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid #262626;
+      }
+      main { padding: 1.5rem; overflow-x: auto; }
+      table { width: 100%; min-width: 720px; border-collapse: collapse; border: 1px solid #262626; }
+      th, td { padding: 1rem; border-bottom: 1px solid #171717; vertical-align: top; text-align: left; }
+      th { font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: #737373; background: #0f0f0f; }
+      td { font-size: 0.875rem; }
+      .mono { font-family: inherit; font-size: 0.75rem; color: #a3a3a3; white-space: nowrap; }
+      .msg { white-space: pre-wrap; max-width: 28rem; color: #d4d4d4; }
+      a { color: #b5ceaa; }
+      .actions { display: flex; gap: 0.75rem; }
+      .hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <div id="login-view" class="wrap hidden">
+      <form id="login-form" class="panel">
+        <p class="eyebrow">Operations</p>
+        <h1>Contact Inbox</h1>
+        <p id="login-error" class="error hidden" style="margin-top: 1rem"></p>
+        <label style="display: block; margin-top: 1.5rem">
+          <span class="eyebrow">Password</span>
+          <input id="password" type="password" autocomplete="current-password" required />
+        </label>
+        <button id="login-btn" type="submit" style="margin-top: 1.5rem; width: 100%">Enter</button>
+      </form>
+    </div>
+
+    <div id="dashboard-view" class="hidden">
+      <header>
+        <div>
+          <p class="eyebrow">Operations</p>
+          <h1 style="font-size: 1.5rem; margin: 0.25rem 0 0">Contact Submissions</h1>
+        </div>
+        <div class="actions">
+          <button type="button" id="refresh-btn">Refresh</button>
+          <button type="button" id="logout-btn">Log out</button>
+        </div>
+      </header>
+      <main>
+        <p id="dash-error" class="error hidden" style="margin-bottom: 1rem"></p>
+        <p id="empty" class="mono hidden">No submissions yet.</p>
+        <table id="table" class="hidden">
+          <thead>
+            <tr>
+              <th>When</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Company</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </main>
+    </div>
+
+    <div id="loading-view" class="wrap">
+      <p class="eyebrow">Loading…</p>
+    </div>
+
+    <script>
+      const loginView = document.getElementById("login-view");
+      const dashboardView = document.getElementById("dashboard-view");
+      const loadingView = document.getElementById("loading-view");
+      const loginError = document.getElementById("login-error");
+      const dashError = document.getElementById("dash-error");
+      const tbody = document.getElementById("tbody");
+      const table = document.getElementById("table");
+      const empty = document.getElementById("empty");
+
+      function show(view) {
+        loginView.classList.add("hidden");
+        dashboardView.classList.add("hidden");
+        loadingView.classList.add("hidden");
+        view.classList.remove("hidden");
+      }
+
+      function formatDate(iso) {
+        return new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeStyle: "short" }).format(new Date(iso));
+      }
+
+      async function loadSubmissions() {
+        dashError.classList.add("hidden");
+        const res = await fetch("/api/ops/submissions", { credentials: "same-origin" });
+        const data = await res.json().catch(() => ({}));
+
+        if (res.status === 401) {
+          show(loginView);
+          return;
+        }
+
+        if (!res.ok) {
+          dashError.textContent = data.error || "Could not load submissions.";
+          dashError.classList.remove("hidden");
+          show(dashboardView);
+          return;
+        }
+
+        const rows = data.submissions || [];
+        tbody.innerHTML = "";
+        if (!rows.length) {
+          table.classList.add("hidden");
+          empty.classList.remove("hidden");
+        } else {
+          empty.classList.add("hidden");
+          table.classList.remove("hidden");
+          rows.forEach((row) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="mono">${formatDate(row.created_at)}</td>
+              <td>${row.name}</td>
+              <td><a href="mailto:${encodeURIComponent(row.email)}">${row.email}</a></td>
+              <td>${row.company || "—"}</td>
+              <td class="msg">${row.message || "—"}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+        show(dashboardView);
+      }
+
+      document.getElementById("login-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        loginError.classList.add("hidden");
+        const btn = document.getElementById("login-btn");
+        btn.disabled = true;
+        try {
+          const res = await fetch("/api/ops/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ password: document.getElementById("password").value }),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            loginError.textContent = data.error || "Login failed.";
+            loginError.classList.remove("hidden");
+            return;
+          }
+          document.getElementById("password").value = "";
+          await loadSubmissions();
+        } catch {
+          loginError.textContent = "Network error. Try again.";
+          loginError.classList.remove("hidden");
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      document.getElementById("refresh-btn").addEventListener("click", loadSubmissions);
+      document.getElementById("logout-btn").addEventListener("click", async () => {
+        await fetch("/api/ops/logout", { method: "POST", credentials: "same-origin" });
+        show(loginView);
+      });
+
+      loadSubmissions();
+    </script>
+  </body>
+</html>
