@@ -116,6 +116,12 @@ export const PageHero = ({ page }: PageHeroProps) => {
                 {config.subline}
               </p>
 
+              {config.positioningLine && (
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">
+                  {config.positioningLine}
+                </p>
+              )}
+
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-secondary">
                 {config.meta}
               </p>

@@ -27,7 +27,7 @@ export const HiringClose = () => (
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-secondary">04 — Next step</span>
         <h2 className="mt-1 font-mono text-2xl font-black uppercase tracking-tight md:text-3xl">What I&apos;m looking for</h2>
         <p className="mt-3 max-w-3xl font-sans text-sm leading-relaxed text-foreground md:text-base">
-          Remote senior full-stack roles on US teams — own features across the stack and stay involved after launch.
+          Remote senior full-stack roles on US product teams — own features from UI through API to deploy and stay involved after launch.
         </p>
         <p className="mt-2 font-mono text-[10px] font-bold uppercase tracking-widest text-secondary">
           {siteProfile.specialty} · {siteProfile.workStyle}

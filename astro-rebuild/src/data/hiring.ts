@@ -19,12 +19,13 @@ export const hiringProfile = {
   founderNote:
     'I run Nexrena, my client web studio. This portfolio is for engineering hiring — Nexrena is separate from my job search.',
   idealFit: [
-    'Engineering-led product companies',
+    'Product-led engineering teams with clear feature ownership',
     'B2B SaaS or e-commerce teams modernizing legacy stacks',
-    'Remote US teams with clear ownership and EST-friendly overlap',
+    'Remote US teams where full-stack means UI through API to deploy',
   ],
   lessIdeal: [
     'Daily onsite commutes outside the Orlando / Central Florida area',
+    'Pure platform/DevOps or infra-only roles without product surface area',
     'Roles without stack depth (React/Node/PostgreSQL) or production ownership',
   ],
   quickLinks: {

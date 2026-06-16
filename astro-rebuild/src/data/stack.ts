@@ -39,9 +39,19 @@ export const stackTechnologies: StackTech[] = [
   { name: 'PYTHON', icon: SiPython },
 ];
 
-/** Homepage “Core stack” strip — hiring signal only. */
-export const coreHiringStack = stackTechnologies.filter((t) =>
-  ['REACT', 'NEXT.JS', 'TYPESCRIPT', 'NODE.JS', 'POSTGRESQL', 'AWS', 'PYTHON'].includes(t.name),
+/** Homepage “Core stack” strip — hiring signal only. AWS omitted here; listed under deploy pillar. */
+const CORE_HIRING_STACK_NAMES = [
+  'REACT',
+  'NEXT.JS',
+  'TYPESCRIPT',
+  'NODE.JS',
+  'POSTGRESQL',
+  'PYTHON',
+  'VERCEL',
+] as const;
+
+export const coreHiringStack = CORE_HIRING_STACK_NAMES.map(
+  (name) => stackTechnologies.find((t) => t.name === name)!,
 );
 
 export const stackGroups: StackGroup[] = [
@@ -57,13 +67,13 @@ export const stackGroups: StackGroup[] = [
   },
   {
     id: 'platform',
-    label: 'Platform',
-    items: ['AWS', 'Vercel', 'Shopify', 'CDN'],
+    label: 'Deploy & host',
+    items: ['Vercel', 'AWS', 'Shopify', 'CDN'],
   },
   {
     id: 'workflow',
     label: 'Workflow',
-    items: ['Git', 'CI/CD', 'Code review', 'Cursor in the loop'],
+    items: ['Git', 'Code review', 'Cursor', 'AI-assisted delivery'],
   },
 ];
 

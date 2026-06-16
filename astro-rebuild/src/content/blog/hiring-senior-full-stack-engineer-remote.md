@@ -9,7 +9,7 @@ ogImage: "/blog/og-hiring-senior-full-stack-engineer-remote.png"
 
 If you are a recruiter, hiring manager, or founder trying to fill a **senior full-stack engineer** role, the hardest part is not finding resumes—it is separating production experience from portfolio theater.
 
-I have spent eight years shipping web applications, APIs, and e-commerce systems for B2B teams. This is what I would look for if I were on your side of the table—and what you can expect when you [review my work](/work) or [download my resume](/Nicholas_Loperena_Resume_v8.pdf).
+I have spent eight years shipping web applications, APIs, and e-commerce systems for B2B teams. This is what I would look for if I were on your side of the table—and what you can expect when you [review my work](/work) or [download my resume](/Nicholas_Loperena_Resume_v9.pdf).
 
 ## Start with scope ownership, not buzzwords
 

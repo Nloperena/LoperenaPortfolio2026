@@ -6,9 +6,11 @@ export const siteProfile = {
 
   title: 'Senior Full-Stack Engineer',
 
+  /** ATS-friendly title + product positioning — keep aligned with resume & LinkedIn */
   titleExtended:
+    'Senior Full-Stack Engineer | Product-focused delivery · React, Next.js, Node.js, TypeScript | PostgreSQL · Remote (US)',
 
-    'Senior Full-Stack Engineer | React, Next.js, Node.js, TypeScript, Python | PostgreSQL, AWS | Remote (US)',
+  positioningLine: 'Product-focused · outcomes-driven · AI-assisted delivery',
 
   location: 'Kissimmee, FL · Remote (US)',
 
@@ -20,23 +22,20 @@ export const siteProfile = {
 
   workStyle: 'Remote · US-based · EST overlap',
 
-  specialty: 'React, Next.js, Node.js, TypeScript, PostgreSQL, AWS',
+  specialty: 'React, Next.js, Node.js, TypeScript, PostgreSQL, Vercel',
 
   tagline:
-
-    'Senior full-stack engineer building production web apps and APIs for remote US teams.',
+    'Product-focused senior full-stack engineer — production web apps, APIs, and measurable outcomes for remote US teams.',
 
   heroHeadlineLines: ['Senior Full-Stack', 'Engineer'],
 
   heroSubline:
-
-    'Eight years shipping full-stack products for remote US teams — React, Node, TypeScript, and PostgreSQL in production.',
+    'Eight years owning product delivery end to end — React, Node, TypeScript, and PostgreSQL in production. Migrations, SEO, APIs, and AI-assisted workflows with outcomes teams can measure.',
 
   heroHighlights: [] as readonly string[],
 
   footerBlurb:
-
-    'Senior full-stack engineer in Kissimmee, FL (Orlando metro). I build web applications and APIs for remote US teams and I\'m open to senior engineering roles.',
+    'Product-focused senior full-stack engineer in Kissimmee, FL (Orlando metro). I build web applications and APIs for remote US teams and I\'m open to senior engineering roles.',
 
   linkedInUrl: 'https://www.linkedin.com/in/nicholas-loperena/',
 
@@ -46,9 +45,9 @@ export const siteProfile = {
 
   phone: '407-790-5891',
 
-  resumePath: '/Nicholas_Loperena_Resume_v8.pdf',
+  resumePath: '/Nicholas_Loperena_Resume_v9.pdf',
 
-  resumeDownloadName: 'Nicholas_Loperena_Resume_v8.pdf',
+  resumeDownloadName: 'Nicholas_Loperena_Resume_v9.pdf',
 
   siteUrl: 'https://www.nicoloperena.com',
 
@@ -101,6 +100,8 @@ export const pageHeroes: Record<
 
     footerNote: string;
 
+    positioningLine?: string;
+
   }
 
 > = {
@@ -116,6 +117,8 @@ export const pageHeroes: Record<
     subline: siteProfile.heroSubline,
 
     highlights: siteProfile.heroHighlights,
+
+    positioningLine: siteProfile.positioningLine,
 
     showPortrait: false,
 
@@ -144,8 +147,7 @@ export const pageHeroes: Record<
     headlineLines: ['Senior Full-Stack', 'Engineer'],
 
     subline:
-
-      'My path started in help desk and IT, moved through web and SEO, and landed in full-stack engineering — so I’m used to translating between business folks, designers, and code. Based in Kissimmee, FL; remote for US teams with clear communication and EST overlap.',
+      'My path started in help desk and IT, moved through web and SEO, and landed in product-minded full-stack engineering — translating between business folks, designers, and code. Based in Kissimmee, FL; remote for US teams with clear communication and EST overlap.',
 
     highlights: ['Kissimmee · Remote', 'Team-oriented', 'Production-first'],
 
@@ -201,7 +203,7 @@ export const pageHeroes: Record<
 
     eyebrow: 'Blog',
 
-    meta: 'React · Next.js · PostgreSQL · AWS',
+    meta: 'React · Next.js · PostgreSQL · Product delivery',
 
     heroImage: '/og/og-blog.png',
 
