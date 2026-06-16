@@ -6,6 +6,7 @@ import { FinalCTA } from './FinalCTA';
 import { BlueprintBackground } from './BlueprintBackground';
 import { IntakeModal } from './IntakeModal';
 import { TransitionScroll } from './TransitionScroll';
+import { CustomCursor } from './CustomCursor';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import { siteProfile } from '../data/site';
@@ -92,6 +93,7 @@ const robotsContent = noindex ? 'noindex, nofollow' : 'index, follow';
 		<SpeedInsights />
 	</head>
 	<body class="min-h-screen flex flex-col relative text-foreground">
+		<CustomCursor client:load />
 		<TransitionScroll client:load />
 		<BlueprintBackground client:load transition:persist="blueprint" />
 		

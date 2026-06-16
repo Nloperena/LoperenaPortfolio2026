@@ -6,6 +6,107 @@
   :root {
     --color-highlight: #b5ceaa;
     --color-highlight-line: rgba(143, 168, 130, 0.5);
+    --cursor-default: url('/cursors/default.svg') 12 12, auto;
+    --cursor-pointer: url('/cursors/pointer.svg') 6 4, pointer;
+    --cursor-text: url('/cursors/text.svg') 10 14, text;
+    --cursor-not-allowed: url('/cursors/not-allowed.svg') 14 14, not-allowed;
+    --cursor-wait: url('/cursors/wait.svg') 12 12, wait;
+    --cursor-progress: url('/cursors/progress.svg') 12 12, progress;
+    --cursor-grab: url('/cursors/grab.svg') 14 14, grab;
+    --cursor-grabbing: url('/cursors/grabbing.svg') 14 14, grabbing;
+    --cursor-help: url('/cursors/help.svg') 14 14, help;
+    --cursor-move: url('/cursors/move.svg') 14 14, move;
+    --cursor-crosshair: url('/cursors/crosshair.svg') 14 14, crosshair;
+    --cursor-ew-resize: url('/cursors/ew-resize.svg') 14 14, ew-resize;
+    --cursor-ns-resize: url('/cursors/ns-resize.svg') 14 14, ns-resize;
+    --cursor-nwse-resize: url('/cursors/nwse-resize.svg') 14 14, nwse-resize;
+    --cursor-nesw-resize: url('/cursors/nesw-resize.svg') 14 14, nesw-resize;
+  }
+
+  html {
+    cursor: var(--cursor-default);
+  }
+
+  a,
+  button,
+  [role='button'],
+  label[for],
+  select,
+  summary,
+  input[type='submit'],
+  input[type='button'],
+  input[type='reset'],
+  .cursor-pointer {
+    cursor: var(--cursor-pointer);
+  }
+
+  input:not([type='submit']):not([type='button']):not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']),
+  textarea,
+  [contenteditable='true'] {
+    cursor: var(--cursor-text);
+  }
+
+  :disabled,
+  [aria-disabled='true'],
+  .disabled\:cursor-not-allowed:disabled {
+    cursor: var(--cursor-not-allowed);
+  }
+
+  [aria-busy='true'] {
+    cursor: var(--cursor-wait);
+  }
+
+  .cursor-wait {
+    cursor: var(--cursor-wait);
+  }
+
+  .cursor-progress {
+    cursor: var(--cursor-progress);
+  }
+
+  .cursor-grab {
+    cursor: var(--cursor-grab);
+  }
+
+  .cursor-grabbing {
+    cursor: var(--cursor-grabbing);
+  }
+
+  .cursor-help {
+    cursor: var(--cursor-help);
+  }
+
+  .cursor-move {
+    cursor: var(--cursor-move);
+  }
+
+  .cursor-crosshair {
+    cursor: var(--cursor-crosshair);
+  }
+
+  .cursor-ew-resize {
+    cursor: var(--cursor-ew-resize);
+  }
+
+  .cursor-ns-resize {
+    cursor: var(--cursor-ns-resize);
+  }
+
+  .cursor-nwse-resize {
+    cursor: var(--cursor-nwse-resize);
+  }
+
+  .cursor-nesw-resize {
+    cursor: var(--cursor-nesw-resize);
+  }
+
+  @media (pointer: fine) and (min-width: 768px) {
+    @media (prefers-reduced-motion: no-preference) {
+      html.branded-cursor-active,
+      html.branded-cursor-active * {
+        cursor: none !important;
+      }
+    }
   }
 
   body {

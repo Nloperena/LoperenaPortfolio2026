@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <path d="M6 4v22l6-6 4 9 5-2-4-9h9l-20-14z" fill="#B5CEAA" stroke="#0D0D0D" stroke-width="2" stroke-linejoin="miter"/>
+  <rect x="14" y="14" width="12" height="12" fill="#0D0D0D" stroke="#0D0D0D" stroke-width="2"/>
+  <text x="20" y="23" text-anchor="middle" fill="#B5CEAA" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="7" font-weight="700">NL</text>
+</svg>
