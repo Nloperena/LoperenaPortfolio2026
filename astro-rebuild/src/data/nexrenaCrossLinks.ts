@@ -36,7 +36,7 @@ export const nexrenaCrossLinksByPost: Record<string, NexrenaCrossLink[]> = {
     {
       label: 'Agency vs in-house delivery',
       href: 'https://www.nexrena.com/resources/blog/agency-vs-in-house/',
-      description: 'When a founder-led agency model vs a full-time hire makes sense.',
+      description: 'When a client studio model vs a full-time hire makes sense.',
     },
   ],
   'kissimmee-orlando-full-stack-engineer-remote': [

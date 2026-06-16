@@ -59,7 +59,7 @@ Orlando and Kissimmee continue to grow as hubs for simulation, hospitality tech,
 
 ## Next steps for recruiters and hiring managers
 
-- **Recruiters:** [Download resume (PDF)](/Nicholas_Loperena_Resume_v9.pdf) · [Recruiter hub](/for-recruiters) · [LinkedIn](https://www.linkedin.com/in/nicholas-loperena/)
+- **Recruiters:** [Download resume (PDF)](/Nicholas_Loperena_Resume_v10.pdf) · [Recruiter hub](/for-recruiters) · [LinkedIn](https://www.linkedin.com/in/nicholas-loperena/)
 - **Hiring managers:** [View work samples](/work) · [Read the hiring guide](/blog/hiring-senior-full-stack-engineer-remote)
 - **Contact:** use the form on [About](/about) or email nicholasloperena@gmail.com
 

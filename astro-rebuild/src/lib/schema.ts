@@ -109,7 +109,7 @@ export function personJsonLd(options?: { includeExperience?: boolean }) {
       '@type': 'Organization',
       name: 'Nexrena',
       url: siteProfile.nexrenaUrl,
-      description: 'B2B web design, SEO, and digital growth agency (founder-led)',
+      description: 'B2B web design, SEO, and digital growth client studio',
     },
 
     knowsAbout: [

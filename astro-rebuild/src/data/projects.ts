@@ -86,7 +86,7 @@ export const projects: Project[] = [
     image: '/Nexrena.png',
     caseStudy: {
       problem: 'Agency ops spread across CRM, PM, invoicing, and ad hoc spreadsheets.',
-      role: 'Founder and lead engineer; sole builder of the platform.',
+      role: 'Lead engineer; sole builder of the platform.',
       approach: 'Next.js UI, Express APIs, PostgreSQL/Prisma, integrated client workflows.',
       outcome: 'Single owned system replacing multiple SaaS tools in daily use.',
     },

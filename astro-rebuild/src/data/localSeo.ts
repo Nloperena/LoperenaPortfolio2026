@@ -15,7 +15,7 @@ export const localSeo = {
   recruiterKeywords: [
     'Nico Loperena',
     'Nicholas Loperena',
-    'Nexrena founder',
+    'Nexrena lead engineer',
     'senior full-stack engineer',
     'remote full-stack developer',
     'React Next.js engineer',

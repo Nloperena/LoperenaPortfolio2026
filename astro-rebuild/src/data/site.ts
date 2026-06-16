@@ -45,9 +45,9 @@ export const siteProfile = {
 
   phone: '407-790-5891',
 
-  resumePath: '/Nicholas_Loperena_Resume_v9.pdf',
+  resumePath: '/Nicholas_Loperena_Resume_v10.pdf',
 
-  resumeDownloadName: 'Nicholas_Loperena_Resume_v9.pdf',
+  resumeDownloadName: 'Nicholas_Loperena_Resume_v10.pdf',
 
   siteUrl: 'https://www.nicoloperena.com',
 
@@ -58,7 +58,7 @@ export const siteProfile = {
   nexrenaBlurb:
     'Nexrena is my client web studio for B2B builds. This portfolio is focused on engineering hiring.',
 
-  founderLine: 'Founder & Lead Engineer, Nexrena',
+  founderLine: 'Lead Engineer, Nexrena (client studio)',
 
 } as const;
 

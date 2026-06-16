@@ -64,4 +64,4 @@ At VITO Fryfilter, Shopify optimizations contributed to **285% YoY traffic growt
 
 ## Need a second pair of eyes?
 
-If you’re replatforming a B2B catalog or stuck between Shopify and custom Next.js, I help teams ship maintainable storefronts—not six-month wireframes. [View my work](/work) or [download my resume](/Nicholas_Loperena_Resume_v9.pdf).
+If you’re replatforming a B2B catalog or stuck between Shopify and custom Next.js, I help teams ship maintainable storefronts—not six-month wireframes. [View my work](/work) or [download my resume](/Nicholas_Loperena_Resume_v10.pdf).

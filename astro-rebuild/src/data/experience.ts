@@ -1,4 +1,4 @@
-/** Work history — keep in sync with Nicholas_Loperena_Resume_v9.pdf */
+/** Work history — keep in sync with Nicholas_Loperena_Resume_v10.pdf */
 export type ExperienceEntry = {
   id: string;
   dates: string;
@@ -11,27 +11,27 @@ export type ExperienceEntry = {
 
 export const experience: ExperienceEntry[] = [
   {
-    id: 'nexrena',
-    dates: 'Apr 2024 – Present',
-    role: 'Founder & Lead Full-Stack Engineer',
-    company: 'Nexrena',
-    location: 'Remote',
-    companyUrl: 'https://www.nexrena.com',
-    bullets: [
-      'Built platform (Next.js, Node/Express, PostgreSQL) for CRM, PM, and invoicing',
-      'API-integrated workflows for client delivery and operations',
-    ],
-  },
-  {
     id: 'forza',
     dates: 'Jan 2025 – May 2026',
     role: 'Senior Full-Stack Engineer',
     company: 'Forza',
     location: 'Remote',
     bullets: [
-      'Rebuilt ForzaBuilt.com and RuggedRed.com on React/Astro; improved Core Web Vitals',
-      'Shipped interactive product tools and industry landing pages on Vercel',
+      'Led product-focused full-stack delivery for a multi-brand industrial adhesives manufacturer',
+      'Rebuilt ForzaBuilt.com and RuggedRed.com on React/Astro; 99% Lighthouse desktop and 28 MQLs in four months post-launch',
       'Employee of the Month (September 2025)',
+    ],
+  },
+  {
+    id: 'nexrena',
+    dates: 'Apr 2024 – Present',
+    role: 'Lead Full-Stack Engineer',
+    company: 'Nexrena',
+    location: 'Remote',
+    companyUrl: 'https://www.nexrena.com',
+    bullets: [
+      'Part-time alongside full-time roles; built and operate platform (Next.js, Node/Express, PostgreSQL) for CRM, PM, and invoicing',
+      'API-integrated workflows for client delivery and operations',
     ],
   },
   {
