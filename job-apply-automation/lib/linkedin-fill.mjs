@@ -33,24 +33,34 @@ export async function fillLinkedInModal(page, profile, resumePath) {
   await fillLinkedInNativeFields(scope, profile).catch(() => {});
   await fillRequiredGreenhouse(scope, profile).catch(() => {});
 
-  const resumeLabel = scope.locator("label, .jobs-document-upload__title, .jobs-document-upload-redesign-card__title").filter({ hasText: /v10|Resume_v10|v9|Resume_v9|v8|Resume_v8/i });
+  const resumeLabel = scope.locator("label, .jobs-document-upload__title, .jobs-document-upload-redesign-card__title").filter({ hasText: /v11|Resume_v11|v10|Resume_v10|v9|Resume_v9|v8|Resume_v8/i });
   if (await resumeLabel.count()) {
-    const v10Label = resumeLabel.filter({ hasText: /v10|Resume_v10/i });
-    if (await v10Label.count()) {
-      await v10Label.first().click().catch(() => {});
+    const v11Label = resumeLabel.filter({ hasText: /v11|Resume_v11/i });
+    if (await v11Label.count()) {
+      await v11Label.first().click().catch(() => {});
     } else {
-      await resumeLabel.first().click().catch(() => {});
+      const v10Label = resumeLabel.filter({ hasText: /v10|Resume_v10/i });
+      if (await v10Label.count()) {
+        await v10Label.first().click().catch(() => {});
+      } else {
+        await resumeLabel.first().click().catch(() => {});
+      }
     }
   } else {
-    const v10Radio = scope.locator('input[type="radio"]').filter({ has: scope.locator('text=/v10/i') });
-    if (await v10Radio.count()) {
-      await v10Radio.first().click({ force: true }).catch(() => {});
+    const v11Radio = scope.locator('input[type="radio"]').filter({ has: scope.locator('text=/v11/i') });
+    if (await v11Radio.count()) {
+      await v11Radio.first().click({ force: true }).catch(() => {});
     } else {
-      const v9Radio = scope.locator('input[type="radio"]').filter({ has: scope.locator('text=/v9|v8/i') });
-      if (await v9Radio.count()) {
-        await v9Radio.first().click({ force: true }).catch(() => {});
+      const v10Radio = scope.locator('input[type="radio"]').filter({ has: scope.locator('text=/v10/i') });
+      if (await v10Radio.count()) {
+        await v10Radio.first().click({ force: true }).catch(() => {});
       } else {
-        await uploadResume(scope, resumePath).catch(() => {});
+        const v9Radio = scope.locator('input[type="radio"]').filter({ has: scope.locator('text=/v9|v8/i') });
+        if (await v9Radio.count()) {
+          await v9Radio.first().click({ force: true }).catch(() => {});
+        } else {
+          await uploadResume(scope, resumePath).catch(() => {});
+        }
       }
     }
   }

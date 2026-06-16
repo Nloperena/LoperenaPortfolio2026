@@ -2,7 +2,7 @@
 
 
 
-**Positioning:** Keep **Senior Full-Stack Engineer** for ATS/search. Lead with product-focused delivery, measurable outcomes, and AI-assisted workflow — aligned with nicoloperena.com and resume v10.
+**Positioning:** Keep **Senior Full-Stack Engineer** for ATS/search. Lead with product-focused delivery, measurable outcomes, and AI-assisted workflow — aligned with nicoloperena.com and resume v11.
 
 
 
@@ -266,7 +266,7 @@ Consider adding **Cursor** or **AI-assisted development** in skills (not pinned)
 
 
 
-1. Resume PDF (v10)
+1. Resume PDF (v11)
 
 2. nicoloperena.com
 
@@ -328,13 +328,13 @@ senior full stack engineer, product engineer, react developer, node.js developer
 
 - [ ] About matches resume summary
 
-- [ ] Experience bullets match resume v10
+- [ ] Experience bullets match resume v11
 
 - [ ] Experience order: Forza → Nexrena → VITO → Villa → Furniture Packages
 
 - [ ] Nexrena title is **Lead Full-Stack Engineer** (not Founder)
 
-- [ ] Upload `Nicholas_Loperena_Resume_v10.pdf` to Featured + Easy Apply default
+- [ ] Upload `Nicholas_Loperena_Resume_v11.pdf` to Featured + Easy Apply default
 
 - [ ] Open to Work titles include Product Engineer
 

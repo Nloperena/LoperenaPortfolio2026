@@ -36,7 +36,7 @@ export const Proof = () => (
       </div>
     </motion.div>
 
-    <div className="grid grid-cols-1 divide-y-2 divide-foreground lg:grid-cols-3 lg:divide-x-2 lg:divide-y-0">
+    <div className="grid grid-cols-1 divide-y-2 divide-foreground lg:grid-cols-2 lg:divide-x-2 lg:divide-y-0">
       {linkedInRecommendations.map((rec, index) => (
         <blockquote
           key={rec.id}

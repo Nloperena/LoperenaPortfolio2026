@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/Nicholas_Loperena_Resume_v:version(6|7|8|9|10).pdf",
+      "destination": "/Nicholas_Loperena_Resume_v11.pdf",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "nicoloperena.com" }],
       "destination": "https://www.nicoloperena.com/:path*",

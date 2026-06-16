@@ -14,6 +14,19 @@ export interface LinkedInRecommendation {
 /** Received recommendations from linkedin.com/in/nicholas-loperena — synced from profile. */
 export const linkedInRecommendations: LinkedInRecommendation[] = [
   {
+    id: 'hruthika-gangoni-vanjari',
+    name: 'Hruthika Gangoni Vanjari',
+    title: 'Salesforce & NetSuite Specialist',
+    company: 'CRM–ERP & integrations',
+    relationship: 'Worked with Nicholas on different teams',
+    date: 'June 2026',
+    linkedInUrl: 'https://www.linkedin.com/in/hruthika-gangoni-vanjari-50640631b/',
+    avatar: '/recommendations/hruthika-gangoni-vanjari.jpg',
+    avatarAlt: 'Photo of Hruthika Gangoni Vanjari, Salesforce & NetSuite Specialist',
+    quote:
+      "Nico is one of the most intelligent people I've had the pleasure of working with. His enthusiasm for web development goes beyond just getting things done — he's constantly finding new and creative ways to design and improve, and his technical skills are genuinely impressive. What sets Nico apart is his patience and communication. He takes the time to truly understand a problem before jumping to a solution, and then resolves it quickly and effectively. Even working across different teams, he was always willing to share his knowledge and make complex web development concepts approachable and interesting even for someone like me with no background in it. He's always eager to start new projects and actively seeks collaboration to discover better ideas and push the work further. Anyone who gets to work with Nico is lucky to have him.",
+  },
+  {
     id: 'randy-bakes',
     name: 'Randy Bakes',
     title: 'Head of Marketing',

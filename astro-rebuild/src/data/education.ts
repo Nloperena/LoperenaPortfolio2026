@@ -1,4 +1,4 @@
-/** Education — keep in sync with Nicholas_Loperena_Resume_v10.pdf */
+/** Education — keep in sync with Nicholas_Loperena_Resume_v11.pdf */
 export type EducationEntry = {
   school: string;
   logo: string;

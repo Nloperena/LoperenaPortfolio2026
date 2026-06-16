@@ -1,4 +1,4 @@
-/** Work history — keep in sync with Nicholas_Loperena_Resume_v10.pdf */
+/** Work history — keep in sync with Nicholas_Loperena_Resume_v11.pdf */
 export type ExperienceEntry = {
   id: string;
   dates: string;

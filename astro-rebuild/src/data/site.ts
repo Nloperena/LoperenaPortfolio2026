@@ -45,9 +45,9 @@ export const siteProfile = {
 
   phone: '407-790-5891',
 
-  resumePath: '/Nicholas_Loperena_Resume_v10.pdf',
+  resumePath: '/Nicholas_Loperena_Resume_v11.pdf',
 
-  resumeDownloadName: 'Nicholas_Loperena_Resume_v10.pdf',
+  resumeDownloadName: 'Nicholas_Loperena_Resume_v11.pdf',
 
   siteUrl: 'https://www.nicoloperena.com',
 
