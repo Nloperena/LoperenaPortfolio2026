@@ -20,6 +20,11 @@
       "source": "/blog/:slug.md/",
       "destination": "/blog/:slug/",
       "permanent": true
+    },
+    {
+      "source": "/projects/:slug",
+      "destination": "/work",
+      "permanent": true
     }
   ],
   "headers": [
