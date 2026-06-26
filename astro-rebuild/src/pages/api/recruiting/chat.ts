@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
-import { sanitizeUserMessage, isRecruitingAssistantEnabled } from '../../../lib/recruiting/guardrails';
+import { sanitizeUserMessage } from '../../../lib/recruiting/guardrails';
 import { generateRecruitingReply } from '../../../lib/recruiting/openai';
+import { isRecruitingAssistantEnabled, resolveLlmConfig } from '../../../lib/recruiting/llmConfig';
 import { checkRateLimit, clientIp } from '../../../lib/recruiting/rateLimit';
 import type { ChatMessage } from '../../../lib/recruiting/types';
 
@@ -99,11 +100,13 @@ export const POST: APIRoute = async ({ request }) => {
 };
 
 export const GET: APIRoute = async () => {
+  const llm = resolveLlmConfig();
   return new Response(
     JSON.stringify({
       ok: true,
-      enabled: isRecruitingAssistantEnabled(),
+      enabled: llm !== null,
       model: process.env.RECRUITING_ASSISTANT_MODEL ?? 'gpt-4o-mini',
+      provider: llm?.baseUrl.includes('ai-gateway') ? 'vercel-ai-gateway' : 'openai',
     }),
     { status: 200, headers: { 'Content-Type': 'application/json' } },
   );

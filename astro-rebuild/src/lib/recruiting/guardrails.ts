@@ -47,7 +47,3 @@ export function looksUnanswered(text: string): boolean {
 export function sanitizeUserMessage(raw: string): string {
   return raw.trim().slice(0, 2000);
 }
-
-export function isRecruitingAssistantEnabled(): boolean {
-  return Boolean(process.env.OPENAI_API_KEY?.trim());
-}

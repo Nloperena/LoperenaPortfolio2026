@@ -1,6 +1,6 @@
 import type { ChatMessage, ChatResponsePayload } from './types';
-import { knowledgeChunkById } from './knowledge/buildChunks';
 import { looksUnanswered, validateResponse } from './guardrails';
+import { resolveLlmConfig } from './llmConfig';
 import { buildChatMessages, RECRUITING_MODEL, SUGGESTED_FOLLOWUPS } from './prompts';
 import { assessRoleFit, retrieveChunks } from './retrieve';
 
@@ -13,9 +13,11 @@ export async function generateRecruitingReply(input: {
   message: string;
   history: ChatMessage[];
 }): Promise<ChatResponsePayload & { unanswered: boolean; warnings: string[] }> {
-  const apiKey = process.env.OPENAI_API_KEY?.trim();
-  if (!apiKey) {
-    throw new Error('Recruiting assistant is not configured (missing OPENAI_API_KEY).');
+  const llm = resolveLlmConfig();
+  if (!llm) {
+    throw new Error(
+      'Recruiting assistant is not configured (set OPENAI_API_KEY, AI_GATEWAY_API_KEY, or deploy on Vercel with OIDC).',
+    );
   }
 
   const chunks = retrieveChunks(input.message);
@@ -27,10 +29,10 @@ export async function generateRecruitingReply(input: {
     fit,
   });
 
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+  const res = await fetch(`${llm.baseUrl}/chat/completions`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${apiKey}`,
+      Authorization: llm.authorization,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -43,7 +45,7 @@ export async function generateRecruitingReply(input: {
 
   const data = (await res.json()) as OpenAIChatResponse;
   if (!res.ok) {
-    throw new Error(data.error?.message ?? `OpenAI request failed (${res.status})`);
+    throw new Error(data.error?.message ?? `LLM request failed (${res.status})`);
   }
 
   const message = data.choices?.[0]?.message?.content?.trim();
