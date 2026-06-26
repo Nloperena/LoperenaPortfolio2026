@@ -15,6 +15,9 @@ export type NexrenaIntakePayload = {
   message: string;
   inquiryType: 'hiring' | 'project';
   pageUrl?: string;
+  roleTitle?: string;
+  compBand?: string;
+  remotePolicy?: string;
 };
 
 export async function submitToNexrenaForms(payload: NexrenaIntakePayload): Promise<void> {
@@ -30,6 +33,9 @@ export async function submitToNexrenaForms(payload: NexrenaIntakePayload): Promi
       inquiryType: payload.inquiryType,
       formName: 'intake',
       pageUrl: payload.pageUrl,
+      roleTitle: payload.roleTitle || undefined,
+      compBand: payload.compBand || undefined,
+      remotePolicy: payload.remotePolicy || undefined,
       formSecret: import.meta.env.PUBLIC_NICOLOPERENA_FORM_SECRET as string | undefined,
     }),
   });

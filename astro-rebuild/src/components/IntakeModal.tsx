@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { track } from '../utils/analytics';
 import { siteProfile } from '../data/site';
 import { hiringProfile } from '../data/hiring';
-import { INTAKE_SUBMIT_URL } from '../data/intakeApi';
+import { submitToNexrenaForms } from '../lib/nexrenaFormSubmit';
 
 const CONTACT_EMAIL = siteProfile.email;
 const CONTACT_PHONE = hiringProfile.phone;
@@ -110,8 +110,6 @@ export const IntakeModal = () => {
     };
   }, [isOpen]);
 
-  const getContactEndpoint = () => INTAKE_SUBMIT_URL;
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     track('intake_modal_submit');
@@ -148,28 +146,18 @@ export const IntakeModal = () => {
     }
 
     try {
-      const endpoint = getContactEndpoint();
-      const payload = {
+      await submitToNexrenaForms({
         name: values.name,
         email: values.email,
         company: values.company || undefined,
-        projectScope: composedScope,
-      };
-
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        message: composedScope || inquiryLabel,
+        inquiryType,
+        pageUrl: typeof window !== 'undefined' ? window.location.href : undefined,
+        roleTitle: values.roleTitle || undefined,
+        compBand: values.compBand || undefined,
+        remotePolicy: values.remotePolicy || undefined,
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setSubmitError(
-          data.error || 'Submission failed. Please try again or use Email me below.',
-        );
-        setSubmitStatus('error');
-        return;
-      }
-      setSubmitMessage(data.message ?? "Thank you — I'll be in touch soon.");
+      setSubmitMessage("Thank you — I'll be in touch soon.");
       setSubmitStatus('success');
       setFormData({
         name: '',
@@ -181,8 +169,12 @@ export const IntakeModal = () => {
         message: '',
       });
       form.reset();
-    } catch {
-      setSubmitError('Network error. Please check your connection and try again.');
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : 'Network error. Please check your connection and try again.',
+      );
       setSubmitStatus('error');
     }
   };
