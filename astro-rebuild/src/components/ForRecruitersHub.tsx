@@ -11,6 +11,12 @@ const openContact = () => {
   if (typeof window !== 'undefined' && window.openContactHub) window.openContactHub();
 };
 
+const openAssistant = () => {
+  track('recruiting_assistant_open', { source: 'for_recruiters' });
+  // @ts-expect-error global
+  if (typeof window !== 'undefined' && window.openRecruitingAssistant) window.openRecruitingAssistant();
+};
+
 export const ForRecruitersHub = () => (
   <div className="w-full bg-background">
     <RecruiterSkim compact />
@@ -58,7 +64,10 @@ export const ForRecruitersHub = () => (
       </div>
 
       <div className="flex flex-wrap gap-2 border-t-2 border-foreground px-4 py-4 md:px-6 lg:px-8">
-        <button type="button" onClick={openContact} className="brutal-btn">
+        <button type="button" onClick={openAssistant} className="brutal-btn">
+          Ask the AI recruiting assistant
+        </button>
+        <button type="button" onClick={openContact} className="brutal-btn-ghost">
           Start a conversation
         </button>
         <a href={`mailto:${siteProfile.email}`} className="brutal-btn-ghost">

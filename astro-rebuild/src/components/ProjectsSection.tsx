@@ -77,11 +77,19 @@ export const ProjectsSection = () => {
                     className="mt-auto shrink-0 pt-2 flex flex-col gap-2"
                   >
                     <a
+                      href={`/work/${project.id}`}
+                      onClick={() => track('case_study_click', { id: project.id, title: project.title })}
+                      className="brutal-btn w-full !justify-between !py-5"
+                    >
+                      Read case study
+                      <span>→</span>
+                    </a>
+                    <a
                       href={project.link}
                       target="_blank"
                       rel="noreferrer"
                       onClick={() => track('project_click', { id: project.id, title: project.title, url: project.link })}
-                      className="brutal-btn w-full !justify-between !py-5"
+                      className="brutal-btn-ghost w-full !justify-between !py-3 text-[10px]"
                     >
                       View live system
                       <span>↗</span>

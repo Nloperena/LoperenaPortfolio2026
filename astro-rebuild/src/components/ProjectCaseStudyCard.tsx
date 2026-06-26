@@ -7,9 +7,10 @@ type ProjectCaseStudyCardProps = {
   project: Project;
   index: number;
   compact?: boolean;
+  caseStudyHref?: string;
 };
 
-export const ProjectCaseStudyCard = ({ project, index, compact = false }: ProjectCaseStudyCardProps) => {
+export const ProjectCaseStudyCard = ({ project, index, compact = false, caseStudyHref }: ProjectCaseStudyCardProps) => {
   const cs = project.caseStudy;
 
   return (
@@ -74,15 +75,26 @@ export const ProjectCaseStudyCard = ({ project, index, compact = false }: Projec
             ))}
           </div>
 
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => track('project_click', { id: project.id, title: project.title, url: project.link })}
-            className="brutal-btn-ghost inline-flex !px-4 !py-2 text-[10px]"
-          >
-            View live →
-          </a>
+          <div className="flex flex-wrap gap-2">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => track('project_click', { id: project.id, title: project.title, url: project.link })}
+              className="brutal-btn-ghost inline-flex !px-4 !py-2 text-[10px]"
+            >
+              View live →
+            </a>
+            {caseStudyHref && (
+              <a
+                href={caseStudyHref}
+                onClick={() => track('case_study_click', { id: project.id, title: project.title })}
+                className="brutal-btn inline-flex !px-4 !py-2 text-[10px]"
+              >
+                Read case study →
+              </a>
+            )}
+          </div>
         </div>
 
         {!compact && (

@@ -9,6 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "convert-media": "node scripts/convert-media.js",
+    "recruiting:eval": "npx tsx scripts/recruiting-assistant/eval-retrieval.ts",
+    "recruiting:eval:live": "npx tsx scripts/recruiting-assistant/eval-retrieval.ts --live --limit=25",
     "db:schema": "heroku pg:psql -a $HEROKU_APP_NAME < database/schema.sql"
   },
   "dependencies": {

@@ -252,7 +252,7 @@ export function projectsJsonLd() {
 
         description: project.longDescription,
 
-        url: project.link,
+        url: absoluteUrl(`/work/${project.id}`),
 
         keywords: project.tags.join(', '),
 

@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { absoluteUrl } from '../data/seo';
 import { getPublishedPosts, postPath } from '../lib/blog';
+import { getPublishedCaseStudies, caseStudyPath } from '../lib/caseStudies';
 
 export const prerender = true;
 
@@ -24,6 +25,7 @@ function escapeXml(value: string): string {
 
 export const GET: APIRoute = async () => {
   const posts = await getPublishedPosts();
+  const caseStudies = await getPublishedCaseStudies();
   const today = new Date().toISOString().slice(0, 10);
 
   const staticUrls = staticPages
@@ -49,9 +51,22 @@ export const GET: APIRoute = async () => {
     })
     .join('\n');
 
+  const caseStudyUrls = caseStudies
+    .map((study) => {
+      const lastmod = study.data.pubDate.toISOString().slice(0, 10);
+      return `<url>
+  <loc>${escapeXml(absoluteUrl(caseStudyPath(study.id)))}</loc>
+  <lastmod>${lastmod}</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.85</priority>
+</url>`;
+    })
+    .join('\n');
+
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${staticUrls}
+${caseStudyUrls}
 ${postUrls}
 </urlset>`;
 

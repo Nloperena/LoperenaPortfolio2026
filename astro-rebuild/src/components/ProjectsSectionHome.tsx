@@ -37,7 +37,7 @@ export const ProjectsSectionHome = () => (
         return (
           <a
             key={project.id}
-            href={`#${project.id}`}
+            href={`/work/${project.id}`}
             className="group flex flex-col bg-background p-4 transition-none hover:bg-highlight md:p-5"
           >
             <div className="flex items-baseline justify-between gap-2">
@@ -58,7 +58,7 @@ export const ProjectsSectionHome = () => (
               {featured?.description ?? project.description}
             </p>
             <span className="mt-3 font-mono text-[10px] font-bold uppercase tracking-widest group-hover:underline">
-              See details ↓
+              Read case study →
             </span>
           </a>
         );
@@ -67,7 +67,12 @@ export const ProjectsSectionHome = () => (
 
     <div className="divide-y-2 divide-foreground">
       {projects.map((project, index) => (
-        <ProjectCaseStudyCard key={project.id} project={project} index={index} />
+        <ProjectCaseStudyCard
+          key={project.id}
+          project={project}
+          index={index}
+          caseStudyHref={`/work/${project.id}`}
+        />
       ))}
     </div>
 

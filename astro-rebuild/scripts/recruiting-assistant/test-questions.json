@@ -1,0 +1,2258 @@
+{
+  "generated": "2026-06-26T18:52:48.826Z",
+  "count": 250,
+  "questions": [
+    {
+      "id": "q-1",
+      "category": "general",
+      "question": "Tell me about Nico.",
+      "expectAnyChunkId": [
+        "profile-summary"
+      ]
+    },
+    {
+      "id": "q-2",
+      "category": "general",
+      "question": "Who is Nicholas Loperena?",
+      "expectAnyChunkId": [
+        "profile-summary"
+      ]
+    },
+    {
+      "id": "q-3",
+      "category": "general",
+      "question": "Give me a recruiter summary.",
+      "expectAnyChunkId": [
+        "profile-summary"
+      ]
+    },
+    {
+      "id": "q-4",
+      "category": "general",
+      "question": "Why should we interview him?",
+      "expectAnyChunkId": [
+        "profile-summary",
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-5",
+      "category": "general",
+      "question": "What makes him different from other senior engineers?",
+      "expectAnyChunkId": [
+        "profile-summary",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-6",
+      "category": "general",
+      "question": "Is he actively looking?",
+      "expectAnyChunkId": [
+        "faq-why-looking"
+      ]
+    },
+    {
+      "id": "q-7",
+      "category": "general",
+      "question": "Why did he leave Forza?",
+      "expectAnyChunkId": [
+        "faq-why-looking",
+        "experience-forza"
+      ]
+    },
+    {
+      "id": "q-8",
+      "category": "general",
+      "question": "What is he looking for in his next role?",
+      "expectAnyChunkId": [
+        "hiring-fit",
+        "faq-why-looking"
+      ]
+    },
+    {
+      "id": "q-9",
+      "category": "general",
+      "question": "Can he start soon?",
+      "expectAnyChunkId": [
+        "faq-why-looking",
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-10",
+      "category": "general",
+      "question": "Does he need visa sponsorship?",
+      "expectAnyChunkId": [
+        "faq-work-authorization"
+      ]
+    },
+    {
+      "id": "q-11",
+      "category": "general",
+      "question": "Is he authorized to work in the US?",
+      "expectAnyChunkId": [
+        "faq-work-authorization"
+      ]
+    },
+    {
+      "id": "q-12",
+      "category": "general",
+      "question": "Where is he located?",
+      "expectAnyChunkId": [
+        "profile-summary",
+        "faq-remote"
+      ]
+    },
+    {
+      "id": "q-13",
+      "category": "general",
+      "question": "What time zone is he in?",
+      "expectAnyChunkId": [
+        "faq-remote"
+      ]
+    },
+    {
+      "id": "q-14",
+      "category": "general",
+      "question": "Has he worked remotely before?",
+      "expectAnyChunkId": [
+        "faq-remote"
+      ]
+    },
+    {
+      "id": "q-15",
+      "category": "general",
+      "question": "Would he relocate?",
+      "expectAnyChunkId": [
+        "faq-remote",
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-16",
+      "category": "general",
+      "question": "How many years of experience?",
+      "expectAnyChunkId": [
+        "faq-years-experience"
+      ]
+    },
+    {
+      "id": "q-17",
+      "category": "general",
+      "question": "Is eight years enough for senior?",
+      "expectAnyChunkId": [
+        "faq-years-experience"
+      ]
+    },
+    {
+      "id": "q-18",
+      "category": "general",
+      "question": "Has he led projects?",
+      "expectAnyChunkId": [
+        "faq-leadership"
+      ]
+    },
+    {
+      "id": "q-19",
+      "category": "general",
+      "question": "Can he work independently?",
+      "expectAnyChunkId": [
+        "faq-leadership"
+      ]
+    },
+    {
+      "id": "q-20",
+      "category": "general",
+      "question": "Has he managed people?",
+      "expectAnyChunkId": [
+        "faq-leadership",
+        "experience-forza"
+      ]
+    },
+    {
+      "id": "q-21",
+      "category": "general",
+      "question": "What industries has he worked in?",
+      "expectAnyChunkId": [
+        "industries-served",
+        "profile-summary"
+      ]
+    },
+    {
+      "id": "q-22",
+      "category": "general",
+      "question": "Manufacturing experience?",
+      "expectAnyChunkId": [
+        "industries-served",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-23",
+      "category": "general",
+      "question": "E-commerce experience?",
+      "expectAnyChunkId": [
+        "industries-served",
+        "project-vito-fryfilter"
+      ]
+    },
+    {
+      "id": "q-24",
+      "category": "general",
+      "question": "Real estate tech experience?",
+      "expectAnyChunkId": [
+        "industries-served",
+        "project-furniture-packages-usa"
+      ]
+    },
+    {
+      "id": "q-25",
+      "category": "general",
+      "question": "Agency or product background?",
+      "expectAnyChunkId": [
+        "experience-nexrena",
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-26",
+      "category": "projects",
+      "question": "Tell me about the forza built project.",
+      "expectAnyChunkId": [
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-27",
+      "category": "projects",
+      "question": "What was his role on forza built?",
+      "expectAnyChunkId": [
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-28",
+      "category": "projects",
+      "question": "What stack did he use on forza built?",
+      "expectAnyChunkId": [
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-29",
+      "category": "projects",
+      "question": "What was the business impact of forza built?",
+      "expectAnyChunkId": [
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-30",
+      "category": "projects",
+      "question": "What challenges did he solve on forza built?",
+      "expectAnyChunkId": [
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-31",
+      "category": "projects",
+      "question": "Tell me about the furniture packages usa project.",
+      "expectAnyChunkId": [
+        "project-furniture-packages-usa"
+      ]
+    },
+    {
+      "id": "q-32",
+      "category": "projects",
+      "question": "What was his role on furniture packages usa?",
+      "expectAnyChunkId": [
+        "project-furniture-packages-usa"
+      ]
+    },
+    {
+      "id": "q-33",
+      "category": "projects",
+      "question": "What stack did he use on furniture packages usa?",
+      "expectAnyChunkId": [
+        "project-furniture-packages-usa"
+      ]
+    },
+    {
+      "id": "q-34",
+      "category": "projects",
+      "question": "What was the business impact of furniture packages usa?",
+      "expectAnyChunkId": [
+        "project-furniture-packages-usa"
+      ]
+    },
+    {
+      "id": "q-35",
+      "category": "projects",
+      "question": "What challenges did he solve on furniture packages usa?",
+      "expectAnyChunkId": [
+        "project-furniture-packages-usa"
+      ]
+    },
+    {
+      "id": "q-36",
+      "category": "projects",
+      "question": "Tell me about the vito fryfilter project.",
+      "expectAnyChunkId": [
+        "project-vito-fryfilter"
+      ]
+    },
+    {
+      "id": "q-37",
+      "category": "projects",
+      "question": "What was his role on vito fryfilter?",
+      "expectAnyChunkId": [
+        "project-vito-fryfilter"
+      ]
+    },
+    {
+      "id": "q-38",
+      "category": "projects",
+      "question": "What stack did he use on vito fryfilter?",
+      "expectAnyChunkId": [
+        "project-vito-fryfilter"
+      ]
+    },
+    {
+      "id": "q-39",
+      "category": "projects",
+      "question": "What was the business impact of vito fryfilter?",
+      "expectAnyChunkId": [
+        "project-vito-fryfilter"
+      ]
+    },
+    {
+      "id": "q-40",
+      "category": "projects",
+      "question": "What challenges did he solve on vito fryfilter?",
+      "expectAnyChunkId": [
+        "project-vito-fryfilter"
+      ]
+    },
+    {
+      "id": "q-41",
+      "category": "projects",
+      "question": "Tell me about the rugged red project.",
+      "expectAnyChunkId": [
+        "project-rugged-red"
+      ]
+    },
+    {
+      "id": "q-42",
+      "category": "projects",
+      "question": "What was his role on rugged red?",
+      "expectAnyChunkId": [
+        "project-rugged-red"
+      ]
+    },
+    {
+      "id": "q-43",
+      "category": "projects",
+      "question": "What stack did he use on rugged red?",
+      "expectAnyChunkId": [
+        "project-rugged-red"
+      ]
+    },
+    {
+      "id": "q-44",
+      "category": "projects",
+      "question": "What was the business impact of rugged red?",
+      "expectAnyChunkId": [
+        "project-rugged-red"
+      ]
+    },
+    {
+      "id": "q-45",
+      "category": "projects",
+      "question": "What challenges did he solve on rugged red?",
+      "expectAnyChunkId": [
+        "project-rugged-red"
+      ]
+    },
+    {
+      "id": "q-46",
+      "category": "projects",
+      "question": "Tell me about the nexrena platform project.",
+      "expectAnyChunkId": [
+        "project-nexrena-platform"
+      ]
+    },
+    {
+      "id": "q-47",
+      "category": "projects",
+      "question": "What was his role on nexrena platform?",
+      "expectAnyChunkId": [
+        "project-nexrena-platform"
+      ]
+    },
+    {
+      "id": "q-48",
+      "category": "projects",
+      "question": "What stack did he use on nexrena platform?",
+      "expectAnyChunkId": [
+        "project-nexrena-platform"
+      ]
+    },
+    {
+      "id": "q-49",
+      "category": "projects",
+      "question": "What was the business impact of nexrena platform?",
+      "expectAnyChunkId": [
+        "project-nexrena-platform"
+      ]
+    },
+    {
+      "id": "q-50",
+      "category": "projects",
+      "question": "What challenges did he solve on nexrena platform?",
+      "expectAnyChunkId": [
+        "project-nexrena-platform"
+      ]
+    },
+    {
+      "id": "q-51",
+      "category": "technical",
+      "question": "How strong is he in react?",
+      "expectAnyChunkId": [
+        "tech-react",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-52",
+      "category": "technical",
+      "question": "Has he used react in production?",
+      "expectAnyChunkId": [
+        "tech-react",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-53",
+      "category": "technical",
+      "question": "Describe his react experience.",
+      "expectAnyChunkId": [
+        "tech-react",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-54",
+      "category": "technical",
+      "question": "How strong is he in nextjs?",
+      "expectAnyChunkId": [
+        "tech-nextjs",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-55",
+      "category": "technical",
+      "question": "Has he used nextjs in production?",
+      "expectAnyChunkId": [
+        "tech-nextjs",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-56",
+      "category": "technical",
+      "question": "Describe his nextjs experience.",
+      "expectAnyChunkId": [
+        "tech-nextjs",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-57",
+      "category": "technical",
+      "question": "How strong is he in nodejs?",
+      "expectAnyChunkId": [
+        "tech-nodejs",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-58",
+      "category": "technical",
+      "question": "Has he used nodejs in production?",
+      "expectAnyChunkId": [
+        "tech-nodejs",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-59",
+      "category": "technical",
+      "question": "Describe his nodejs experience.",
+      "expectAnyChunkId": [
+        "tech-nodejs",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-60",
+      "category": "technical",
+      "question": "How strong is he in postgresql?",
+      "expectAnyChunkId": [
+        "tech-postgresql",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-61",
+      "category": "technical",
+      "question": "Has he used postgresql in production?",
+      "expectAnyChunkId": [
+        "tech-postgresql",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-62",
+      "category": "technical",
+      "question": "Describe his postgresql experience.",
+      "expectAnyChunkId": [
+        "tech-postgresql",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-63",
+      "category": "technical",
+      "question": "How strong is he in shopify?",
+      "expectAnyChunkId": [
+        "tech-shopify",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-64",
+      "category": "technical",
+      "question": "Has he used shopify in production?",
+      "expectAnyChunkId": [
+        "tech-shopify",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-65",
+      "category": "technical",
+      "question": "Describe his shopify experience.",
+      "expectAnyChunkId": [
+        "tech-shopify",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-66",
+      "category": "technical",
+      "question": "How strong is he in aws?",
+      "expectAnyChunkId": [
+        "tech-aws",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-67",
+      "category": "technical",
+      "question": "Has he used aws in production?",
+      "expectAnyChunkId": [
+        "tech-aws",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-68",
+      "category": "technical",
+      "question": "Describe his aws experience.",
+      "expectAnyChunkId": [
+        "tech-aws",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-69",
+      "category": "technical",
+      "question": "How strong is he in seo?",
+      "expectAnyChunkId": [
+        "tech-seo",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-70",
+      "category": "technical",
+      "question": "Has he used seo in production?",
+      "expectAnyChunkId": [
+        "tech-seo",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-71",
+      "category": "technical",
+      "question": "Describe his seo experience.",
+      "expectAnyChunkId": [
+        "tech-seo",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-72",
+      "category": "technical",
+      "question": "How strong is he in auth?",
+      "expectAnyChunkId": [
+        "tech-auth",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-73",
+      "category": "technical",
+      "question": "Has he used auth in production?",
+      "expectAnyChunkId": [
+        "tech-auth",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-74",
+      "category": "technical",
+      "question": "Describe his auth experience.",
+      "expectAnyChunkId": [
+        "tech-auth",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-75",
+      "category": "technical",
+      "question": "How strong is he in ci_cd?",
+      "expectAnyChunkId": [
+        "tech-ci_cd",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-76",
+      "category": "technical",
+      "question": "Has he used ci_cd in production?",
+      "expectAnyChunkId": [
+        "tech-ci_cd",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-77",
+      "category": "technical",
+      "question": "Describe his ci_cd experience.",
+      "expectAnyChunkId": [
+        "tech-ci_cd",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-78",
+      "category": "behavioral",
+      "question": "How does he communicate with stakeholders?",
+      "expectAnyChunkId": [
+        "rec-randy-bakes",
+        "faq-designers"
+      ]
+    },
+    {
+      "id": "q-79",
+      "category": "behavioral",
+      "question": "What do managers say about him?",
+      "expectAnyChunkId": [
+        "rec-randy-bakes",
+        "rec-hruthika-gangoni-vanjari"
+      ]
+    },
+    {
+      "id": "q-80",
+      "category": "behavioral",
+      "question": "What do peers say about him?",
+      "expectAnyChunkId": [
+        "rec-sydney-saathoff",
+        "rec-hruthika-gangoni-vanjari"
+      ]
+    },
+    {
+      "id": "q-81",
+      "category": "behavioral",
+      "question": "Is he easy to work with?",
+      "expectAnyChunkId": [
+        "rec-sydney-saathoff"
+      ]
+    },
+    {
+      "id": "q-82",
+      "category": "behavioral",
+      "question": "Does he meet deadlines?",
+      "expectAnyChunkId": [
+        "rec-randy-bakes"
+      ]
+    },
+    {
+      "id": "q-83",
+      "category": "behavioral",
+      "question": "How does he handle pressure?",
+      "expectAnyChunkId": [
+        "rec-sydney-saathoff",
+        "rec-randy-bakes"
+      ]
+    },
+    {
+      "id": "q-84",
+      "category": "behavioral",
+      "question": "Will he work overtime when needed?",
+      "expectAnyChunkId": [
+        "rec-sydney-saathoff"
+      ]
+    },
+    {
+      "id": "q-85",
+      "category": "behavioral",
+      "question": "How does he explain technical topics to non-engineers?",
+      "expectAnyChunkId": [
+        "rec-hruthika-gangoni-vanjari"
+      ]
+    },
+    {
+      "id": "q-86",
+      "category": "behavioral",
+      "question": "How does he work with designers?",
+      "expectAnyChunkId": [
+        "faq-designers",
+        "rec-sydney-saathoff"
+      ]
+    },
+    {
+      "id": "q-87",
+      "category": "behavioral",
+      "question": "How does he approach debugging?",
+      "expectAnyChunkId": [
+        "faq-debugging"
+      ]
+    },
+    {
+      "id": "q-88",
+      "category": "behavioral",
+      "question": "What is he most proud of?",
+      "expectAnyChunkId": [
+        "faq-best-project"
+      ]
+    },
+    {
+      "id": "q-89",
+      "category": "behavioral",
+      "question": "What project best demonstrates his skills?",
+      "expectAnyChunkId": [
+        "faq-best-project"
+      ]
+    },
+    {
+      "id": "q-90",
+      "category": "behavioral",
+      "question": "Most technically challenging project?",
+      "expectAnyChunkId": [
+        "project-forza-built",
+        "project-nexrena-platform"
+      ]
+    },
+    {
+      "id": "q-91",
+      "category": "fit",
+      "question": "We are a B2B SaaS startup — good fit?",
+      "expectAnyChunkId": [
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-92",
+      "category": "fit",
+      "question": "Enterprise Fortune 500 role — fit?",
+      "expectAnyChunkId": [
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-93",
+      "category": "fit",
+      "question": "Shopify agency — fit?",
+      "expectAnyChunkId": [
+        "project-vito-fryfilter",
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-94",
+      "category": "fit",
+      "question": "Internal tools team — fit?",
+      "expectAnyChunkId": [
+        "project-nexrena-platform",
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-95",
+      "category": "fit",
+      "question": "Pure DevOps role — fit?",
+      "expectAnyChunkId": [
+        "hiring-fit",
+        "faq-weaknesses"
+      ]
+    },
+    {
+      "id": "q-96",
+      "category": "fit",
+      "question": "Frontend-only React role — fit?",
+      "expectAnyChunkId": [
+        "hiring-fit",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-97",
+      "category": "fit",
+      "question": "Marketing technology company — fit?",
+      "expectAnyChunkId": [
+        "hiring-fit",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-98",
+      "category": "fit",
+      "question": "E-commerce DTC brand — fit?",
+      "expectAnyChunkId": [
+        "project-vito-fryfilter",
+        "industries-served",
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-99",
+      "category": "career",
+      "question": "Walk me through his career progression.",
+      "expectAnyChunkId": [
+        "faq-years-experience",
+        "experience-fpusa"
+      ]
+    },
+    {
+      "id": "q-100",
+      "category": "career",
+      "question": "How did he go from IT to full-stack?",
+      "expectAnyChunkId": [
+        "experience-fpusa",
+        "profile-summary"
+      ]
+    },
+    {
+      "id": "q-101",
+      "category": "career",
+      "question": "What did he do at Furniture Packages USA?",
+      "expectAnyChunkId": [
+        "experience-fpusa"
+      ]
+    },
+    {
+      "id": "q-102",
+      "category": "career",
+      "question": "What did he do at Villa Marketers?",
+      "expectAnyChunkId": [
+        "experience-villa-marketers"
+      ]
+    },
+    {
+      "id": "q-103",
+      "category": "career",
+      "question": "What did he do at VITO?",
+      "expectAnyChunkId": [
+        "experience-vito",
+        "project-vito-fryfilter"
+      ]
+    },
+    {
+      "id": "q-104",
+      "category": "career",
+      "question": "What did he do at Forza?",
+      "expectAnyChunkId": [
+        "experience-forza",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-105",
+      "category": "career",
+      "question": "What is Nexrena?",
+      "expectAnyChunkId": [
+        "experience-nexrena",
+        "project-nexrena-platform"
+      ]
+    },
+    {
+      "id": "q-106",
+      "category": "career",
+      "question": "Is Nexrena full-time?",
+      "expectAnyChunkId": [
+        "experience-nexrena",
+        "profile-summary"
+      ]
+    },
+    {
+      "id": "q-107",
+      "category": "career",
+      "question": "Employee of the Month?",
+      "expectAnyChunkId": [
+        "experience-forza"
+      ]
+    },
+    {
+      "id": "q-108",
+      "category": "career",
+      "question": "Education background?",
+      "expectAnyChunkId": [
+        "education-university-of-central-florida"
+      ]
+    },
+    {
+      "id": "q-109",
+      "category": "honesty",
+      "question": "What are his weaknesses?",
+      "expectAnyChunkId": [
+        "faq-weaknesses"
+      ]
+    },
+    {
+      "id": "q-110",
+      "category": "honesty",
+      "question": "Any gaps we should know about?",
+      "expectAnyChunkId": [
+        "faq-weaknesses",
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-111",
+      "category": "honesty",
+      "question": "Does he know Kubernetes?",
+      "expectAnyChunkId": [
+        "faq-weaknesses",
+        "tech-aws"
+      ]
+    },
+    {
+      "id": "q-112",
+      "category": "honesty",
+      "question": "Mobile development experience?",
+      "expectAnyChunkId": [
+        "faq-weaknesses"
+      ]
+    },
+    {
+      "id": "q-113",
+      "category": "honesty",
+      "question": "Testing philosophy?",
+      "expectAnyChunkId": [
+        "faq-testing"
+      ]
+    },
+    {
+      "id": "q-114",
+      "category": "honesty",
+      "question": "Salary expectations?",
+      "expectAnyChunkId": [
+        "faq-salary"
+      ]
+    },
+    {
+      "id": "q-115",
+      "category": "technical",
+      "question": "Can he build REST APIs?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-116",
+      "category": "technical",
+      "question": "Does he have REST APIs experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-117",
+      "category": "technical",
+      "question": "Can he build PostgreSQL migrations?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-118",
+      "category": "technical",
+      "question": "Does he have PostgreSQL migrations experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-119",
+      "category": "technical",
+      "question": "Can he build WordPress migrations?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-120",
+      "category": "technical",
+      "question": "Does he have WordPress migrations experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-121",
+      "category": "technical",
+      "question": "Can he build Astro?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-122",
+      "category": "technical",
+      "question": "Does he have Astro experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-123",
+      "category": "technical",
+      "question": "Can he build TypeScript?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-124",
+      "category": "technical",
+      "question": "Does he have TypeScript experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-125",
+      "category": "technical",
+      "question": "Can he build B2B catalogs?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-126",
+      "category": "technical",
+      "question": "Does he have B2B catalogs experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-127",
+      "category": "technical",
+      "question": "Can he build CRM systems?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-128",
+      "category": "technical",
+      "question": "Does he have CRM systems experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-129",
+      "category": "technical",
+      "question": "Can he build Stripe checkout?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-130",
+      "category": "technical",
+      "question": "Does he have Stripe checkout experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-131",
+      "category": "technical",
+      "question": "Can he build Core Web Vitals?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-132",
+      "category": "technical",
+      "question": "Does he have Core Web Vitals experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-133",
+      "category": "technical",
+      "question": "Can he build structured data?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-134",
+      "category": "technical",
+      "question": "Does he have structured data experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-135",
+      "category": "technical",
+      "question": "Can he build redirect maps?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-136",
+      "category": "technical",
+      "question": "Does he have redirect maps experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-137",
+      "category": "technical",
+      "question": "Can he build client portals?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-138",
+      "category": "technical",
+      "question": "Does he have client portals experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-139",
+      "category": "technical",
+      "question": "Can he build AI workflows?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-140",
+      "category": "technical",
+      "question": "Does he have AI workflows experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-141",
+      "category": "technical",
+      "question": "Can he build OpenAI integrations?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-142",
+      "category": "technical",
+      "question": "Does he have OpenAI integrations experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-143",
+      "category": "technical",
+      "question": "Can he build technical SEO?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-144",
+      "category": "technical",
+      "question": "Does he have technical SEO experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-145",
+      "category": "technical",
+      "question": "Can he build procurement UX?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-146",
+      "category": "technical",
+      "question": "Does he have procurement UX experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-147",
+      "category": "technical",
+      "question": "Can he build multi-brand architecture?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-148",
+      "category": "technical",
+      "question": "Does he have multi-brand architecture experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-149",
+      "category": "technical",
+      "question": "Can he build Shopify Liquid?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-150",
+      "category": "technical",
+      "question": "Does he have Shopify Liquid experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-151",
+      "category": "technical",
+      "question": "Can he build Prisma?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-152",
+      "category": "technical",
+      "question": "Does he have Prisma experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-153",
+      "category": "technical",
+      "question": "Can he build Express middleware?",
+      "expectAnyChunkId": [
+        "what-i-bring",
+        "stack-overview"
+      ]
+    },
+    {
+      "id": "q-154",
+      "category": "technical",
+      "question": "Does he have Express middleware experience?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring",
+        "tech-postgresql",
+        "tech-react",
+        "project-forza-built"
+      ]
+    },
+    {
+      "id": "q-155",
+      "category": "fit",
+      "question": "Would he fit a remote product team?",
+      "expectAnyChunkId": [
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-156",
+      "category": "fit",
+      "question": "Would he fit a startup engineering team?",
+      "expectAnyChunkId": [
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-157",
+      "category": "fit",
+      "question": "Would he fit a commerce platform team?",
+      "expectAnyChunkId": [
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-158",
+      "category": "fit",
+      "question": "Would he fit a marketing tech team?",
+      "expectAnyChunkId": [
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-159",
+      "category": "fit",
+      "question": "Would he fit a SMB SaaS team?",
+      "expectAnyChunkId": [
+        "hiring-fit"
+      ]
+    },
+    {
+      "id": "q-160",
+      "category": "interview",
+      "question": "Screening question variant 1: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-161",
+      "category": "interview",
+      "question": "Screening question variant 2: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-162",
+      "category": "interview",
+      "question": "Screening question variant 3: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-163",
+      "category": "interview",
+      "question": "Screening question variant 4: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-164",
+      "category": "interview",
+      "question": "Screening question variant 5: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-165",
+      "category": "interview",
+      "question": "Screening question variant 6: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-166",
+      "category": "interview",
+      "question": "Screening question variant 7: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-167",
+      "category": "interview",
+      "question": "Screening question variant 8: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-168",
+      "category": "interview",
+      "question": "Screening question variant 9: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-169",
+      "category": "interview",
+      "question": "Screening question variant 10: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-170",
+      "category": "interview",
+      "question": "Screening question variant 11: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-171",
+      "category": "interview",
+      "question": "Screening question variant 12: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-172",
+      "category": "interview",
+      "question": "Screening question variant 13: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-173",
+      "category": "interview",
+      "question": "Screening question variant 14: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-174",
+      "category": "interview",
+      "question": "Screening question variant 15: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-175",
+      "category": "interview",
+      "question": "Screening question variant 16: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-176",
+      "category": "interview",
+      "question": "Screening question variant 17: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-177",
+      "category": "interview",
+      "question": "Screening question variant 18: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-178",
+      "category": "interview",
+      "question": "Screening question variant 19: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-179",
+      "category": "interview",
+      "question": "Screening question variant 20: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-180",
+      "category": "interview",
+      "question": "Screening question variant 21: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-181",
+      "category": "interview",
+      "question": "Screening question variant 22: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-182",
+      "category": "interview",
+      "question": "Screening question variant 23: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-183",
+      "category": "interview",
+      "question": "Screening question variant 24: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-184",
+      "category": "interview",
+      "question": "Screening question variant 25: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-185",
+      "category": "interview",
+      "question": "Screening question variant 26: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-186",
+      "category": "interview",
+      "question": "Screening question variant 27: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-187",
+      "category": "interview",
+      "question": "Screening question variant 28: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-188",
+      "category": "interview",
+      "question": "Screening question variant 29: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-189",
+      "category": "interview",
+      "question": "Screening question variant 30: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-190",
+      "category": "interview",
+      "question": "Screening question variant 31: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-191",
+      "category": "interview",
+      "question": "Screening question variant 32: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-192",
+      "category": "interview",
+      "question": "Screening question variant 33: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-193",
+      "category": "interview",
+      "question": "Screening question variant 34: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-194",
+      "category": "interview",
+      "question": "Screening question variant 35: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-195",
+      "category": "interview",
+      "question": "Screening question variant 36: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-196",
+      "category": "interview",
+      "question": "Screening question variant 37: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-197",
+      "category": "interview",
+      "question": "Screening question variant 38: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-198",
+      "category": "interview",
+      "question": "Screening question variant 39: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-199",
+      "category": "interview",
+      "question": "Screening question variant 40: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-200",
+      "category": "interview",
+      "question": "Screening question variant 41: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-201",
+      "category": "interview",
+      "question": "Screening question variant 42: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-202",
+      "category": "interview",
+      "question": "Screening question variant 43: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-203",
+      "category": "interview",
+      "question": "Screening question variant 44: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-204",
+      "category": "interview",
+      "question": "Screening question variant 45: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-205",
+      "category": "interview",
+      "question": "Screening question variant 46: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-206",
+      "category": "interview",
+      "question": "Screening question variant 47: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-207",
+      "category": "interview",
+      "question": "Screening question variant 48: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-208",
+      "category": "interview",
+      "question": "Screening question variant 49: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-209",
+      "category": "interview",
+      "question": "Screening question variant 50: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-210",
+      "category": "interview",
+      "question": "Screening question variant 51: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-211",
+      "category": "interview",
+      "question": "Screening question variant 52: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-212",
+      "category": "interview",
+      "question": "Screening question variant 53: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-213",
+      "category": "interview",
+      "question": "Screening question variant 54: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-214",
+      "category": "interview",
+      "question": "Screening question variant 55: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-215",
+      "category": "interview",
+      "question": "Screening question variant 56: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-216",
+      "category": "interview",
+      "question": "Screening question variant 57: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-217",
+      "category": "interview",
+      "question": "Screening question variant 58: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-218",
+      "category": "interview",
+      "question": "Screening question variant 59: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-219",
+      "category": "interview",
+      "question": "Screening question variant 60: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-220",
+      "category": "interview",
+      "question": "Screening question variant 61: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-221",
+      "category": "interview",
+      "question": "Screening question variant 62: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-222",
+      "category": "interview",
+      "question": "Screening question variant 63: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-223",
+      "category": "interview",
+      "question": "Screening question variant 64: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-224",
+      "category": "interview",
+      "question": "Screening question variant 65: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-225",
+      "category": "interview",
+      "question": "Screening question variant 66: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-226",
+      "category": "interview",
+      "question": "Screening question variant 67: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-227",
+      "category": "interview",
+      "question": "Screening question variant 68: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-228",
+      "category": "interview",
+      "question": "Screening question variant 69: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-229",
+      "category": "interview",
+      "question": "Screening question variant 70: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-230",
+      "category": "interview",
+      "question": "Screening question variant 71: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-231",
+      "category": "interview",
+      "question": "Screening question variant 72: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-232",
+      "category": "interview",
+      "question": "Screening question variant 73: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-233",
+      "category": "interview",
+      "question": "Screening question variant 74: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-234",
+      "category": "interview",
+      "question": "Screening question variant 75: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-235",
+      "category": "interview",
+      "question": "Screening question variant 76: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-236",
+      "category": "interview",
+      "question": "Screening question variant 77: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-237",
+      "category": "interview",
+      "question": "Screening question variant 78: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-238",
+      "category": "interview",
+      "question": "Screening question variant 79: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-239",
+      "category": "interview",
+      "question": "Screening question variant 80: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-240",
+      "category": "interview",
+      "question": "Screening question variant 81: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-241",
+      "category": "interview",
+      "question": "Screening question variant 82: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-242",
+      "category": "interview",
+      "question": "Screening question variant 83: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-243",
+      "category": "interview",
+      "question": "Screening question variant 84: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-244",
+      "category": "interview",
+      "question": "Screening question variant 85: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-245",
+      "category": "interview",
+      "question": "Screening question variant 86: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-246",
+      "category": "interview",
+      "question": "Screening question variant 87: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-247",
+      "category": "interview",
+      "question": "Screening question variant 88: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-248",
+      "category": "interview",
+      "question": "Screening question variant 89: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-249",
+      "category": "interview",
+      "question": "Screening question variant 90: React and Node ownership?",
+      "expectAnyChunkId": [
+        "stack-overview",
+        "what-i-bring"
+      ]
+    },
+    {
+      "id": "q-250",
+      "category": "general",
+      "question": "Is he a strong senior full-stack candidate for US remote teams?",
+      "expectAnyChunkId": [
+        "profile-summary",
+        "hiring-fit"
+      ]
+    }
+  ]
+}
