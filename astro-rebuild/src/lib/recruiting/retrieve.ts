@@ -148,6 +148,14 @@ const COMPANY_PROFILES: Record<string, CompanyProfile> = {
   },
 };
 
+export function shouldAssessFit(query: string): boolean {
+  const lower = query.toLowerCase();
+  if (lower.length < 25) return false;
+  return /fit|good fit|hire|interview|role|position|req|requisition|team|startup|saas|company|employer|looking for|should we|evaluate|candidate for|right for|match for/.test(
+    lower,
+  );
+}
+
 export function assessRoleFit(description: string): FitAssessment | undefined {
   const lower = description.toLowerCase();
   if (lower.length < 20) return undefined;

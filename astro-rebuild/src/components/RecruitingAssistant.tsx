@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { nicoBot } from '../data/nicoBot';
-import { STARTER_PROMPTS } from '../lib/recruiting/prompts';
+import { STARTER_PROMPTS } from '../data/recruitingPrompts';
 import type { ChatCitation, ChatMessage, FitAssessment } from '../lib/recruiting/types';
 import { track } from '../utils/analytics';
 import { AssistantMessageContent, FitBadge } from './recruiting/AssistantMessageContent';
@@ -210,7 +210,10 @@ export const RecruitingAssistant = () => {
                             {msg.fit && <FitBadge fit={msg.fit} />}
                             <AssistantMessageContent content={msg.content} variant="assistant" />
                             {msg.citations && msg.citations.length > 0 && (
-                              <div className="mt-3 flex flex-wrap gap-1.5">
+                              <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                                <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-secondary">
+                                  Source
+                                </span>
                                 {msg.citations.map((c) => (
                                   <a
                                     key={c.id}

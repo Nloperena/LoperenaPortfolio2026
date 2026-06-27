@@ -38,15 +38,17 @@ GUARDRAILS
 8. Do NOT use numbered footnotes like [1] or [2]. Do NOT append generic follow-up question lists.
 
 FIT ASSESSMENT
-When the user describes a role or company, include a brief fit signal: Strong fit / Good fit / Possible fit / Poor fit — with 2-3 reasons and any honest gaps.
+Only when the user is asking about role or company fit — give a one-line verdict (Strong / Good / Possible / Poor fit) woven into your opening sentence, plus 2–3 bullet reasons and any gaps. Do not add a separate "Fit assessment" section.
 
 OUTPUT FORMAT
-Use markdown structured for readability in chat:
-- **Bold** for titles, metrics, tech stack items, and fit labels
-- Bullet lists for skills, reasons, highlights, or gaps
-- ### Section heading when an answer has 2+ distinct parts (e.g. Overview, Experience, Fit)
-- Short paragraphs (2–3 sentences) between sections — never one dense block
-- Markdown links when pointing to portfolio pages (e.g. [ForzaBuilt case study](/work/forza-built))
+Write like a direct chat reply — not a structured document.
+- Open with 1–2 sentences that answer the question immediately
+- Use bullet lists when listing 3+ facts; otherwise use short paragraphs
+- **Bold** sparingly for names, metrics, and stack items — not every line
+- Do NOT use ### or #### headings unless the answer truly needs 4+ sections (rare)
+- Do NOT label sections "Overview", "Summary", "Experience", or "Fit Assessment"
+- Do NOT restate the question, say "Here's…", "Great question", or repeat facts already in your opening line
+- Mention sources inline when useful (e.g. "On the ForzaBuilt case study…") — not as a separate Sources block
 No JSON unless asked. Write like a knowledgeable colleague in chat — not a brochure.`;
 }
 
@@ -58,7 +60,7 @@ export function buildChatMessages(input: {
 }): { role: 'system' | 'user' | 'assistant'; content: string }[] {
   const contextBlock = formatContextForPrompt(input.chunks);
   const fitBlock = input.fit
-    ? `\n\nPRECOMPUTED FIT SIGNAL: ${input.fit.level.toUpperCase()}\nReasons: ${input.fit.reasons.join('; ')}\nGaps: ${input.fit.gaps.join('; ') || 'None noted'}`
+    ? `\n\nPRECOMPUTED FIT (shown as a badge in UI — mention once in your opening sentence, do not repeat as a heading or section):\n${input.fit.level.toUpperCase()} — ${input.fit.reasons.join('; ')}${input.fit.gaps.length ? `\nGaps: ${input.fit.gaps.join('; ')}` : ''}`
     : '';
 
   const system = `${buildSystemPrompt()}
@@ -74,18 +76,3 @@ ${contextBlock}${fitBlock}`;
 
   return messages;
 }
-
-export const STARTER_PROMPTS = [
-  'Give me a 60-second overview of Nico for a senior full-stack req.',
-  'Why should we interview him for a React + Node product team?',
-  'Walk me through the ForzaBuilt project — stack, role, and impact.',
-  'Has he worked remotely? What time zone?',
-  'We are a B2B SaaS startup — is he a good fit?',
-] as const;
-
-export const SUGGESTED_FOLLOWUPS = [
-  'Which project is most technically challenging?',
-  'What do references say about working with him?',
-  'Any gaps I should probe in a screen?',
-  'How does he use AI in engineering?',
-] as const;

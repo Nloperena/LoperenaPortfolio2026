@@ -1,13 +1,52 @@
-import type { ChatMessage, ChatResponsePayload } from './types';
+import type { ChatMessage, ChatResponsePayload, KnowledgeChunk } from './types';
 import { looksUnanswered, validateResponse } from './guardrails';
 import { resolveLlmConfig } from './llmConfig';
-import { buildChatMessages, SUGGESTED_FOLLOWUPS } from './prompts';
-import { assessRoleFit, retrieveChunks } from './retrieve';
+import { SUGGESTED_FOLLOWUPS } from '../../data/recruitingPrompts';
+import { buildChatMessages } from './prompts';
+import { assessRoleFit, retrieveChunks, shouldAssessFit } from './retrieve';
 
 type OpenAIChatResponse = {
   choices?: { message?: { content?: string } }[];
   error?: { message?: string };
 };
+
+const PROJECT_FOLLOWUPS: Record<string, string> = {
+  'forza-built': 'What migration risks did Nico handle on ForzaBuilt?',
+  'furniture-packages-usa': 'How did the FPUSA buyer-type navigation change quote volume?',
+  'vito-fryfilter': 'What automation did Nico build for VITO reviews?',
+  'nexrena-platform': 'What does the Nexrena platform include under the hood?',
+  'rugged-red': 'What SEO work did Nico do on Rugged Red?',
+};
+
+function buildFollowUps(chunks: KnowledgeChunk[], message: string): string[] {
+  const suggestions: string[] = [];
+  const lower = message.toLowerCase();
+
+  for (const chunk of chunks) {
+    for (const [projectId, prompt] of Object.entries(PROJECT_FOLLOWUPS)) {
+      if (chunk.id.includes(projectId) && !suggestions.includes(prompt)) {
+        suggestions.push(prompt);
+      }
+    }
+  }
+
+  if (/remote|time zone|est|florida/.test(lower)) {
+    suggestions.push('What do references say about working with him remotely?');
+  }
+  if (/reference|recommend|manager|collaborat/.test(lower)) {
+    suggestions.push('Any gaps I should probe in a screen?');
+  }
+  if (/fit|startup|saas|role/.test(lower)) {
+    suggestions.push('Which project best matches this kind of team?');
+  }
+
+  for (const fallback of SUGGESTED_FOLLOWUPS) {
+    if (suggestions.length >= 3) break;
+    if (!suggestions.includes(fallback)) suggestions.push(fallback);
+  }
+
+  return suggestions.slice(0, 3);
+}
 
 export async function generateRecruitingReply(input: {
   message: string;
@@ -21,7 +60,7 @@ export async function generateRecruitingReply(input: {
   }
 
   const chunks = retrieveChunks(input.message);
-  const fit = assessRoleFit(input.message);
+  const fit = shouldAssessFit(input.message) ? assessRoleFit(input.message) : undefined;
   const messages = buildChatMessages({
     history: input.history,
     userMessage: input.message,
@@ -54,9 +93,9 @@ export async function generateRecruitingReply(input: {
   const validation = validateResponse(message, chunks);
   const unanswered = looksUnanswered(message);
 
-  const citations = chunks.slice(0, 4).map((c) => ({
+  const citations = chunks.slice(0, 2).map((c) => ({
     id: c.id,
-    title: c.title,
+    title: c.title.split(' — ')[0],
     sourceUrl: c.sourceUrl,
   }));
 
@@ -64,7 +103,7 @@ export async function generateRecruitingReply(input: {
     message,
     citations,
     fit,
-    suggestedFollowUps: [...SUGGESTED_FOLLOWUPS].slice(0, 3),
+    suggestedFollowUps: buildFollowUps(chunks, input.message),
     unanswered,
     warnings: validation.warnings,
   };

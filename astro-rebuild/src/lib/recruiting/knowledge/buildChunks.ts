@@ -9,6 +9,7 @@ import { stackCopy, stackGroups } from '../../../data/stack';
 import { whatIBring } from '../../../data/whatIBring';
 import type { KnowledgeChunk } from '../types';
 import { recruiterFaqs, technicalDepthNotes } from './faqs';
+import { loadMarkdownKnowledgeChunksFromFs } from './loadMarkdownFromFs';
 
 function chunk(
   partial: Omit<KnowledgeChunk, 'keywords'> & { keywords?: string[] },
@@ -257,6 +258,8 @@ export function buildKnowledgeChunks(): KnowledgeChunk[] {
         'Industries: industrial manufacturing (Forza adhesives, Rugged Red cleaning products), e-commerce / commercial kitchen equipment (VITO Fryfilter Shopify), real estate / vacation rental furnishings (Furniture Packages USA, Villa Marketers WordPress portfolio), agency/client platforms (Nexrena B2B web studio).',
     }),
   );
+
+  chunks.push(...loadMarkdownKnowledgeChunksFromFs());
 
   return chunks;
 }

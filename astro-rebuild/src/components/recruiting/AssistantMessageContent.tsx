@@ -35,20 +35,10 @@ function buildComponents(variant: Variant): Components {
     ),
     em: ({ children }) => <em className={`italic ${muted}`}>{children}</em>,
     h3: ({ children }) => (
-      <h3
-        className={`mb-2 mt-4 font-mono text-[11px] font-bold uppercase tracking-[0.14em] first:mt-0 ${
-          isUser ? 'text-highlight' : 'text-foreground'
-        }`}
-      >
-        {children}
-      </h3>
+      <p className={`mb-2 mt-3 font-semibold first:mt-0 ${text}`}>{children}</p>
     ),
     h4: ({ children }) => (
-      <h4
-        className={`mb-1.5 mt-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] first:mt-0 ${muted}`}
-      >
-        {children}
-      </h4>
+      <p className={`mb-1.5 mt-2 text-[14px] font-medium first:mt-0 ${text}`}>{children}</p>
     ),
     a: ({ href, children }) => {
       const external = Boolean(href?.startsWith('http'));
