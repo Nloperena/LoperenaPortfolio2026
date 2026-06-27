@@ -34,12 +34,22 @@ export const RecruiterSkim = ({ compact = false }: RecruiterSkimProps) => {
       <div className="border-b-2 border-foreground bg-highlight px-4 py-5 md:px-6 lg:px-8">
         <div className="mx-auto max-w-[1400px]">
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-secondary">
-            For recruiters
+            {compact ? 'For recruiters' : 'About me'}
           </span>
           <h2 className="mt-1 font-mono text-xl font-black uppercase tracking-tight md:text-2xl">
-            30-second skim
+            {compact ? '30-second skim' : hiringProfile.title}
           </h2>
           {!compact && (
+            <p className="mt-3 max-w-2xl font-sans text-sm leading-relaxed text-foreground md:text-base">
+              {hiringProfile.aboutMeShort}
+            </p>
+          )}
+          {!compact && (
+            <p className="mt-2 max-w-2xl font-sans text-sm leading-relaxed text-foreground/75">
+              {hiringProfile.founderNote}
+            </p>
+          )}
+          {compact && (
             <p className="mt-2 max-w-2xl font-sans text-sm leading-relaxed text-foreground md:text-base">
               {hiringProfile.founderNote}
             </p>

@@ -71,6 +71,7 @@ export const PageHero = ({ page }: PageHeroProps) => {
 
   const hasCtas = config.showContact || config.showResume || config.showExperienceLink;
   const hasHighlights = config.highlights.length > 0;
+  const portraitLabel = page === 'home' ? siteProfile.name : 'Profile / About';
 
   return (
     <section
@@ -167,6 +168,12 @@ export const PageHero = ({ page }: PageHeroProps) => {
             </div>
           )}
 
+          {config.positioningLine && !config.simple && (
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">
+              {config.positioningLine}
+            </p>
+          )}
+
           {hasCtas && (
             <div className="hero-cta flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-2">
               {config.showContact && (
@@ -210,7 +217,7 @@ export const PageHero = ({ page }: PageHeroProps) => {
 
         {config.showPortrait && (
           <div className="order-2 flex justify-center lg:justify-end items-center lg:pl-8 py-4 lg:py-8">
-            <HeroPortrait />
+            <HeroPortrait label={portraitLabel} />
           </div>
         )}
       </div>

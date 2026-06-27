@@ -27,7 +27,7 @@ export interface BrandedCursorSpec {
 }
 
 export const brandedCursors: Record<BrandedCursorState, BrandedCursorSpec> = {
-  default: { src: '/cursors/default.svg', x: 12, y: 12, size: 24 },
+  default: { src: '/cursors/default.svg', x: 4, y: 4, size: 32 },
   pointer: { src: '/cursors/pointer.svg', x: 6, y: 4, size: 32 },
   text: { src: '/cursors/text.svg', x: 10, y: 14, size: 20 },
   'not-allowed': { src: '/cursors/not-allowed.svg', x: 14, y: 14, size: 28 },

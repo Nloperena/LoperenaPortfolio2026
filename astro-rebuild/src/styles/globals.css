@@ -6,7 +6,7 @@
   :root {
     --color-highlight: #b5ceaa;
     --color-highlight-line: rgba(143, 168, 130, 0.5);
-    --cursor-default: url('/cursors/default.svg') 12 12, auto;
+    --cursor-default: url('/cursors/default.svg') 4 4, auto;
     --cursor-pointer: url('/cursors/pointer.svg') 6 4, pointer;
     --cursor-text: url('/cursors/text.svg') 10 14, text;
     --cursor-not-allowed: url('/cursors/not-allowed.svg') 14 14, not-allowed;

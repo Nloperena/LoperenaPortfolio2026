@@ -25,7 +25,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(
       JSON.stringify({
         ok: false,
-        error: 'Recruiting assistant is not configured. Set OPENAI_API_KEY on the server.',
+        error: 'Recruiting assistant is not configured. Set GEMINI_API_KEY or OPENAI_API_KEY on the server.',
       }),
       { status: 503, headers: { 'Content-Type': 'application/json' } },
     );
@@ -105,8 +105,8 @@ export const GET: APIRoute = async () => {
     JSON.stringify({
       ok: true,
       enabled: llm !== null,
-      model: process.env.RECRUITING_ASSISTANT_MODEL ?? 'gpt-4o-mini',
-      provider: llm?.baseUrl.includes('ai-gateway') ? 'vercel-ai-gateway' : 'openai',
+      model: llm?.model ?? null,
+      provider: llm?.provider ?? null,
     }),
     { status: 200, headers: { 'Content-Type': 'application/json' } },
   );

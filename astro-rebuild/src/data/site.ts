@@ -49,6 +49,10 @@ export const siteProfile = {
 
   resumeDownloadName: 'Nicholas_Loperena_Resume_v11.pdf',
 
+  profilePhotoWebp: '/professional-photo.webp',
+
+  profilePhotoJpg: '/professional-photo.jpg',
+
   siteUrl: 'https://www.nicoloperena.com',
 
   ogImage: '/og/og-home.png',

@@ -1,5 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <rect x="13" y="13" width="8" height="8" fill="#0D0D0D" opacity="0.35"/>
-  <rect x="7" y="7" width="10" height="10" fill="#B5CEAA" stroke="#0D0D0D" stroke-width="2"/>
-  <rect x="10" y="10" width="4" height="4" fill="#0D0D0D"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <path d="M6 4v22l6-6 4 9 5-2-4-9h9L6 4z" fill="#F5F5F5" stroke="#0D0D0D" stroke-width="1.75" stroke-linejoin="miter"/>
 </svg>

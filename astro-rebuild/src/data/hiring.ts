@@ -18,6 +18,8 @@ export const hiringProfile = {
   schedulingUrl: '' as string,
   founderNote:
     'I run Nexrena, my client web studio. This portfolio is for engineering hiring — Nexrena is separate from my job search.',
+  aboutMeShort:
+    'Senior full-stack engineer with eight years in production — React, Next.js, Node, TypeScript, and PostgreSQL. I own delivery from UI through API to deploy, and I\'m open to remote senior roles with US teams.',
   idealFit: [
     'Product-led engineering teams with clear feature ownership',
     'B2B SaaS or e-commerce teams modernizing legacy stacks',

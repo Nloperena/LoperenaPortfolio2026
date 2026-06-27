@@ -1,13 +1,13 @@
 ---
 import '../styles/globals.css';
-import '../styles/site-chat.css';
 import { ClientRouter } from 'astro:transitions';
 import { Nav } from './Nav';
 import { FinalCTA } from './FinalCTA';
 import { BlueprintBackground } from './BlueprintBackground';
 import { IntakeModal } from './IntakeModal';
-import { PortfolioSiteChat } from './PortfolioSiteChat';
-import { TransitionScroll } from './TransitionScroll';import { CustomCursor } from './CustomCursor';
+import { RecruitingAssistant } from './RecruitingAssistant';
+import { TransitionScroll } from './TransitionScroll';
+import { CustomCursor } from './CustomCursor';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import { siteProfile } from '../data/site';
@@ -98,10 +98,13 @@ const robotsContent = noindex ? 'noindex, nofollow' : 'index, follow';
 		<CustomCursor client:load />
 		<TransitionScroll client:load />
 		<BlueprintBackground client:load transition:persist="blueprint" />
-		
-		<!-- Command Center Intake Modal -->
+
+		<!-- Contact intake — submissions to Nexrena Ops -->
 		<IntakeModal client:load transition:persist="intake-modal" />
-		<PortfolioSiteChat client:only="react" transition:persist="portfolio-ai-chat" />		<div class="relative z-10 min-h-screen bg-transparent">
+		<!-- Portfolio recruiting assistant — local RAG + original UI -->
+		<RecruitingAssistant client:load transition:persist="recruiting-assistant" />
+
+		<div class="relative z-10 min-h-screen bg-transparent">
 			<Nav client:load transition:persist="nav" />
 			<div class="relative z-20 w-full bg-background pb-8">
 				<slot />
@@ -110,10 +113,3 @@ const robotsContent = noindex ? 'noindex, nofollow' : 'index, follow';
 		</div>
 	</body>
 </html>
-
-
-
-
-
-
-

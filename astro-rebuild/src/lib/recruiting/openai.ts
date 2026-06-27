@@ -1,7 +1,7 @@
 import type { ChatMessage, ChatResponsePayload } from './types';
 import { looksUnanswered, validateResponse } from './guardrails';
 import { resolveLlmConfig } from './llmConfig';
-import { buildChatMessages, RECRUITING_MODEL, SUGGESTED_FOLLOWUPS } from './prompts';
+import { buildChatMessages, SUGGESTED_FOLLOWUPS } from './prompts';
 import { assessRoleFit, retrieveChunks } from './retrieve';
 
 type OpenAIChatResponse = {
@@ -16,7 +16,7 @@ export async function generateRecruitingReply(input: {
   const llm = resolveLlmConfig();
   if (!llm) {
     throw new Error(
-      'Recruiting assistant is not configured (set OPENAI_API_KEY, AI_GATEWAY_API_KEY, or deploy on Vercel with OIDC).',
+      'Recruiting assistant is not configured (set GEMINI_API_KEY, OPENAI_API_KEY, AI_GATEWAY_API_KEY, or deploy on Vercel with OIDC).',
     );
   }
 
@@ -36,7 +36,7 @@ export async function generateRecruitingReply(input: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: RECRUITING_MODEL,
+      model: llm.model,
       temperature: 0.35,
       max_tokens: 700,
       messages,
