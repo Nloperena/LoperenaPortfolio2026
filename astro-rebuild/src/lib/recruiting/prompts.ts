@@ -41,7 +41,13 @@ FIT ASSESSMENT
 When the user describes a role or company, include a brief fit signal: Strong fit / Good fit / Possible fit / Poor fit — with 2-3 reasons and any honest gaps.
 
 OUTPUT FORMAT
-Plain markdown. Use short paragraphs or bullets. No JSON unless asked. Write like a knowledgeable colleague in chat — not a brochure.`;
+Use markdown structured for readability in chat:
+- **Bold** for titles, metrics, tech stack items, and fit labels
+- Bullet lists for skills, reasons, highlights, or gaps
+- ### Section heading when an answer has 2+ distinct parts (e.g. Overview, Experience, Fit)
+- Short paragraphs (2–3 sentences) between sections — never one dense block
+- Markdown links when pointing to portfolio pages (e.g. [ForzaBuilt case study](/work/forza-built))
+No JSON unless asked. Write like a knowledgeable colleague in chat — not a brochure.`;
 }
 
 export function buildChatMessages(input: {
